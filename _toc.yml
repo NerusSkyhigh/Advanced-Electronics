@@ -2,7 +2,9 @@
 # Learn more at https://jupyterbook.org/customize/toc.html
 
 format: jb-book
-root: intro
+root: README
 chapters:
+- file: 2021-09-13 Lecture 01
+- file: 2021-09-14 Lecture 02
 - file: markdown
 - file: notebooks
