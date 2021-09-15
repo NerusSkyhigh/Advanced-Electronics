@@ -4,7 +4,7 @@
 format: jb-book
 root: README
 chapters:
-- file: 2021-09-13 Lecture 01
-- file: 2021-09-14 Lecture 02
+- file: 21-09-13 L01
+- file: 21-09-14 L02
 - file: markdown
 - file: notebooks
