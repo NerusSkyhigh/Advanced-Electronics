@@ -123,7 +123,7 @@ plt.show()
 # As one can immagine LTI systems are systems that are both linear and time invariant. Let's consider a system:
 # \begin{align*}
 #     \mathcal{S}\colon\ \{x[n]\}&\longrightarrow \{y[n]\}\\
-#     \mathcal{x[n]}&\longmapsto y[n]=\mathcal{S}(x[n])
+#     x[n]&\longmapsto y[n]=\mathcal{S}(x[n])
 # \end{align*}
 # 
 # ### Linear Systems
@@ -156,4 +156,4 @@ plt.show()
 # \begin{equation*}
 #     y[n] = \mathcal{S}(x[n]) \implies y_1[n] = \mathcal{x[n-n_0]} = y[n-n_0]
 # \end{equation*}
-# that is "to the same input"
+# that is "to the same inputs correspond the same outputs without regards on when we send the input".
