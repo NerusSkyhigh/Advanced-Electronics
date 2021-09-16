@@ -3,74 +3,157 @@
 
 # # Lecture 01 - 13 September 2021
 # 
-# You can also create content with Jupyter Notebooks. This means that you can include
-# code blocks and their outputs in your book.
+# ## Signals, Systems and Sequences
 # 
-# ## Markdown + notebooks
+# The first lecture consists mostly of definitions and reminders. These are usually boring and rather cumbersome but are nvertheless needed.
 # 
-# As it is markdown, you can embed images, HTML, etc into your posts!
+# Let's start with our first definition: signals.
 # 
-# ![](https://myst-parser.readthedocs.io/en/latest/_static/logo-wide.svg)
+# ### Signals
 # 
-# You can also $add_{math}$ and
+# A signal is a function of time and space. Formally, it is a MAP
+# \begin{align*}
+#     x\colon\ &\ t\longrightarrow y\\
+#     &\mathcal{R}\mapsto\mathcal{R}
+# \end{align*}
 # 
-# $$
-# math^{blocks}
-# $$
 # 
-# or
+# It is possible to restrict the domain and the codomain to $\mathcal{U} \subset \mathcal{H}$ so that we have four types of maps:
 # 
-# $$
-# \begin{aligned}
-# \mbox{mean} la_{tex} \\ \\
-# math blocks
-# \end{aligned}
-# $$
+# <!-- I've generated these tables with the help of https://www.tablesgenerator.com/html_tables 
+# Trust me, you don't want to deal with tables by hand. -->
+# |   FROM \ TO   	|    $\mathcal{R}$    	|       $\mathcal{Z}$      	|
+# |:-------------:	|:-------------------:	|:------------------------:	|
+# | $\mathcal{R}$ 	|        ANALOG       	|         NOT USED         	|
+# | $\mathcal{Z}$ 	| DIGITAL<br>(theory) 	| DIGITAL<br>(experiments) 	|
 # 
-# But make sure you \$Escape \$your \$dollar signs \$you want to keep!
 # 
-# ## MyST markdown
+# ### SYSTEM
 # 
-# MyST markdown works in Jupyter Notebooks as well. For more information about MyST markdown, check
-# out [the MyST guide in Jupyter Book](https://jupyterbook.org/content/myst.html),
-# or see [the MyST markdown documentation](https://myst-parser.readthedocs.io/en/latest/).
+# In a similar way systems are a MAP between signals
 # 
-# ## Code blocks and outputs
+# | IN $\rightarrow$ [SYSTEM]$\rightarrow$ OUT |                                           |
+# |:------------------------------------------:|-------------------------------------------|
+# |       ANALOG $\longrightarrow$ ANALOG      | Analog System                             |
+# |       ANALOG $\longrightarrow$ DIGITAL     | Analog to Digital Converter (ADC)         |
+# |       DIGITAL$\longrightarrow$ ANALOG      | Digital to Analog Converter (DAC)         |
+# |       DIGITAL$\longrightarrow$ DIGITAL     | Digital system; numeric system; processor |
 # 
-# Jupyter Book will also embed your code blocks and output in your book.
-# For example, here's some sample Matplotlib code:
+# 
+# ### SEQUENCES
+# 
+# Sequences are map from integer numbers to real or integer numbers
+# 
+# \begin{align*}
+#     y\colon\ n&\longrightarrow y[n]\\
+#     \mathcal{Z}&\longmapsto \mathcal{R} \textit{ or } \mathcal{Z}
+# \end{align*}
+# 
+# Two remarkable sequences are the **Delta / Impulse sequence** and the **Step Sequence**.
+# 
+# #### Delta sequence
+# 
+# The delta sequency is defined in analogy to the diract delta and the Kronecker delta:
+# 
+# \begin{equation}
+#     \delta[n] = \delta_{n,0} = \left\{\begin{array}{lr}
+#         1 \text{ if } n=0\\
+#         0 \text{ otherwise}
+#         \end{array}\right.
+# \end{equation}
+# 
+# #### Step Sequence
+# 
+# In a similar way the step sequence is defined in analogy to the Heaviside theta:
+# 
+# \begin{equation}
+#     U[n] = \left\{\begin{array}{lr}
+#         1 \text{ if } n\geq0\\
+#         0 \text{ otherwise}
+#         \end{array}\right.
+# \end{equation}
 
 # In[1]:
 
 
-from matplotlib import rcParams, cycler
 import matplotlib.pyplot as plt
 import numpy as np
-plt.ion()
+
+t = np.arange(-5, 6, 1)
+delta = np.zeros(t.shape); delta[ t.shape[0]//2] = 1
+heavi = np.heaviside(t, 1)
+
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 5))
+
+ax1.title.set_text('Delta / Impulse Sequence')
+ax1.scatter(t, delta, marker='o', label=r"$\delta[n]=\delta_{n,0}$")
+ax1.set_xlabel('n'); ax1.set_ylabel('y[n]')
+ax1.grid(True); ax1.legend(prop={'size': 14})
+ax1.set_xticks(t)
+ax1.set_ylim((-1, 2))
+
+ax2.title.set_text('Step Sequence')
+ax2.scatter(t, heavi, marker='o', label=r"$U[n]$")
+ax2.set_xlabel('n'); ax2.set_ylabel('y[n]')
+ax2.grid(True); ax2.legend(prop={'size': 14})
+ax2.set_xticks(t)
+ax2.set_ylim((-1, 2))
+
+plt.show()
 
 
-# In[2]:
+# A sequence can be delayed: $y[n] = x[n-n_0],\ n_0 \in \mathcal{Z}$. This operation is essential as it allows us to write every and each system as a sum of deltas with proper coefficients:
+# \begin{equation*}
+# x[n] = \sum_{n_0 = -\infty}^{+\infty}x[n_0]\ \delta[n-n_0] = (x * \delta)[n]
+# \end{equation*}
+# that is a discrete convolution between a sequence and a delta.
+# 
+# #### Periodic Sequences
+# A sequence $x[n]$ is said to be periodic of period $T$ if and only if (iff) $x[n-T] = x[n] \forall n \in \mathcal{Z}$.
+# 
+# #### Energy
+# Finally, the energy of a system is defined as
+# \begin{equation*}
+# \mathcal{E}(x[n]) = \sum_{n=-\infty}^{+\infty}\left| x[n] \right|^2
+# \end{equation*}
+# where the modulus was introduced to take care of signals $\mathcal{Z}\rightarrow \mathcal{C}$.
 
-
-# Fixing random state for reproducibility
-np.random.seed(19680801)
-
-N = 10
-data = [np.logspace(0, 1, 100) + np.random.randn(100) + ii for ii in range(N)]
-data = np.array(data).T
-cmap = plt.cm.coolwarm
-rcParams['axes.prop_cycle'] = cycler(color=cmap(np.linspace(0, 1, N)))
-
-
-from matplotlib.lines import Line2D
-custom_lines = [Line2D([0], [0], color=cmap(0.), lw=4),
-                Line2D([0], [0], color=cmap(.5), lw=4),
-                Line2D([0], [0], color=cmap(1.), lw=4)]
-
-fig, ax = plt.subplots(figsize=(10, 5))
-lines = ax.plot(data)
-ax.legend(custom_lines, ['Cold', 'Medium', 'Hot']);
-
-
-# There is a lot more that you can do with outputs (such as including interactive outputs)
-# with your book. For more information about this, see [the Jupyter Book documentation](https://jupyterbook.org)
+# ## Linear and Time Invariant (LTI) Systems
+# 
+# As one can immagine LTI systems are systems that are both linear and time invariant. Let's consider a system:
+# \begin{align*}
+#     \mathcal{S}\colon\ \{x[n]\}&\longrightarrow \{y[n]\}\\
+#     \mathcal{x[n]}&\longmapsto y[n]=\mathcal{S}(x[n])
+# \end{align*}
+# 
+# ### Linear Systems
+# 
+# A system is linear iff given $y_1[n]=\mathcal{S}(x_1[n])$and  $y_2[n]=\mathcal{S}(x_2[n])$ the following relation holds:
+# 
+# 
+# \begin{equation*}
+# \mathcal{S}(\alpha x_1[n] + \beta x_2[n]) = \alpha \mathcal{S}(x_1[n]) + \beta \mathcal{S}(x_2[n]) = \alpha y_1[n]+
+# \beta y_2[n]
+# \end{equation*}
+# 
+# for every $\alpha, \beta \in \mathcal{R}$.
+# 
+# ```{note}
+# Saying "a linear system is one for which the _superposition principle_ holds" is a tautology because the superposition itself is defined via linearity.
+# ```
+# 
+# One remarkable consequence of linearity is:
+# \begin{equation*}
+# \mathcal{S}(x[n]) = \mathcal{S}(\sum_{k=-\infty}^{+\infty} x[k] \delta[n-k]) = \sum_{k=-\infty}^{+\infty} x[k] \mathcal{S}(\delta[n-k]) 
+# \end{equation*}
+# that is **a linear system is fully characterized by its impulse response**.
+# 
+# <!-- Linear systems are the one of the most important class of systems because even non linear systems can be linearized with apposite tecniques. -->
+# 
+# ### Time Invariant Systems
+# 
+# A system is said to be time invariant iff
+# \begin{equation*}
+#     y[n] = \mathcal{S}(x[n]) \implies y_1[n] = \mathcal{x[n-n_0]} = y[n-n_0]
+# \end{equation*}
+# that is "to the same input"
