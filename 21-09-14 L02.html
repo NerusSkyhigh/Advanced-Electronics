@@ -217,18 +217,72 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#markdown-notebooks">
-   Markdown + notebooks
+  <a class="reference internal nav-link" href="#key-properties-of-a-system">
+   Key properties of a system
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reality">
+     Reality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#non-causality">
+     (Non) Causality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#marginal-stability">
+     Marginal Stability
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bibo-stability">
+     BIBO Stability
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#e-g-bibo-stable-system">
+       e.g. BIBO Stable system
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#th-bibo-stability">
+     Th: BIBO Stability
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#proof-of-sufficiency-impliedby">
+       Proof of sufficiency (
+       <span class="math notranslate nohighlight">
+        \(\impliedby\)
+       </span>
+       )
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#proof-of-necessity-implies">
+       Proof of necessity (
+       <span class="math notranslate nohighlight">
+        \(\implies\)
+       </span>
+       )
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#stability-of-a-sequence">
+     Stability of a sequence
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#myst-markdown">
-   MyST markdown
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-blocks-and-outputs">
-   Code blocks and outputs
+  <a class="reference internal nav-link" href="#difference-equations">
+   Difference equations
   </a>
  </li>
 </ul>
@@ -244,81 +298,114 @@
                 
   <div class="section" id="lecture-02-14-september-2021">
 <h1>Lecture 02 - 14 September 2021<a class="headerlink" href="#lecture-02-14-september-2021" title="Permalink to this headline">¶</a></h1>
-<p>You can also create content with Jupyter Notebooks. This means that you can include
-code blocks and their outputs in your book.</p>
-<div class="section" id="markdown-notebooks">
-<h2>Markdown + notebooks<a class="headerlink" href="#markdown-notebooks" title="Permalink to this headline">¶</a></h2>
-<p>As it is markdown, you can embed images, HTML, etc into your posts!</p>
-<p><img alt="" src="https://myst-parser.readthedocs.io/en/latest/_static/logo-wide.svg" /></p>
-<p>You can also <span class="math notranslate nohighlight">\(add_{math}\)</span> and</p>
-<div class="math notranslate nohighlight">
-\[
-math^{blocks}
-\]</div>
-<p>or</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\mbox{mean} la_{tex} \\ \\
-math blocks
-\end{aligned}
-\end{split}\]</div>
-<p>But make sure you $Escape $your $dollar signs $you want to keep!</p>
+<p>In the previous lecture we gave some basic definitions and showed that a LTI system is fully characterized by its <strong>impulse response</strong>.</p>
+<p>An interesting property of LTI systems is that it is possible to imagine them the impulse response and the input sequence as the two inputs of a convolution. This means that is is possible to freely swap the input sequence and the impulse response.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    x[n] \rightarrow [SYSTEM] \rightarrow y[n] &amp;\implies (x[n], h[n]) \rightarrow [CONVOLUTION] \rightarrow y[n] \\
+    &amp;\implies (h[n], x[n]) \rightarrow [CONVOLUTION] \rightarrow y[n]
+\end{align*}\]</div>
+<p>Matematically:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    y[n] = \sum_{k=-\infty}^{\infty} x[n] h[n-k]\quad \xrightarrow[k'=n-k]{k=k'-n} \quad \sum_{k'=-\infty}^{\infty} x[n-k'] h[k']
+\end{align*}\]</div>
+<p>We will now discuss three important features that a system can have, namely <strong>reality</strong>, <strong>causality / non causality</strong> and <strong>marginal stability / bibo stability</strong>.</p>
+<div class="section" id="key-properties-of-a-system">
+<h2>Key properties of a system<a class="headerlink" href="#key-properties-of-a-system" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reality">
+<h3>Reality<a class="headerlink" href="#reality" title="Permalink to this headline">¶</a></h3>
+<p>A system is said to be real iff <span class="math notranslate nohighlight">\(h[n]\in \mathcal{R}\)</span>.</p>
 </div>
-<div class="section" id="myst-markdown">
-<h2>MyST markdown<a class="headerlink" href="#myst-markdown" title="Permalink to this headline">¶</a></h2>
-<p>MyST markdown works in Jupyter Notebooks as well. For more information about MyST markdown, check
-out <a class="reference external" href="https://jupyterbook.org/content/myst.html">the MyST guide in Jupyter Book</a>,
-or see <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">the MyST markdown documentation</a>.</p>
-</div>
-<div class="section" id="code-blocks-and-outputs">
-<h2>Code blocks and outputs<a class="headerlink" href="#code-blocks-and-outputs" title="Permalink to this headline">¶</a></h2>
-<p>Jupyter Book will also embed your code blocks and output in your book.
-For example, here’s some sample Matplotlib code:</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span><span class="p">,</span> <span class="n">cycler</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
-</pre></div>
+<div class="section" id="non-causality">
+<h3>(Non) Causality<a class="headerlink" href="#non-causality" title="Permalink to this headline">¶</a></h3>
+<p>A system is said to be causal (or nonanticipative) iff <span class="math notranslate nohighlight">\(h[n] = 0 \textit{ if } n&lt;0\)</span>. An equivalent definition is: the output <span class="math notranslate nohighlight">\(y[n_{0}]\)</span> depends on only the input <span class="math notranslate nohighlight">\(x[n]\)</span> for values of <span class="math notranslate nohighlight">\(n &lt; n_{0}\)</span>. The idea behind this property is that the output depends only on past inputs and not on future inputs.</p>
+<p>A non causal system is defined <strong>by substituting the “less than” with a “greater than”</strong>: <br/>
+A system is said to be causal (or nonanticipative) iff <span class="math notranslate nohighlight">\(h[n] = 0 \textit{ if } n&gt;0\)</span>. An equivalent definition is: the output <span class="math notranslate nohighlight">\(y[t_{0}]\)</span> depends on only the input <span class="math notranslate nohighlight">\(x[n]\)</span> for values of <span class="math notranslate nohighlight">\(t&gt;n_{0}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A system can be BOTH causal and NON CAUSAL. A class of systems that satisfy this properties are amplifiers <span class="math notranslate nohighlight">\(h[n]= \alpha\ \delta[n]\)</span>. These kind of systems respect both conditions as the have <span class="math notranslate nohighlight">\(h[n]=0\)</span> for both <span class="math notranslate nohighlight">\(t&lt;0\)</span> and <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.pyplot._IonContext at 0x7fabe83b17f0&gt;
-</pre></div>
+<div class="section" id="marginal-stability">
+<h3>Marginal Stability<a class="headerlink" href="#marginal-stability" title="Permalink to this headline">¶</a></h3>
+<p>A system is marginal stable iff <span class="math notranslate nohighlight">\(\exists L&lt;+\infty\ :\ |h[n]| \leq L\ \forall n\)</span>.</p>
+<p>An example of marginal stable system is one with <span class="math notranslate nohighlight">\(h[n]=U[n]\leq 1\)</span> (<em>the integrator</em>):</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    y[n] = \sum_{k=-\infty}^{+\infty} x[k] U[n-k] = \sum_{k=-\infty}^{n} x[k]
+\end{equation*}\]</div>
+</div>
+<div class="section" id="bibo-stability">
+<h3>BIBO Stability<a class="headerlink" href="#bibo-stability" title="Permalink to this headline">¶</a></h3>
+<p>A system is BIBO Stable (Bounded Input - Bounded Output) if to each and every bounded input <span class="math notranslate nohighlight">\(x[n]\)</span> it corresponds a bounded output.</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    \forall\ x[n]\ :\ |x[n]|&lt;+\infty \implies \exists L&lt;\infty\ :\ |y[n]|&lt;L \forall n
+\end{equation*}\]</div>
+<div class="section" id="e-g-bibo-stable-system">
+<h4>e.g. BIBO Stable system<a class="headerlink" href="#e-g-bibo-stable-system" title="Permalink to this headline">¶</a></h4>
+<p>An amplifiers is a BIBO stable system (trivial if we take<span class="math notranslate nohighlight">\(L=\max_{n}\{x[n]\}\times\alpha\)</span>) but an integrator is not. If we choose <span class="math notranslate nohighlight">\(x[n]=U[n]\)</span> we have:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    y[n] = \sum_{k=-\infty}^{n} U[k] = \sum_{k=0}^{n} 1 = n+1
+\end{equation*}\]</div>
+<p>so I can just choose <span class="math notranslate nohighlight">\(n=L\)</span> to “surpass” every <span class="math notranslate nohighlight">\(L\)</span> I’ve chosen.</p>
 </div>
 </div>
+<div class="section" id="th-bibo-stability">
+<h3>Th: BIBO Stability<a class="headerlink" href="#th-bibo-stability" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-theorem admonition">
+<p class="admonition-title">Theorem</p>
+<p>Condition sufficient and necessary for a system to be BIBO Stable is that <span class="math notranslate nohighlight">\(h[n]\)</span> is <strong>absolutely convergent</strong>, that is <span class="math notranslate nohighlight">\(\exists L &lt;\infty\ :\ \sum_{n}|h[n]| \le L\)</span>.</p>
 </div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Fixing random state for reproducibility</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">19680801</span><span class="p">)</span>
-
-<span class="n">N</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="n">ii</span> <span class="k">for</span> <span class="n">ii</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
-<span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">coolwarm</span>
-<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.prop_cycle&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">cycler</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">N</span><span class="p">)))</span>
-
-
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
-<span class="n">custom_lines</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">0.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">.5</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
-                <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">cmap</span><span class="p">(</span><span class="mf">1.</span><span class="p">),</span> <span class="n">lw</span><span class="o">=</span><span class="mi">4</span><span class="p">)]</span>
-
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-<span class="n">lines</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">custom_lines</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Cold&#39;</span><span class="p">,</span> <span class="s1">&#39;Medium&#39;</span><span class="p">,</span> <span class="s1">&#39;Hot&#39;</span><span class="p">]);</span>
-</pre></div>
+<div class="section" id="proof-of-sufficiency-impliedby">
+<h4>Proof of sufficiency (<span class="math notranslate nohighlight">\(\impliedby\)</span>)<a class="headerlink" href="#proof-of-sufficiency-impliedby" title="Permalink to this headline">¶</a></h4>
+<p>Assume the input sequence to be bounded <span class="math notranslate nohighlight">\(|x[n]| \leq L\in\mathcal{R}^{+}\ \forall n\)</span> and apply the Cauchy–Schwarz inequality:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    |y[n]| = |\sum_{k} h[k] x[n-k]| \leq \sum_{k} |h[k]|\ |x[n-k]| \leq \max_{k}\{h[k]\} \sum_{k} |h[n-k]| \leq \max_{k}\{h[k]\} L &lt; +\infty
+\end{align*}\]</div>
+</div>
+<div class="section" id="proof-of-necessity-implies">
+<h4>Proof of necessity (<span class="math notranslate nohighlight">\(\implies\)</span>)<a class="headerlink" href="#proof-of-necessity-implies" title="Permalink to this headline">¶</a></h4>
+<p>The proof of necessity is a bit trickier. Instead of the direct why we will work “ad absurdum” by proving that <em>if <span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent then the system is NOT BIBO stable</em>. This proof works because the other cases were already taken care of <a class="footnote-reference brackets" href="#cases" id="id1">1</a>.</p>
+<p>Let’s consider a sequence defined as:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-3140b048-39ea-46c5-8ec7-4c1e1cefdeed">
+<span class="eqno">(3)<a class="headerlink" href="#equation-3140b048-39ea-46c5-8ec7-4c1e1cefdeed" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+    x[n] = \left\{\begin{array}{lr}
+        \frac{h^*[-n]}{|h[-n]|} \quad \textit{if} \quad |h[-n]|\neq 0\\
+        0  \quad \textit{if} \quad |h[-n]| = 0\
+        \end{array}\right.
+\end{equation}\]</div>
+<p>Now we evaluate the output of said system in n=0 and use the fact that <span class="math notranslate nohighlight">\(h[n]\)</span> is NOT absolutely convergent:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    y[n] = \sum_{k} h[k] \frac{h^*[k-n]}{|h[k-n]|} \rightarrow y[0] = \sum_{k} h[k] \frac{h^*[k]}{|h[k]|} = \sum_k |h[k]| = +\infty
+\end{align*}\]</div>
+<p>With this this we proved that if <span class="math notranslate nohighlight">\(h[k]\)</span> is not absolutely convergent then the system can not be BIBO stable.</p>
 </div>
 </div>
-<div class="cell_output docutils container">
-<img alt="_images/21-09-14 L02_2_0.png" src="_images/21-09-14 L02_2_0.png" />
+<div class="section" id="stability-of-a-sequence">
+<h3>Stability of a sequence<a class="headerlink" href="#stability-of-a-sequence" title="Permalink to this headline">¶</a></h3>
+<p>Sometime we will talk about BIBO stability of a sequence. In this context it means <span class="math notranslate nohighlight">\(\sum_n |x[n]| &lt; +\infty\)</span>.</p>
 </div>
 </div>
-<p>There is a lot more that you can do with outputs (such as including interactive outputs)
-with your book. For more information about this, see <a class="reference external" href="https://jupyterbook.org">the Jupyter Book documentation</a></p>
+<div class="section" id="difference-equations">
+<h2>Difference equations<a class="headerlink" href="#difference-equations" title="Permalink to this headline">¶</a></h2>
+<p>TBA</p>
+<hr class="footnotes docutils" />
+<dl class="footnote brackets">
+<dt class="label" id="cases"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Let’s list the cases for clarity’s sake:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent <span class="math notranslate nohighlight">\(\implies\)</span> S is NOT BIBO stable: it’s the proof</p></li>
+<li><p><span class="math notranslate nohighlight">\(h[k]\)</span> is absolutely convergent <span class="math notranslate nohighlight">\(\implies\)</span> S is NOT BIBO stable: impossible for the “Proof of sufficiency”</p></li>
+<li><p><span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent <span class="math notranslate nohighlight">\(\implies\)</span> S is BIBO stable: it’s in the proof</p></li>
+<li><p><span class="math notranslate nohighlight">\(h[k]\)</span> is absolutely convergent <span class="math notranslate nohighlight">\(\implies\)</span> S is BIBO stable: that’s what we are aiming for</p></li>
+</ul>
+</dd>
+</dl>
 </div>
 </div>
 

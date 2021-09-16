@@ -361,8 +361,8 @@ Trust me, you don't want to deal with tables by hand. -->
 <div class="section" id="delta-sequence">
 <h4>Delta sequence<a class="headerlink" href="#delta-sequence" title="Permalink to this headline">¶</a></h4>
 <p>The delta sequency is defined in analogy to the diract delta and the Kronecker delta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-b892c4d6-e743-4ca0-b237-ecf6e91efa78">
-<span class="eqno">(1)<a class="headerlink" href="#equation-b892c4d6-e743-4ca0-b237-ecf6e91efa78" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-59292458-ba56-4f8d-8db1-6e83ed55e3b8">
+<span class="eqno">(1)<a class="headerlink" href="#equation-59292458-ba56-4f8d-8db1-6e83ed55e3b8" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     \delta[n] = \delta_{n,0} = \left\{\begin{array}{lr}
         1 \text{ if } n=0\\
         0 \text{ otherwise}
@@ -372,8 +372,8 @@ Trust me, you don't want to deal with tables by hand. -->
 <div class="section" id="step-sequence">
 <h4>Step Sequence<a class="headerlink" href="#step-sequence" title="Permalink to this headline">¶</a></h4>
 <p>In a similar way the step sequence is defined in analogy to the Heaviside theta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-87c84016-d784-4c84-8a69-74112ec5bdaf">
-<span class="eqno">(2)<a class="headerlink" href="#equation-87c84016-d784-4c84-8a69-74112ec5bdaf" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-d627a10c-1947-48af-a6c4-d8e751c582cd">
+<span class="eqno">(2)<a class="headerlink" href="#equation-d627a10c-1947-48af-a6c4-d8e751c582cd" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     U[n] = \left\{\begin{array}{lr}
         1 \text{ if } n\geq0\\
         0 \text{ otherwise}
@@ -440,7 +440,7 @@ x[n] = \sum_{n_0 = -\infty}^{+\infty}x[n_0]\ \delta[n-n_0] = (x * \delta)[n]
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \mathcal{S}\colon\ \{x[n]\}&amp;\longrightarrow \{y[n]\}\\
-    \mathcal{x[n]}&amp;\longmapsto y[n]=\mathcal{S}(x[n])
+    x[n]&amp;\longmapsto y[n]=\mathcal{S}(x[n])
 \end{align*}\]</div>
 <div class="section" id="linear-systems">
 <h3>Linear Systems<a class="headerlink" href="#linear-systems" title="Permalink to this headline">¶</a></h3>
@@ -470,7 +470,7 @@ x[n] = \sum_{n_0 = -\infty}^{+\infty}x[n_0]\ \delta[n-n_0] = (x * \delta)[n]
 \[\begin{equation*}
     y[n] = \mathcal{S}(x[n]) \implies y_1[n] = \mathcal{x[n-n_0]} = y[n-n_0]
 \end{equation*}\]</div>
-<p>that is “to the same input”</p>
+<p>that is “to the same inputs correspond the same outputs without regards on when we send the input”.</p>
 </div>
 </div>
 </div>
