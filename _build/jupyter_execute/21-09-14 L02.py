@@ -101,4 +101,53 @@
 # 
 # ## Difference equations
 # 
-# TBA
+# A discrete way to characterize LTI systems other than differential equation and their solution are difference equations. The most generic form of difference equation is
+# \begin{equation*}
+#     y[n] = y[n-1] + y[n-2] + x[n]
+# \end{equation*}
+# 
+# ### e.g. Fibonacci sequence
+# \begin{equation*}
+# f[n] = \left\{\begin{array}{lr}
+#         0  \quad \textit{if} \quad n\leq 0\\
+#         1  \quad \textit{if} \quad n = 0\\
+#         f[n] = f[n-1] + f[n-2]
+#         \end{array}\right.
+# \end{equation*}
+# Where the first two conditions are the input / initial conditions.
+# 
+# ### exercise
+# 
+# Let's consider $y[n]=ay[n-1] + x[0]\delta[n]$. How can we find $h[n]$?
+# 
+# To do that, let's divide both sides by the input $x[n]$ so that we obtain the $h[n]=a h[n-1]+\delta[n]$ and distinguish the two cases where $h[n]$ is causal or non causal:
+# 
+# #### $h[n]$ is Causal
+# 
+# If $h[n]$ is causal it has to satisfy the condition $h[n]=0$ if $n<0$. It is then possible to write:
+# - $h[0] = a h[0-1] + \delta[0] = a\cdot0 + 1=1$
+# - $h[1] = a h[1-1] + \delta[1] = a\cdot 1 + 0=a$
+# - $h[0] = a h[2-1] + \delta[2] = a\cdot a + 0=a^2$
+# - ...
+# - $\implies h[n]=a^n$.
+# 
+# #### $h[n]$ is Non Causal
+# If $h[n]$ is non causal it has to satisfy the condition $h[n]=0$ if $n>0$. By inverting the difference equation it is possible to write:
+# - $h[n-1] = (h[n]-\delta[n])/a$
+# - $h[0] = (h[1]-\delta[1])/a = (0-0)/a = 0$
+# - $h[-1] = (h[0]-\delta[0])/a = (0-1)/a = -1/a$
+# - $h[-2] = (h[-1]-\delta[-1])/a = (-1/a-0)/a = -1/a^2$
+# - $h[-3] = (h[-2]-\delta[-2])/a = (-1/a^2-0)/a = -1/a^3$
+# - ...
+# - $\implies h[n]=-1 \cdot U[-n-1] \cdot a^{n}$
+# 
+# 
+# 
+# So by considering both cases it is possible to find the value of $h[n]$:
+# 
+# \begin{equation*}
+# h[n] = \left\{\begin{array}{lr}
+#         h[n]=a^n  \quad \textit{if CAUSAL}\\
+#         h[n]=-U[-n-1] a^{n}  \quad \textit{if NON CAUSAL}
+#         \end{array}\right.
+# \end{equation*}

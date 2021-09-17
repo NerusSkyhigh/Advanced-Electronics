@@ -284,6 +284,36 @@
   <a class="reference internal nav-link" href="#difference-equations">
    Difference equations
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-g-fibonacci-sequence">
+     e.g. Fibonacci sequence
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#exercise">
+     exercise
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#h-n-is-causal">
+       <span class="math notranslate nohighlight">
+        \(h[n]\)
+       </span>
+       is Causal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#h-n-is-non-causal">
+       <span class="math notranslate nohighlight">
+        \(h[n]\)
+       </span>
+       is Non Causal
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -371,8 +401,8 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 <h4>Proof of necessity (<span class="math notranslate nohighlight">\(\implies\)</span>)<a class="headerlink" href="#proof-of-necessity-implies" title="Permalink to this headline">¶</a></h4>
 <p>The proof of necessity is a bit trickier. Instead of the direct why we will work “ad absurdum” by proving that <em>if <span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent then the system is NOT BIBO stable</em>. This proof works because the other cases were already taken care of <a class="footnote-reference brackets" href="#cases" id="id1">1</a>.</p>
 <p>Let’s consider a sequence defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-3140b048-39ea-46c5-8ec7-4c1e1cefdeed">
-<span class="eqno">(3)<a class="headerlink" href="#equation-3140b048-39ea-46c5-8ec7-4c1e1cefdeed" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-05cc9775-ed48-442b-9ff2-22ed5885ca4d">
+<span class="eqno">(3)<a class="headerlink" href="#equation-05cc9775-ed48-442b-9ff2-22ed5885ca4d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     x[n] = \left\{\begin{array}{lr}
         \frac{h^*[-n]}{|h[-n]|} \quad \textit{if} \quad |h[-n]|\neq 0\\
         0  \quad \textit{if} \quad |h[-n]| = 0\
@@ -393,7 +423,58 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 </div>
 <div class="section" id="difference-equations">
 <h2>Difference equations<a class="headerlink" href="#difference-equations" title="Permalink to this headline">¶</a></h2>
-<p>TBA</p>
+<p>A discrete way to characterize LTI systems other than differential equation and their solution are difference equations. The most generic form of difference equation is</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    y[n] = y[n-1] + y[n-2] + x[n]
+\end{equation*}\]</div>
+<div class="section" id="e-g-fibonacci-sequence">
+<h3>e.g. Fibonacci sequence<a class="headerlink" href="#e-g-fibonacci-sequence" title="Permalink to this headline">¶</a></h3>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+f[n] = \left\{\begin{array}{lr}
+        0  \quad \textit{if} \quad n\leq 0\\
+        1  \quad \textit{if} \quad n = 0\\
+        f[n] = f[n-1] + f[n-2]
+        \end{array}\right.
+\end{equation*}\]</div>
+<p>Where the first two conditions are the input / initial conditions.</p>
+</div>
+<div class="section" id="exercise">
+<h3>exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<p>Let’s consider <span class="math notranslate nohighlight">\(y[n]=ay[n-1] + x[0]\delta[n]\)</span>. How can we find <span class="math notranslate nohighlight">\(h[n]\)</span>?</p>
+<p>To do that, let’s divide both sides by the input <span class="math notranslate nohighlight">\(x[n]\)</span> so that we obtain the <span class="math notranslate nohighlight">\(h[n]=a h[n-1]+\delta[n]\)</span> and distinguish the two cases where <span class="math notranslate nohighlight">\(h[n]\)</span> is causal or non causal:</p>
+<div class="section" id="h-n-is-causal">
+<h4><span class="math notranslate nohighlight">\(h[n]\)</span> is Causal<a class="headerlink" href="#h-n-is-causal" title="Permalink to this headline">¶</a></h4>
+<p>If <span class="math notranslate nohighlight">\(h[n]\)</span> is causal it has to satisfy the condition <span class="math notranslate nohighlight">\(h[n]=0\)</span> if <span class="math notranslate nohighlight">\(n&lt;0\)</span>. It is then possible to write:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h[0] = a h[0-1] + \delta[0] = a\cdot0 + 1=1\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h[1] = a h[1-1] + \delta[1] = a\cdot 1 + 0=a\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h[0] = a h[2-1] + \delta[2] = a\cdot a + 0=a^2\)</span></p></li>
+<li><p>…</p></li>
+<li><p><span class="math notranslate nohighlight">\(\implies h[n]=a^n\)</span>.</p></li>
+</ul>
+</div>
+<div class="section" id="h-n-is-non-causal">
+<h4><span class="math notranslate nohighlight">\(h[n]\)</span> is Non Causal<a class="headerlink" href="#h-n-is-non-causal" title="Permalink to this headline">¶</a></h4>
+<p>If <span class="math notranslate nohighlight">\(h[n]\)</span> is non causal it has to satisfy the condition <span class="math notranslate nohighlight">\(h[n]=0\)</span> if <span class="math notranslate nohighlight">\(n&gt;0\)</span>. By inverting the difference equation it is possible to write:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(h[n-1] = (h[n]-\delta[n])/a\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h[0] = (h[1]-\delta[1])/a = (0-0)/a = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h[-1] = (h[0]-\delta[0])/a = (0-1)/a = -1/a\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h[-2] = (h[-1]-\delta[-1])/a = (-1/a-0)/a = -1/a^2\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(h[-3] = (h[-2]-\delta[-2])/a = (-1/a^2-0)/a = -1/a^3\)</span></p></li>
+<li><p>…</p></li>
+<li><p><span class="math notranslate nohighlight">\(\implies h[n]=-1 \cdot U[-n-1] \cdot a^{n}\)</span></p></li>
+</ul>
+<p>So by considering both cases it is possible to find the value of <span class="math notranslate nohighlight">\(h[n]\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+h[n] = \left\{\begin{array}{lr}
+        h[n]=a^n  \quad \textit{if CAUSAL}\\
+        h[n]=-U[-n-1] a^{n}  \quad \textit{if NON CAUSAL}
+        \end{array}\right.
+\end{equation*}\]</div>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="cases"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -406,6 +487,8 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 </ul>
 </dd>
 </dl>
+</div>
+</div>
 </div>
 </div>
 
