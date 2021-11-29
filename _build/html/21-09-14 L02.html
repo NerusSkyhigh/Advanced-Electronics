@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lecture 02 - 14 September 2021 &#8212; Notes of Advanced Electronics</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.e8f53015daec13862f6db5e763c41738.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -43,7 +43,7 @@
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -56,7 +56,10 @@
     <link rel="next" title="Markdown Files" href="markdown.html" />
     <link rel="prev" title="Lecture 01 - 13 September 2021" href="21-09-13%20L01.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -72,6 +75,10 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
       
       <img src="_static/logo.png" class="logo" alt="logo">
       
@@ -326,7 +333,7 @@
         
               <div>
                 
-  <div class="section" id="lecture-02-14-september-2021">
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-02-14-september-2021">
 <h1>Lecture 02 - 14 September 2021<a class="headerlink" href="#lecture-02-14-september-2021" title="Permalink to this headline">¶</a></h1>
 <p>In the previous lecture we gave some basic definitions and showed that a LTI system is fully characterized by its <strong>impulse response</strong>.</p>
 <p>An interesting property of LTI systems is that it is possible to imagine them the impulse response and the input sequence as the two inputs of a convolution. This means that is is possible to freely swap the input sequence and the impulse response.</p>
@@ -401,8 +408,8 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 <h4>Proof of necessity (<span class="math notranslate nohighlight">\(\implies\)</span>)<a class="headerlink" href="#proof-of-necessity-implies" title="Permalink to this headline">¶</a></h4>
 <p>The proof of necessity is a bit trickier. Instead of the direct why we will work “ad absurdum” by proving that <em>if <span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent then the system is NOT BIBO stable</em>. This proof works because the other cases were already taken care of <a class="footnote-reference brackets" href="#cases" id="id1">1</a>.</p>
 <p>Let’s consider a sequence defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-05cc9775-ed48-442b-9ff2-22ed5885ca4d">
-<span class="eqno">(3)<a class="headerlink" href="#equation-05cc9775-ed48-442b-9ff2-22ed5885ca4d" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-e5efa372-1989-4c58-92c8-9118f5436f18">
+<span class="eqno">(3)<a class="headerlink" href="#equation-e5efa372-1989-4c58-92c8-9118f5436f18" title="Permalink to this equation">¶</a></span>\[\begin{equation}
     x[n] = \left\{\begin{array}{lr}
         \frac{h^*[-n]}{|h[-n]|} \quad \textit{if} \quad |h[-n]|\neq 0\\
         0  \quad \textit{if} \quad |h[-n]| = 0\
@@ -515,36 +522,27 @@ h[n] = \left\{\begin{array}{lr}
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="21-09-13%20L01.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Lecture 01 - 13 September 2021</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="21-09-13%20L01.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 01 - 13 September 2021</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="markdown.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markdown Files</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="markdown.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Markdown Files</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
+    <footer class="footer">
     <div class="container">
       <p>
         
@@ -560,8 +558,7 @@ h[n] = \left\{\begin{array}{lr}
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
