@@ -6,11 +6,13 @@
 # Equipped with the definitions and lemmas found in the last lecture it is possible to start talking about the **z-transform**. But first, it is necessary to draw some parallelisms with the solutions of a differential equation:
 # 
 # ![Solution of a differential equation with Fourier Tranform / Laplace Transform](images/21-09-20_diff_eq_sol.png)
-# <!-- Need to make this better -->
+# 
+# For example, with a low pas filter the procedure becomes:  
+# ![Solution of the low pass with Fourier Tranform](images/21-09-20_diff_eq_example.png)
+# 
 # 
 # In a similar way a difference equation can be solved via an approripate transform, the z-transform
-# ![Solution of a difference equation with z-transform](images/21-09-20_z-transform_sol.jpeg)
-# <!-- Need to make this better -->
+# ![Solution of a difference equation with z-transform](images/21-09-20_z-transform_sol.png)
 # 
 # ## The z-transform
 # Given a sequence $x[n]$ we write the z-transform as
@@ -61,15 +63,14 @@
 # \end{align*}
 # 
 # ### Cascade of two systems
-# ![Cascade of two systems](images/21-09-20_cascade_of_two_systems.jpeg)
-# <!-- Need to make this better -->
+# ![Cascade of two systems](images/21-09-20_cascade_of_two_systems.png)
 # 
 # If the two systems are L.T.I. the two cascade are equivalent: $y[n]=y'[n]$. The proof lies in the equality of the z-transform and the properties of the convolution. More than that the two systems $y[n]$ and $y'[n]$ have the same R.O.C:
+#   
 # \begin{align*}
 #     y[n] = h[n]*j[n] = Z^{-1}\left(h(z)j(z)\right) = Z^{-1}\left(j(z)h(z)\right) = j[n]*h[n] = y'[n] \qquad \textbf{R.O.C} = \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
 # \end{align*}
-#   
-#   
+#     
 # In the last properties the notion of inverse z-transform was suggest. To give a formal definion of inverse z-transform some lemmas are needed.
 # 
 # ## Lemmas for inverse z-transform
@@ -113,3 +114,9 @@
 #     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z)z^{n-1} dz = \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} \sum_{k}x[k]z^{-k}z^{n-1} dz = \frac{1}{2\pi i} \sum_{k} x[k] \oint_{\Gamma\text{ um }z_0} z^{n-k-1} dz = \sum_{k}x[k] \delta_{n-k-1, -1} = x[n]
 # \end{align*}
 # where the second equality assumes the R.O.C. to be such that the inversion of the summation and the integral is possible.
+
+# In[ ]:
+
+
+
+
