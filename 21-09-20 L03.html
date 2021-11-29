@@ -309,10 +309,10 @@
 <h1>Lecture 03 - 20 September 2021<a class="headerlink" href="#lecture-03-20-september-2021" title="Permalink to this headline">¶</a></h1>
 <p>Equipped with the definitions and lemmas found in the last lecture it is possible to start talking about the <strong>z-transform</strong>. But first, it is necessary to draw some parallelisms with the solutions of a differential equation:</p>
 <p><img alt="Solution of a differential equation with Fourier Tranform / Laplace Transform" src="_images/21-09-20_diff_eq_sol.png" /></p>
-<!-- Need to make this better -->
+<p>For example, with a low pas filter the procedure becomes:<br />
+<img alt="Solution of the low pass with Fourier Tranform" src="_images/21-09-20_diff_eq_example.png" /></p>
 <p>In a similar way a difference equation can be solved via an approripate transform, the z-transform
-<img alt="Solution of a difference equation with z-transform" src="_images/21-09-20_z-transform_sol.jpeg" /></p>
-<!-- Need to make this better -->
+<img alt="Solution of a difference equation with z-transform" src="_images/21-09-20_z-transform_sol.png" /></p>
 <div class="section" id="the-z-transform">
 <h2>The z-transform<a class="headerlink" href="#the-z-transform" title="Permalink to this headline">¶</a></h2>
 <p>Given a sequence <span class="math notranslate nohighlight">\(x[n]\)</span> we write the z-transform as</p>
@@ -372,8 +372,7 @@
 </div>
 <div class="section" id="cascade-of-two-systems">
 <h3>Cascade of two systems<a class="headerlink" href="#cascade-of-two-systems" title="Permalink to this headline">¶</a></h3>
-<p><img alt="Cascade of two systems" src="_images/21-09-20_cascade_of_two_systems.jpeg" /></p>
-<!-- Need to make this better -->
+<p><img alt="Cascade of two systems" src="_images/21-09-20_cascade_of_two_systems.png" /></p>
 <p>If the two systems are L.T.I. the two cascade are equivalent: <span class="math notranslate nohighlight">\(y[n]=y'[n]\)</span>. The proof lies in the equality of the z-transform and the properties of the convolution. More than that the two systems <span class="math notranslate nohighlight">\(y[n]\)</span> and <span class="math notranslate nohighlight">\(y'[n]\)</span> have the same R.O.C:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
