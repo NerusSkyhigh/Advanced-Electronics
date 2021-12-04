@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 04 - 21 September 2021 &#8212; Notes of Advanced Electronics</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="Lecture 03 - 20 September 2021" href="21-09-20%20L03.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Notes of Advanced Electronics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Notes of Advanced Electronics
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-13%20L01.html">
+   Lecture 01 - 13 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-14%20L02.html">
+   Lecture 02 - 14 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-20%20L03.html">
+   Lecture 03 - 20 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 04 - 21 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/21-09-21 L04.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/NerusSkyhigh/Advanced-Electronics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/NerusSkyhigh/Advanced-Electronics/issues/new?title=Issue%20on%20page%20%2F21-09-21 L04.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/NerusSkyhigh/Advanced-Electronics/master?urlpath=tree/21-09-21 L04.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples-of-z-transform-inversion">
+   Examples of z-transform inversion
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-delta">
+     The delta
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-rational-function">
+     A Rational function
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#same-rational-function-different-roc">
+     Same rational function, different ROC
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#poisson-process">
+     Poisson process
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fibonacci-sequence">
+     Fibonacci sequence
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-properties-of-lti-systems-in-the-z-space-domain">
+   Basic properties of LTI systems in the z-space (domain)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-reality">
+     a) Reality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-bibo-stability">
+     b) BIBO stability
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-causality-with-x-n-neq-alpha-delta-n">
+     c) Causality (with
+     <span class="math notranslate nohighlight">
+      \(x[n]\neq \alpha \delta[n]\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#d-non-causality-with-x-n-neq-alpha-delta-n">
+     d) Non Causality (with
+     <span class="math notranslate nohighlight">
+      \(x[n]\neq \alpha \delta[n]\)
+     </span>
+     )
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-both-causality-and-non-causality-with-x-n-alpha-delta-n">
+     e) Both causality and non causality (with
+     <span class="math notranslate nohighlight">
+      \(x[n]=\alpha \delta[n]\)
+     </span>
+     )
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-04-21-september-2021">
+<h1>Lecture 04 - 21 September 2021<a class="headerlink" href="#lecture-04-21-september-2021" title="Permalink to this headline">¶</a></h1>
+<p>As a starting point, this lecture will provide some examples regarding the inversion of the z-transform:</p>
+<div class="section" id="examples-of-z-transform-inversion">
+<h2>Examples of z-transform inversion<a class="headerlink" href="#examples-of-z-transform-inversion" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="the-delta">
+<h3>The delta<a class="headerlink" href="#the-delta" title="Permalink to this headline">¶</a></h3>
+<p>Let’s take <span class="math notranslate nohighlight">\(x(z)=1\)</span>; <span class="math notranslate nohighlight">\(ROC=\mathcal{C}\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    x[n]=\frac{1}{2\pi i} \oint_{\Gamma um 0}z^{n-1}dz = \delta_{n-1, -1} = \delta_{n,0} = \delta[n]
+\end{align*}\]</div>
+</div>
+<div class="section" id="a-rational-function">
+<h3>A Rational function<a class="headerlink" href="#a-rational-function" title="Permalink to this headline">¶</a></h3>
+<p><span class="math notranslate nohighlight">\(X(z)=\frac{z}{z-a}\)</span>, <span class="math notranslate nohighlight">\(ROC:\{z: |z|&lt;a\}\)</span></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    x[n]=\frac{1}{2\pi i} \oint_{\Gamma um 0} \frac{z}{z-a} z^{n-1}dz = \frac{1}{2\pi i} \into_{\Gamma um 0} \frac{z^n}{z-a}dz
+\end{align*}\]</div>
+<p>As stated by the ROC, <span class="math notranslate nohighlight">\(\Gamma\)</span> must be chosen so that it DOES not encloses <span class="math notranslate nohighlight">\(a\)</span>.
+<img alt="Gamma must be chosen so that it DOES not encloses a. There are two cases." src="_images/21-09-21_gamma_example1.jpeg" /></p>
+<p>After that there are two more subcases regarding the value of n:
+1. If <span class="math notranslate nohighlight">\(n\geq 0\)</span>: there a NO OTHER POLES and the integral is 0
+2. If <span class="math notranslate nohighlight">\(n&lt;0\)</span>: there is a pole of order <span class="math notranslate nohighlight">\(|n|\)</span> in the origin. By using the lemma proved in the previous lecture and choosing <span class="math notranslate nohighlight">\(m=-n\)</span> we have:
+\begin{align*}
+x[n]&amp;=\frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{z^{-m}}{z-a}z^{m} \right]<em>{z=0} = \frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{1}{z-a} \right]</em>{z=0} \
+&amp;= \frac{1}{(m-1)!}\left[ (m-1)! (-1)^{m-1} (z-a)^{-m} \right]_{z=0} = -a^{-m} = a^{-n} \text{ with } n&lt;0
+\end{align*}</p>
+<p>So that the final result is, by combining the two cases, <span class="math notranslate nohighlight">\(x[n]=-U[-n-1]a^n\)</span>.</p>
+</div>
+<div class="section" id="same-rational-function-different-roc">
+<h3>Same rational function, different ROC<a class="headerlink" href="#same-rational-function-different-roc" title="Permalink to this headline">¶</a></h3>
+<p>Let’s consider again the same rational function but with a different ROC: <span class="math notranslate nohighlight">\(X(z)=\frac{z}{z-a}\)</span>, <span class="math notranslate nohighlight">\(ROC:\{z: |z|&gt;a\}\)</span>. This time there is NO WAY to avoid the pole in <span class="math notranslate nohighlight">\(a\)</span>. Thanks to the <a class="reference external" href="https://en.wikipedia.org/wiki/Residue_theorem">residue theorem</a> the contributions from the poles can be separated:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    x[n] = \frac{1}{2\pi i} \oint_{\Gamma um 0} \frac{z^n}{z-a}dz = -a^n U[-n-1] + \text{ pole in a }
+\end{align*}\]</div>
+<p><strong>pole in a</strong> (the order is <span class="math notranslate nohighlight">\(m=1\)</span>):</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{z^{n}}{z-a}(z-a)^{m} \right]_{z=a} = \frac{1}{0!}\left[ \frac{d^{0}}{dz^{0}} \frac{z^{n}}{z-a}(z-a)^{1} \right]_{z=a} = a^n
+\end{align*}\]</div>
+<p>Summing up: <span class="math notranslate nohighlight">\(x[n]=a^{n}(1-U[-n-1]) = U[n]a^n\)</span>.</p>
+</div>
+<div class="section" id="poisson-process">
+<h3>Poisson process<a class="headerlink" href="#poisson-process" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_point_process">poisson process</a> is a process where the probability of an event in an interval <span class="math notranslate nohighlight">\(dt\)</span> is given by <span class="math notranslate nohighlight">\(dP=\Gamma dt\)</span> and no more than one event can happend in the same time interval. Let’s now define <span class="math notranslate nohighlight">\(P(n, t)\)</span> as the probability of having <span class="math notranslate nohighlight">\(n\)</span> events in an interval <span class="math notranslate nohighlight">\([0, t]\)</span>.</p>
+<p><img alt="Poisson process on a interval" src="_images/21-09-21_poisson_process.jpeg" /></p>
+<p>If one considers a slightly bigger interval <span class="math notranslate nohighlight">\([0, t+dt]\)</span>, still with <span class="math notranslate nohighlight">\(n\)</span> occurence, the two probabilities are linked via</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    P(n, t+dt) = P(n,t)(1-\Gamma dt) + P(n-1, t) \Gamma dt
+\end{align*}\]</div>
+<p>That is the probability that in <span class="math notranslate nohighlight">\([0, t]\)</span> happend <span class="math notranslate nohighlight">\(n-1\)</span> events and the <span class="math notranslate nohighlight">\(n-th\)</span> event happend in the interval <span class="math notranslate nohighlight">\([t, t+dt]\)</span> plus the probability that <span class="math notranslate nohighlight">\(n\)</span> events already happened in <span class="math notranslate nohighlight">\([0, t]\)</span> and no new event happend in <span class="math notranslate nohighlight">\([t, t+dt]\)</span>.<br />
+Let’s write the probability as a difference equation and consider the limit <span class="math notranslate nohighlight">\(t\rightarrow0\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \frac{P(n, t+dt) - P(n, t)}{dt} = \Gamma \left[ P(n-1, t) - p(n, t) \right] \implies \frac{dP(n, t)}{dt} = \Gamma \left[ P(n-1, t) - P(n, t) \right]
+\end{align*}\]</div>
+<p>By applying the z-transform (<span class="math notranslate nohighlight">\(\Pi(z,t)=Z\left\{ P(n, t) \right\}\)</span>):</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \Pi(z,t) &amp;= \sum_{n} z^{-n} P(n,t) \implies \frac{d\Pi(z,t)}{dt} = \Gamma \left[ \frac{\Pi(z,t)}{z}-\Pi(z,t) \right] = \Gamma\Pi(z,t) \left( \frac{1}{z}-1\right)\\
+    &amp;\implies \Pi(z,t) = \Pi(z,0)e^{\Gamma(\frac{1}{z}-1)t}
+\end{align*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Pi(z,0)\)</span> is given by the condition that no event occurs in the point <span class="math notranslate nohighlight">\(t=0\)</span>: <span class="math notranslate nohighlight">\(\Pi(z,0)=Z(\delta[n])=1\)</span> (initial condition in space).</p>
+<p>It is now necessary to go back to the <span class="math notranslate nohighlight">\(n-space\)</span> from the <span class="math notranslate nohighlight">\(z-space\)</span>. This can be done by Taylor-expanding the exponential:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \Pi(z,t) = \Pi(z,0)e^{\Gamma(\frac{1}{z}-1)t} = \sum_{k=0}^{+\infty} \frac{1}{k!}\left(\frac{\Gamma t}{\frac{1}{z}-1}\right)^k = e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{(\Gamma t)^k}{k!}\left(\frac{-z}{z-1}\right)^k
+\end{align*}\]</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    P(n,t) &amp;= \frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!}\left(\frac{z}{z-1}\right)^k z^{n-1} dz = \frac{1}{2\pi i} \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} \oint_{\Gamma um 0\\ \Gamma\in ROC} \left(\frac{z}{z-1}\right)^k z^{n-1}dz \\
+    &amp;= \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} \frac{1}{(k-1)!} \left[ \frac{d^{k-1}}{dz^{k-1}} \frac{z^{n+k-1}}{(z-1)^k} (z-1)^{k} \right]_{z=1} = \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} = e^{-\Gamma t}
+\end{align*}\]</div>
+</div>
+<div class="section" id="fibonacci-sequence">
+<h3>Fibonacci sequence<a class="headerlink" href="#fibonacci-sequence" title="Permalink to this headline">¶</a></h3>
+<p>The Fibonacci frequence is obtained via the following procedure:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    y[n] &amp;= y[n-1] + y[n-1] + x[n] \\
+    x[n] &amp;= \delta[n]
+\end{align*}\]</div>
+<p>An alaytical form can be obatined via the z-transform:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    h[n] = h[n-1] + h[n-1] + \delta[n] \implies h(z) &amp;= h(z)\left( \frac{1}{z} + \frac{1}{z^2} +1 \right) \implies h(z) = \frac{z^2}{z^2-z-1} \\
+        &amp;= \frac{1}{\sqrt{5}}\left[ \beta \frac{z}{z-\beta} - \alpha \frac{z}{z-\alpha}\right] \text{ with } \alpha=\frac{1+\sqrt{5}}{2} \quad \beta=\frac{1-\sqrt{5}}{2} \quad \text{ROC:} |z|&gt;\beta \\
+\end{align*}\]</div>
+<p>By inverting the z-transform:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    h(n) = \frac{1}{\sqrt{5}} \left[ \beta^{n+1} - \alpha^{n+1} \right] U[n]
+\end{align*}\]</div>
+<p>Let’s now make a small detour and check wheter the formula found is actually correct:</p>
+<!--
+```{warning}
+The z-transform is NOT sufficient to characterize a system in the z domain. The R.O.C. is part of the system too!
+```
+--><div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">fibonacci_iterative</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">set</span><span class="p">:</span>
+    <span class="n">fibs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>    
+    <span class="n">fibs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">fibs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">fibs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fibs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">fibs</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">];</span>
+    
+    <span class="k">return</span> <span class="n">fibs</span><span class="p">;</span>
+
+
+<span class="k">def</span> <span class="nf">fibonacci_relation</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">set</span><span class="p">:</span>
+    <span class="n">fibs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>    
+    <span class="n">alpha</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">beta</span>  <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="o">/</span><span class="mi">2</span>
+    <span class="c1"># I should vectorize this...</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">fibs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span> <span class="n">beta</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">-</span> <span class="n">alpha</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">fibs</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># &lt;-- CHANGE THIS, number of points</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">yi</span> <span class="o">=</span> <span class="n">fibonacci_iterative</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">yr</span> <span class="o">=</span> <span class="n">fibonacci_relation</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">yi</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;iterative&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">yr</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;relation&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xticks</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">(</span><span class="n">yr</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1">#ax.semilogy() # &lt;-- UNCOMMENT THIS, Log scale on y </span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Values obtained with the relation:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">yr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Values obtained from scratch with the iterative procedure:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">yi</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Values obtained with the relation:
+ [ 0  1  1  2  3  5  8 13 21 34]
+
+Values obtained from scratch with the iterative procedure:
+ [ 0.  1.  1.  2.  3.  5.  8. 13. 21. 34.]
+</pre></div>
+</div>
+<img alt="_images/21-09-21 L04_1_1.png" src="_images/21-09-21 L04_1_1.png" />
+</div>
+</div>
+<p>it is possible to notice how the formula correctly reproduces the expected values and, if one sets a semilog scale on y, that i shows the reason for the exponential behaviour at high values of n. In fact, for high values of <span class="math notranslate nohighlight">\(n\)</span> the formula tends to be of the form</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \lim_{n\rightarrow \infty} \frac{1}{\sqrt{5}} \left[ \beta^{n+1} - \alpha^{n+1} \right] U[n] \simeq \frac{\beta^{n+1}}{\sqrt{5}}
+\end{align*}\]</div>
+</div>
+</div>
+<div class="section" id="basic-properties-of-lti-systems-in-the-z-space-domain">
+<h2>Basic properties of LTI systems in the z-space (domain)<a class="headerlink" href="#basic-properties-of-lti-systems-in-the-z-space-domain" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="a-reality">
+<h3>a) Reality<a class="headerlink" href="#a-reality" title="Permalink to this headline">¶</a></h3>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \left. \begin{array}{lr}
+        x(z)&amp;=\sum_{n} x[n]z^{-n} \\
+        x^*(z)&amp;=\sum_{n} x^*[n](z^*)^{-n} \\
+        x^*(z^*)&amp;=\sum_{n} x^*[n]z^{-n}
+    \end{array}\right\} \text{ if } x[n]\in \mathcal{R} \implies x^{*}(z^{*})=x(z)
+\end{align*}\]</div>
+<p>That is the transfer function of a real system must have an even number of poles symetric with respect to the real axis.<br />
+Is the inverse true?</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \sum_{n} (x^*[n]-x[n])z^{-n}=0 \implies x^*(z^*)-x(z)=0 \iff x^*[n]=x[n]
+\end{align*}\]</div>
+</div>
+<div class="section" id="b-bibo-stability">
+<h3>b) BIBO stability<a class="headerlink" href="#b-bibo-stability" title="Permalink to this headline">¶</a></h3>
+<p>Assume a BIBO stable sequence (that is <span class="math notranslate nohighlight">\(\sum_{n} \left|x[n]\right| &lt; \infty\)</span>). In general it is possible to write</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    x(z) = \sum_{n} x[n]z^{-n} \text{ with } z\in \text{ROC}.
+\end{align*}\]</div>
+<p>If one chooses <span class="math notranslate nohighlight">\(\left z \right| = 1\)</span> then <span class="math notranslate nohighlight">\(x(z) = \sum_{n} x[n] &lt; \infty\)</span>, therefore, if a system is BIBO stable then the unitary circonference belongs to the ROC <span class="math notranslate nohighlight">\(\Gamma_1 \in \text{ROC}\)</span>.
+On the other hand, if the z trasnform exits it is possible to freely insert <span class="math notranslate nohighlight">\(\left|z\right|=1\)</span> (that is <span class="math notranslate nohighlight">\(z\in\Gamma_1\)</span>) and then the system is BIBO stable, at least on <span class="math notranslate nohighlight">\(\Gamma_1\)</span>.</p>
+<div class="admonition-theorem admonition">
+<p class="admonition-title">Theorem</p>
+<p>A system is BIBO stable <span class="math notranslate nohighlight">\(\iff \Gamma_1 \in\)</span> ROC.</p>
+</div>
+</div>
+<div class="section" id="c-causality-with-x-n-neq-alpha-delta-n">
+<h3>c) Causality (with <span class="math notranslate nohighlight">\(x[n]\neq \alpha \delta[n]\)</span>)<a class="headerlink" href="#c-causality-with-x-n-neq-alpha-delta-n" title="Permalink to this headline">¶</a></h3>
+<p>A system is <em>CAUSAL</em> if and only if <span class="math notranslate nohighlight">\(0 \not \in \)</span> ROC while <span class="math notranslate nohighlight">\(\infty \subset \)</span> ROC.<br />
+<strong>proof</strong><br />
+<span class="math notranslate nohighlight">\(\implies\)</span> as <span class="math notranslate nohighlight">\(x(z)=\sum_{n=0}^{\infty} x[n]z^{-n}\)</span> the condition <span class="math notranslate nohighlight">\(0\not \in \text{ROC;}\)</span> is necessary to avoid the pole <span class="math notranslate nohighlight">\(\left. z^{-n}\right|_{z=0}\)</span>. <span class="math notranslate nohighlight">\(\infty\)</span> can be seen to be in the ROC by taking the limit.<br />
+<span class="math notranslate nohighlight">\(\impliedby\)</span> it is possible to Laurent expand the transform</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    x(z)=\sum_{k=-\infty}^{0}\frac{a_k}{k!}z^k = \sum_{n=\infty}^{0}\frac{a_{-n}}{(-n)!}z^{-n}=\sum_{n=0}^{\infty}\frac{a_{-n}}{(-n)!}z^{-n}
+\end{align*}\]</div>
+<p>and obtain the z-transform with <span class="math notranslate nohighlight">\(0\not \in\)</span> ROC. Notice how in the last step the commutative property of the sum was exploited.</p>
+</div>
+<div class="section" id="d-non-causality-with-x-n-neq-alpha-delta-n">
+<h3>d) Non Causality (with <span class="math notranslate nohighlight">\(x[n]\neq \alpha \delta[n]\)</span>)<a class="headerlink" href="#d-non-causality-with-x-n-neq-alpha-delta-n" title="Permalink to this headline">¶</a></h3>
+<p>A system is <em>NON CAUSAL</em> if and only iff <span class="math notranslate nohighlight">\(0\in \)</span> ROC while <span class="math notranslate nohighlight">\(\infty \not \subset \)</span> ROC.<br />
+<strong>proof</strong><br />
+<span class="math notranslate nohighlight">\(\implies x(z)=\sum_{n=-\infty}^{0} x[n]z^{-n} \implies 0\in \text{ROC;} \quad \infty \not \in \text{ROC}\)</span>.<br />
+<span class="math notranslate nohighlight">\(\impliedby\)</span> Taylor expand the z-transform (<span class="math notranslate nohighlight">\(x(z)=\sum_{k=0}^{\infty} a_k z^{-k}=\sum_{n=-\infty}^{0} x_{-n}z^{-n}\)</span>) and evaluate ROC.</p>
+</div>
+<div class="section" id="e-both-causality-and-non-causality-with-x-n-alpha-delta-n">
+<h3>e) Both causality and non causality (with <span class="math notranslate nohighlight">\(x[n]=\alpha \delta[n]\)</span>)<a class="headerlink" href="#e-both-causality-and-non-causality-with-x-n-alpha-delta-n" title="Permalink to this headline">¶</a></h3>
+<p>A system is <em>both</em> causal and not causal if and only if ROC=<span class="math notranslate nohighlight">\(\mathcal{C}\)</span>, that is <span class="math notranslate nohighlight">\(0\in\)</span>ROC and <span class="math notranslate nohighlight">\(\infty\subset\)</span>ROC.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="21-09-20%20L03.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 03 - 20 September 2021</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="markdown.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markdown Files</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By NerusSkyhigh (aka Guglielmo Grillo)<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
