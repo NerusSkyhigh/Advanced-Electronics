@@ -408,7 +408,8 @@ x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\om
 <p>Properties of the alias function:</p>
 <ul class="simple">
 <li><p>It is <span class="math notranslate nohighlight">\(\pi/T\)</span> band limited due to <span class="math notranslate nohighlight">\(W(\omega)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\sum_n \tilde{x}_{alias}\left( \omega+\frac{2\pi}{T}k \right) = \sum_n \tilde{x}_{F}\left( \omega+\frac{2\pi}{T}k \right)W\left( \omega+\frac{2\pi}{T}k \right) = \tilde{x}_{F}\left( \omega\right)\cancelto{1}{\sum_nW\left( \omega+\frac{2\pi}{T}k \right)} \implies \tilde{x}_{F}\left( \omega\right) = \sum_n \tilde{x}_{alias}\left( \omega+\frac{2\pi}{T}k \right) \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_n \tilde{x}_{alias}\left( \omega+\frac{2\pi}{T}k \right) = \sum_n \tilde{x}_{F}\left( \omega+\frac{2\pi}{T}k \right)W\left( \omega+\frac{2\pi}{T}k \right) = \tilde{x}_{F}\left( \omega\right)\cancelto{1}{\sum_nW\left( \omega+\frac{2\pi}{T}k \right)} \\
+\implies \tilde{x}_{F}\left( \omega\right) = \sum_n \tilde{x}_{alias}\left( \omega+\frac{2\pi}{T}k \right) \)</span></p></li>
 <li><p>If <span class="math notranslate nohighlight">\(\omega \in \left] -\frac{\pi}{T};\frac{\pi}{T} \right[\)</span>
 <span class="math notranslate nohighlight">\(\implies\)</span> <span class="math notranslate nohighlight">\(\tilde{x}_{alias}(\omega)=\tilde{x}_{F}(\omega) = T x_s\left( z=e^{-i\omega T} \right)\)</span>
 <span class="math notranslate nohighlight">\(\implies\)</span> <span class="math notranslate nohighlight">\(\mathcal{FT}^{-1}\left\{ \tilde{x}_{aliasing}(\omega) \right\} = x_R(t)= \sum_{n} x[n]sinc\left[ (t-nT)\frac{\pi}{T}\right]\)</span></p></li>
