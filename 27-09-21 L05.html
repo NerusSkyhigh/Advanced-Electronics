@@ -366,30 +366,31 @@ x_{s}[n] &amp;= \frac{1}{2\pi i} \oint_{\Gamma \in ROC} x_s(z) z^{n-1} \qquad z=
 <p>It is now time to make our third assumption:</p>
 <ol class="simple">
 <li><p>Assume <span class="math notranslate nohighlight">\(x_A(t)\)</span> to be <em>band limited</em> on <span class="math notranslate nohighlight">\(\left] -\frac{\pi}{T}; \frac{\pi}{T}\right[\)</span>, that is <span class="math notranslate nohighlight">\(\tilde{x}_A(\omega)=0 \text{ if } \left| \omega\right| \geq \frac{\pi}{T}\)</span>.
-This assumption allows us to unwrap the summation in the precursor theorem:
-$<span class="math notranslate nohighlight">\(\require{cancel}\)</span>$</p></li>
+This assumption allows us to unwrap the summation in the precursor theorem:</p></li>
 </ol>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
+\require{cancel}
 T x_s\left(z=e^{-i\omega T}\right) =\tilde{x}_A\left( \omega\right) + \cancelto{0}{ \tilde{x}_A\left( \omega+\frac{2\pi}{T}\right) } +\ ...
 \end{align*}\]</div>
-<p>It is now time to go back to the time domain:
-$<span class="math notranslate nohighlight">\(\require{color}\)</span>$</p>
+<p>It is now time to go back to the time domain:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
+\require{color}
 x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{exploit hypothesis 3.}\\
 &amp;= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{use the previous relation}\\
 &amp;= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(e^{-i\omega T}) e^{-i\omega T} d\omega
 = \frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \sum_{n} x_s[n]e^{i\omega n T -i\omega t} d\omega \\
 &amp;= \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega n T -i\omega t} d\omega 
 = \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega n T -i\omega t} d\omega \\
-&amp;= \frac{T}{2\pi}\sum_{n} x_s[n] \left[ \frac{e^{i\omega(nT-t)}}{i(nT-t)} \right]^{\frac{\pi}{T}}_{-\frac{\pi}{T}} = \cancel{\frac{T}{2\pi}} \sum_{n} x_s[n] \frac{e^{i(nT-t)\frac{\pi}{T}}+e^{-i(nT-t)\frac{\pi}{T}}}{i(nT-t) \textcolor[rgb]{0.75,0.75,0.75}{\frac{2\pi}{T}} } = \sum_{n} x_s[n] sinc\left[ (nT-t)\frac{\pi}{T}\right]\\
+&amp;= \frac{T}{2\pi}\sum_{n} x_s[n] \left[ \frac{e^{i\omega(nT-t)}}{i(nT-t)} \right]^{\frac{\pi}{T}}_{-\frac{\pi}{T}} = \cancel{\frac{T}{2\pi}} \sum_{n} x_s[n] \frac{e^{i(nT-t)\frac{\pi}{T}}+e^{-i(nT-t)\frac{\pi}{T}}}{i(nT-t) \textcolor[rgb]{0.75,0.75,0.75}{\frac{2\pi}{T}} } \\
+&amp;= \sum_{n} x_s[n] sinc\left[ (nT-t)\frac{\pi}{T}\right]\\
 \end{align*}\]</div>
 <div class="admonition-nyquist-shannon-theorem-in-the-time-domain admonition">
 <p class="admonition-title">Nyquist-Shannon theorem in the time domain</p>
 <p><span class="math notranslate nohighlight">\(x_A(t)=\sum_{n} x_s[n] sinc\left[ (nT-t)\frac{\pi}{T}\right]\)</span></p>
 </div>
-<p>The condition <span class="math notranslate nohighlight">\(\tilde{x}_A(\omega)=0\)</span> if <span class="math notranslate nohighlight">\(\left|\omega\right|\geq \frac{\pi}{T}\)</span> or <span class="math notranslate nohighlight">\(\left|f\right|\geq \frac{1}{2T}=f_{NY} \implies \max_f\left\{ \left|f\right|\right\}\&lt;\frac{1}{2T}=f_{NY}\)</span>.</p>
+<p>The condition <span class="math notranslate nohighlight">\(\tilde{x}_A(\omega)=0\)</span> if <span class="math notranslate nohighlight">\(\left|\omega\right|\geq \frac{\pi}{T}\)</span> or <span class="math notranslate nohighlight">\(\left|f\right|\geq \frac{1}{2T}=f_{NY} \implies \max_f\left\{ \left|f\right|\right\}&lt;\frac{1}{2T}=f_{NY}\)</span>.</p>
 </div>
 </div>
 <div class="section" id="aliasing">
@@ -417,7 +418,7 @@ x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\om
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>DO NOT validate the goodness of a reconstruction on the sampled points as they are <em>always</em> reconstructed perfectly:
-$<span class="math notranslate nohighlight">\(\lim_{t\rightarrownT}sinc\left[(t-nT)\frac{\pi}{T}\right]=1 \implies x_R(t=nT)=x[n]\ \forall n\)</span>$</p>
+$<span class="math notranslate nohighlight">\(\lim_{t\rightarrow nT}sinc\left[(t-nT)\frac{\pi}{T}\right]=1 \implies x_R(t=nT)=x[n]\ \forall n\)</span>$</p>
 </div>
 </div>
 <div class="section" id="exercise">
