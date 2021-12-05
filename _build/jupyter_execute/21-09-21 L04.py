@@ -16,7 +16,7 @@
 # ### A Rational function
 # $X(z)=\frac{z}{z-a}$, $ROC:\{z: |z|<a\}$
 # \begin{align*}
-#     x[n]=\frac{1}{2\pi i} \oint_{\Gamma um 0} \frac{z}{z-a} z^{n-1}dz = \frac{1}{2\pi i} \into_{\Gamma um 0} \frac{z^n}{z-a}dz
+#     x[n]=\frac{1}{2\pi i} \oint_{\Gamma um 0} \frac{z}{z-a} z^{n-1}dz = \frac{1}{2\pi i} \oint_{\Gamma um 0} \frac{z^n}{z-a}dz
 # \end{align*}
 # As stated by the ROC, $\Gamma$ must be chosen so that it DOES not encloses $a$.
 # ![Gamma must be chosen so that it DOES not encloses a. There are two cases.](images/21-09-21_gamma_example1.jpeg)
@@ -176,11 +176,11 @@ print("\nValues obtained from scratch with the iterative procedure:\n", yi)
 # \end{align*}
 # 
 # ### b) BIBO stability
-# Assume a BIBO stable sequence (that is $\sum_{n} \left|x[n]\right| < \infty$). In general it is possible to write
+# Assume a BIBO stable sequence (that is $\sum_{n} \left| x[n]\right| < \infty$). In general it is possible to write
 # \begin{align*}
 #     x(z) = \sum_{n} x[n]z^{-n} \text{ with } z\in \text{ROC}.
 # \end{align*}
-# If one chooses $\left z \right| = 1$ then $x(z) = \sum_{n} x[n] < \infty$, therefore, if a system is BIBO stable then the unitary circonference belongs to the ROC $\Gamma_1 \in \text{ROC}$.
+# If one chooses $\left.z \right| = 1$ then $x(z) = \sum_{n} x[n] < \infty$, therefore, if a system is BIBO stable then the unitary circonference belongs to the ROC $\Gamma_1 \in \text{ROC}$.
 # On the other hand, if the z trasnform exits it is possible to freely insert $\left|z\right|=1$ (that is $z\in\Gamma_1$) and then the system is BIBO stable, at least on $\Gamma_1$.
 # 
 # ```{admonition} Theorem
