@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 03 - 20 September 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>Lecture 06 - 04 October 2021 &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 04 - 21 September 2021" href="21-09-21%20L04.html" />
-    <link rel="prev" title="Lecture 02 - 14 September 2021" href="21-09-14%20L02.html" />
+    <link rel="next" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="Lecture 05 - 27 September 2021" href="21-09-27%20L05.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -109,8 +109,8 @@
    Lecture 02 - 14 September 2021
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-20%20L03.html">
    Lecture 03 - 20 September 2021
   </a>
  </li>
@@ -124,8 +124,8 @@
    Lecture 05 - 27 September 2021
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="21-10-04%20L06.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Lecture 06 - 04 October 2021
   </a>
  </li>
@@ -180,7 +180,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/21-09-20 L03.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/21-10-04 L06.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -200,7 +200,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/NerusSkyhigh/Advanced-Electronics/issues/new?title=Issue%20on%20page%20%2F21-09-20 L03.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/NerusSkyhigh/Advanced-Electronics/issues/new?title=Issue%20on%20page%20%2F21-10-04 L06.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -221,7 +221,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/NerusSkyhigh/Advanced-Electronics/master?urlpath=tree/21-09-20 L03.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/NerusSkyhigh/Advanced-Electronics/master?urlpath=tree/21-10-04 L06.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -244,67 +244,52 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-z-transform">
-   The z-transform
+  <a class="reference internal nav-link" href="#simulation-of-an-analog-system-by-means-of-a-digital-one">
+   Simulation of an analog system by means of a digital one
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-delta">
-     The delta
+    <a class="reference internal nav-link" href="#a-both-x-a-t-g-t-in-mathcal-l-2">
+     1a) Both
+     <span class="math notranslate nohighlight">
+      \(x_A(t), G(t) \in \mathcal{L}^2\)
+     </span>
+     .
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-sequence">
-     Step sequence
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#properties-of-the-z-transform">
-   Properties of the z-transform
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#time-shift">
-     Time shift
+    <a class="reference internal nav-link" href="#b-the-simulator-h-n-is-bibo-stable">
+     2b) The simulator
+     <span class="math notranslate nohighlight">
+      \(h[n]\)
+     </span>
+     is BIBO Stable
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#linearity">
-     Linearity
+    <a class="reference internal nav-link" href="#assumption-2-the-input-signal-is-frac-2-pi-t-band-limited">
+     Assumption 2: The input signal is
+     <span class="math notranslate nohighlight">
+      \(\frac{2\pi}{T}\)
+     </span>
+     band limited
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#e-g-first-order-low-pass-filter">
+       e.g. First order low pass filter
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#e-g-the-differentiator">
+       e.g. The differentiator
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#convolution">
-     Convolution
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#cascade-of-two-systems">
-     Cascade of two systems
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lemmas-for-inverse-z-transform">
-   Lemmas for inverse z-transform
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#close-path-integral">
-     Close path integral
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#residual-theorem">
-     Residual theorem
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#inversion-of-the-z-transform">
-     Inversion of the z-transform
+    <a class="reference internal nav-link" href="#e-g-the-differentiator-again">
+     e.g. The differentiator (again)
     </a>
    </li>
   </ul>
@@ -320,128 +305,115 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-03-20-september-2021">
-<h1>Lecture 03 - 20 September 2021<a class="headerlink" href="#lecture-03-20-september-2021" title="Permalink to this headline">¶</a></h1>
-<p>Equipped with the definitions and lemmas found in the last lecture it is possible to start talking about the <strong>z-transform</strong>. But first, it is necessary to draw some parallelisms with the solutions of a differential equation:</p>
-<p><img alt="Solution of a differential equation with Fourier Tranform / Laplace Transform" src="_images/21-09-20_diff_eq_sol.png" /></p>
-<p>For example, with a low pas filter the procedure becomes:<br />
-<img alt="Solution of the low pass with Fourier Tranform" src="_images/21-09-20_diff_eq_example.png" /></p>
-<p>In a similar way a difference equation can be solved via an approripate transform, the z-transform
-<img alt="Solution of a difference equation with z-transform" src="_images/21-09-20_z-transform_sol.png" /></p>
-<div class="section" id="the-z-transform">
-<h2>The z-transform<a class="headerlink" href="#the-z-transform" title="Permalink to this headline">¶</a></h2>
-<p>Given a sequence <span class="math notranslate nohighlight">\(x[n]\)</span> we write the z-transform as</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-06-04-october-2021">
+<h1>Lecture 06 - 04 October 2021<a class="headerlink" href="#lecture-06-04-october-2021" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="simulation-of-an-analog-system-by-means-of-a-digital-one">
+<h2>Simulation of an analog system by means of a digital one<a class="headerlink" href="#simulation-of-an-analog-system-by-means-of-a-digital-one" title="Permalink to this headline">¶</a></h2>
+<p>This lecture focuses on the topic of “Simulation of an analog system by means of a digital one”.</p>
+<p><img alt="Simulation of an analog system by means of a digital one" src="_images/21-10-04_simulation.jpeg" /></p>
+<p>Does such <span class="math notranslate nohighlight">\(h[n] : y'[n]=\sum_{k}h[n-k]x_s[k]\)</span> exists? And, if so, how is it possible to find it? Let’s start with the function <span class="math notranslate nohighlight">\(y'[n]=\sum_{k}h[n-k]x_s[k]\)</span> and make some assumptions:</p>
+<div class="section" id="a-both-x-a-t-g-t-in-mathcal-l-2">
+<h3>1a) Both <span class="math notranslate nohighlight">\(x_A(t), G(t) \in \mathcal{L}^2\)</span>.<a class="headerlink" href="#a-both-x-a-t-g-t-in-mathcal-l-2" title="Permalink to this headline">¶</a></h3>
+<p>If this is true it is possible to express the sampled output signal via its inverse Fuorier transform:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    Z\left(x[n]\right) = X(z) = \sum_{\forall n} z^{-n} x[n] \qquad \text{ with } \qquad z \in \textbf{R.O.C} \subseteq \mathcal{C}.
-\end{align*}\]</div>
-<p>In the previous definition <strong>R.O.C</strong> stands for <em>Region Of Convergence</em>, the region of the complex plane where the series converges to a finite value.</p>
-<p>Some remorkable exmplaes of z-tranforms are:</p>
-<div class="section" id="the-delta">
-<h3>The delta<a class="headerlink" href="#the-delta" title="Permalink to this headline">¶</a></h3>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    Z\left(\delta[n]\right) = \sum_{n=-\infty}^{+\infty} z^{-n} \delta[n] = 1 \qquad \textbf{R.O.C} = \mathcal{C}
+y'[n]=\sum_k h[n-k]x_A(kT)= \sum_k h[n-k] \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\omega k T} d\omega
 \end{align*}\]</div>
 </div>
-<div class="section" id="step-sequence">
-<h3>Step sequence<a class="headerlink" href="#step-sequence" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="b-the-simulator-h-n-is-bibo-stable">
+<h3>2b) The simulator <span class="math notranslate nohighlight">\(h[n]\)</span> is BIBO Stable<a class="headerlink" href="#b-the-simulator-h-n-is-bibo-stable" title="Permalink to this headline">¶</a></h3>
+<p>If this is the case, it is possible to swap the summation and the integral in <span class="math notranslate nohighlight">\(\sum_k \leftrightarrow \int_{-\infty}^{+\infty}\)</span> without dealing with the convergence:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-   \left(U[n]\right) = \sum_{n=-\infty}^{+\infty} z^{-n} U[n] = \sum_{n=0}^{+\infty} z^{-n} = \frac{1}{1-1/z} = \frac{z}{z-1}  \qquad \textbf{R.O.C} = \left\{ z : \frac{1}{|z|} &lt; 1 \implies |z|&gt;1\right\}
+y'[n] &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega) \sum_k h[n-k] e^{i\omega (n-k) T} e^{-i\omega n T} d\omega \qquad \text{define } z=e^{-i\omega T} \quad m=n-k\\
+&amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \sum_k h[n-k] z^{-m} e^{-i\omega n T} \tilde{x}_A(\omega) d\omega \\
+&amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} H\left( z=e^{-i\omega Tn}\right) \tilde{x}_A(\omega) d\omega 
 \end{align*}\]</div>
+<p>where the condition <span class="math notranslate nohighlight">\(z=e^{-i\omega T}\)</span> was introduced to obtain the z-transform in conjunction with the condition <span class="math notranslate nohighlight">\(z\in \Gamma_1 \subset ROC\)</span> and the BIBO stability of the system.</p>
+<p>Now, consider the sampling of the output signal <span class="math notranslate nohighlight">\(y_A(t)\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    Z\left(-U[-n-1]\right) = -\sum_{n=-\infty}^{+\infty} z^{-n} U[-n-1] = - \sum_{n=1}^{+\infty} z^{n} = 1- \frac{1}{1-z} = \frac{z}{z-1}  \qquad \textbf{R.O.C} = \left\{ z : \frac{1}{|z|} &gt; 1 \implies |z|&lt;1\right\}
+y_A[n]=y_A(nT)=\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-inT\omega} \cancelto{\tilde{y}(\omega)}{\tilde{G}(\omega)\tilde{x}(\omega)} d\omega
 \end{align*}\]</div>
-<p>It is possible to notice that two different functions led to the same z-transform but to different R.O.C. A warning is due:</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The z-transform is NOT sufficient to characterize a system in the z domain. The R.O.C. is part of the system too!</p>
+<p>In order to satisfy the requirement <span class="math notranslate nohighlight">\(y'[n]=y_A[n]\)</span> we need:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+y'[n]-y_A[n]=0 \iff \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-inT\omega} \tilde{x}(\omega) \left[ H\left( z=e^{-i\omega Tn}\right) -\tilde{G}(\omega)\right] d\omega = 0 
+\end{align*}\]</div>
+<p>The easiest solution to that equation is <span class="math notranslate nohighlight">\(H\left( z=e^{-i\omega Tn}\right)=\tilde{G}(\omega)\)</span> but it presents many problems, the most important of which is that <em>it requires <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> to be periodic with period T</em> as <span class="math notranslate nohighlight">\(H\left( z=e^{-i\omega Tn}\right)\)</span> satisfies that property by default.
+A workaround is to force the whole integral to be zero with an assumption:</p>
+</div>
+<div class="section" id="assumption-2-the-input-signal-is-frac-2-pi-t-band-limited">
+<h3>Assumption 2: The input signal is <span class="math notranslate nohighlight">\(\frac{2\pi}{T}\)</span> band limited<a class="headerlink" href="#assumption-2-the-input-signal-is-frac-2-pi-t-band-limited" title="Permalink to this headline">¶</a></h3>
+<p>this forces the equality <span class="math notranslate nohighlight">\(H\left( z=e^{-i\omega Tn}\right)=\tilde{G}(\omega)\)</span> only on <span class="math notranslate nohighlight">\(\left[-\frac{\pi}{T};\frac{\pi}{T} \right]\)</span>.</p>
+<p>The discrete transfer function can be found via:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+h[n] &amp;=\frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} H(z)z^{n-1}dz \qquad z=e^{-i\omega T} \iff \Gamma=\Gamma_1\\
+&amp;= -\frac{1}{2\pi i} \int_{-\frac{\pi}{T}}^{\frac{\pi}{T}} H(z=e^{-i\omega T})\left(e^{-i\omega T}\right)^{n-1} e^{-i\omega T} (-iT)d\omega\\
+&amp;= \frac{T}{2\pi} \int_{-\frac{\pi}{T}}^{\frac{\pi}{T}} e^{-i\omega nT}\tilde{G}(\omega) d\omega
+\end{align*}\]</div>
+<p><strong>properties</strong></p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(G(t)\in\mathcal{R} \iff h[n]\in\mathcal{R}\)</span>, proof by substitution.</p></li>
+<li><p>BIBO STABILITY: must be checked on occurence but it’s generally true</p></li>
+<li><p>CAUSALITY IS NOT CONSERVED</p></li>
+</ol>
+<div class="section" id="e-g-first-order-low-pass-filter">
+<h4>e.g. First order low pass filter<a class="headerlink" href="#e-g-first-order-low-pass-filter" title="Permalink to this headline">¶</a></h4>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\require{mathtools}
+h[n]=\frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{\frac{\pi}{T}}e^{-i\omega nT}\frac{1}{1-i\omega \tau} d\omega \xrightarrow[\text{Perfect sampling}]{T\rightarrow 0} \frac{T}{2\pi}\int_{-\infty}^{\infty}\frac{e^{-i\omega nT}}{1-i\omega \tau} d\omega = \frac{\theta(t)}{\tau}e^{-t/\tau}
+\end{align*}\]</div>
+<p>but if <span class="math notranslate nohighlight">\(T\not \rightarrow 0\)</span> there is NO WAY to compute the integral.
+<img alt="Not standard integral" src="_images/21-10-04_not_standard_integral.jpeg" /></p>
+</div>
+<div class="section" id="e-g-the-differentiator">
+<h4>e.g. The differentiator<a class="headerlink" href="#e-g-the-differentiator" title="Permalink to this headline">¶</a></h4>
+<p>The differentiator’s equation is <span class="math notranslate nohighlight">\(\tau \frac{d}{dt}\rightarrow -i\omega\tau=\tilde{G}(\omega)\)</span></p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\require{mathtools}
+h[n]&amp;=\frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{\frac{\pi}{T}}(-i\omega \tau)e^{-i\omega nT} d\omega \qquad x=\omega T\\
+&amp;= - \frac{i}{2\pi T}\int_{-\pi}^{\pi}e^{i nx} x dx = \left. \begin{cases}
+0 \text{ if } n=0\\
+\frac{(-1)^n}{nT} \text{ otherwise}
+\end{cases} \right\} = (-1)^n \frac{1-\delta[n]}{nT}
+\end{align*}\]</div>
+<p>The one used above was the straightforward interpretation of the theorem. To overcome some of the problems it is possible to consider a <strong>backward intepretation of the simulation theorem</strong>, that is, the requirement are relaxed to <span class="math notranslate nohighlight">\(y'[n]\sime y[n]\)</span> so that <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=H(z=e^{-i\omega T}) + o(\omega^n)\)</span> in <span class="math notranslate nohighlight">\(\left[ -\frac{\pi}{T}; \frac{\pi}{T} \right]\)</span>.</p>
 </div>
 </div>
-</div>
-<div class="section" id="properties-of-the-z-transform">
-<h2>Properties of the z-transform<a class="headerlink" href="#properties-of-the-z-transform" title="Permalink to this headline">¶</a></h2>
-<p>Let <span class="math notranslate nohighlight">\(X[z] = Z(x[n])\)</span></p>
-<div class="section" id="time-shift">
-<h3>Time shift<a class="headerlink" href="#time-shift" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="e-g-the-differentiator-again">
+<h3>e.g. The differentiator (again)<a class="headerlink" href="#e-g-the-differentiator-again" title="Permalink to this headline">¶</a></h3>
+<p>Let’s take the approximate transfer function (which is given/found by an intuition): <span class="math notranslate nohighlight">\(V[n]=\delta[n]-\delta[n-1]\)</span> with z-transform <span class="math notranslate nohighlight">\(V(z)=1 - \frac{1}{z}\)</span>. By taking the limit <span class="math notranslate nohighlight">\(\omega T &lt;&lt; 1\)</span>, it is possible to write:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    Z\left(x[n-n_0]\right) = \sum_{n=-\infty}^{+\infty} z^{-n} x[n-n_0] = \sum_{n=-\infty}^{+\infty} z^{-(n-n_0)} z^{-n_0} x[n-n_0] = z^{-n_0} X(z)
-\end{align*}\]</div>
-</div>
-<div class="section" id="linearity">
-<h3>Linearity<a class="headerlink" href="#linearity" title="Permalink to this headline">¶</a></h3>
+\tilde{G}(\omega)=V(z=e^{-i\omega T})=1-e^{i\omega T} \xrightarrow[]{\omega T \rightarrow0}
+ -i\omega T + \mathcal{o}\left( (\omega T)^2 \right)\end{align*}\]</div>
+<p>\end{align*}</p>
+<p>It is even possible to improve the accuracy by introduciong new terms:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    Z\left(a x[n] + b y[n]\right) = \sum_{n=-\infty}^{+\infty} z^{-n} (ax[n]+by[n]) = \a X(z) + b X(z) \qquad \textbf{R.O.C} = \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
+V[n]&amp;= \alpha \delta[n]+\beta \delta[n-1]+\gamma\delta[n-2] \implies V(z)=\alpha+\frac{\beta}{z}+\frac{\gamma}{z^2}\\
+\tilde{V}(\omega)&amp;=V(z=e^{-i\omega T}) = \alpha + \beta e^{i\omega T} + \gamma e^{2i\omegaT} \\
+&amp;=\alpha+\beta+\gamma + (\beta+2\gamma)i\omega T + (\beta+4\gamma)(i\omega T)^2 + \mathcal{o}\left( (\omega T)^3 \right)
 \end{align*}\]</div>
-</div>
-<div class="section" id="convolution">
-<h3>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h3>
+<p>By comparing the approximated solution with the analitic one <span class="math notranslate nohighlight">\(-i\omega T\)</span> it is possible to write a system of equations and solve it:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    Z\left(x[n]*y[n]\right) = Z\left(\sum_k x[n-k]y[k] \right) = \sum_{k=-\infty}^{+\infty} Z(x[n-k])y[k] = \sum_{k=-\infty}^{+\infty} Z(x[n])z^{-k}y[k] = X(z) Y(z) \qquad \textbf{R.O.C} = \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
+    \begin{cases}
+        \alpha+\beta+\gamma=0 \\
+        \beta+2\gamma=-1\\
+        \beta+4\gamma=0
+    \end{cases} \implies \begin{cases}
+        \alpha = \frac{3}{2} \\
+        \beta =-2\\
+        \gamma=\frac{1}{2}
+    \end{cases}
 \end{align*}\]</div>
-</div>
-<div class="section" id="cascade-of-two-systems">
-<h3>Cascade of two systems<a class="headerlink" href="#cascade-of-two-systems" title="Permalink to this headline">¶</a></h3>
-<p><img alt="Cascade of two systems" src="_images/21-09-20_cascade_of_two_systems.png" /></p>
-<p>If the two systems are L.T.I. the two cascade are equivalent: <span class="math notranslate nohighlight">\(y[n]=y'[n]\)</span>. The proof lies in the equality of the z-transform and the properties of the convolution. More than that the two systems <span class="math notranslate nohighlight">\(y[n]\)</span> and <span class="math notranslate nohighlight">\(y'[n]\)</span> have the same R.O.C:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    y[n] = h[n]*j[n] = Z^{-1}\left(h(z)j(z)\right) = Z^{-1}\left(j(z)h(z)\right) = j[n]*h[n] = y'[n] \qquad \textbf{R.O.C} = \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
-\end{align*}\]</div>
-<p>In the last properties the notion of inverse z-transform was suggest. To give a formal definion of inverse z-transform some lemmas are needed.</p>
-</div>
-</div>
-<div class="section" id="lemmas-for-inverse-z-transform">
-<h2>Lemmas for inverse z-transform<a class="headerlink" href="#lemmas-for-inverse-z-transform" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="close-path-integral">
-<h3>Close path integral<a class="headerlink" href="#close-path-integral" title="Permalink to this headline">¶</a></h3>
-<p>The close path integral around (<strong>um</strong>) a single pole  <span class="math notranslate nohighlight">\(z_0\)</span> depends only on the order of the pole:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} (z-z_0)^n dz = \delta_{n, -1} \qquad \text{ with } n \in \mathcal{Z}
-\end{align*}\]</div>
-<p><strong>proof</strong>
-Take a circle of radius <span class="math notranslate nohighlight">\(r\)</span> around <span class="math notranslate nohighlight">\(z_0\)</span> such that <span class="math notranslate nohighlight">\(z=z_0+re^{i\phi}\)</span>. Then:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} r^n e^{i\phi n} r e^{i\phi} di d\phi = \frac{r^{n+1}}{2\pi}\int_{0}^{2\pi} e^{i\phi (n+1)} d\phi = \begin{cases}
-  1 \qquad \text{if } n=-1\\
-  0 \qquad \text{otherwise}
-\end{cases}
-\end{align*}\]</div>
-</div>
-<div class="section" id="residual-theorem">
-<h3>Residual theorem<a class="headerlink" href="#residual-theorem" title="Permalink to this headline">¶</a></h3>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} G(z) dz = \frac{1}{(n-1)|} \left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0} \qquad \text{ with } n \in \mathcal{Z}
-\end{align*}\]</div>
-<p><strong>proof</strong>
-Let’s consider a function <span class="math notranslate nohighlight">\(H(z)=G(z)(z-z_0)^n\)</span> which has NO POLES (<span class="math notranslate nohighlight">\(\implies\)</span> it’s analytic). By writing it’s <a class="reference external" href="https://en.wikipedia.org/wiki/Laurent_series">Laurent series</a> one obtains:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    H(z)=G(z)(z-z_0)^n = \sum_{k=0}^{+\infty} \frac{(z-z_0)^k}{k!} \left[ \frac{d^k}{dz^k} H(z)\right]_{z=z_0} \implies G(z) = \sum_{k=0}^{+\infty} \frac{(z-z_0)^{k-n}}{k!} \left[ \frac{d^k}{dz^k} H(z)\right]_{z=z_0}
-\end{align*}\]</div>
-<p>By computing the integral using the previous lemma:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} G(z) dz = \sum_{k=0}^{\infty}\frac{1}{k!} \left[ \frac{d^k}{dz^k}H(z)\right]_{z=z_0}\cdot \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} (z-z_0)^n dz= \frac{1}{(n-1)!}\left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0}
-\end{align*}\]</div>
-</div>
-<div class="section" id="inversion-of-the-z-transform">
-<h3>Inversion of the z-transform<a class="headerlink" href="#inversion-of-the-z-transform" title="Permalink to this headline">¶</a></h3>
-<p>If <span class="math notranslate nohighlight">\(X(z)=Z(x[n])\)</span> then <span class="math notranslate nohighlight">\(x[n]=\frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z) z^{n-1} dz\)</span></p>
-<p><strong>proof</strong></p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z)z^{n-1} dz = \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} \sum_{k}x[k]z^{-k}z^{n-1} dz = \frac{1}{2\pi i} \sum_{k} x[k] \oint_{\Gamma\text{ um }z_0} z^{n-k-1} dz = \sum_{k}x[k] \delta_{n-k-1, -1} = x[n]
-\end{align*}\]</div>
-<p>where the second equality assumes the R.O.C. to be such that the inversion of the summation and the integral is possible.</p>
+<p><img alt="" src="_images/21-10-04_differentiator.jpeg" />
+<img alt="" src="_images/21-10-04_differentiator_improved.jpeg" /></p>
 </div>
 </div>
 </div>
@@ -471,17 +443,17 @@ Let’s consider a function <span class="math notranslate nohighlight">\(H(z)=G(
         
             <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="21-09-14%20L02.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="21-09-27%20L05.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture 02 - 14 September 2021</p>
+            <p class="prev-next-title">Lecture 05 - 27 September 2021</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="21-09-21%20L04.html" title="next page">
+    <a class='right-next' id="next-link" href="markdown.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 04 - 21 September 2021</p>
+        <p class="prev-next-title">Markdown Files</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
