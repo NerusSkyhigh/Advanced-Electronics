@@ -274,23 +274,35 @@
      </span>
      band limited
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     Examples
+    </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#e-g-first-order-low-pass-filter">
-       e.g. First order low pass filter
+      <a class="reference internal nav-link" href="#first-order-low-pass-filter">
+       First order low pass filter
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#e-g-the-differentiator">
-       e.g. The differentiator
+      <a class="reference internal nav-link" href="#the-differentiator">
+       The differentiator
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#e-g-the-differentiator-again">
-     e.g. The differentiator (again)
+    <a class="reference internal nav-link" href="#backward-intepretation-of-the-simulation-theorem">
+     Backward intepretation of the simulation theorem
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#e-g-the-differentiator-again">
+       e.g. The differentiator (again)
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -359,8 +371,11 @@ h[n] &amp;=\frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} H(z)z^{n-1}dz \q
 <li><p>BIBO STABILITY: must be checked on occurence but it’s generally true</p></li>
 <li><p>CAUSALITY IS NOT CONSERVED</p></li>
 </ol>
-<div class="section" id="e-g-first-order-low-pass-filter">
-<h4>e.g. First order low pass filter<a class="headerlink" href="#e-g-first-order-low-pass-filter" title="Permalink to this headline">¶</a></h4>
+</div>
+<div class="section" id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="first-order-low-pass-filter">
+<h4>First order low pass filter<a class="headerlink" href="#first-order-low-pass-filter" title="Permalink to this headline">¶</a></h4>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \require{mathtools}
@@ -369,8 +384,8 @@ h[n]=\frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{\frac{\pi}{T}}e^{-i\omega nT}\frac{1}{
 <p>but if <span class="math notranslate nohighlight">\(T\not \rightarrow 0\)</span> there is NO WAY to compute the integral.
 <img alt="Not standard integral" src="_images/21-10-04_not_standard_integral.jpeg" /></p>
 </div>
-<div class="section" id="e-g-the-differentiator">
-<h4>e.g. The differentiator<a class="headerlink" href="#e-g-the-differentiator" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="the-differentiator">
+<h4>The differentiator<a class="headerlink" href="#the-differentiator" title="Permalink to this headline">¶</a></h4>
 <p>The differentiator’s equation is <span class="math notranslate nohighlight">\(\tau \frac{d}{dt}\rightarrow -i\omega\tau=\tilde{G}(\omega)\)</span></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -381,11 +396,13 @@ h[n]&amp;=\frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{\frac{\pi}{T}}(-i\omega \tau)e^{-
 \frac{(-1)^n}{nT} \text{ otherwise}
 \end{cases} \right\} = (-1)^n \frac{1-\delta[n]}{nT}
 \end{align*}\]</div>
+</div>
+</div>
+<div class="section" id="backward-intepretation-of-the-simulation-theorem">
+<h3>Backward intepretation of the simulation theorem<a class="headerlink" href="#backward-intepretation-of-the-simulation-theorem" title="Permalink to this headline">¶</a></h3>
 <p>The one used above was the straightforward interpretation of the theorem. To overcome some of the problems it is possible to consider a <strong>backward intepretation of the simulation theorem</strong>, that is, the requirement are relaxed to <span class="math notranslate nohighlight">\(y'[n]\sime y[n]\)</span> so that <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=H(z=e^{-i\omega T}) + o(\omega^n)\)</span> in <span class="math notranslate nohighlight">\(\left[ -\frac{\pi}{T}; \frac{\pi}{T} \right]\)</span>.</p>
-</div>
-</div>
 <div class="section" id="e-g-the-differentiator-again">
-<h3>e.g. The differentiator (again)<a class="headerlink" href="#e-g-the-differentiator-again" title="Permalink to this headline">¶</a></h3>
+<h4>e.g. The differentiator (again)<a class="headerlink" href="#e-g-the-differentiator-again" title="Permalink to this headline">¶</a></h4>
 <p>Let’s take the approximate transfer function (which is given/found by an intuition): <span class="math notranslate nohighlight">\(V[n]=\delta[n]-\delta[n-1]\)</span> with z-transform <span class="math notranslate nohighlight">\(V(z)=1 - \frac{1}{z}\)</span>. By taking the limit <span class="math notranslate nohighlight">\(\omega T &lt;&lt; 1\)</span>, it is possible to write:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -414,6 +431,7 @@ V[n]&amp;= \alpha \delta[n]+\beta \delta[n-1]+\gamma\delta[n-2] \implies V(z)=\a
 \end{align*}\]</div>
 <p><img alt="" src="_images/21-10-04_differentiator.jpeg" />
 <img alt="" src="_images/21-10-04_differentiator_improved.jpeg" /></p>
+</div>
 </div>
 </div>
 </div>
