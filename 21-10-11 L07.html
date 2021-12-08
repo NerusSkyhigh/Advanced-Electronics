@@ -268,28 +268,33 @@
       \(tg\left( \frac{\omega T}{2}\right)\)
      </span>
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#reality-is-conserved">
-       Reality is conserved
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#causality">
-       Causality
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#bibo-stability">
-       Bibo Stability
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#e-g-low-pass-actual-implementation">
-       e.g. LOW PASS (actual implementation)
-      </a>
-     </li>
-    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bilinear-transform-and-its-properties">
+   Bilinear transform and its properties
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reality-is-conserved">
+     Reality is conserved
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#causality">
+     Causality
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bibo-stability">
+     Bibo Stability
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-g-low-pass-actual-implementation">
+     e.g. LOW PASS (actual implementation)
+    </a>
    </li>
   </ul>
  </li>
@@ -339,13 +344,17 @@ sin(\omega t) = \omega t - \frac{(\omega T)^3}{6}+\mathcal{o}\left( (\omega T)^3
 \end{align*}\]</div>
 <p><strong>Note:</strong> any function can be choosen to obtain the approximation but <span class="math notranslate nohighlight">\(tg\left(\frac{\omega \pi}{2} \right)\)</span> presents some nice features which will be discussed later.</p>
 <p><strong>Note 2:</strong> <span class="math notranslate nohighlight">\(V(z)=\tilde{G}_{\mathcal{F}}\left(\omega=\frac{2i}{T}  \frac{z-1}{z+1}\right) = \tilde{G}_{\mathcal{L}}\left(s=\frac{2}{T}  \frac{z-1}{z+1}\right)\)</span> is expected to be a good approximation of <span class="math notranslate nohighlight">\(\tilde{G}_{\mathcal{F}}(\omega)=\tilde{G}_{\mathcal{L}}(s)\)</span> if <span class="math notranslate nohighlight">\(\omega T &lt;&lt; 1\)</span> i.e. if <span class="math notranslate nohighlight">\(T_{SAMP}&lt;&lt; \frac{1}{\text{frequencies of interest}}\)</span>.</p>
+</div>
+</div>
+<div class="section" id="bilinear-transform-and-its-properties">
+<h2>Bilinear transform and its properties<a class="headerlink" href="#bilinear-transform-and-its-properties" title="Permalink to this headline">¶</a></h2>
 <p>Let’s now see what happends when we apply a bilinear transform to a rational function:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \tilde{G}(\omega)= \frac{N(\omega)}{D(\omega)} = \frac{\sum_{k=0}^Ma_k \omega^k}{\sum_{n=0}^N b_n \omega^n} \qquad \text{LTI}
 \end{align*}\]</div>
 <div class="section" id="reality-is-conserved">
-<h4>Reality is conserved<a class="headerlink" href="#reality-is-conserved" title="Permalink to this headline">¶</a></h4>
+<h3>Reality is conserved<a class="headerlink" href="#reality-is-conserved" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 V(z)= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k}{\sum_{n=0}^N b_n \left[\frac{2i}{T}  \frac{z-1}{z+1} \right]^n} = \tilde{G}(\omega) \qquad V^*(z^*) = \frac{\sum_{k=0}^Ma_k \left[ \frac{2(-i)}{T}  \frac{z-1}{z+1} \right]^k}{\sum_{n=0}^N b_n \left[\frac{2(-i)}{T}  \frac{z-1}{z+1} \right]^n} = \tilde{G}(-\omega)
@@ -353,12 +362,12 @@ V(z)= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k}{\sum
 <p>As we know that <em>an analog system is real <span class="math notranslate nohighlight">\(\iff\ \tilde{G}^*(\omega)=\tilde{G}(-\omega)\)</span></em> we have proven the statement.</p>
 </div>
 <div class="section" id="causality">
-<h4>Causality<a class="headerlink" href="#causality" title="Permalink to this headline">¶</a></h4>
+<h3>Causality<a class="headerlink" href="#causality" title="Permalink to this headline">¶</a></h3>
 <p>Causality can be proven but the proof is long nd tedious. Just assume causality a priori with the condition <span class="math notranslate nohighlight">\(0\not \in ROC; \infty \subset ROC\)</span>.</p>
 </div>
 <div class="section" id="bibo-stability">
-<h4>Bibo Stability<a class="headerlink" href="#bibo-stability" title="Permalink to this headline">¶</a></h4>
-<p><strong>Reminder</strong>: An analog system is bibo stable <span class="math notranslate nohighlight">\(\iff \mathcal{Re}\{poles\}&lt;0\)</span>.
+<h3>Bibo Stability<a class="headerlink" href="#bibo-stability" title="Permalink to this headline">¶</a></h3>
+<p><strong>Reminder</strong>: An analog system is bibo stable <span class="math notranslate nohighlight">\(\iff \mathcal{Re}\{poles\}&lt;0\)</span>.<br />
 <strong>Reminder 2</strong>: A rational system can always be decomposed in a sum of fractions:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -389,7 +398,7 @@ An other reason for which bilinear is preferred is that it is well-behaved near 
 <p>That is the tails of <span class="math notranslate nohighlight">\(\tilde{x}(\omega)\)</span> are smoothed out near the boundaries of the Nyquist band and ensure a nice transition to the cut region.</p>
 </div>
 <div class="section" id="e-g-low-pass-actual-implementation">
-<h4>e.g. LOW PASS (actual implementation)<a class="headerlink" href="#e-g-low-pass-actual-implementation" title="Permalink to this headline">¶</a></h4>
+<h3>e.g. LOW PASS (actual implementation)<a class="headerlink" href="#e-g-low-pass-actual-implementation" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \tilde{G}(\omega) &amp;= \frac{1}{1-i\omega \tau} \\
@@ -455,7 +464,6 @@ f_{3dB}&amp;=10 \text{ Hz} \quad T = 2^{-10} \simeq 10^{-3}
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/21-10-11 L07_1_0.png" src="_images/21-10-11 L07_1_0.png" />
-</div>
 </div>
 </div>
 </div>
