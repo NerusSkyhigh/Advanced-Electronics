@@ -249,8 +249,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sufficiently-close-approximation-for-the-simulation-theorem">
-   Sufficiently close approximation for the simulation theorem
+  <a class="reference internal nav-link" href="#approximations-for-the-simulation-theorem">
+   Approximations for the simulation theorem
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -306,8 +306,8 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="lecture-07-11-october-2021">
 <h1>Lecture 07 - 11 October 2021<a class="headerlink" href="#lecture-07-11-october-2021" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="sufficiently-close-approximation-for-the-simulation-theorem">
-<h2>Sufficiently close approximation for the simulation theorem<a class="headerlink" href="#sufficiently-close-approximation-for-the-simulation-theorem" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="approximations-for-the-simulation-theorem">
+<h2>Approximations for the simulation theorem<a class="headerlink" href="#approximations-for-the-simulation-theorem" title="Permalink to this headline">¶</a></h2>
 <p>In the previous lecture a way to approximate a system <span class="math notranslate nohighlight">\(\tilde{G}(s)\)</span> or <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> with a discrete transfer function was seen. The result obtained is that <span class="math notranslate nohighlight">\(V(z)\)</span> is a perfect simulator for <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> if and only if <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=V(z=e^{-i\omega T})\)</span>.
 It’s now time to searcb for a general way to obtain the discrete <span class="math notranslate nohighlight">\(\tilde{V}(z)\)</span> starting from the transfer function <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span>. A first way would be to invert <span class="math notranslate nohighlight">\(z=e^{-i\omega T}\rightarrow \omega=\frac{i}{T}ln(Z)\)</span> but that would introduce a <a class="reference external" href="https://en.wikipedia.org/wiki/Branch_point#Branch_cuts">branch cut</a> on <span class="math notranslate nohighlight">\(\mathcal{R}_{0}^{-}\)</span>. A possibility is to abandon the search for an <em>exact inversion</em> anduse a <em>sufficiently close approximation</em> <span class="math notranslate nohighlight">\(\tilde{V} = \tilde{G}(\omega=f(z)) + \mathcal{o}\left( w^n\right)\)</span>.</p>
 <div class="section" id="case-1-sin-omega-t">
@@ -362,7 +362,8 @@ V(z)= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k}{\sum
 <strong>Reminder 2</strong>: A rational system can always be decomposed in a sum of fractions:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-\tilde{G}(s)=\frac{N(s)}{D(s)}= ... + \frac{A}{(s-s_0)^n} \xrightarrow[Transform]{Bilinear} ... + \frac{A}{\left(\frac{2(-i)}{T}  \frac{z-1}{z+1}-\frac{2(-i)}{T}  \frac{z_0-1}{z_0+1}\right)^n} = ... + A\left[\frac{T}{2}\frac{(z+1)(z-1)}{z-z_0}\right]^N
+\tilde{G}(s)&amp;=\frac{N(s)}{D(s)}= ... + \frac{A}{(s-s_0)^n} \\
+\xrightarrow[Transform]{Bilinear}&amp; ... + \frac{A}{\left(\frac{2(-i)}{T}  \frac{z-1}{z+1}-\frac{2(-i)}{T}  \frac{z_0-1}{z_0+1}\right)^n} = ... + A\left[\frac{T}{2}\frac{(z+1)(z-1)}{z-z_0}\right]^N
 \end{align*}\]</div>
 <p>and the poles stays of the same order after a bilinear transformation.
 It’s now possible to prove the preservation of bibo stability:</p>
@@ -378,7 +379,7 @@ An other reason for which bilinear is preferred is that it is well-behaved near 
 <p>Assume <span class="math notranslate nohighlight">\(N&gt;M\)</span> (this can always be done by renaming eventual derivatives in the transfer function)</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-\tilde{G}(\omega)= \frac{N(\omega)}{D(\omega)} = \frac{\sum_{k=0}^Ma_k \omega^k}{\sum_{n=0}^N b_n \omega^n} \rightarrow \tilde{V}(z) = \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k (z+1)^M}{\sum_{n=0}^N b_n \left[\frac{2i}{T}  \frac{z-1}{z+1} \right]^n (z+1)^N} \frac{(z+1)^N}{(z+1)^M} = \frac{N'(z)}{D'(z)}(z+1)^{N-M}
+\tilde{G}(\omega)&amp;= \frac{N(\omega)}{D(\omega)} = \frac{\sum_{k=0}^Ma_k \omega^k}{\sum_{n=0}^N b_n \omega^n}\\ \implies \tilde{V}(z) &amp;= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k (z+1)^M}{\sum_{n=0}^N b_n \left[\frac{2i}{T}  \frac{z-1}{z+1} \right]^n (z+1)^N} \frac{(z+1)^N}{(z+1)^M} = \frac{N'(z)}{D'(z)}(z+1)^{N-M}
 \end{align*}\]</div>
 <p>The term <span class="math notranslate nohighlight">\((z+1)^{N-M}\)</span> is a leading term. Now let’s replace the simulation theorem:</p>
 <div class="amsmath math notranslate nohighlight">
