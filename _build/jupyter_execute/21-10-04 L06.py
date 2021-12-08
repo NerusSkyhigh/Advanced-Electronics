@@ -30,6 +30,7 @@
 # 
 # Now, consider the sampling of the output signal $y_A(t)$:
 # \begin{align*}
+# \require{cancel}
 # y_A[n]=y_A(nT)=\frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-inT\omega} \cancelto{\tilde{y}(\omega)}{\tilde{G}(\omega)\tilde{x}(\omega)} d\omega
 # \end{align*}
 # 
@@ -107,4 +108,5 @@
 # \end{align*}
 # 
 # ![](images/21-10-04_differentiator.jpeg)
+# 
 # ![](images/21-10-04_differentiator_improved.jpeg)
