@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 07 - 11 October 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>Lecture 08 - 18 October 2021 &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Markdown Files" href="markdown.html" />
-    <link rel="prev" title="Lecture 06 - 04 October 2021" href="21-10-04%20L06.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -98,7 +96,7 @@
   </a>
  </li>
 </ul>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-13%20L01.html">
    Lecture 01 - 13 September 2021
@@ -129,8 +127,8 @@
    Lecture 06 - 04 October 2021
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-10-11%20L07.html">
    Lecture 07 - 11 October 2021
   </a>
  </li>
@@ -185,7 +183,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/21-10-11 L07.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/21-10-18 L08.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -205,7 +203,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/NerusSkyhigh/Advanced-Electronics/issues/new?title=Issue%20on%20page%20%2F21-10-11 L07.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/NerusSkyhigh/Advanced-Electronics/issues/new?title=Issue%20on%20page%20%2F21-10-18 L08.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -226,7 +224,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/NerusSkyhigh/Advanced-Electronics/master?urlpath=tree/21-10-11 L07.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/NerusSkyhigh/Advanced-Electronics/master?urlpath=tree/21-10-18 L08.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -249,51 +247,13 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#approximations-for-the-simulation-theorem">
-   Approximations for the simulation theorem
+  <a class="reference internal nav-link" href="#low-pass-filter-again">
+   Low pass filter (again)
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#case-1-sin-omega-t">
-     Case 1:
-     <span class="math notranslate nohighlight">
-      \(sin(\omega t)\)
-     </span>
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#case-2-bilinear-transform-tg-left-frac-omega-t-2-right">
-     Case 2: Bilinear Transform
-     <span class="math notranslate nohighlight">
-      \(tg\left( \frac{\omega T}{2}\right)\)
-     </span>
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#bilinear-transform-and-its-properties">
-   Bilinear transform and its properties
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#reality-is-conserved">
-     Reality is conserved
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#causality">
-     Causality
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#bibo-stability">
-     Bibo Stability
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#e-g-low-pass-actual-implementation">
-     e.g. LOW PASS (actual implementation)
+    <a class="reference internal nav-link" href="#properties">
+     Properties:
     </a>
    </li>
   </ul>
@@ -309,110 +269,28 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-07-11-october-2021">
-<h1>Lecture 07 - 11 October 2021<a class="headerlink" href="#lecture-07-11-october-2021" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="approximations-for-the-simulation-theorem">
-<h2>Approximations for the simulation theorem<a class="headerlink" href="#approximations-for-the-simulation-theorem" title="Permalink to this headline">¶</a></h2>
-<p>In the previous lecture a way to approximate a system <span class="math notranslate nohighlight">\(\tilde{G}(s)\)</span> or <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> with a discrete transfer function was seen. The result obtained is that <span class="math notranslate nohighlight">\(V(z)\)</span> is a perfect simulator for <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> if and only if <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=V(z=e^{-i\omega T})\)</span>.
-It’s now time to searcb for a general way to obtain the discrete <span class="math notranslate nohighlight">\(\tilde{V}(z)\)</span> starting from the transfer function <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span>. A first way would be to invert <span class="math notranslate nohighlight">\(z=e^{-i\omega T}\rightarrow \omega=\frac{i}{T}ln(Z)\)</span> but that would introduce a <a class="reference external" href="https://en.wikipedia.org/wiki/Branch_point#Branch_cuts">branch cut</a> on <span class="math notranslate nohighlight">\(\mathcal{R}_{0}^{-}\)</span>. A possibility is to abandon the search for an <em>exact inversion</em> anduse a <em>sufficiently close approximation</em> <span class="math notranslate nohighlight">\(\tilde{V} = \tilde{G}(\omega=f(z)) + \mathcal{o}\left( w^n\right)\)</span>.</p>
-<div class="section" id="case-1-sin-omega-t">
-<h3>Case 1: <span class="math notranslate nohighlight">\(sin(\omega t)\)</span><a class="headerlink" href="#case-1-sin-omega-t" title="Permalink to this headline">¶</a></h3>
-<p>Let’s start by writing <span class="math notranslate nohighlight">\(sin(\omega t)\)</span> as an exponential:</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-08-18-october-2021">
+<h1>Lecture 08 - 18 October 2021<a class="headerlink" href="#lecture-08-18-october-2021" title="Permalink to this headline">¶</a></h1>
+<p>This lecture will be focusses on more examples and applications of the simulation theorem.</p>
+<div class="section" id="low-pass-filter-again">
+<h2>Low pass filter (again)<a class="headerlink" href="#low-pass-filter-again" title="Permalink to this headline">¶</a></h2>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-sin(\omega t) = \frac{e^{i\omega t}-e^{-i\omega t}}{2i} = \frac{\frac{1}{z}-z}{2i} = \frac{1-z^2}{2iz} = \frac{1-z^2}{z}\frac{1}{2i}
+    \tilde{G}(\omega) &amp;= \frac{1}{1-i\omega \tau} \quad \tau=\frac{1}{RC}\\
+    V(z)&amp; =\frac{1-c}{2}\frac{z+1}{z-c} \qquad \text{with } c=\frac{1-T/2\tau}{1+T/2\tau} \\
 \end{align*}\]</div>
-<p>And write the taylot series:</p>
+<div class="section" id="properties">
+<h3>Properties:<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p><strong>Check reality</strong>: as easy as checking <span class="math notranslate nohighlight">\(V^*(z^*)=V(z)\)</span></p></li>
+<li><p><strong>Check causality</strong>: <span class="math notranslate nohighlight">\(\left( 0\not \in ROC; \infty\in ROC \right)\)</span><br />
+The pole is in <span class="math notranslate nohighlight">\(\tilde{z}=c=\frac{1-T/2\tau}{1+T/2\tau}\simeq1-\epsilon\)</span> which is inside <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and one can always find a path <span class="math notranslate nohighlight">\(\Gamma\)</span> such that <span class="math notranslate nohighlight">\(\tilde{z}\ um\ \Gamma \subset \Gamma_1\)</span>.</p></li>
+<li><p><strong>Bico stability</strong>: checked in the same way as causality</p></li>
+<li><p>Behaviour at <span class="math notranslate nohighlight">\(\omega=\pm \frac{\pi}{T}\)</span>: fine due to backwrds interpretation of the simulation theorem.</p></li>
+</ol>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-sin(\omega t) = \omega t - \frac{(\omega T)^3}{6}+\mathcal{o}\left( (\omega T)^3 \right)
-\end{align*}\]</div>
-<p>So that</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-&amp;\omega t - \frac{(\omega T)^3}{6}+\mathcal{o}\left( (\omega T)^3 \right) = \frac{1-z^2}{z}\frac{1}{2i}\\
-\implies &amp; \omega = \frac{z^2-1}{z}\frac{i}{2T}+\mathcal{o}\left( (\omega T)^3 \right)\\
-    \implies &amp; \tilde{G}_{low pass}(\omega)=\frac{1}{1-i\omega \tau}=\frac{1}{1-i\tau \frac{1-z^2}{z}\frac{1}{2i}} = \frac{2Tz}{2Tz-\tau+\tau z^2} = \tilde{G}(z)=\tilde{V}(z)
-\end{align*}\]</div>
-</div>
-<div class="section" id="case-2-bilinear-transform-tg-left-frac-omega-t-2-right">
-<h3>Case 2: Bilinear Transform <span class="math notranslate nohighlight">\(tg\left( \frac{\omega T}{2}\right)\)</span><a class="headerlink" href="#case-2-bilinear-transform-tg-left-frac-omega-t-2-right" title="Permalink to this headline">¶</a></h3>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    tg\left( \frac{\omega T}{2}\right) &amp;= \frac{e^{i\omega T/2}- e^{-i\omega T/2}}{i\left( e^{i\omega T/2} + e^{i\omega T/2}\right)} = \frac{1}{i} \frac{1-e^{-i\omega T}}{1+e^{i\omega T}} = \frac{1}{i} \frac{z-1}{z+1} = \frac{\omega T}{2}+\mathcal{o}\left( (\omega T)^3 \right) \\
-    &amp;\implies \omega \simeq \frac{2i}{T}  \frac{z-1}{z+1} +\mathcal{o}\left( (\omega T)^3 \right)
-\end{align*}\]</div>
-<p><strong>Note:</strong> any function can be choosen to obtain the approximation but <span class="math notranslate nohighlight">\(tg\left(\frac{\omega \pi}{2} \right)\)</span> presents some nice features which will be discussed later.</p>
-<p><strong>Note 2:</strong> <span class="math notranslate nohighlight">\(V(z)=\tilde{G}_{\mathcal{F}}\left(\omega=\frac{2i}{T}  \frac{z-1}{z+1}\right) = \tilde{G}_{\mathcal{L}}\left(s=\frac{2}{T}  \frac{z-1}{z+1}\right)\)</span> is expected to be a good approximation of <span class="math notranslate nohighlight">\(\tilde{G}_{\mathcal{F}}(\omega)=\tilde{G}_{\mathcal{L}}(s)\)</span> if <span class="math notranslate nohighlight">\(\omega T &lt;&lt; 1\)</span> i.e. if <span class="math notranslate nohighlight">\(T_{SAMP}&lt;&lt; \frac{1}{\text{frequencies of interest}}\)</span>.</p>
-</div>
-</div>
-<div class="section" id="bilinear-transform-and-its-properties">
-<h2>Bilinear transform and its properties<a class="headerlink" href="#bilinear-transform-and-its-properties" title="Permalink to this headline">¶</a></h2>
-<p>Let’s now see what happends when we apply a bilinear transform to a rational function:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\tilde{G}(\omega)= \frac{N(\omega)}{D(\omega)} = \frac{\sum_{k=0}^Ma_k \omega^k}{\sum_{n=0}^N b_n \omega^n} \qquad \text{LTI}
-\end{align*}\]</div>
-<div class="section" id="reality-is-conserved">
-<h3>Reality is conserved<a class="headerlink" href="#reality-is-conserved" title="Permalink to this headline">¶</a></h3>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-V(z)= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k}{\sum_{n=0}^N b_n \left[\frac{2i}{T}  \frac{z-1}{z+1} \right]^n} = \tilde{G}(\omega) \qquad V^*(z^*) = \frac{\sum_{k=0}^Ma_k \left[ \frac{2(-i)}{T}  \frac{z-1}{z+1} \right]^k}{\sum_{n=0}^N b_n \left[\frac{2(-i)}{T}  \frac{z-1}{z+1} \right]^n} = \tilde{G}(-\omega)
-\end{align*}\]</div>
-<p>As we know that <em>an analog system is real <span class="math notranslate nohighlight">\(\iff\ \tilde{G}^*(\omega)=\tilde{G}(-\omega)\)</span></em> we have proven the statement.</p>
-</div>
-<div class="section" id="causality">
-<h3>Causality<a class="headerlink" href="#causality" title="Permalink to this headline">¶</a></h3>
-<p>Causality can be proven but the proof is long nd tedious. Just assume causality a priori with the condition <span class="math notranslate nohighlight">\(0\not \in ROC; \infty \subset ROC\)</span>.</p>
-</div>
-<div class="section" id="bibo-stability">
-<h3>Bibo Stability<a class="headerlink" href="#bibo-stability" title="Permalink to this headline">¶</a></h3>
-<p><strong>Reminder</strong>: An analog system is bibo stable <span class="math notranslate nohighlight">\(\iff \mathcal{Re}\{poles\}&lt;0\)</span>.<br />
-<strong>Reminder 2</strong>: A rational system can always be decomposed in a sum of fractions:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\tilde{G}(s)&amp;=\frac{N(s)}{D(s)}= ... + \frac{A}{(s-s_0)^n} \\
-\xrightarrow[Transform]{Bilinear}&amp; ... + \frac{A}{\left(\frac{2(-i)}{T}  \frac{z-1}{z+1}-\frac{2(-i)}{T}  \frac{z_0-1}{z_0+1}\right)^n} = ... + A\left[\frac{T}{2}\frac{(z+1)(z-1)}{z-z_0}\right]^N
-\end{align*}\]</div>
-<p>and the poles stays of the same order after a bilinear transformation.
-It’s now possible to prove the preservation of bibo stability:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-s &amp;= \frac{2}{T} \frac{z-1}{z+1} \rightarrow z=\frac{1+sT/2}{1-sT/2} = \frac{1+x+iy}{1-x-iy}\\
-&amp;\text{with }\frac{T}{2}s=x+iy,\quad x,y\in\mathcal{R}\\
-&amp;\implies \left| z_0 \right| = 1+\frac{4x_0}{(x_0-1)^2+y_0^2} = 1+\frac{2T\mathcal{Re}\left\{s_0\right\}}{\left(1-\frac{T}{2}\mathcal{Re}\left\{s_0\right\} \right)^2 + \left(\mathcal{Im}\left\{s_0\right\} \right)^2}
-\end{align*}\]</div>
-<p>by imposing <span class="math notranslate nohighlight">\(\mathcal{Re}\{poles\}&lt;0\)</span> one obtains <span class="math notranslate nohighlight">\(\left| z_0 \right|&lt;0\)</span>, that is, all the poles <span class="math notranslate nohighlight">\(\subset \Gamma_1\)</span>.
-As all the poles are strictly under <span class="math notranslate nohighlight">\(\Gamma_1\)</span> it is possible to find a curve that includes all the polesm is contained in <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and encloses <span class="math notranslate nohighlight">\(+\infty\)</span>. This implies that the system is bibo stable.
-An other reason for which bilinear is preferred is that it is well-behaved near the boundaries of the Nyquist band:</p>
-<p>Assume <span class="math notranslate nohighlight">\(N&gt;M\)</span> (this can always be done by renaming eventual derivatives in the transfer function)</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\tilde{G}(\omega)&amp;= \frac{N(\omega)}{D(\omega)} = \frac{\sum_{k=0}^Ma_k \omega^k}{\sum_{n=0}^N b_n \omega^n}\\ \implies \tilde{V}(z) &amp;= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k (z+1)^M}{\sum_{n=0}^N b_n \left[\frac{2i}{T}  \frac{z-1}{z+1} \right]^n (z+1)^N} \frac{(z+1)^N}{(z+1)^M} = \frac{N'(z)}{D'(z)}(z+1)^{N-M}
-\end{align*}\]</div>
-<p>The term <span class="math notranslate nohighlight">\((z+1)^{N-M}\)</span> is a leading term. Now let’s replace the simulation theorem:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    \tilde{G}(\omega)=V\left(z=e^{-i\omega T}\right) = \left. \frac{N'\left( z=e^{-i\omega T}\right)}{D'\left(z=e^{-i\omega T}\right)} \left( e^{-i\omega T}+1\right)^{N-M} \right|_{\omega = \pm \frac{\pi}{T} }=0
-\end{align*}\]</div>
-<p>That is the tails of <span class="math notranslate nohighlight">\(\tilde{x}(\omega)\)</span> are smoothed out near the boundaries of the Nyquist band and ensure a nice transition to the cut region.</p>
-</div>
-<div class="section" id="e-g-low-pass-actual-implementation">
-<h3>e.g. LOW PASS (actual implementation)<a class="headerlink" href="#e-g-low-pass-actual-implementation" title="Permalink to this headline">¶</a></h3>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-    \tilde{G}(\omega) &amp;= \frac{1}{1-i\omega \tau} \\
-    V(z)&amp;=\frac{1}{1-\frac{2\tau}{T}\frac{z-1}{z+1}} = \frac{z+1}{z\left(1+\frac{2\tau}{T}\right)-\left( \frac{2\tau}{T}-1\right)} \\
-    &amp; =\frac{1-c}{2}\frac{z+1}{z-c} \qquad \text{with } c=\frac{1-T/2\tau}{1+T/2\tau} \\
-    V(z)&amp;=\frac{Y(z)}{X(z)}= \frac{1-c}{2}\frac{z+1}{z-c} \implies y(z)\left( 1-\frac{c}{z}\right)=\frac{1-c}{2}\left( 1+\frac{1}{z}\right) x(z)\\
-    &amp;\implies y[n]=c-y[n-1]=\frac{1-c}{2}(x[n]+x[n-1]) \quad \text{Time domain}
-\end{align*}\]</div>
-<p>Let’s now plot the Bode diagram for a low pass an for its bilinear transform. The two equation of interests are:</p>
-<div class="amsmath math notranslate nohighlight">
-\[\begin{align*}
-\text{Ideal low pass} &amp;\quad \tilde{G}(\omega)=\frac{1}{1-i\omega \tau}\\
-\text{Discrete low pass} &amp;\quad V\left(\omega\right)=\frac{1-c}{2}\frac{e^{-i\omega T}+1}{e^{-i\omega T}-c}\\
-f_{3dB}&amp;=10 \text{ Hz} \quad T = 2^{-10} \simeq 10^{-3}
+\tilde{H}(\omega)= V\left( z=e^{-i\omega T}\right)=\frac{1-c}{2}
 \end{align*}\]</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -420,37 +298,27 @@ f_{3dB}&amp;=10 \text{ Hz} \quad T = 2^{-10} \simeq 10^{-3}
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="c1">##############</span>
-<span class="c1"># PARAMETERS #</span>
-<span class="c1">##############</span>
 <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">1024</span> <span class="c1"># Sampling time</span>
-<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">stop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mf">0.9</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">),</span> \
-                    <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">base</span><span class="o">=</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">stop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1o</span><span class="p">(</span><span class="mf">0.91</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">),</span> <span class="n">step</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
 <span class="n">f3dB</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Hz</span>
 
 <span class="n">omega0</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f3dB</span>
 <span class="n">tau</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f3dB</span><span class="p">)</span>
-<span class="c1">#print(&quot;T=\t{:e}\ntau=\t{:e}&quot;.format(T, tau))</span>
+<span class="c1">##print(&quot;T=\t{:e}\ntau=\t{:e}&quot;.format(T, tau))</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 
-<span class="c1">##################</span>
-<span class="c1"># IDEAL LOW PASS #</span>
-<span class="c1">##################</span>
+
 <span class="n">lp</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="c1"># Ideal Low pass </span>
 <span class="n">mag_lp</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lp</span><span class="p">))</span>
 <span class="n">phase_lp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">lp</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">lp</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 
-<span class="c1">######################</span>
-<span class="c1"># BILINEAR TRANSFORM #</span>
-<span class="c1">######################</span>
-<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="p">)</span>
-<span class="n">lp_bt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span> <span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">-</span><span class="n">c</span><span class="p">)</span>
-<span class="n">mag_lp_bt</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">))</span>
-<span class="n">phase_lp_bt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
 
-<span class="c1">#########</span>
-<span class="c1"># PLOTS #</span>
-<span class="c1">#########</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">lp_bt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span><span class="o">/</span><span class="p">(</span> <span class="n">c</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">mag_lp_bt</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">))</span>
+<span class="n">phase_lp_bt</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">mag_lp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;LP&quot;</span><span class="p">)</span>    <span class="c1"># Bode magnitude plot</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">mag_lp_bt</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bilinear&quot;</span><span class="p">)</span>    <span class="c1"># Bode magnitude plot</span>
 
@@ -458,15 +326,14 @@ f_{3dB}&amp;=10 \text{ Hz} \quad T = 2^{-10} \simeq 10^{-3}
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">phase_lp_bt</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bilinear&quot;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">omega0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">mag_lp_bt</span><span class="p">),</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">))),</span><span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$2\pi f_</span><span class="si">{3dB}</span><span class="s2">$&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">omega0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$2\pi f_</span><span class="si">{3dB}</span><span class="s2">$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">omega0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$2\pi f_</span><span class="si">{3dB}</span><span class="s2">$ [$\simeq$45°]&quot;</span><span class="p">)</span>
+
 
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Magnitude&quot;</span><span class="p">);</span>  <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Phase&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\omega$ [Hz]&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Magnitude [dB]&quot;</span><span class="p">);</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\omega$ [Hz]&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Phase [deg°]&quot;</span><span class="p">);</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>   <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_yticks</span><span class="p">([</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">91</span><span class="p">,</span> <span class="mi">5</span><span class="p">)])</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="nb">min</span><span class="p">(</span><span class="n">mag_lp_bt</span><span class="p">),</span> <span class="mi">10</span><span class="p">])</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -474,7 +341,25 @@ f_{3dB}&amp;=10 \text{ Hz} \quad T = 2^{-10} \simeq 10^{-3}
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/21-10-11 L07_1_0.png" src="_images/21-10-11 L07_1_0.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16994</span><span class="o">/</span><span class="mf">2228569199.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> 
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">1024</span> <span class="c1"># Sampling time</span>
+<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">stop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1o</span><span class="p">(</span><span class="mf">0.91</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">),</span> <span class="n">step</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">f3dB</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Hz</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> 
+
+<span class="nn">/usr/local/lib/python3.8/dist-packages/numpy/__init__.py</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
+<span class="g g-Whitespace">    </span><span class="mi">311</span>                 <span class="k">return</span> <span class="n">Tester</span>
+<span class="g g-Whitespace">    </span><span class="mi">312</span> 
+<span class="ne">--&gt; </span><span class="mi">313</span>             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;module </span><span class="si">{!r}</span><span class="s2"> has no attribute &quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">314</span>                                  <span class="s2">&quot;</span><span class="si">{!r}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">315</span> 
+
+<span class="ne">AttributeError</span>: module &#39;numpy&#39; has no attribute &#39;log1o&#39;
+</pre></div>
+</div>
 </div>
 </div>
 </div>
@@ -505,21 +390,7 @@ f_{3dB}&amp;=10 \text{ Hz} \quad T = 2^{-10} \simeq 10^{-3}
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="21-10-04%20L06.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture 06 - 04 October 2021</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="markdown.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Markdown Files</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
         
         </div>
