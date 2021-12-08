@@ -53,6 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="Lecture 07 - 11 October 2021" href="21-10-11%20L07.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -96,7 +98,7 @@
   </a>
  </li>
 </ul>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-13%20L01.html">
    Lecture 01 - 13 September 2021
@@ -130,6 +132,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-11%20L07.html">
    Lecture 07 - 11 October 2021
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 08 - 18 October 2021
   </a>
  </li>
  <li class="toctree-l1">
@@ -255,6 +262,16 @@
     <a class="reference internal nav-link" href="#properties">
      Properties:
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i">
+       e.g. Filter at
+       <span class="math notranslate nohighlight">
+        \(f_0\frac{1}{4T}\rightarrow z_0 = \pm i\)
+       </span>
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -284,56 +301,109 @@
 <ol class="simple">
 <li><p><strong>Check reality</strong>: as easy as checking <span class="math notranslate nohighlight">\(V^*(z^*)=V(z)\)</span></p></li>
 <li><p><strong>Check causality</strong>: <span class="math notranslate nohighlight">\(\left( 0\not \in ROC; \infty\in ROC \right)\)</span><br />
-The pole is in <span class="math notranslate nohighlight">\(\tilde{z}=c=\frac{1-T/2\tau}{1+T/2\tau}\simeq1-\epsilon\)</span> which is inside <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and one can always find a path <span class="math notranslate nohighlight">\(\Gamma\)</span> such that <span class="math notranslate nohighlight">\(\tilde{z}\ um\ \Gamma \subset \Gamma_1\)</span>.</p></li>
-<li><p><strong>Bico stability</strong>: checked in the same way as causality</p></li>
+The pole is in <span class="math notranslate nohighlight">\(\tilde{z}=c=\frac{1-T/2\tau}{1+T/2\tau}\simeq1-\epsilon\)</span> which is inside <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and one can always find a path <span class="math notranslate nohighlight">\(\Gamma\)</span> such that <span class="math notranslate nohighlight">\(\tilde{z}\ um\ \Gamma \subset \Gamma_1\)</span>.
+<img alt="Poles inside Gamma 1" src="_images/21-10-18_ROC.jpeg" /></p></li>
+<li><p><strong>Bibo stability</strong>: checked in the same way as causality</p></li>
 <li><p>Behaviour at <span class="math notranslate nohighlight">\(\omega=\pm \frac{\pi}{T}\)</span>: fine due to backwrds interpretation of the simulation theorem.</p></li>
 </ol>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-\tilde{H}(\omega)= V\left( z=e^{-i\omega T}\right)=\frac{1-c}{2}
+\tilde{H}(\omega)= V\left( z=e^{-i\omega T}\right)= \left. \frac{1-c}{2}\frac{e^{-i\omega T}+1}{e^{-i\omega T}+c} \right|_{\omega=\pm\frac{\pi}{T}}=0
 \end{align*}\]</div>
+<ol class="simple">
+<li><p><strong>Bode diagram</strong>:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\left| V(z)\right| &amp;= \frac{1-c}{2}\sqrt{\frac{2[1+\cos(\omega T)]}{1+c^2-2c \cos(\omega T)}} = \frac{\left| \cos(\frac{\omega T}{2}) \right|}{\sqrt{1+\frac{4c}{(1-c)^2} \sin^2\left(\frac{\omega T}{2}\right)}} \\
+G_{3dB} &amp;= 20Log_{10}\left( \tilde{H}(\omega)\right)\\
+\end{align*}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\omega\)</span> in the Nyquist band <span class="math notranslate nohighlight">\(\left[ -\frac{\pi}{T};\frac{\pi}{T} \right]\)</span>. By further assuming <span class="math notranslate nohighlight">\(\omega&lt;&lt;\frac{1}{T}\)</span>  it is possible to write:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\left| \tilde{H}(\omega &lt;&lt; \frac{1}{T}) \right|^2  &amp;\simeq \frac{1-(\omega T)^2/8}{1+\frac{4c}{1-c}\frac{\omega^2 T^2}{4}} \\
+&amp;= \left[ 1-\frac{(\omega T)}{8} \right] \frac{1}{1+\frac{1}{\frac{(1-c)^2}{2}\frac{1}{T^2}}} \xrightarrow[\text{of the Low Pass}]{\text{canonical form}} \frac{1}{1+\tau^2 s^2}\\
+\omega_{3dB}&amp;=\frac{1-c}{\sqrt{c}}\frac{1}{T}\simeq \frac{\epsilon}{T}
+\end{align*}\]</div>
+<ol class="simple">
+<li><p><strong>Difference equation</strong></p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    V(z)&amp;=\frac{Y(z)}{X(z)}= \frac{1-c}{2}\frac{z+1}{z-c} \implies y(z)\left( 1-\frac{c}{z}\right)=\frac{1-c}{2}\left( 1+\frac{1}{z}\right) x(z)\\
+    &amp;\implies y[n]c-y[n-1]=\frac{1-c}{2}(x[n]+x[n-1]) \quad \text{Time domain}
+\end{align*}\]</div>
+<p>The difference equation <span class="math notranslate nohighlight">\(y[n]=y[n-1](1-2^{-k})+2^{-(k+1)}(x[n]+x[n-1])\)</span> can be easily implemented on an FPGA by assuming <span class="math notranslate nohighlight">\(1-c=\epsilon=2^{-k}\)</span>:</p>
+<div class="highlight-Verilog notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">)</span><span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">])</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mh">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Let’s suppose a <span class="math notranslate nohighlight">\(50 Hz\)</span> filter is needed. Instead of using the simulation theorem applied to a <em>notch filter</em> it is possible to obtainan an equivalent relation working by steps. First a zero at <span class="math notranslate nohighlight">\(50 Hz\)</span> is needed. But a single zero is not sufficient because reality requires <span class="math notranslate nohighlight">\(V^*(z^*)=V(z)\)</span>. Then at least two more poles are necessaries to assure convergence but a pole at precisely <span class="math notranslate nohighlight">\(50 Hz\)</span> violates causality as it lies on <span class="math notranslate nohighlight">\(\Gamma_1\)</span>. The solution to this problem is to consider an arbitrarly close point in the following way:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\require{color}
+V(z) = \frac{\textcolor[rgb]{1.00,0.00,0.00}{(z-z_0)} \textcolor[rgb]{0.00,0.00,0.00}{(z-z_0^*)} }{\textcolor[rgb]{0.00,0.00,1.00}{(z-cz_0)(z-cz_0^*)}} \qquad c=1-\epsilon \simeq 1
+\end{align*}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\textcolor[rgb]{1.00,0.00,0.00}{(z-z_0)}\)</span> suppress the unwanted frequency</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textcolor[rgb]{0.00,0.00,0.00}{(z-z_0)^*}\)</span> forces reality <span class="math notranslate nohighlight">\(V^*(z^*)=V(z)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\textcolor[rgb]{0.00,0.00,1.00}{(z-cz_0)(z-cz_0^*)}\)</span> imposes causality <span class="math notranslate nohighlight">\(40\not \in ROC; \infty\subset ROC\)</span>. <span class="math notranslate nohighlight">\(c\)</span> makes the width of the filter as small as possible. <span class="math notranslate nohighlight">\(ROC: \left\{z: \left|z\right|&gt;c \right\}\)</span>.</p></li>
+</ul>
+<p>!()[images/21-10-18_Notch_Filter.jpeg]</p>
+<div class="section" id="e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i">
+<h4>e.g. Filter at <span class="math notranslate nohighlight">\(f_0\frac{1}{4T}\rightarrow z_0 = \pm i\)</span><a class="headerlink" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i" title="Permalink to this headline">¶</a></h4>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+V(z) &amp;=\frac{(z-i)(z+i)}{(z-ci)(z+ci)} = \frac{z^2+1}{z^2-c^2} = \frac{e^{-2i\omega T}+1}{e^{-2i\omega T}+c^2}\\
+&amp;=\sqrt{ \frac{2[1+\cos(2\omega T)]}{1+c^2+2c^2 \cos(2\omega T)}} = \frac{\left|\cos(\omega T)\right|}{\sqrt{1-\left[ \frac{2c}{1+c^2}\sin(\omega T)\right]}}\frac{2}{1+c^2}
+\end{align*}\]</div>
+<p>Let’s plot the results:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">signal</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">1024</span> <span class="c1"># Sampling time</span>
-<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">stop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1o</span><span class="p">(</span><span class="mf">0.91</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">),</span> <span class="n">step</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
-<span class="n">f3dB</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Hz</span>
+<span class="c1">##############</span>
+<span class="c1"># PARAMETERS #</span>
+<span class="c1">##############</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="c1">#/1024 # Sampling time</span>
+<span class="n">f3dB</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">T</span><span class="p">)</span> <span class="c1"># Hz</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">,</span> \
+                    <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="n">omega0</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f3dB</span>
-<span class="n">tau</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">f3dB</span><span class="p">)</span>
-<span class="c1">##print(&quot;T=\t{:e}\ntau=\t{:e}&quot;.format(T, tau))</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">notch</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">epsilon</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="n">T</span><span class="p">))</span>
+    <span class="n">den</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">c</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">omega</span><span class="o">*</span><span class="n">T</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span> <span class="p">))</span> 
+    
+    <span class="k">return</span> <span class="n">num</span><span class="o">/</span><span class="n">den</span>
 
+<span class="c1">#########</span>
+<span class="c1"># PLOTS #</span>
+<span class="c1">#########</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
 
-<span class="n">lp</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="c1"># Ideal Low pass </span>
-<span class="n">mag_lp</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lp</span><span class="p">))</span>
-<span class="n">phase_lp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">lp</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">lp</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">V</span> <span class="o">=</span> <span class="n">notch</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">);</span> <span class="n">V</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$=</span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epsilon</span><span class="p">))</span>
 
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span> <span class="n">V</span> <span class="o">=</span> <span class="n">notch</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">);</span> <span class="n">V</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$=</span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epsilon</span><span class="p">))</span>
 
-<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">T</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="p">)</span>
-<span class="n">lp_bt</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">c</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span> <span class="p">)</span><span class="o">/</span><span class="p">(</span> <span class="n">c</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">mag_lp_bt</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">))</span>
-<span class="n">phase_lp_bt</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">lp_bt</span><span class="p">))</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">;</span> <span class="n">V</span> <span class="o">=</span> <span class="n">notch</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">);</span> <span class="n">V</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$=</span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epsilon</span><span class="p">))</span>
 
+<span class="n">epsilon</span> <span class="o">=</span> <span class="mf">0.001</span><span class="p">;</span> <span class="n">V</span> <span class="o">=</span> <span class="n">notch</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">epsilon</span><span class="p">);</span> <span class="n">V</span> <span class="o">=</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">V</span><span class="p">);</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$\epsilon$=</span><span class="si">{:}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">epsilon</span><span class="p">))</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">mag_lp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;LP&quot;</span><span class="p">)</span>    <span class="c1"># Bode magnitude plot</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">mag_lp_bt</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bilinear&quot;</span><span class="p">)</span>    <span class="c1"># Bode magnitude plot</span>
-
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">phase_lp</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;LP&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">omega</span><span class="p">,</span> <span class="n">phase_lp_bt</span><span class="p">,</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Bilinear&quot;</span><span class="p">)</span>
-
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">omega0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="n">mag_lp_bt</span><span class="p">),</span> <span class="mi">20</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="p">))),</span><span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$2\pi f_</span><span class="si">{3dB}</span><span class="s2">$&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">omega0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$2\pi f_</span><span class="si">{3dB}</span><span class="s2">$ [$\simeq$45°]&quot;</span><span class="p">)</span>
-
-
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Magnitude&quot;</span><span class="p">);</span>  <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Phase&quot;</span><span class="p">)</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\omega$ [Hz]&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Magnitude [dB]&quot;</span><span class="p">);</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\omega$ [Hz]&quot;</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Phase [deg°]&quot;</span><span class="p">);</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span>   <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
-<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">a_row</span> <span class="ow">in</span> <span class="n">ax</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">a_row</span><span class="p">:</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;Discrete notch filter&quot;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\omega$ [Hz]&quot;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Magnitude [dB]&quot;</span><span class="p">)</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+        <span class="n">a</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="c1">#ax[1].set_yticks([x for x in range(0, 91, 5)])</span>
+<span class="c1">#ax[0].set_ylim([min(mag_lp_bt), 10])</span>
 
 <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -341,24 +411,7 @@ The pole is in <span class="math notranslate nohighlight">\(\tilde{z}=c=\frac{1-
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">AttributeError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
-<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_16994</span><span class="o">/</span><span class="mf">2228569199.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> 
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">T</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">1024</span> <span class="c1"># Sampling time</span>
-<span class="ne">----&gt; </span><span class="mi">6</span> <span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span> <span class="n">stop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1o</span><span class="p">(</span><span class="mf">0.91</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">T</span><span class="p">),</span> <span class="n">step</span><span class="o">=</span><span class="n">T</span><span class="p">)</span>
-<span class="g g-Whitespace">      </span><span class="mi">7</span> <span class="n">f3dB</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># Hz</span>
-<span class="g g-Whitespace">      </span><span class="mi">8</span> 
-
-<span class="nn">/usr/local/lib/python3.8/dist-packages/numpy/__init__.py</span> in <span class="ni">__getattr__</span><span class="nt">(attr)</span>
-<span class="g g-Whitespace">    </span><span class="mi">311</span>                 <span class="k">return</span> <span class="n">Tester</span>
-<span class="g g-Whitespace">    </span><span class="mi">312</span> 
-<span class="ne">--&gt; </span><span class="mi">313</span>             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;module </span><span class="si">{!r}</span><span class="s2"> has no attribute &quot;</span>
-<span class="g g-Whitespace">    </span><span class="mi">314</span>                                  <span class="s2">&quot;</span><span class="si">{!r}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">attr</span><span class="p">))</span>
-<span class="g g-Whitespace">    </span><span class="mi">315</span> 
-
-<span class="ne">AttributeError</span>: module &#39;numpy&#39; has no attribute &#39;log1o&#39;
-</pre></div>
+<img alt="_images/21-10-18 L08_1_0.png" src="_images/21-10-18 L08_1_0.png" />
 </div>
 </div>
 </div>
@@ -390,7 +443,21 @@ The pole is in <span class="math notranslate nohighlight">\(\tilde{z}=c=\frac{1-
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="21-10-11%20L07.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 07 - 11 October 2021</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="markdown.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markdown Files</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>

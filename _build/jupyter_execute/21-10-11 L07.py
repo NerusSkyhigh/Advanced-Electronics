@@ -44,16 +44,17 @@
 # \tilde{G}(\omega)= \frac{N(\omega)}{D(\omega)} = \frac{\sum_{k=0}^Ma_k \omega^k}{\sum_{n=0}^N b_n \omega^n} \qquad \text{LTI}
 # \end{align*}
 # 
-# #### Reality is conserved
+# ### Reality
+# Reality is conserved
 # \begin{align*}
 # V(z)= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k}{\sum_{n=0}^N b_n \left[\frac{2i}{T}  \frac{z-1}{z+1} \right]^n} = \tilde{G}(\omega) \qquad V^*(z^*) = \frac{\sum_{k=0}^Ma_k \left[ \frac{2(-i)}{T}  \frac{z-1}{z+1} \right]^k}{\sum_{n=0}^N b_n \left[\frac{2(-i)}{T}  \frac{z-1}{z+1} \right]^n} = \tilde{G}(-\omega)
 # \end{align*}
 # As we know that _an analog system is real $\iff\ \tilde{G}^*(\omega)=\tilde{G}(-\omega)$_ we have proven the statement.
 # 
-# #### Causality
+# ### Causality
 # Causality can be proven but the proof is long nd tedious. Just assume causality a priori with the condition $0\not \in ROC; \infty \subset ROC$.
 # 
-# #### Bibo Stability
+# ### Bibo Stability
 # **Reminder**: An analog system is bibo stable $\iff \mathcal{Re}\{poles\}<0$.  
 # **Reminder 2**: A rational system can always be decomposed in a sum of fractions:
 # \begin{align*}
@@ -82,13 +83,13 @@
 # 
 # That is the tails of $\tilde{x}(\omega)$ are smoothed out near the boundaries of the Nyquist band and ensure a nice transition to the cut region.
 # 
-# #### e.g. LOW PASS (actual implementation)
+# ### e.g. LOW PASS (actual implementation)
 # \begin{align*}
 #     \tilde{G}(\omega) &= \frac{1}{1-i\omega \tau} \\
 #     V(z)&=\frac{1}{1-\frac{2\tau}{T}\frac{z-1}{z+1}} = \frac{z+1}{z\left(1+\frac{2\tau}{T}\right)-\left( \frac{2\tau}{T}-1\right)} \\
 #     & =\frac{1-c}{2}\frac{z+1}{z-c} \qquad \text{with } c=\frac{1-T/2\tau}{1+T/2\tau} \\
 #     V(z)&=\frac{Y(z)}{X(z)}= \frac{1-c}{2}\frac{z+1}{z-c} \implies y(z)\left( 1-\frac{c}{z}\right)=\frac{1-c}{2}\left( 1+\frac{1}{z}\right) x(z)\\
-#     &\implies y[n]=c-y[n-1]=\frac{1-c}{2}(x[n]+x[n-1]) \quad \text{Time domain}
+#     &\implies y[n]c-y[n-1]=\frac{1-c}{2}(x[n]+x[n-1]) \quad \text{Time domain}
 # \end{align*}
 # 
 # Let's now plot the Bode diagram for a low pass an for its bilinear transform. The two equation of interests are:
@@ -101,7 +102,6 @@
 # In[1]:
 
 
-from scipy import signal
 import matplotlib.pyplot as plt
 import numpy as np
 
