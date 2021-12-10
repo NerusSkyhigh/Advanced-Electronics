@@ -1,0 +1,590 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lecture 09 - 25 October 2021 &#8212; Notes of Advanced Electronics</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Markdown Files" href="markdown.html" />
+    <link rel="prev" title="Lecture 08 - 18 October 2021" href="21-10-18%20L08.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Notes of Advanced Electronics</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="README.html">
+   Notes of Advanced Electronics
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-13%20L01.html">
+   Lecture 01 - 13 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-14%20L02.html">
+   Lecture 02 - 14 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-20%20L03.html">
+   Lecture 03 - 20 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-21%20L04.html">
+   Lecture 04 - 21 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-27%20L05.html">
+   Lecture 05 - 27 September 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-10-04%20L06.html">
+   Lecture 06 - 04 October 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-10-11%20L07.html">
+   Lecture 07 - 11 October 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-10-18%20L08.html">
+   Lecture 08 - 18 October 2021
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Lecture 09 - 25 October 2021
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/21-10-25 L09.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/NerusSkyhigh/Advanced-Electronics"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/NerusSkyhigh/Advanced-Electronics/issues/new?title=Issue%20on%20page%20%2F21-10-25 L09.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/NerusSkyhigh/Advanced-Electronics/master?urlpath=tree/21-10-25 L09.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fourier-transforms">
+   Fourier Transforms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#discrete-fourier-transform">
+   Discrete Fourier Transform
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Discrete Fourier Transform
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#inverse-discrete-fourier-transform">
+     Inverse Discrete Fourier Transform
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-the-dft">
+   Properties of the DFT
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#periodicity">
+     Periodicity
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#in-time">
+       In time
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#in-frequency">
+       In Frequency
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#perceval-relation">
+       Perceval relation
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-09-25-october-2021">
+<h1>Lecture 09 - 25 October 2021<a class="headerlink" href="#lecture-09-25-october-2021" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="fourier-transforms">
+<h2>Fourier Transforms<a class="headerlink" href="#fourier-transforms" title="Permalink to this headline">¶</a></h2>
+<p>Up to now the focus was on two main kind of Fourier Transforms:</p>
+<p><strong>Fourier Integral</strong> (<span class="math notranslate nohighlight">\(\mathcal{L}^2\)</span> functions, based on Fourier theorem)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    f(t)&amp;=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\tilde{F}(\omega)e^{-i\omega t} d\omega \qquad \text{Inverse Fourier Transform} \\
+    \tilde{F}(\omega)&amp;=\int_{-\infty}^{+\infty}f(t)e^{i\omega t} dt \qquad \text{Fourier Transform}
+\end{align*}\]</div>
+<p><strong>Fourier Series</strong> (for periodic functions)</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    f(t)=\sum_{k} a_k e^{-i\omega_k t} \qquad \omega_k=\frac{2\pi}{T}k \qquad \text{Fourier Series}\\
+    a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt \qquad \qquad \text{Fourier Coefficients}\\
+\end{align*}\]</div>
+<p>The fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and repeat them.</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">##############</span>
+<span class="c1"># PARAMETERS #</span>
+<span class="c1">##############</span>
+<span class="n">T</span><span class="o">=</span><span class="mi">5</span> <span class="c1"># When to truncate the function</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">lp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega</span><span class="o">*</span><span class="n">tau</span><span class="p">)</span> <span class="p">)</span>
+
+<span class="c1">#########</span>
+<span class="c1"># PLOTS #</span>
+<span class="c1">#########</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+<span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">omega</span> <span class="o">-</span> <span class="n">T</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span> <span class="c1"># Closest value to T</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[:</span><span class="n">idx</span><span class="p">],</span> <span class="n">lp</span><span class="p">[:</span><span class="n">idx</span><span class="p">],</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Low Pass&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">idx</span><span class="p">:],</span> <span class="n">lp</span><span class="p">[</span><span class="n">idx</span><span class="p">:],</span> <span class="s2">&quot;b-.&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Low Pass&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Truncation&quot;</span><span class="p">)</span>
+
+<span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">omega</span> <span class="o">-</span> <span class="n">T</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span> <span class="c1"># Closest value to T</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">idx</span><span class="p">)</span><span class="o">&lt;</span><span class="n">omega</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">idx</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">idx</span><span class="p">],</span> <span class="n">lp</span><span class="p">[:</span><span class="n">idx</span><span class="p">],</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Repetition </span><span class="si">{:d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">vlines</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">)</span>
+    <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">idx</span><span class="p">:],</span> <span class="n">lp</span><span class="p">[:</span><span class="n">omega</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">i</span><span class="o">*</span><span class="n">idx</span><span class="p">],</span> <span class="s2">&quot;b--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Repetition </span><span class="si">{:d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-10-25 L09_1_0.png" src="_images/21-10-25 L09_1_0.png" />
+</div>
+</div>
+</div>
+<div class="section" id="discrete-fourier-transform">
+<h2>Discrete Fourier Transform<a class="headerlink" href="#discrete-fourier-transform" title="Permalink to this headline">¶</a></h2>
+<p>The <em>discrete Fourier Transform</em> (DFT) is the discrete version of the Fourier Transform that does <em>not</em> require the computation of integrals. The <em>fast Fourier Transform</em> (FFT) is a faster way (<span class="math notranslate nohighlight">\(\mathcal{O}(Nlog(N))\)</span> instead of <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>) to compute the DFT with some minor additional contraints. Let’s walk through the DFT:</p>
+<div class="admonition-assumption admonition">
+<p class="admonition-title">Assumption</p>
+<p>Assume a function <span class="math notranslate nohighlight">\(f\)</span> which is periodic (<span class="math notranslate nohighlight">\(f(t+T)=f(t)\)</span>) and has period equal to an <em>even</em> multiple of the sampling time T: <span class="math notranslate nohighlight">\(T_f=NT, N\in\matchcal{N}^{+}_{even}\)</span>.</p>
+</div>
+<p>The Fourier series of such a function is:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(t)&amp;= \sum_k a_k e^{- i\frac{2\pi k}{NT}t} \\
+a_k&amp;= \frac{1}{NT} \int_{-\frac{NT}{2}}^{\frac{NT}{2}} f(t)  e^{i\frac{2\pi}{NT}kt} dt = \int_{0}^{NT} f(t)  e^{i\frac{2\pi}{NT}kt} dt\qquad \omega_k = \frac{2\pi}{NT}k, \quad k\in \mathcal{Z}\\
+\end{align*}\]</div>
+<p><img alt="" src="_images/21-10-25_periodic_function.jpeg" /></p>
+<p>A minimal assumpion that is necessary to make is that</p>
+<div class="admonition-assumption admonition">
+<p class="admonition-title">Assumption</p>
+<p><span class="math notranslate nohighlight">\(f(t)\)</span> is <span class="math notranslate nohighlight">\(\frac{\pi}{T}\)</span> band limited.</p>
+</div>
+<p>This assumption is minimal because one usually works with physical signals that needs to be sampled according to the <a class="reference external" href="https://en.wikipedia.org/wiki/Nyquist%E2%80%93Shannon_sampling_theorem">Nyquist-Shannon theorem</a>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+-\frac{\pi}{T}\leq \omega_k \leq \frac{\pi}{T} \rightarrow -\frac{N}{2}\leq k &lt; \frac{N}{2}
+\end{align*}\]</div>
+<p>and that explains why N was choosen even too.<br />
+The series can then be written as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f(t)&amp;= \sum_{k=-\frac{N}{2}}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} = \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} + \sum_{k=-\frac{N}{2}}^{-1} a_k e^{-i\frac{2\pi}{NT}kt}
+\end{align*}\]</div>
+<p>It is possible to perform a change of variable in the second summation:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sum_{k=-\frac{N}{2}}^{-1} a_k e^{-i\frac{2\pi}{NT}kt} = \sum_{k'=\frac{N}{2}}^{N-1} a_{k'-N} e^{-i\frac{2\pi}{NT}(k'-N)t} \qquad k'&amp;=N+k\\
+k&amp;= k'-N
+\end{align*}\]</div>
+<p>so that the Fourier series becomes:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\require{cancel}
+f(t)&amp;= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} + \sum_{k=-\frac{N}{2}}^{-1} a_k e^{-i\frac{2\pi}{NT}kt} \\
+&amp;= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} + \sum_{k=\frac{N}{2}}^{N-1} a_{k-N} e^{-i\frac{2\pi}{NT}kt}e^{i\frac{2\pi}{\cancel{N}T}\cancel{N}t}
+\end{align*}\]</div>
+<p>As it was stated before, a physical signal is usually band limited and sampled with sampling time T:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f[n]=f(nT)&amp;= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}} + \sum_{k=\frac{N}{2}}^{N-1} a_{k-N} e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}}\cancelto{1}{e^{i\frac{2\pi}{T}nT}}
+\end{align*}\]</div>
+<p>this leads to a new series defined as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+F_k = \begin{cases}
+a_k N \quad &amp;\text{if } 0\leq k&lt;\frac{N}{2} \\
+a_{k-N}N \quad &amp;\text{if } \frac{N}{2}\leq k&lt;N \\
+\end{cases} \quad \iff \quad a_k = \begin{cases}
+\frac{F_k}{N} \quad &amp;\text{if } 0\leq k&lt;\frac{N}{2} \\
+\frac{F_{k+N}}{N} \quad &amp;\text{if } -\frac{N}{2}\leq k&lt;0 \\
+\end{cases}
+\end{align*}\]</div>
+<p>this new series allows to merge the two summations:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f[n] &amp;= \sum_{k=0}^{\frac{N}{2}-1} \frac{F_k}{N} e^{-i\frac{2\pi}{N}kn} + \sum_{k=\frac{N}{2}}^{N-1} \frac{F_k}{N}e^{-i\frac{2\pi}{N}kn} \\
+&amp;= \frac{1}{N}\sum_{k=0}^{N-1} F_ke^{-i\frac{2\pi}{N}kn} \quad \text{Inverse DFT}
+\end{align*}\]</div>
+<p>As it is clear from the previous formula, the Inverse DFT allows us to compute the integral <span class="math notranslate nohighlight">\(a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt\)</span> withot needing to perform any kind of integration. Furthermore:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl} &amp;= \sum_{n=0} e^{i\frac{2\pi}{N}nl} \left(\frac{1}{N}\sum_{k=0}^{N-1}F_k e^{-i\frac{2\pi}{N}nk} \right)\\
+&amp;= \sum_{k=0} \frac{F_k}{N}\left[\sum_{n=0}^{N-1} e^{i\frac{2\pi}{N}n(l-k)}\right] \qquad [...]=\begin{cases}
+\frac{1-e^{i2\pi/(l-k)}}{1-e^{i2\pi/(N(l-k))}}=0 \quad \text{if } l\not=k\\
+N \quad \text{if } l=k 
+\end{cases} \\&amp;= \sum_{k=0}^{N-1}F_k \delta_{l,k}=F_l
+\end{align*}\]</div>
+<p>This relation provides an expression for the DFT. Summing up:</p>
+<div class="section" id="id1">
+<h3>Discrete Fourier Transform<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+F_k = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl}
+\end{align*}\]</div>
+</div>
+<div class="section" id="inverse-discrete-fourier-transform">
+<h3>Inverse Discrete Fourier Transform<a class="headerlink" href="#inverse-discrete-fourier-transform" title="Permalink to this headline">¶</a></h3>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f[n]=\frac{1}{N}\sum_{k=0}^{N-1} F_ke^{-i\frac{2\pi}{N}kn}
+\end{align*}\]</div>
+<p>It’s is essential to remark that what was found is a <strong>way to compute a continuous transform <span class="math notranslate nohighlight">\(\mathcal{FT}\)</span> using only discrete summations</strong> which computers can handle very well and with minimum errors.</p>
+</div>
+</div>
+<div class="section" id="properties-of-the-dft">
+<h2>Properties of the DFT<a class="headerlink" href="#properties-of-the-dft" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="periodicity">
+<h3>Periodicity<a class="headerlink" href="#periodicity" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="in-time">
+<h4>In time<a class="headerlink" href="#in-time" title="Permalink to this headline">¶</a></h4>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+f[n+T]=\sum_{n=0}^{N-1}\cancelto{1}{e^{-i\frac{2\pi}{N}kN}}=f[n]
+\end{align*}\]</div>
+</div>
+<div class="section" id="in-frequency">
+<h4>In Frequency<a class="headerlink" href="#in-frequency" title="Permalink to this headline">¶</a></h4>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+F_{k+N} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl}\cancelto{1}{e^{i\frac{2\pi}{N}nN}} = F_k
+\end{align*}\]</div>
+</div>
+<div class="section" id="perceval-relation">
+<h4>Perceval relation<a class="headerlink" href="#perceval-relation" title="Permalink to this headline">¶</a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As the actual energy of a periodic signal is infinite. For that reason, when talking about energy for a periodic signal, only one period is taken in account.</p>
+</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\sum_{n=0}^{N-1} \left| f[n]\right|^2 &amp;= \sum_{n=0}^{N-1} \left( \frac{1}{N}\sum_{k=0}^{N-1}F_ke^{-i \frac{2\pi}{N}nk} \right)\left( \frac{1}{N} \sum_{l=0}^{N-1}F_l^* e^{i \frac{2\pi}{N}nl} \right) \\
+&amp;= \frac{1}{N^2} \sum_{k=0}^{N-1} \sum_{l=0}^{N-1} F_k F_l^* \cancelto{\delta_{l,k}}{\sum_{n=0}^{N-1}e^{i\frac{2\pi}{N}n(l+k)}} \\
+\implies &amp; \sum_{n=0}^{N-1} \left| f[n]\right|^2 = \frac{1}{N^2}\sum_{n=0}^{N-1} \left| F_k\right|^2
+\end{align*}\]</div>
+<p>Finally, before moving to a small exercise let’s introduce a new notation:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+\begin{array}{l}
+f_n &amp;= f[n] \\
+W_N&amp;=e^{i\frac{2\pi}{N}} \quad \text{(Twiddle Factor)}\\
+\end{array} \implies \begin{array}{l}
+f_n &amp;= \frac{1}{N}\sum_{k=0}^{N-1}F_k (W_N^*)^{nk} \qquad 0\leq k, n &lt; N \\
+F_k &amp;= \sum_{n=0}^{N-1} f_n W_N^{nk}
+\end{array}
+\end{align*}\]</div>
+<p>These two are the conventional form of the DFT and its inverse.</p>
+<p><img alt="" src="_images/21-10-25_example_DFT.jpeg" /></p>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="21-10-18%20L08.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Lecture 08 - 18 October 2021</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="markdown.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Markdown Files</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By NerusSkyhigh (aka Guglielmo Grillo)<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
