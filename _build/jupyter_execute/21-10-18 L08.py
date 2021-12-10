@@ -88,30 +88,15 @@ def notch(omega, epsilon):
 #########
 # PLOTS #
 #########
-fig, ax = plt.subplots(2, 2, figsize=(15, 7))
+fig, ax = plt.subplots(1, 1, figsize=(15, 7))
 
-epsilon = 1; V = notch(omega, epsilon); V = 20*np.log10(V);
-ax[0][0].plot(omega, V, label=r"$\epsilon$={:}".format(epsilon))
+for epsilon in [1, 0.5, 0.1, 0.01]:
+    V = notch(omega, epsilon); #V = 20*np.log10(V);
+    ax.plot(omega, V, label=r"$\epsilon$={:}".format(epsilon))
+    ax.axhline(y=0, xmin=0, xmax=1)
 
-epsilon = 0.5; V = notch(omega, epsilon); V = 20*np.log10(V);
-ax[0][1].plot(omega, V, label=r"$\epsilon$={:}".format(epsilon))
-
-epsilon = 0.1; V = notch(omega, epsilon); V = 20*np.log10(V);
-ax[1][0].plot(omega, V, label=r"$\epsilon$={:}".format(epsilon))
-
-epsilon = 0.001; V = notch(omega, epsilon); V = 20*np.log10(V);
-ax[1][1].plot(omega, V, label=r"$\epsilon$={:}".format(epsilon))
-
-for a_row in ax:
-    for a in a_row:
-        a.set_title("Discrete notch filter")
-        a.set_xlabel(r"$\omega$ [Hz]")
-        a.set_ylabel(r"Magnitude [dB]")
-        a.grid()
-        a.legend()
-#ax[1].set_yticks([x for x in range(0, 91, 5)])
-#ax[0].set_ylim([min(mag_lp_bt), 10])
-
+ax.grid()
+ax.legend()
 fig.tight_layout()
 plt.show()
 
