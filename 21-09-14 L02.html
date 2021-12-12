@@ -441,20 +441,21 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 <p>Assume the input sequence to be bounded <span class="math notranslate nohighlight">\(|x[n]| \leq L\in\mathcal{R}^{+}\ \forall n\)</span> and apply the Cauchy–Schwarz inequality:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    |y[n]| = |\sum_{k} h[k] x[n-k]| \leq \sum_{k} |h[k]|\ |x[n-k]| \leq \max_{k}\{h[k]\} \sum_{k} |h[n-k]| \leq \max_{k}\{h[k]\} L &lt; +\infty
+    |y[n]| &amp;= |\sum_{k} h[k] x[n-k]| \leq \sum_{k} |h[k]|\ |x[n-k]| \\
+            &amp;\leq \max_{k}\{h[k]\} \sum_{k} |h[n-k]| \leq \max_{k}\{h[k]\} L &lt; +\infty
 \end{align*}\]</div>
 </div>
 <div class="section" id="proof-of-necessity-implies">
 <h4>Proof of necessity (<span class="math notranslate nohighlight">\(\implies\)</span>)<a class="headerlink" href="#proof-of-necessity-implies" title="Permalink to this headline">¶</a></h4>
 <p>The proof of necessity is a bit trickier. Instead of the direct why we will work “ad absurdum” by proving that <em>if <span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent then the system is NOT BIBO stable</em>. This proof works because the other cases were already taken care of <a class="footnote-reference brackets" href="#cases" id="id1">1</a>.</p>
 <p>Let’s consider a sequence defined as:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-22053384-147c-441d-92da-3e709a05b19a">
-<span class="eqno">(3)<a class="headerlink" href="#equation-22053384-147c-441d-92da-3e709a05b19a" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
     x[n] = \left\{\begin{array}{lr}
         \frac{h^*[-n]}{|h[-n]|} \quad \textit{if} \quad |h[-n]|\neq 0\\
         0  \quad \textit{if} \quad |h[-n]| = 0\
         \end{array}\right.
-\end{equation}\]</div>
+\end{align*}\]</div>
 <p>Now we evaluate the output of said system in n=0 and use the fact that <span class="math notranslate nohighlight">\(h[n]\)</span> is NOT absolutely convergent:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}

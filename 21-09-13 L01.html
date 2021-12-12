@@ -408,24 +408,24 @@ Trust me, you don't want to deal with tables by hand. -->
 <div class="section" id="delta-sequence">
 <h4>Delta sequence<a class="headerlink" href="#delta-sequence" title="Permalink to this headline">¶</a></h4>
 <p>The delta sequency is defined in analogy to the diract delta and the Kronecker delta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2cf6b5cd-32e4-4b8b-aa79-5b890ba53605">
-<span class="eqno">(1)<a class="headerlink" href="#equation-2cf6b5cd-32e4-4b8b-aa79-5b890ba53605" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
     \delta[n] = \delta_{n,0} = \left\{\begin{array}{lr}
         1 \text{ if } n=0\\
         0 \text{ otherwise}
         \end{array}\right.
-\end{equation}\]</div>
+\end{align*}\]</div>
 </div>
 <div class="section" id="step-sequence">
 <h4>Step Sequence<a class="headerlink" href="#step-sequence" title="Permalink to this headline">¶</a></h4>
 <p>In a similar way the step sequence is defined in analogy to the Heaviside theta:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-e6eb3168-c745-47b9-b096-d2f50cb0d5bb">
-<span class="eqno">(2)<a class="headerlink" href="#equation-e6eb3168-c745-47b9-b096-d2f50cb0d5bb" title="Permalink to this equation">¶</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
     U[n] = \left\{\begin{array}{lr}
         1 \text{ if } n\geq0\\
         0 \text{ otherwise}
         \end{array}\right.
-\end{equation}\]</div>
+\end{align*}\]</div>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -505,7 +505,7 @@ x[n] = \sum_{n_0 = -\infty}^{+\infty}x[n_0]\ \delta[n-n_0] = (x * \delta)[n]
 <p>One remarkable consequence of linearity is:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-\mathcal{S}(x[n]) = \mathcal{S}(\sum_{k=-\infty}^{+\infty} x[k] \delta[n-k]) = \sum_{k=-\infty}^{+\infty} x[k] \mathcal{S}(\delta[n-k]) 
+\mathcal{S}(x[n]) = \mathcal{S}\left(\sum_{k=-\infty}^{+\infty} x[k] \delta[n-k]\right) = \sum_{k=-\infty}^{+\infty} x[k] \mathcal{S}(\delta[n-k]) 
 \end{equation*}\]</div>
 <p>that is <strong>a linear system is fully characterized by its impulse response</strong>.</p>
 <!-- Linear systems are the one of the most important class of systems because even non linear systems can be linearized with apposite tecniques. -->
