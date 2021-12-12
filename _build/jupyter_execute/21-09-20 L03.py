@@ -6,11 +6,14 @@
 # Equipped with the definitions and lemmas found in the last lecture it is possible to start talking about the **z-transform**. But first, it is necessary to draw some parallelisms with the solutions of a differential equation:
 # 
 # ![Solution of a differential equation with Fourier Tranform / Laplace Transform](images/21-09-20_diff_eq_sol.png)
-# 
+#   
+#   
+#   
 # For example, with a low pas filter the procedure becomes:  
 # ![Solution of the low pass with Fourier Tranform](images/21-09-20_diff_eq_example.png)
 # 
-# 
+#   
+#   
 # In a similar way a difference equation can be solved via an approripate transform, the z-transform
 # ![Solution of a difference equation with z-transform](images/21-09-20_z-transform_sol.png)
 # 
@@ -30,11 +33,14 @@
 # 
 # ### Step sequence
 # \begin{align*}
-#    \left(U[n]\right) = \sum_{n=-\infty}^{+\infty} z^{-n} U[n] = \sum_{n=0}^{+\infty} z^{-n} = \frac{1}{1-1/z} = \frac{z}{z-1}  \qquad \textbf{R.O.C} = \left\{ z : \frac{1}{|z|} < 1 \implies |z|>1\right\}
+#    Z\left(U[n]\right) &= \sum_{n=-\infty}^{+\infty} z^{-n} U[n] = \sum_{n=0}^{+\infty} z^{-n} = \frac{1}{1-1/z} = \frac{z}{z-1}  \\
+#    \text{ROC} &= \left\{ z : \frac{1}{|z|} < 1 \implies |z|>1\right\}
 # \end{align*}
 # 
+# ### Step sequence (second case)
 # \begin{align*}
-#     Z\left(-U[-n-1]\right) = -\sum_{n=-\infty}^{+\infty} z^{-n} U[-n-1] = - \sum_{n=1}^{+\infty} z^{n} = 1- \frac{1}{1-z} = \frac{z}{z-1}  \qquad \textbf{R.O.C} = \left\{ z : \frac{1}{|z|} > 1 \implies |z|<1\right\}
+#     Z\left(-U[-n-1]\right) &= -\sum_{n=-\infty}^{+\infty} z^{-n} U[-n-1] = - \sum_{n=1}^{+\infty} z^{n} = 1- \frac{1}{1-z} = \frac{z}{z-1} \\
+#     \text{ROC} &= \left\{ z : \frac{1}{|z|} > 1 \implies |z|<1\right\}
 # \end{align*}
 # 
 # It is possible to notice that two different functions led to the same z-transform but to different R.O.C. A warning is due:
@@ -54,12 +60,15 @@
 # 
 # ### Linearity
 # \begin{align*}
-#     Z\left(a x[n] + b y[n]\right) = \sum_{n=-\infty}^{+\infty} z^{-n} (ax[n]+by[n]) = \a X(z) + b X(z) \qquad \textbf{R.O.C} = \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
+#     Z\left(a x[n] + b y[n]\right) &= \sum_{n=-\infty}^{+\infty} z^{-n} (ax[n]+by[n]) = \a X(z) + b X(z) \\
+#     \text{ROC} &= \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
 # \end{align*}
 # 
 # ### Convolution
 # \begin{align*}
-#     Z\left(x[n]*y[n]\right) = Z\left(\sum_k x[n-k]y[k] \right) = \sum_{k=-\infty}^{+\infty} Z(x[n-k])y[k] = \sum_{k=-\infty}^{+\infty} Z(x[n])z^{-k}y[k] = X(z) Y(z) \qquad \textbf{R.O.C} = \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
+#     Z\left(x[n]*y[n]\right) &= Z\left(\sum_k x[n-k]y[k] \right) = \sum_{k=-\infty}^{+\infty} Z(x[n-k])y[k] \\
+#     &= \sum_{k=-\infty}^{+\infty} Z(x[n])z^{-k}y[k] = X(z) Y(z) \\
+#     \text{ROC} &= \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
 # \end{align*}
 # 
 # ### Cascade of two systems
@@ -68,7 +77,8 @@
 # If the two systems are L.T.I. the two cascade are equivalent: $y[n]=y'[n]$. The proof lies in the equality of the z-transform and the properties of the convolution. More than that the two systems $y[n]$ and $y'[n]$ have the same R.O.C:
 #   
 # \begin{align*}
-#     y[n] = h[n]*j[n] = Z^{-1}\left(h(z)j(z)\right) = Z^{-1}\left(j(z)h(z)\right) = j[n]*h[n] = y'[n] \qquad \textbf{R.O.C} = \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
+#     y[n] &= h[n]*j[n] = Z^{-1}\left(h(z)j(z)\right) = Z^{-1}\left(j(z)h(z)\right) = j[n]*h[n] = y'[n] \\
+#     \text{ROC} &= \text{ROC}_x \cap \text{ROC}_y
 # \end{align*}
 #     
 # In the last properties the notion of inverse z-transform was suggest. To give a formal definion of inverse z-transform some lemmas are needed.
@@ -96,14 +106,16 @@
 # \end{align*}
 # 
 # **proof**
-# Let's consider a function $H(z)=G(z)(z-z_0)^n$ which has NO POLES ($\implies$ it's analytic). By writing it's [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) one obtains:
+# Let's consider a function $H(z)=G(z)(z-z_0)^n$ which has NO POLES ($\implies$ it is analytic). By writing its [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) one obtains:
 # \begin{align*}
-#     H(z)=G(z)(z-z_0)^n = \sum_{k=0}^{+\infty} \frac{(z-z_0)^k}{k!} \left[ \frac{d^k}{dz^k} H(z)\right]_{z=z_0} \implies G(z) = \sum_{k=0}^{+\infty} \frac{(z-z_0)^{k-n}}{k!} \left[ \frac{d^k}{dz^k} H(z)\right]_{z=z_0}
+# H(z)&=G(z)(z-z_0)^n = \sum_{k=0}^{+\infty} \frac{(z-z_0)^k}{k!} \left[ \frac{d^k}{dz^k} H(z)\right]_{z=z_0}\\
+# \implies& G(z) = \sum_{k=0}^{+\infty} \frac{(z-z_0)^{k-n}}{k!} \left[ \frac{d^k}{dz^k} H(z)\right]_{z=z_0}
 # \end{align*}
 # 
 # By computing the integral using the previous lemma:
 # \begin{align*}
-#      \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} G(z) dz = \sum_{k=0}^{\infty}\frac{1}{k!} \left[ \frac{d^k}{dz^k}H(z)\right]_{z=z_0}\cdot \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} (z-z_0)^n dz= \frac{1}{(n-1)!}\left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0}
+#      \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} G(z) dz &= \sum_{k=0}^{\infty}\frac{1}{k!} \left[ \frac{d^k}{dz^k}H(z)\right]_{z=z_0}\cdot \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} (z-z_0)^n dz \\
+#      &= \frac{1}{(n-1)!}\left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0}
 # \end{align*}
 # 
 # ### Inversion of the z-transform
@@ -111,12 +123,8 @@
 # 
 # **proof**
 # \begin{align*}
-#     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z)z^{n-1} dz = \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} \sum_{k}x[k]z^{-k}z^{n-1} dz = \frac{1}{2\pi i} \sum_{k} x[k] \oint_{\Gamma\text{ um }z_0} z^{n-k-1} dz = \sum_{k}x[k] \delta_{n-k-1, -1} = x[n]
+#     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z)z^{n-1} dz &= \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} \sum_{k}x[k]z^{-k}z^{n-1} dz \\
+#     &= \frac{1}{2\pi i} \sum_{k} x[k] \oint_{\Gamma\text{ um }z_0} z^{n-k-1} dz \\
+#     &= \sum_{k}x[k] \delta_{n-k-1, -1} = x[n]
 # \end{align*}
 # where the second equality assumes the R.O.C. to be such that the inversion of the summation and the integral is possible.
-
-# In[ ]:
-
-
-
-

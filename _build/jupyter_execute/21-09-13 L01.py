@@ -55,23 +55,23 @@
 # 
 # The delta sequency is defined in analogy to the diract delta and the Kronecker delta:
 # 
-# \begin{equation}
+# \begin{align*}
 #     \delta[n] = \delta_{n,0} = \left\{\begin{array}{lr}
 #         1 \text{ if } n=0\\
 #         0 \text{ otherwise}
 #         \end{array}\right.
-# \end{equation}
+# \end{align*}
 # 
 # #### Step Sequence
 # 
 # In a similar way the step sequence is defined in analogy to the Heaviside theta:
 # 
-# \begin{equation}
+# \begin{align*}
 #     U[n] = \left\{\begin{array}{lr}
 #         1 \text{ if } n\geq0\\
 #         0 \text{ otherwise}
 #         \end{array}\right.
-# \end{equation}
+# \end{align*}
 
 # In[1]:
 
@@ -144,7 +144,7 @@ plt.show()
 # 
 # One remarkable consequence of linearity is:
 # \begin{equation*}
-# \mathcal{S}(x[n]) = \mathcal{S}(\sum_{k=-\infty}^{+\infty} x[k] \delta[n-k]) = \sum_{k=-\infty}^{+\infty} x[k] \mathcal{S}(\delta[n-k]) 
+# \mathcal{S}(x[n]) = \mathcal{S}\left(\sum_{k=-\infty}^{+\infty} x[k] \delta[n-k]\right) = \sum_{k=-\infty}^{+\infty} x[k] \mathcal{S}(\delta[n-k]) 
 # \end{equation*}
 # that is **a linear system is fully characterized by its impulse response**.
 # 

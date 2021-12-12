@@ -66,7 +66,8 @@
 # Assume the input sequence to be bounded $|x[n]| \leq L\in\mathcal{R}^{+}\ \forall n$ and apply the Cauchy–Schwarz inequality:
 # 
 # \begin{align*}
-#     |y[n]| = |\sum_{k} h[k] x[n-k]| \leq \sum_{k} |h[k]|\ |x[n-k]| \leq \max_{k}\{h[k]\} \sum_{k} |h[n-k]| \leq \max_{k}\{h[k]\} L < +\infty
+#     |y[n]| &= |\sum_{k} h[k] x[n-k]| \leq \sum_{k} |h[k]|\ |x[n-k]| \\
+#             &\leq \max_{k}\{h[k]\} \sum_{k} |h[n-k]| \leq \max_{k}\{h[k]\} L < +\infty
 # \end{align*}
 # 
 # 
@@ -80,12 +81,12 @@
 #     - $h[k]$ is absolutely convergent $\implies$ S is BIBO stable: that's what we are aiming for
 #     
 # Let's consider a sequence defined as:
-# \begin{equation}
+# \begin{align*}
 #     x[n] = \left\{\begin{array}{lr}
 #         \frac{h^*[-n]}{|h[-n]|} \quad \textit{if} \quad |h[-n]|\neq 0\\
 #         0  \quad \textit{if} \quad |h[-n]| = 0\
 #         \end{array}\right.
-# \end{equation}
+# \end{align*}
 # Now we evaluate the output of said system in n=0 and use the fact that $h[n]$ is NOT absolutely convergent:
 # \begin{align*}
 #     y[n] = \sum_{k} h[k] \frac{h^*[k-n]}{|h[k-n]|} \rightarrow y[0] = \sum_{k} h[k] \frac{h^*[k]}{|h[k]|} = \sum_k |h[k]| = +\infty
