@@ -3,16 +3,26 @@
 
 format: jb-book
 root: README
-chapters:
-- file: 21-09-13 L01
-- file: 21-09-14 L02
-- file: 21-09-20 L03
-- file: 21-09-21 L04
-- file: 21-09-27 L05
-- file: 21-10-04 L06
-- file: 21-10-11 L07
-- file: 21-10-18 L08
-- file: 21-10-25 L09
-- file: 21-11-08 L10
-- file: markdown
-- file: notebooks
+parts:
+  - caption: Theory
+    chapters:
+    - file: 21-09-13 L01
+    - file: 21-09-14 L02
+    - file: 21-09-20 L03
+    - file: 21-09-21 L04
+    - file: 21-09-27 L05
+    - file: 21-10-04 L06
+    - file: 21-10-11 L07
+    - file: 21-10-18 L08
+    - file: 21-10-25 L09
+    - file: 21-11-08 L10
+  - caption: Laboratory
+    chapters:
+    - file: 21-09-21 LC01
+    - file: 21-09-22 LC02
+    - file: 21-09-23 LC03
+    - file: 21-10-12 LC04
+  - caption: IDK
+    chapters:
+    - file: markdown
+    - file: notebooks
