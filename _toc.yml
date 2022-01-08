@@ -22,6 +22,8 @@ parts:
     - file: 21-09-22 LC02
     - file: 21-09-23 LC03
     - file: 21-10-12 LC04
+    - file: 21-10-14 LC05
+    - file: 21-11-09 LC06
   - caption: IDK
     chapters:
     - file: markdown

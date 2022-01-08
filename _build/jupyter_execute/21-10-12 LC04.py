@@ -2,7 +2,7 @@
 # coding: utf-8
 
 # # Implementation of a stopwatch with LCD display
-# ## Laboratory Class 03 - 12 October 2021
+# ## Laboratory Class 04 - 12 October 2021
 # 
 # ### Topics
 # - Finite-state machines.
