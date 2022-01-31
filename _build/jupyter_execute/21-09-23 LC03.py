@@ -21,9 +21,9 @@
 # 
 # ---
 # 
-# <!-- ## Risetime issue when clocking a flip-flop
-# TO DO
-# -->
+# ## Risetime issue when clocking a flip-flop
+# Flip flops are work  due to internal delays that are essential to their implementation. A drawback of this is that, in rare circustamces, the clock may be too fast and have a period smaller than the internal delay giving rise to unreliables behaviours.
+# 
 # 
 # ## Syncronous Toggle Flip-Flop
 # ![T Type Flip-Flop. source: wikipedia](https://upload.wikimedia.org/wikipedia/commons/a/a9/T-Type_Flip-flop.svg)
@@ -43,6 +43,13 @@
 # 
 # As wikipedia already stated T flip flops are essential to produce frequency dividers, counters and shift registers.
 # 
+# **Note**: when implementing a syncronous Flip Flop in verilog remember to let the FF activate only on positive edges of the input. This can be done by defining a two variables ```ff_input``` and ```ff_previous_input``` and check for a positive edge with
+# ```
+# if(!ff_previous_input & ff_input) begin
+#    //code on pose edge of ff_input 
+# end
+# ff_previous <= ff_input;
+# ```
 # 
 # ## Synchronous Monostable Multivibrator
 # ```{admonition} from [wikipedia](https://en.wikipedia.org/wiki/Monostable_multivibrator)
@@ -54,7 +61,5 @@
 # ![Bouncing waveform when pressing or releasing a switch.](https://hackaday.com/wp-content/uploads/2015/11/debounce_bouncing.png?resize=800,280)
 # 
 # As it is shown in the image taken from [hackaday](https://hackaday.com/2015/12/09/embed-with-elliot-debounce-your-noisy-buttons-part-i/), when a button is pressed or released the circuit will sense multiple inputs due to the mechanical nature of buttons. When a correct detection is essential, it is usually essential to introduce a monostable multivibrator as a debouncing circuit. After the first pulse, the monostable will ignore any input, like the infamous bounces, up until a predetermined time has elapsed. This will guarantee that only one input is detected in the time frame chosen. The only job left is to find the appropriate window where the bounces are ignored but multiple consecutive presses are detected. If the button is pressed by a human, usually a few milliseconds will do the job.
-# 
-# 
 # 
 # [^debouncing]: Check [this video](https://www.youtube.com/watch?v=Nj-Q8FQxHhU) for a funny explanation

@@ -25,7 +25,7 @@
 # - development of an 8–bit, 10 Hz counter with an 8–LED array display, working from 0 to 9.
 # 
 # ### Additional problems:
-# - development of a 10 Hz counter, working from 0 to 99, with a 2–digits BCD coding and a 2 x 4–LED array display;
+# - development of a 10 Hz counter, working from 0 to 99, with a 2–digits BCD[^bcd] coding and a 2 x 4–LED array display;
 # - development of a 10 Hz down counter.
 # 
 # ---
@@ -34,6 +34,7 @@
 # This part of the note does NOT aim to teach Verilog or how to survive in a laboratory. The first can be learned using apposite websites like [hdlbits](https://hdlbits.01xz.net/wiki/Main_Page) while the second skill requires years of training and struggle. The only way to learn how to survive in a laboratory is to be in a lab. It doesn't need to be an expensive one tho. To start a [beginner's FPGA](https://www.nandland.com/goboard/introduction.html) and a [basic oscilloscope](https://espotek.com/labrador/) are enough[^disclaimer]. In the worst-case there even exist simulators. Better than nothing, I guess.
 # ```
 # 
+# [^bcd]: Binary coded decimal. Each digit is represented using four leds; they are placed in a decimal representation. e.g: $34$ would be written as 0011 0100 in bcd. 
 # [^disclaimer]: I studied verilog on hdlbits but I do no own the GoBoard or the EspoTek Labrador Board so I can not say anything about their quality. These are just link to help you start your own researches
 
 # <!-- ## A short overview on FPGA devices and on HDL programming languages.

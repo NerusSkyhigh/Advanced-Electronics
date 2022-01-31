@@ -397,10 +397,10 @@
   <div class="tex2jax_ignore mathjax_ignore section" id="lecture-03-20-september-2021">
 <h1>Lecture 03 - 20 September 2021<a class="headerlink" href="#lecture-03-20-september-2021" title="Permalink to this headline">¶</a></h1>
 <p>Equipped with the definitions and lemmas found in the last lecture it is possible to start talking about the <strong>z-transform</strong>. But first, it is necessary to draw some parallelisms with the solutions of a differential equation:</p>
-<p><img alt="Solution of a differential equation with Fourier Tranform / Laplace Transform" src="_images/21-09-20_diff_eq_sol.png" /></p>
-<p>For example, with a low pas filter the procedure becomes:<br />
+<p><img alt="Solution of a differential equation with Fourier Transform / Laplace Transform" src="_images/21-09-20_diff_eq_sol.png" /></p>
+<p>For example, with a low pass filter, the procedure becomes:<br />
 <img alt="Solution of the low pass with Fourier Tranform" src="_images/21-09-20_diff_eq_example.png" /></p>
-<p>In a similar way a difference equation can be solved via an approripate transform, the z-transform
+<p>Similarly, a difference equation can be solved via an appropriate transform, the z-transform
 <img alt="Solution of a difference equation with z-transform" src="_images/21-09-20_z-transform_sol.png" /></p>
 <div class="section" id="the-z-transform">
 <h2>The z-transform<a class="headerlink" href="#the-z-transform" title="Permalink to this headline">¶</a></h2>
@@ -410,7 +410,7 @@
     Z\left(x[n]\right) = X(z) = \sum_{\forall n} z^{-n} x[n] \qquad \text{ with } \qquad z \in \textbf{R.O.C} \subseteq \mathcal{C}.
 \end{align*}\]</div>
 <p>In the previous definition <strong>R.O.C</strong> stands for <em>Region Of Convergence</em>, the region of the complex plane where the series converges to a finite value.</p>
-<p>Some remorkable exmplaes of z-tranforms are:</p>
+<p>Some remarkable examples of z-tranforms are:</p>
 <div class="section" id="the-delta">
 <h3>The delta<a class="headerlink" href="#the-delta" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
@@ -433,7 +433,7 @@
     Z\left(-U[-n-1]\right) &amp;= -\sum_{n=-\infty}^{+\infty} z^{-n} U[-n-1] = - \sum_{n=1}^{+\infty} z^{n} = 1- \frac{1}{1-z} = \frac{z}{z-1} \\
     \text{ROC} &amp;= \left\{ z : \frac{1}{|z|} &gt; 1 \implies |z|&lt;1\right\}
 \end{align*}\]</div>
-<p>It is possible to notice that two different functions led to the same z-transform but to different R.O.C. A warning is due:</p>
+<p>It is possible to notice that two different functions led to the same z-transform but different R.O.C. A warning is due:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The z-transform is NOT sufficient to characterize a system in the z domain. The R.O.C. is part of the system too!</p>
@@ -454,7 +454,7 @@
 <h3>Linearity<a class="headerlink" href="#linearity" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    Z\left(a x[n] + b y[n]\right) &amp;= \sum_{n=-\infty}^{+\infty} z^{-n} (ax[n]+by[n]) = \a X(z) + b X(z) \\
+    Z\left(a x[n] + b y[n]\right) &amp;= \sum_{n=-\infty}^{+\infty} z^{-n} (ax[n]+by[n]) = a X(z) + b X(z) \\
     \text{ROC} &amp;= \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
 \end{align*}\]</div>
 </div>
@@ -470,13 +470,13 @@
 <div class="section" id="cascade-of-two-systems">
 <h3>Cascade of two systems<a class="headerlink" href="#cascade-of-two-systems" title="Permalink to this headline">¶</a></h3>
 <p><img alt="Cascade of two systems" src="_images/21-09-20_cascade_of_two_systems.png" /></p>
-<p>If the two systems are L.T.I. the two cascade are equivalent: <span class="math notranslate nohighlight">\(y[n]=y'[n]\)</span>. The proof lies in the equality of the z-transform and the properties of the convolution. More than that the two systems <span class="math notranslate nohighlight">\(y[n]\)</span> and <span class="math notranslate nohighlight">\(y'[n]\)</span> have the same R.O.C:</p>
+<p>If the two systems are L.T.I. the two cascade are equivalent: <span class="math notranslate nohighlight">\(y[n]=y'[n]\)</span>. The proof lies in the equality of the z-transform and the properties of the convolution. More than that, the two systems <span class="math notranslate nohighlight">\(y[n]\)</span> and <span class="math notranslate nohighlight">\(y'[n]\)</span> have the same R.O.C:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     y[n] &amp;= h[n]*j[n] = Z^{-1}\left(h(z)j(z)\right) = Z^{-1}\left(j(z)h(z)\right) = j[n]*h[n] = y'[n] \\
     \text{ROC} &amp;= \text{ROC}_x \cap \text{ROC}_y
 \end{align*}\]</div>
-<p>In the last properties the notion of inverse z-transform was suggest. To give a formal definion of inverse z-transform some lemmas are needed.</p>
+<p>In the last properties, the notion of inverse z-transform was suggested. To give a formal definition of inverse z-transform some lemmas are needed.</p>
 </div>
 </div>
 <div class="section" id="lemmas-for-inverse-z-transform">
@@ -488,23 +488,24 @@
 \[\begin{align*}
     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} (z-z_0)^n dz = \delta_{n, -1} \qquad \text{ with } n \in \mathcal{Z}
 \end{align*}\]</div>
-<p><strong>proof</strong>
+<p><strong>proof</strong><br />
 Take a circle of radius <span class="math notranslate nohighlight">\(r\)</span> around <span class="math notranslate nohighlight">\(z_0\)</span> such that <span class="math notranslate nohighlight">\(z=z_0+re^{i\phi}\)</span>. Then:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} r^n e^{i\phi n} r e^{i\phi} di d\phi = \frac{r^{n+1}}{2\pi}\int_{0}^{2\pi} e^{i\phi (n+1)} d\phi = \begin{cases}
+    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} r^n e^{i\phi n} r e^{i\phi} i d\phi = \frac{r^{n+1}}{2\pi}\int_{0}^{2\pi} e^{i\phi (n+1)} d\phi = \begin{cases}
   1 \qquad \text{if } n=-1\\
   0 \qquad \text{otherwise}
 \end{cases}
 \end{align*}\]</div>
+<p>I like to call this lemma the “hidden logarithm lemma” because it reminds me of the integral <span class="math notranslate nohighlight">\(\int x^n dx\)</span>. For every value of <span class="math notranslate nohighlight">\(n\)</span> the integral <span class="math notranslate nohighlight">\(\int x^n dx\)</span> remains a rational function, except when <span class="math notranslate nohighlight">\(n=-1\)</span> like in this case.</p>
 </div>
 <div class="section" id="residual-theorem">
 <h3>Residual theorem<a class="headerlink" href="#residual-theorem" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} G(z) dz = \frac{1}{(n-1)|} \left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0} \qquad \text{ with } n \in \mathcal{Z}
+    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} G(z) dz = \frac{1}{(n-1)!} \left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0} \qquad \text{ with } n \in \mathcal{Z}
 \end{align*}\]</div>
-<p><strong>proof</strong>
+<p><strong>proof</strong><br />
 Let’s consider a function <span class="math notranslate nohighlight">\(H(z)=G(z)(z-z_0)^n\)</span> which has NO POLES (<span class="math notranslate nohighlight">\(\implies\)</span> it is analytic). By writing its <a class="reference external" href="https://en.wikipedia.org/wiki/Laurent_series">Laurent series</a> one obtains:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}

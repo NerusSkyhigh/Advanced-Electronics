@@ -330,6 +330,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#risetime-issue-when-clocking-a-flip-flop">
+   Risetime issue when clocking a flip-flop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#syncronous-toggle-flip-flop">
    Syncronous Toggle Flip-Flop
   </a>
@@ -378,10 +383,11 @@
 <li><p>implementation of a synchronous module monostable multivibrator and, through this, of an improved toggle pushbutton to switch on/off an LED; observation of the bouncing effect in a pushbutton;</p></li>
 <li><p>implementation, by means of a monostable multivibrator and an improved toggle pushbutton, of a timer to switch on an LED for a given time (programmable through the switches).</p></li>
 </ul>
+</div>
 <hr class="docutils" />
-<!-- ## Risetime issue when clocking a flip-flop
-TO DO
--->
+<div class="section" id="risetime-issue-when-clocking-a-flip-flop">
+<h2>Risetime issue when clocking a flip-flop<a class="headerlink" href="#risetime-issue-when-clocking-a-flip-flop" title="Permalink to this headline">¶</a></h2>
+<p>Flip flops are work  due to internal delays that are essential to their implementation. A drawback of this is that, in rare circustamces, the clock may be too fast and have a period smaller than the internal delay giving rise to unreliables behaviours.</p>
 </div>
 <div class="section" id="syncronous-toggle-flip-flop">
 <h2>Syncronous Toggle Flip-Flop<a class="headerlink" href="#syncronous-toggle-flip-flop" title="Permalink to this headline">¶</a></h2>
@@ -423,6 +429,13 @@ TO DO
 <p>When T is held high, the toggle flip-flop divides the clock frequency by two. This “divide by” feature has application in various types of digital counters.</p>
 </div>
 <p>As wikipedia already stated T flip flops are essential to produce frequency dividers, counters and shift registers.</p>
+<p><strong>Note</strong>: when implementing a syncronous Flip Flop in verilog remember to let the FF activate only on positive edges of the input. This can be done by defining a two variables <code class="docutils literal notranslate"><span class="pre">ff_input</span></code> and <code class="docutils literal notranslate"><span class="pre">ff_previous_input</span></code> and check for a positive edge with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if(!ff_previous_input &amp; ff_input) begin
+   //code on pose edge of ff_input 
+end
+ff_previous &lt;= ff_input;
+</pre></div>
+</div>
 </div>
 <div class="section" id="synchronous-monostable-multivibrator">
 <h2>Synchronous Monostable Multivibrator<a class="headerlink" href="#synchronous-monostable-multivibrator" title="Permalink to this headline">¶</a></h2>

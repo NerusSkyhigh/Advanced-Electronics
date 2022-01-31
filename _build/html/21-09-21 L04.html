@@ -419,15 +419,18 @@
 \[\begin{align*}
     x[n]=\frac{1}{2\pi i} \oint_{\Gamma um 0} \frac{z}{z-a} z^{n-1}dz = \frac{1}{2\pi i} \oint_{\Gamma um 0} \frac{z^n}{z-a}dz
 \end{align*}\]</div>
-<p>As stated by the ROC, <span class="math notranslate nohighlight">\(\Gamma\)</span> must be chosen so that it DOES not encloses <span class="math notranslate nohighlight">\(a\)</span>.
-<img alt="Gamma must be chosen so that it DOES not encloses a. There are two cases." src="_images/21-09-21_gamma_example1.jpeg" /></p>
-<p>After that there are two more subcases regarding the value of n:
-1. If <span class="math notranslate nohighlight">\(n\geq 0\)</span>: there a NO OTHER POLES and the integral is 0
-2. If <span class="math notranslate nohighlight">\(n&lt;0\)</span>: there is a pole of order <span class="math notranslate nohighlight">\(|n|\)</span> in the origin. By using the lemma proved in the previous lecture and choosing <span class="math notranslate nohighlight">\(m=-n\)</span> we have:
-\begin{align*}
-x[n]&amp;=\frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{z^{-m}}{z-a}z^{m} \right]<em>{z=0} = \frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{1}{z-a} \right]</em>{z=0} \
-&amp;= \frac{1}{(m-1)!}\left[ (m-1)! (-1)^{m-1} (z-a)^{-m} \right]_{z=0} = -a^{-m} = a^{-n} \text{ with } n&lt;0
-\end{align*}</p>
+<p>As stated by the ROC, <span class="math notranslate nohighlight">\(\Gamma\)</span> must be chosen so that it DOES not enclose <span class="math notranslate nohighlight">\(a\)</span>.
+<img alt="Gamma must be chosen so that it does not enclose a. There are two cases." src="_images/21-09-21_gamma_example1.jpg" /></p>
+<p>At this point there are two subcases to handle depending on the value of n:</p>
+<ol class="simple">
+<li><p>If <span class="math notranslate nohighlight">\(n\geq 0\)</span>: there a NO OTHER POLES and the integral is 0</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(n&lt;0\)</span>: there is a pole of order <span class="math notranslate nohighlight">\(|n|\)</span> in the origin. By using the lemma proved in the previous lecture and choosing <span class="math notranslate nohighlight">\(m=-n\)</span> we have:</p></li>
+</ol>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+        x[n]&amp;=\frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{z^{-m}}{z-a}z^{m} \right]_{z=0} = \frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{1}{z-a} \right]_{z=0} \\
+        &amp;= \frac{1}{(m-1)!}\left[ (m-1)! (-1)^{m-1} (z-a)^{-m} \right]_{z=0} = -a^{-m} = a^{-n} \text{ with } n&lt;0
+\end{align*}\]</div>
 <p>So that the final result is, by combining the two cases, <span class="math notranslate nohighlight">\(x[n]=-U[-n-1]a^n\)</span>.</p>
 </div>
 <div class="section" id="same-rational-function-different-roc">
@@ -446,20 +449,20 @@ x[n]&amp;=\frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{z^{-m}}{z-a}z^{m
 </div>
 <div class="section" id="poisson-process">
 <h3>Poisson process<a class="headerlink" href="#poisson-process" title="Permalink to this headline">¶</a></h3>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_point_process">poisson process</a> is a process where the probability of an event in an interval <span class="math notranslate nohighlight">\(dt\)</span> is given by <span class="math notranslate nohighlight">\(dP=\Gamma dt\)</span> and no more than one event can happend in the same time interval. Let’s now define <span class="math notranslate nohighlight">\(P(n, t)\)</span> as the probability of having <span class="math notranslate nohighlight">\(n\)</span> events in an interval <span class="math notranslate nohighlight">\([0, t]\)</span>.</p>
-<p><img alt="Poisson process on a interval" src="_images/21-09-21_poisson_process.jpeg" /></p>
-<p>If one considers a slightly bigger interval <span class="math notranslate nohighlight">\([0, t+dt]\)</span>, still with <span class="math notranslate nohighlight">\(n\)</span> occurence, the two probabilities are linked via</p>
+<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_point_process">poisson process</a> is a process where the probability of an event in an interval <span class="math notranslate nohighlight">\(dt\)</span> is given by <span class="math notranslate nohighlight">\(dP=\Gamma dt\)</span> and no more than one event can happen in the same time interval. Let’s now define <span class="math notranslate nohighlight">\(P(n, t)\)</span> as the probability of having <span class="math notranslate nohighlight">\(n\)</span> events in an interval <span class="math notranslate nohighlight">\([0, t]\)</span>. At time <span class="math notranslate nohighlight">\(t=0\)</span> no events can occur and <span class="math notranslate nohighlight">\(P(n, t=0)=\delta_{n,0}\)</span>.</p>
+<p><img alt="Poisson process on an interval" src="_images/21-09-21_poisson_process.jpg" /></p>
+<p>If one considers a slightly bigger interval <span class="math notranslate nohighlight">\([0, t+dt]\)</span>, still with <span class="math notranslate nohighlight">\(n\)</span> occurrence, the two probabilities are linked via</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     P(n, t+dt) = P(n,t)(1-\Gamma dt) + P(n-1, t) \Gamma dt
 \end{align*}\]</div>
-<p>That is the probability that in <span class="math notranslate nohighlight">\([0, t]\)</span> happend <span class="math notranslate nohighlight">\(n-1\)</span> events and the <span class="math notranslate nohighlight">\(n-th\)</span> event happend in the interval <span class="math notranslate nohighlight">\([t, t+dt]\)</span> plus the probability that <span class="math notranslate nohighlight">\(n\)</span> events already happened in <span class="math notranslate nohighlight">\([0, t]\)</span> and no new event happend in <span class="math notranslate nohighlight">\([t, t+dt]\)</span>.<br />
-Let’s write the probability as a difference equation and consider the limit <span class="math notranslate nohighlight">\(t\rightarrow0\)</span>:</p>
+<p>That is, the probability that in <span class="math notranslate nohighlight">\([0, t]\)</span> happend <span class="math notranslate nohighlight">\(n-1\)</span> events and the <span class="math notranslate nohighlight">\(n-th\)</span> event happend in the interval <span class="math notranslate nohighlight">\([t, t+dt]\)</span> plus the probability that <span class="math notranslate nohighlight">\(n\)</span> events already happened in <span class="math notranslate nohighlight">\([0, t]\)</span> and no new event happend in <span class="math notranslate nohighlight">\([t, t+dt]\)</span>.<br />
+Let’s write the probability as a difference equation and consider the limit <span class="math notranslate nohighlight">\(dt\rightarrow0\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \frac{P(n, t+dt) - P(n, t)}{dt} = \Gamma \left[ P(n-1, t) - p(n, t) \right] \implies \frac{dP(n, t)}{dt} = \Gamma \left[ P(n-1, t) - P(n, t) \right]
 \end{align*}\]</div>
-<p>By applying the z-transform (<span class="math notranslate nohighlight">\(\Pi(z,t)=Z\left\{ P(n, t) \right\}\)</span>):</p>
+<p>By applying the z-transform <span class="math notranslate nohighlight">\(\left( \Pi(z,t)=Z\left\{ P(n, t) \right\} \right)\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \Pi(z,t) &amp;= \sum_{n} z^{-n} P(n,t) \implies \frac{d\Pi(z,t)}{dt} = \Gamma \left[ \frac{\Pi(z,t)}{z}-\Pi(z,t) \right] = \Gamma\Pi(z,t) \left( \frac{1}{z}-1\right)\\
@@ -485,7 +488,7 @@ Let’s write the probability as a difference equation and consider the limit <s
     y[n] &amp;= y[n-1] + y[n-1] + x[n] \\
     x[n] &amp;= \delta[n]
 \end{align*}\]</div>
-<p>An alaytical form can be obatined via the z-transform:</p>
+<p>An analytical form can be obatined via the z-transform:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     h[n] = h[n-1] + h[n-1] + \delta[n] \implies h(z) &amp;= h(z)\left( \frac{1}{z} + \frac{1}{z^2} +1 \right) \implies h(z) = \frac{z^2}{z^2-z-1} \\
@@ -496,12 +499,8 @@ Let’s write the probability as a difference equation and consider the limit <s
 \[\begin{align*}
     h(n) = \frac{1}{\sqrt{5}} \left[ \beta^{n+1} - \alpha^{n+1} \right] U[n]
 \end{align*}\]</div>
-<p>Let’s now make a small detour and check wheter the formula found is actually correct:</p>
-<!--
-```{warning}
-The z-transform is NOT sufficient to characterize a system in the z domain. The R.O.C. is part of the system too!
-```
---><div class="cell tag_hide-input docutils container">
+<p>Let’s now make a small detour and check whether the formula found is correct:</p>
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -559,7 +558,7 @@ Values obtained from scratch with the iterative procedure:
 <img alt="_images/21-09-21 L04_1_1.png" src="_images/21-09-21 L04_1_1.png" />
 </div>
 </div>
-<p>it is possible to notice how the formula correctly reproduces the expected values and, if one sets a semilog scale on y, that i shows the reason for the exponential behaviour at high values of n. In fact, for high values of <span class="math notranslate nohighlight">\(n\)</span> the formula tends to be of the form</p>
+<p>it is possible to notice how the formula correctly reproduces the expected values and, if one sets a semilog scale on y, that it shows the reason for the exponential behaviour at high values of n. For high values of <span class="math notranslate nohighlight">\(n\)</span> the formula tends to be of the form</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \lim_{n\rightarrow \infty} \frac{1}{\sqrt{5}} \left[ \beta^{n+1} - \alpha^{n+1} \right] U[n] \simeq \frac{\beta^{n+1}}{\sqrt{5}}
@@ -572,13 +571,13 @@ Values obtained from scratch with the iterative procedure:
 <h3>a) Reality<a class="headerlink" href="#a-reality" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    \left. \begin{array}{lr}
-        x(z)&amp;=\sum_{n} x[n]z^{-n} \\
-        x^*(z)&amp;=\sum_{n} x^*[n](z^*)^{-n} \\
-        x^*(z^*)&amp;=\sum_{n} x^*[n]z^{-n}
+    \left. \begin{array}{cr}
+        x(z) =\sum_{n} x[n]z^{-n} \\
+        x^*(z) =\sum_{n} x^*[n](z^*)^{-n} \\
+        x^*(z^*) =\sum_{n} x^*[n]z^{-n}
     \end{array}\right\} \text{ if } x[n]\in \mathcal{R} \implies x^{*}(z^{*})=x(z)
 \end{align*}\]</div>
-<p>That is the transfer function of a real system must have an even number of poles symetric with respect to the real axis.<br />
+<p>That is, the transfer function of a real system must have an even number of poles symmetric with respect to the real axis.<br />
 Is the inverse true?</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -592,8 +591,8 @@ Is the inverse true?</p>
 \[\begin{align*}
     x(z) = \sum_{n} x[n]z^{-n} \text{ with } z\in \text{ROC}.
 \end{align*}\]</div>
-<p>If one chooses <span class="math notranslate nohighlight">\(\left.z \right| = 1\)</span> then <span class="math notranslate nohighlight">\(x(z) = \sum_{n} x[n] &lt; \infty\)</span>, therefore, if a system is BIBO stable then the unitary circonference belongs to the ROC <span class="math notranslate nohighlight">\(\Gamma_1 \in \text{ROC}\)</span>.
-On the other hand, if the z trasnform exits it is possible to freely insert <span class="math notranslate nohighlight">\(\left|z\right|=1\)</span> (that is <span class="math notranslate nohighlight">\(z\in\Gamma_1\)</span>) and then the system is BIBO stable, at least on <span class="math notranslate nohighlight">\(\Gamma_1\)</span>.</p>
+<p>If one chooses <span class="math notranslate nohighlight">\(\left| z \right| = 1\)</span> then <span class="math notranslate nohighlight">\(x(z) = \sum_{n} x[n] &lt; \infty\)</span>, therefore, if a system is BIBO stable then the unitary circonference belongs to the ROC (<span class="math notranslate nohighlight">\(\Gamma_1 \in \text{ROC}\)</span>).
+On the other hand, if the z transform exits it is possible to freely insert <span class="math notranslate nohighlight">\(\left|z\right|=1\)</span> (that is <span class="math notranslate nohighlight">\(z\in\Gamma_1\)</span>) and then the system is BIBO stable, at least on <span class="math notranslate nohighlight">\(\Gamma_1\)</span>.</p>
 <div class="admonition-theorem admonition">
 <p class="admonition-title">Theorem</p>
 <p>A system is BIBO stable <span class="math notranslate nohighlight">\(\iff \Gamma_1 \in\)</span> ROC.</p>
@@ -616,11 +615,11 @@ On the other hand, if the z trasnform exits it is possible to freely insert <spa
 <p>A system is <em>NON CAUSAL</em> if and only iff <span class="math notranslate nohighlight">\(0\in \)</span> ROC while <span class="math notranslate nohighlight">\(\infty \not \subset \)</span> ROC.<br />
 <strong>proof</strong><br />
 <span class="math notranslate nohighlight">\(\implies x(z)=\sum_{n=-\infty}^{0} x[n]z^{-n} \implies 0\in \text{ROC;} \quad \infty \not \in \text{ROC}\)</span>.<br />
-<span class="math notranslate nohighlight">\(\impliedby\)</span> Taylor expand the z-transform (<span class="math notranslate nohighlight">\(x(z)=\sum_{k=0}^{\infty} a_k z^{-k}=\sum_{n=-\infty}^{0} x_{-n}z^{-n}\)</span>) and evaluate ROC.</p>
+<span class="math notranslate nohighlight">\(\impliedby\)</span> Taylor expand the z-transform (<span class="math notranslate nohighlight">\(x(z)=\sum_{k=0}^{\infty} a_k z^{k}=\sum_{n=-\infty}^{0} x_{-n}z^{-n}\)</span>) and evaluate ROC.</p>
 </div>
 <div class="section" id="e-both-causality-and-non-causality-with-x-n-alpha-delta-n">
 <h3>e) Both causality and non causality (with <span class="math notranslate nohighlight">\(x[n]=\alpha \delta[n]\)</span>)<a class="headerlink" href="#e-both-causality-and-non-causality-with-x-n-alpha-delta-n" title="Permalink to this headline">¶</a></h3>
-<p>A system is <em>both</em> causal and not causal if and only if ROC=<span class="math notranslate nohighlight">\(\mathcal{C}\)</span>, that is <span class="math notranslate nohighlight">\(0\in\)</span>ROC and <span class="math notranslate nohighlight">\(\infty\subset\)</span>ROC.</p>
+<p>A system is <em>both</em> causal and not causal if and only if <span class="math notranslate nohighlight">\(0\in\)</span>ROC and <span class="math notranslate nohighlight">\(\infty\subset\)</span>ROC.</p>
 </div>
 </div>
 </div>

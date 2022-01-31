@@ -29,5 +29,19 @@
 # 
 # States machines can be easily implemented with ```if-else```, ```switch``` construct and ```enums```. Each case correspond to a state and the condition to the event.
 # 
+# ### Clocks
+# Finite state machines can even be use to generate a clock with an arbitrary frequence. Assume we want to count $n$ ticks of a given clock. In that case it is possible to consider $n$ states and as many transitions. A transition will occur at each tick of the given clock.
+# ![Representation of a clock as a FSM](./images/21-10-12-FSM-clock.jpg)
+# 
+# <!-- add image -->
+# 
+# ### Gray 
+# ```{admonition} from [wikipedia](https://en.wikipedia.org/wiki/Gray_code)
+# The reflected binary code (RBC), also known as Gray code, is an ordering of the binary numeral system such that two successive values differ in only one bit (binary digit).
+# For example, the representation of the decimal value "1" in binary would normally be "001" and "2" would be "010". In Gray code, these values are represented as "001" and "011". That way, incrementing a value from 1 to 2 requires only one bit to change, instead of two.
+# Gray codes are widely used to prevent spurious output from electromechanical switches and to facilitate error correction in digital communications such as digital terrestrial television and some cable TV systems.
+# ```
+# <!-- [A simulation on falstad](https://www.falstad.com/circuit/e-graycode.html) -->
+# 
 # ## Data Latches
 # A data latch is just a way to use D Flip-Flops to store data. Usually a data latch (or register) will store a new value only on a positive edge and will preserve the old value otherwise.
