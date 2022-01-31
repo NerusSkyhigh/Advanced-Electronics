@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -380,13 +382,13 @@
 <div class="section" id="additional-problems">
 <h3>Additional problems:<a class="headerlink" href="#additional-problems" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>development of a 10 Hz counter, working from 0 to 99, with a 2–digits BCD coding and a 2 x 4–LED array display;</p></li>
+<li><p>development of a 10 Hz counter, working from 0 to 99, with a 2–digits BCD<a class="footnote-reference brackets" href="#bcd" id="id1">1</a> coding and a 2 x 4–LED array display;</p></li>
 <li><p>development of a 10 Hz down counter.</p></li>
 </ul>
 <hr class="docutils" />
 <div class="admonition-disclaimer admonition">
 <p class="admonition-title">Disclaimer</p>
-<p>This part of the note does NOT aim to teach Verilog or how to survive in a laboratory. The first can be learned using apposite websites like <a class="reference external" href="https://hdlbits.01xz.net/wiki/Main_Page">hdlbits</a> while the second skill requires years of training and struggle. The only way to learn how to survive in a laboratory is to be in a lab. It doesn’t need to be an expensive one tho. To start a <a class="reference external" href="https://www.nandland.com/goboard/introduction.html">beginner’s FPGA</a> and a <a class="reference external" href="https://espotek.com/labrador/">basic oscilloscope</a> are enough<a class="footnote-reference brackets" href="#disclaimer" id="id1">1</a>. In the worst-case there even exist simulators. Better than nothing, I guess.</p>
+<p>This part of the note does NOT aim to teach Verilog or how to survive in a laboratory. The first can be learned using apposite websites like <a class="reference external" href="https://hdlbits.01xz.net/wiki/Main_Page">hdlbits</a> while the second skill requires years of training and struggle. The only way to learn how to survive in a laboratory is to be in a lab. It doesn’t need to be an expensive one tho. To start a <a class="reference external" href="https://www.nandland.com/goboard/introduction.html">beginner’s FPGA</a> and a <a class="reference external" href="https://espotek.com/labrador/">basic oscilloscope</a> are enough<a class="footnote-reference brackets" href="#disclaimer" id="id2">2</a>. In the worst-case there even exist simulators. Better than nothing, I guess.</p>
 </div>
 <!-- ## A short overview on FPGA devices and on HDL programming languages.
 
@@ -405,7 +407,10 @@ According to wikipedia, a Field Programmable Gate Array (FPGA) is a device that 
         - frequency divider;
         - counter. --><hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="disclaimer"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="bcd"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Binary coded decimal. Each digit is represented using four leds; they are placed in a decimal representation. e.g: <span class="math notranslate nohighlight">\(34\)</span> would be written as 0011 0100 in bcd.</p>
+</dd>
+<dt class="label" id="disclaimer"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>I studied verilog on hdlbits but I do no own the GoBoard or the EspoTek Labrador Board so I can not say anything about their quality. These are just link to help you start your own researches</p>
 </dd>
 </dl>
