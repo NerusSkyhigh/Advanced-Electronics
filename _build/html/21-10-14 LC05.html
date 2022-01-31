@@ -163,7 +163,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20LC01.html">
-   Introduction to Verilog programming on a FPGA device. Counters and frequency dividers.
+   Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.
   </a>
  </li>
  <li class="toctree-l1">
@@ -335,6 +335,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#adc-and-dac">
+   ADC and DAC
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#evaluation-of-the-nyquist-frequency">
    Evaluation of the Nyquist frequency
   </a>
@@ -388,9 +393,18 @@
 <p>I think everything important I can say is said in <a class="reference external" href="https://youtu.be/ys1ftk5a2A4">this video</a> and on <a class="reference external" href="https://en.wikipedia.org/wiki/Two%27s_complement">wikipedia</a>.
 Take time to read through top comments. There are some interesting advices!</p>
 </div>
+<div class="section" id="adc-and-dac">
+<h2>ADC and DAC<a class="headerlink" href="#adc-and-dac" title="Permalink to this headline">¶</a></h2>
+<p>They both work in a similar way: the first tries to approximate the analog signal with a counter. Usually it works in <em>bipolar</em> coordinates with <span class="math notranslate nohighlight">\(3.3V\)</span> standard and output a number according to the formula:
+$<span class="math notranslate nohighlight">\(V_{D} = \frac{V_{A}-1.65V}{3.3V}2^{n}\)</span><span class="math notranslate nohighlight">\(
+where \)</span>n<span class="math notranslate nohighlight">\( is the number of bits in the ADC.
+DAC will instead output a signal encoded as _unipolar_ coordinates where, assuming a \)</span>3.3V<span class="math notranslate nohighlight">\( standard, \)</span>1.65V<span class="math notranslate nohighlight">\( represent the zero and the output is given by:
+\)</span><span class="math notranslate nohighlight">\( V_{A}=\frac{\mathcal{bits}(V_{D})}{2^{n}}3.3V\)</span>$.</p>
+<p>It is possible to pass back and forth between <em>unipolar</em> and <em>bipolar</em> coordinates by negating the first bit.</p>
+</div>
 <div class="section" id="evaluation-of-the-nyquist-frequency">
 <h2>Evaluation of the Nyquist frequency<a class="headerlink" href="#evaluation-of-the-nyquist-frequency" title="Permalink to this headline">¶</a></h2>
-<p>This one is a nice one.</p>
+<p>This one is a nice one to do.</p>
 </div>
 </div>
 

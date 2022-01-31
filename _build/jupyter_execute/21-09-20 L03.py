@@ -5,16 +5,16 @@
 # 
 # Equipped with the definitions and lemmas found in the last lecture it is possible to start talking about the **z-transform**. But first, it is necessary to draw some parallelisms with the solutions of a differential equation:
 # 
-# ![Solution of a differential equation with Fourier Tranform / Laplace Transform](images/21-09-20_diff_eq_sol.png)
+# ![Solution of a differential equation with Fourier Transform / Laplace Transform](images/21-09-20_diff_eq_sol.png)
 #   
 #   
 #   
-# For example, with a low pas filter the procedure becomes:  
+# For example, with a low pass filter, the procedure becomes:  
 # ![Solution of the low pass with Fourier Tranform](images/21-09-20_diff_eq_example.png)
 # 
 #   
 #   
-# In a similar way a difference equation can be solved via an approripate transform, the z-transform
+# Similarly, a difference equation can be solved via an appropriate transform, the z-transform
 # ![Solution of a difference equation with z-transform](images/21-09-20_z-transform_sol.png)
 # 
 # ## The z-transform
@@ -24,7 +24,7 @@
 # \end{align*}
 # In the previous definition **R.O.C** stands for _Region Of Convergence_, the region of the complex plane where the series converges to a finite value.
 #   
-# Some remorkable exmplaes of z-tranforms are:
+# Some remarkable examples of z-tranforms are:
 # 
 # ### The delta
 # \begin{align*}
@@ -43,7 +43,7 @@
 #     \text{ROC} &= \left\{ z : \frac{1}{|z|} > 1 \implies |z|<1\right\}
 # \end{align*}
 # 
-# It is possible to notice that two different functions led to the same z-transform but to different R.O.C. A warning is due:
+# It is possible to notice that two different functions led to the same z-transform but different R.O.C. A warning is due:
 # 
 # ```{warning}
 # The z-transform is NOT sufficient to characterize a system in the z domain. The R.O.C. is part of the system too!
@@ -60,7 +60,7 @@
 # 
 # ### Linearity
 # \begin{align*}
-#     Z\left(a x[n] + b y[n]\right) &= \sum_{n=-\infty}^{+\infty} z^{-n} (ax[n]+by[n]) = \a X(z) + b X(z) \\
+#     Z\left(a x[n] + b y[n]\right) &= \sum_{n=-\infty}^{+\infty} z^{-n} (ax[n]+by[n]) = a X(z) + b X(z) \\
 #     \text{ROC} &= \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
 # \end{align*}
 # 
@@ -74,14 +74,14 @@
 # ### Cascade of two systems
 # ![Cascade of two systems](images/21-09-20_cascade_of_two_systems.png)
 # 
-# If the two systems are L.T.I. the two cascade are equivalent: $y[n]=y'[n]$. The proof lies in the equality of the z-transform and the properties of the convolution. More than that the two systems $y[n]$ and $y'[n]$ have the same R.O.C:
+# If the two systems are L.T.I. the two cascade are equivalent: $y[n]=y'[n]$. The proof lies in the equality of the z-transform and the properties of the convolution. More than that, the two systems $y[n]$ and $y'[n]$ have the same R.O.C:
 #   
 # \begin{align*}
 #     y[n] &= h[n]*j[n] = Z^{-1}\left(h(z)j(z)\right) = Z^{-1}\left(j(z)h(z)\right) = j[n]*h[n] = y'[n] \\
 #     \text{ROC} &= \text{ROC}_x \cap \text{ROC}_y
 # \end{align*}
 #     
-# In the last properties the notion of inverse z-transform was suggest. To give a formal definion of inverse z-transform some lemmas are needed.
+# In the last properties, the notion of inverse z-transform was suggested. To give a formal definition of inverse z-transform some lemmas are needed.
 # 
 # ## Lemmas for inverse z-transform
 # 
@@ -91,21 +91,23 @@
 #     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} (z-z_0)^n dz = \delta_{n, -1} \qquad \text{ with } n \in \mathcal{Z}
 # \end{align*}
 # 
-# **proof**
+# **proof**  
 # Take a circle of radius $r$ around $z_0$ such that $z=z_0+re^{i\phi}$. Then:
 # \begin{align*}
-#     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} r^n e^{i\phi n} r e^{i\phi} di d\phi = \frac{r^{n+1}}{2\pi}\int_{0}^{2\pi} e^{i\phi (n+1)} d\phi = \begin{cases}
+#     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} r^n e^{i\phi n} r e^{i\phi} i d\phi = \frac{r^{n+1}}{2\pi}\int_{0}^{2\pi} e^{i\phi (n+1)} d\phi = \begin{cases}
 #   1 \qquad \text{if } n=-1\\
 #   0 \qquad \text{otherwise}
 # \end{cases}
 # \end{align*}
 # 
+# I like to call this lemma the "hidden logarithm lemma" because it reminds me of the integral $\int x^n dx$. For every value of $n$ the integral $\int x^n dx$ remains a rational function, except when $n=-1$ like in this case.
+# 
 # ### Residual theorem
 # \begin{align*}
-#     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} G(z) dz = \frac{1}{(n-1)|} \left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0} \qquad \text{ with } n \in \mathcal{Z}
+#     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} G(z) dz = \frac{1}{(n-1)!} \left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0} \qquad \text{ with } n \in \mathcal{Z}
 # \end{align*}
 # 
-# **proof**
+# **proof**  
 # Let's consider a function $H(z)=G(z)(z-z_0)^n$ which has NO POLES ($\implies$ it is analytic). By writing its [Laurent series](https://en.wikipedia.org/wiki/Laurent_series) one obtains:
 # \begin{align*}
 # H(z)&=G(z)(z-z_0)^n = \sum_{k=0}^{+\infty} \frac{(z-z_0)^k}{k!} \left[ \frac{d^k}{dz^k} H(z)\right]_{z=z_0}\\
@@ -121,7 +123,7 @@
 # ### Inversion of the z-transform
 # If $X(z)=Z(x[n])$ then $x[n]=\frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z) z^{n-1} dz$
 # 
-# **proof**
+# **proof**  
 # \begin{align*}
 #     \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z)z^{n-1} dz &= \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} \sum_{k}x[k]z^{-k}z^{n-1} dz \\
 #     &= \frac{1}{2\pi i} \sum_{k} x[k] \oint_{\Gamma\text{ um }z_0} z^{n-k-1} dz \\

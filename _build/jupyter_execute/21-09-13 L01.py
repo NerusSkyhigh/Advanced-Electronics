@@ -3,22 +3,21 @@
 
 # # Lecture 01 - 13 September 2021
 # 
-# ## Signals, Systems and Sequences
+# ## Signals, Systems, and Sequences
 # 
-# The first lecture consists mostly of definitions and reminders. These are usually boring and rather cumbersome but are nvertheless needed.
+# The first lecture consists mostly of definitions and reminders. These are usually boring and rather cumbersome but are nevertheless needed.
 # 
 # Let's start with our first definition: signals.
 # 
 # ### Signals
 # 
-# A signal is a function of time and space. Formally, it is a MAP
+# A signal is a function of time and space. Formally, it is a MAP such that:
 # \begin{align*}
 #     x\colon\ &\ t\longrightarrow y\\
 #     &\mathcal{R}\mapsto\mathcal{R}
 # \end{align*}
 # 
-# 
-# It is possible to restrict the domain and the codomain to $\mathcal{U} \subset \mathcal{H}$ so that we have four types of maps:
+# It is possible to restrict the domain and the codomain to $\mathcal{Z} \subset \mathcal{R}$ so that we have four types of maps:
 # 
 # <!-- I've generated these tables with the help of https://www.tablesgenerator.com/html_tables 
 # Trust me, you don't want to deal with tables by hand. -->
@@ -30,19 +29,17 @@
 # 
 # ### SYSTEM
 # 
-# In a similar way systems are a MAP between signals
+# In a similar way, systems are a MAP between signals
 # 
-# | IN $\rightarrow$ [SYSTEM]$\rightarrow$ OUT |                                           |
-# |:------------------------------------------:|-------------------------------------------|
-# |       ANALOG $\longrightarrow$ ANALOG      | Analog System                             |
-# |       ANALOG $\longrightarrow$ DIGITAL     | Analog to Digital Converter (ADC)         |
-# |       DIGITAL$\longrightarrow$ ANALOG      | Digital to Analog Converter (DAC)         |
-# |       DIGITAL$\longrightarrow$ DIGITAL     | Digital system; numeric system; processor |
+# |   FROM \ TO   	|             ANALOG                	|            Digital        	|
+# |:-------------:	|:----------------------------:      	|:----------------------------:	|
+# |     ANALOG     	|        Analog System       	        | Analog to Digital Converter<br>(ADC) |
+# |     DIGITAL   	| Digital to Analog converter<br>(DAC) 	| Digital system; numeric<br>system; processor |
 # 
 # 
 # ### SEQUENCES
 # 
-# Sequences are map from integer numbers to real or integer numbers
+# Sequences are a map from integer numbers to real or integer numbers
 # 
 # \begin{align*}
 #     y\colon\ n&\longrightarrow y[n]\\
@@ -64,7 +61,7 @@
 # 
 # #### Step Sequence
 # 
-# In a similar way the step sequence is defined in analogy to the Heaviside theta:
+# Similarly, the step sequence is defined in analogy to the Heaviside theta:
 # 
 # \begin{align*}
 #     U[n] = \left\{\begin{array}{lr}
@@ -109,7 +106,7 @@ plt.show()
 # that is a discrete convolution between a sequence and a delta.
 # 
 # #### Periodic Sequences
-# A sequence $x[n]$ is said to be periodic of period $T$ if and only if (iff) $x[n-T] = x[n] \forall n \in \mathcal{Z}$.
+# A sequence $x[n]$ is said to be periodic of period $T$ if and only if (iff) $x[n-T] = x[n]\ \forall n \in \mathcal{Z}$.
 # 
 # #### Energy
 # Finally, the energy of a system is defined as
@@ -146,7 +143,7 @@ plt.show()
 # \begin{equation*}
 # \mathcal{S}(x[n]) = \mathcal{S}\left(\sum_{k=-\infty}^{+\infty} x[k] \delta[n-k]\right) = \sum_{k=-\infty}^{+\infty} x[k] \mathcal{S}(\delta[n-k]) 
 # \end{equation*}
-# that is **a linear system is fully characterized by its impulse response**.
+# that is: **a linear system is fully characterized by its impulse response**.
 # 
 # <!-- Linear systems are the one of the most important class of systems because even non linear systems can be linearized with apposite tecniques. -->
 # 
@@ -156,4 +153,11 @@ plt.show()
 # \begin{equation*}
 #     y[n] = \mathcal{S}(x[n]) \implies y_1[n] = \mathcal{x[n-n_0]} = y[n-n_0]
 # \end{equation*}
-# that is "to the same inputs correspond the same outputs without regards on when we send the input".
+# 
+# that is: "to the same inputs correspond the same outputs without regards on when the input was sent".
+
+# In[ ]:
+
+
+
+

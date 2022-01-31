@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -161,7 +163,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20LC01.html">
-   Introduction to Verilog programming on a FPGA device. Counters and frequency dividers.
+   Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.
   </a>
  </li>
  <li class="toctree-l1">
@@ -331,6 +333,18 @@
   <a class="reference internal nav-link" href="#finite-state-machines">
    Finite-state machines
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#clocks">
+     Clocks
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gray">
+     Gray
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-latches">
@@ -387,6 +401,22 @@
 <img alt="" src="https://miro.medium.com/max/1400/0*rVk-GYIMZJMD8Lxd" /></p>
 <p>The image taken from <a class="reference external" href="https://mark-truluck.medium.com/the-machine-in-the-ghost-46f856f94ed2">a medium article</a> explains the behaviour of the ghosts with states and how they transition from one state to an other accordin to events.</p>
 <p>States machines can be easily implemented with <code class="docutils literal notranslate"><span class="pre">if-else</span></code>, <code class="docutils literal notranslate"><span class="pre">switch</span></code> construct and <code class="docutils literal notranslate"><span class="pre">enums</span></code>. Each case correspond to a state and the condition to the event.</p>
+<div class="section" id="clocks">
+<h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this headline">¶</a></h3>
+<p>Finite state machines can even be use to generate a clock with an arbitrary frequence. Assume we want to count <span class="math notranslate nohighlight">\(n\)</span> ticks of a given clock. In that case it is possible to consider <span class="math notranslate nohighlight">\(n\)</span> states and as many transitions. A transition will occur at each tick of the given clock.
+<img alt="Representation of a clock as a FSM" src="_images/21-10-12-FSM-clock.jpg" /></p>
+<!-- add image -->
+</div>
+<div class="section" id="gray">
+<h3>Gray<a class="headerlink" href="#gray" title="Permalink to this headline">¶</a></h3>
+<div class="admonition-from-wikipedia-https-en-wikipedia-org-wiki-gray-code admonition">
+<p class="admonition-title">from <a class="reference external" href="https://en.wikipedia.org/wiki/Gray_code">wikipedia</a></p>
+<p>The reflected binary code (RBC), also known as Gray code, is an ordering of the binary numeral system such that two successive values differ in only one bit (binary digit).
+For example, the representation of the decimal value “1” in binary would normally be “001” and “2” would be “010”. In Gray code, these values are represented as “001” and “011”. That way, incrementing a value from 1 to 2 requires only one bit to change, instead of two.
+Gray codes are widely used to prevent spurious output from electromechanical switches and to facilitate error correction in digital communications such as digital terrestrial television and some cable TV systems.</p>
+</div>
+<!-- [A simulation on falstad](https://www.falstad.com/circuit/e-graycode.html) -->
+</div>
 </div>
 <div class="section" id="data-latches">
 <h2>Data Latches<a class="headerlink" href="#data-latches" title="Permalink to this headline">¶</a></h2>

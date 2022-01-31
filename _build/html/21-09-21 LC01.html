@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Introduction to Verilog programming on a FPGA device. Counters and frequency dividers. &#8212; Notes of Advanced Electronics</title>
+    <title>Introduction to Verilog programming on an FPGA device. Counters and frequency dividers. &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -161,7 +163,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Introduction to Verilog programming on a FPGA device. Counters and frequency dividers.
+   Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.
   </a>
  </li>
  <li class="toctree-l1">
@@ -332,6 +334,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-hardware-circuits">
+   Basic hardware circuits:
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -343,14 +350,14 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-verilog-programming-on-a-fpga-device-counters-and-frequency-dividers">
-<h1>Introduction to Verilog programming on a FPGA device. Counters and frequency dividers.<a class="headerlink" href="#introduction-to-verilog-programming-on-a-fpga-device-counters-and-frequency-dividers" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-verilog-programming-on-an-fpga-device-counters-and-frequency-dividers">
+<h1>Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.<a class="headerlink" href="#introduction-to-verilog-programming-on-an-fpga-device-counters-and-frequency-dividers" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="laboratory-class-01-21-september-2021">
 <h2>Laboratory Class 01 - 21 September 2021<a class="headerlink" href="#laboratory-class-01-21-september-2021" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="topics">
 <h3>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>A short overview on FPGA devices and on HDL programming languages.</p></li>
+<li><p>A short overview of FPGA devices and HDL programming languages.</p></li>
 <li><p>Introductory problem: design of a 1 Hz counter with 8–LED array display, relying on standard analog and digital circuitry and an 8 Hz clock source.</p></li>
 <li><p>Basic hardware circuits:
 – frequency divider;
@@ -358,7 +365,7 @@
 <li><p>Verilog programming language:</p>
 <ul>
 <li><p>module architecture;</p></li>
-<li><p>example: development of a 8–bit, 1 Hz counter with an 8–LED array display;</p></li>
+<li><p>example: development of an 8–bit, 1 Hz counter with an 8–LED array display;</p></li>
 <li><p>basic modules implementing basic hardware circuits:</p>
 <ul>
 <li><p>frequency divider;</p></li>
@@ -380,14 +387,22 @@
 <div class="section" id="additional-problems">
 <h3>Additional problems:<a class="headerlink" href="#additional-problems" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>development of a 10 Hz counter, working from 0 to 99, with a 2–digits BCD coding and a 2 x 4–LED array display;</p></li>
+<li><p>development of a 10 Hz counter, working from 0 to 99, with a 2–digits BCD<a class="footnote-reference brackets" href="#bcd" id="id1">1</a> coding and a 2 x 4–LED array display;</p></li>
 <li><p>development of a 10 Hz down counter.</p></li>
 </ul>
 <hr class="docutils" />
 <div class="admonition-disclaimer admonition">
 <p class="admonition-title">Disclaimer</p>
-<p>This part of the note does NOT aim to teach Verilog or how to survive in a laboratory. The first can be learned using apposite websites like <a class="reference external" href="https://hdlbits.01xz.net/wiki/Main_Page">hdlbits</a> while the second skill requires years of training and struggle. The only way to learn how to survive in a laboratory is to be in a lab. It doesn’t need to be an expensive one tho. To start a <a class="reference external" href="https://www.nandland.com/goboard/introduction.html">beginner’s FPGA</a> and a <a class="reference external" href="https://espotek.com/labrador/">basic oscilloscope</a> are enough<a class="footnote-reference brackets" href="#disclaimer" id="id1">1</a>. In the worst-case there even exist simulators. Better than nothing, I guess.</p>
+<p>This part of the note does NOT aim to teach Verilog or how to survive in a laboratory. The first can be learned using apposite websites like <a class="reference external" href="https://hdlbits.01xz.net/wiki/Main_Page">hdlbits</a> while the second skill requires years of training and struggle. The only way to learn how to survive in a laboratory is to be in a lab. It doesn’t need to be an expensive one tho. To start a <a class="reference external" href="https://www.nandland.com/goboard/introduction.html">beginner’s FPGA</a> and a <a class="reference external" href="https://espotek.com/labrador/">basic oscilloscope</a> are enough<a class="footnote-reference brackets" href="#disclaimer" id="id2">2</a>. In the worst-case there even exist simulators. Better than nothing, I guess.</p>
 </div>
+</div>
+</div>
+<div class="section" id="basic-hardware-circuits">
+<h2>Basic hardware circuits:<a class="headerlink" href="#basic-hardware-circuits" title="Permalink to this headline">¶</a></h2>
+<p>Frequency dividers and counters are similar under many aspects to the extent that you can imagine a frequency divider as a counter and a threshold. When the desired number of input positive edges are counted, a positive edged is generated as output. Usually, frequency dividers are designed as a cascade of data flip flops (D-type FF).</p>
+<p><img alt="D-type flip flop used as frequency halver" src="https://www.electronics-tutorials.ws/wp-content/uploads/2018/05/counter-cou1.gif" /></p>
+<p>A counter can be obtained in the same way by connecting the output <span class="math notranslate nohighlight">\(Q\)</span> of each FF to the desired circuit. Check <a class="reference external" href="https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgzCAMB0l3BWEAmM0AsB2SCCcyBGANiMwUjCXJCshoFMBaAggKAISJAA5uVNkIApHT9BBGu05CEg5AKFE+88ZIDuMuQoLpRKqKw06923eBEGjZsBY6CboyIaFgu+gq5S9LLt97tefE4cbsRiKGBaqsHSyNx0+si4btoGIeBm+pRRQpLp6JDKCujIJtFSXFg56N7uPshw4Q0J3k4azYEoYXFBzshEZSgDnW1DerXxI86RRfZxUxoznWCZrdP44WAbPT5bct4Fymsa6LHFsccgp358VQtdKXKF4aMNsyjPDvWfFoRcX69JokFPpXiDwfYLGDIeM6ADppkFGBPKDpiikZ54YtMRYVqIsVdnvoCgkFKMSeEKQSqRZDuZHM47sThqiTizisNqZzaUioc5jPShNZPK8fnpPiL+cK3BKuKK+MjHuBJe1eYNFfUMf9MSrldrKo0NeTDZ50JzdWb8abuQyTobaSa5Wj-ridU6AEo8I4K-Z8CTieAoaBIZDBqBQYPOWoKIFkqOkwSTAlJizeZNw1Nw3VJzwCo2sT05-72EXhgo0cN0GAIfno8Qo0rfBMfBKNV7suTDAiYJ2LeZZeYBUZ7TYbAjzclnQTXIR8jSyZsLnhV1gAWV8KEbQMbckj646HSBjV3Nf3XZ7y6EF5Pa-Ag9kl4CN-XI-HfEmb5QQdPV2kwlEH6-N+t5LpMYEJMBbJWlwsgKrqsF6jQ8wEku+ioZc6F8AgKJrOk2FKggD51DW879goCEoWRgj4S8zgINwgz0aI0ijBRFg0fC65MTQXCTLEwHoAQuAgEQkReiJNTiRI3B0QxPEic8LHTPegiieID7DmO8xEI0n6jDpdCfgZG76bpnhqSZjJ-hYxn-j4tk2bpDT2U5dAWeOK6kXQkxEGEkz6X5blhHZAVcHZ7lzgpWFcBZSkaLFMViZcHhuI2FnII2+liRlojpW2fTHo0xkdKZrZubpcmlUIcnuZVfTnjFukXlV3aNYZSgue1fDuR1TgAPYgJg3WOFcwjURG8CQLgPacMgSCGawA0dcMdCCZA40wJN01ELN81CItImYBJZZjRWm3wNtu3hmwS0xSNa0bbAF0zUQc3XQdO3Hatp3zU9cCXa9e03cdK2jetZ1-VNL1vQtS0QKDD0Q1t0NAx9qn3T9E3PTtgPvUAA">this</a> interactive simulation to better understand how it works.</p>
+<p>More info can be found <a class="reference external" href="https://www.electronics-tutorials.ws/counter/count_1.html">here</a>. This website is also the source of the image used.</p>
 <!-- ## A short overview on FPGA devices and on HDL programming languages.
 
 According to wikipedia, a Field Programmable Gate Array (FPGA) is a device that contain an array of programmable logic blocks, and a hierarchy of reconfigurable interconnects allowing blocks to be wired together. Logic blocks can be configured to perform complex combinational functions, or act as simple logic gates like AND and XOR. In most FPGAs, logic blocks also include memory elements. Many FPGAs can be reprogrammed to implement different logic functions, allowing flexible reconfigurable computing as performed in computer software.  
@@ -405,11 +420,13 @@ According to wikipedia, a Field Programmable Gate Array (FPGA) is a device that 
         - frequency divider;
         - counter. --><hr class="footnotes docutils" />
 <dl class="footnote brackets">
-<dt class="label" id="disclaimer"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>I studied verilog on hdlbits but I do no own the GoBoard or the EspoTek Labrador Board so I can not say anything about their quality. These are just link to help you start your own researches</p>
+<dt class="label" id="bcd"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Binary coded decimal. Each digit is represented using four LEDs; they are placed in a decimal representation. e.g: <span class="math notranslate nohighlight">\(34\)</span> would be written as 0011 0100 in BCD.</p>
+</dd>
+<dt class="label" id="disclaimer"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>I studied Verilog on hdlbits but I do not own the GoBoard or the EspoTek Labrador Board so I can not say anything about their quality. These are just linked to helping you start your researches</p>
 </dd>
 </dl>
-</div>
 </div>
 </div>
 

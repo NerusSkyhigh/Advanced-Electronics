@@ -26,5 +26,15 @@
 # ## Numerical representation of natural and integer numbers:
 # I think everything important I can say is said in [this video](https://youtu.be/ys1ftk5a2A4) and on [wikipedia](https://en.wikipedia.org/wiki/Two%27s_complement).
 # Take time to read through top comments. There are some interesting advices! 
+# 
+# ## ADC and DAC
+# They both work in a similar way: the first tries to approximate the analog signal with a counter. Usually it works in _bipolar_ coordinates with $3.3V$ standard and output a number according to the formula:
+# $$V_{D} = \frac{V_{A}-1.65V}{3.3V}2^{n}$$
+# where $n$ is the number of bits in the ADC.
+# DAC will instead output a signal encoded as _unipolar_ coordinates where, assuming a $3.3V$ standard, $1.65V$ represent the zero and the output is given by:
+# $$ V_{A}=\frac{\mathcal{bits}(V_{D})}{2^{n}}3.3V$$.
+# 
+# It is possible to pass back and forth between _unipolar_ and _bipolar_ coordinates by negating the first bit.
+# 
 # ## Evaluation of the Nyquist frequency
-# This one is a nice one. 
+# This one is a nice one to do.

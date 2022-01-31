@@ -163,7 +163,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20LC01.html">
-   Introduction to Verilog programming on a FPGA device. Counters and frequency dividers.
+   Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.
   </a>
  </li>
  <li class="toctree-l1">
@@ -330,6 +330,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#risetime-issue-when-clocking-a-flip-flop">
+   Risetime issue when clocking a flip-flop
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#syncronous-toggle-flip-flop">
    Syncronous Toggle Flip-Flop
   </a>
@@ -378,10 +383,11 @@
 <li><p>implementation of a synchronous module monostable multivibrator and, through this, of an improved toggle pushbutton to switch on/off an LED; observation of the bouncing effect in a pushbutton;</p></li>
 <li><p>implementation, by means of a monostable multivibrator and an improved toggle pushbutton, of a timer to switch on an LED for a given time (programmable through the switches).</p></li>
 </ul>
+</div>
 <hr class="docutils" />
-<!-- ## Risetime issue when clocking a flip-flop
-TO DO
--->
+<div class="section" id="risetime-issue-when-clocking-a-flip-flop">
+<h2>Risetime issue when clocking a flip-flop<a class="headerlink" href="#risetime-issue-when-clocking-a-flip-flop" title="Permalink to this headline">¶</a></h2>
+<p>Flip flops work due to internal delays that are essential to their implementation. A drawback of this is that, in rare circumstances, the clock may be too fast and have a period smaller than the internal delay giving rise to unreliable behaviors.</p>
 </div>
 <div class="section" id="syncronous-toggle-flip-flop">
 <h2>Syncronous Toggle Flip-Flop<a class="headerlink" href="#syncronous-toggle-flip-flop" title="Permalink to this headline">¶</a></h2>
@@ -420,9 +426,16 @@ TO DO
 </tr>
 </tbody>
 </table>
-<p>When T is held high, the toggle flip-flop divides the clock frequency by two. This “divide by” feature has application in various types of digital counters.</p>
+<p>When T is held high, the toggle flip-flop divides the clock frequency by two. This “divide by” feature has applications in various types of digital counters.</p>
 </div>
-<p>As wikipedia already stated T flip flops are essential to produce frequency dividers, counters and shift registers.</p>
+<p>As Wikipedia already stated T flip flops are essential to produce frequency dividers, counters, and shift registers.</p>
+<p><strong>Note</strong>: when implementing a synchronous Flip Flop in Verilog remember to let the FF activate only on positive edges of the input. This can be done by defining two variables <code class="docutils literal notranslate"><span class="pre">ff_input</span></code> and <code class="docutils literal notranslate"><span class="pre">ff_previous_input</span></code> and checking for a positive edge with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if(!ff_previous_input &amp; ff_input) begin
+   //code on pose edge of ff_input 
+end
+ff_previous &lt;= ff_input;
+</pre></div>
+</div>
 </div>
 <div class="section" id="synchronous-monostable-multivibrator">
 <h2>Synchronous Monostable Multivibrator<a class="headerlink" href="#synchronous-monostable-multivibrator" title="Permalink to this headline">¶</a></h2>
@@ -430,13 +443,13 @@ TO DO
 <p class="admonition-title">from <a class="reference external" href="https://en.wikipedia.org/wiki/Monostable_multivibrator">wikipedia</a></p>
 <p>A monostable multivibrator, also called a one shot or a monoflop, is a sequential logic electronic circuit that generates an output pulse. When triggered, a pulse of pre-defined duration is produced. The circuit then returns to its stable state and produces no more output until triggered again.</p>
 </div>
-<p>A useful application of monostable multivibrators are <em>debouncing circuits</em><a class="footnote-reference brackets" href="#debouncing" id="id1">1</a>.</p>
+<p>A useful application of monostable multivibrators is <em>debouncing circuits</em><a class="footnote-reference brackets" href="#debouncing" id="id1">1</a>.</p>
 <p><img alt="Bouncing waveform when pressing or releasing a switch." src="https://hackaday.com/wp-content/uploads/2015/11/debounce_bouncing.png?resize=800,280" /></p>
 <p>As it is shown in the image taken from <a class="reference external" href="https://hackaday.com/2015/12/09/embed-with-elliot-debounce-your-noisy-buttons-part-i/">hackaday</a>, when a button is pressed or released the circuit will sense multiple inputs due to the mechanical nature of buttons. When a correct detection is essential, it is usually essential to introduce a monostable multivibrator as a debouncing circuit. After the first pulse, the monostable will ignore any input, like the infamous bounces, up until a predetermined time has elapsed. This will guarantee that only one input is detected in the time frame chosen. The only job left is to find the appropriate window where the bounces are ignored but multiple consecutive presses are detected. If the button is pressed by a human, usually a few milliseconds will do the job.</p>
 <hr class="footnotes docutils" />
 <dl class="footnote brackets">
 <dt class="label" id="debouncing"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Check <a class="reference external" href="https://www.youtube.com/watch?v=Nj-Q8FQxHhU">this video</a> for a funny explanation</p>
+<dd><p>Check <a class="reference external" href="https://www.youtube.com/watch?v=Nj-Q8FQxHhU">this video</a> for a funny yet complete explanation.</p>
 </dd>
 </dl>
 </div>
