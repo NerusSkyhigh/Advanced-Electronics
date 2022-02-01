@@ -387,7 +387,11 @@
 <hr class="docutils" />
 <div class="section" id="risetime-issue-when-clocking-a-flip-flop">
 <h2>Risetime issue when clocking a flip-flop<a class="headerlink" href="#risetime-issue-when-clocking-a-flip-flop" title="Permalink to this headline">¶</a></h2>
+<<<<<<< HEAD
 <p>Flip flops work due to internal delays that are essential to their implementation. A drawback of this is that, in rare circumstances, the clock may be too fast and have a period smaller than the internal delay giving rise to unreliable behaviors.</p>
+=======
+<p>Flip flops are work  due to internal delays that are essential to their implementation. A drawback of this is that, in rare circustamces, the clock may be too fast and have a period smaller than the internal delay giving rise to unreliables behaviours.</p>
+>>>>>>> 7b5140664fa0ec9c10df743734622a245b74c7f6
 </div>
 <div class="section" id="syncronous-toggle-flip-flop">
 <h2>Syncronous Toggle Flip-Flop<a class="headerlink" href="#syncronous-toggle-flip-flop" title="Permalink to this headline">¶</a></h2>
@@ -436,6 +440,17 @@ end
 ff_previous &lt;= ff_input;
 </pre></div>
 </div>
+<<<<<<< HEAD
+=======
+<p>As wikipedia already stated T flip flops are essential to produce frequency dividers, counters and shift registers.</p>
+<p><strong>Note</strong>: when implementing a syncronous Flip Flop in verilog remember to let the FF activate only on positive edges of the input. This can be done by defining a two variables <code class="docutils literal notranslate"><span class="pre">ff_input</span></code> and <code class="docutils literal notranslate"><span class="pre">ff_previous_input</span></code> and check for a positive edge with</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if(!ff_previous_input &amp; ff_input) begin
+   //code on pose edge of ff_input 
+end
+ff_previous &lt;= ff_input;
+</pre></div>
+</div>
+>>>>>>> 7b5140664fa0ec9c10df743734622a245b74c7f6
 </div>
 <div class="section" id="synchronous-monostable-multivibrator">
 <h2>Synchronous Monostable Multivibrator<a class="headerlink" href="#synchronous-monostable-multivibrator" title="Permalink to this headline">¶</a></h2>
