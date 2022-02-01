@@ -24,11 +24,7 @@
 # - development of a synchronous counter based on a “master clock”.
 # 
 # ---
-# ## D Type Flip Flops
-# ![](https://upload.wikimedia.org/wikipedia/commons/c/c4/Flipflopd.png)
-# It is the simplest type of flip flop. At each clock cycle it can be set to store a $1$ or a $0$ and it will hold it up to a change. It is the basic component of memories.
 # 
-<<<<<<< HEAD
 # ## Types of Circuits:
 # - Combinatorial circuits: just a bunch of logic gates put in cascade. There is no way to control the flow of information but, at the same time, you are using all the speed available.
 # - Sequential circuits: circuits where _a_ memory element is present. Usually, it is some kind of flip flop and, therefore, a clock is needed.
@@ -46,8 +42,3 @@
 # - (De)Multiplexers are asynchronous combinatorial circuits that allow transmitting data from $n$ different lines with a single data cable and $ceil\left(log_2(n)\right)$ selector lines. Only one line can be active at a given time.
 # 
 # ![Abstract example of multiplexer from wikipedia](https://upload.wikimedia.org/wikipedia/commons/e/e0/Telephony_multiplexer_system.gif)
-=======
-# ## Multiplexers
-# - (De)Multiplexers are combinatorial circuits, that is they do not require a clock to work.
-# - Allow to transfer data from $n$ lines with a single data line and $ceil\left(log_2(n)\right)$ selector lines. Only one line can be active at a given time.
->>>>>>> 7b5140664fa0ec9c10df743734622a245b74c7f6
