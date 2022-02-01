@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Synchronous counters. Toggle flip-flops. Monostable multivibrators." href="21-09-23%20LC03.html" />
-    <link rel="prev" title="Introduction to Verilog programming on a FPGA device. Counters and frequency dividers." href="21-09-21%20LC01.html" />
+    <link rel="prev" title="Introduction to Verilog programming on an FPGA device. Counters and frequency dividers." href="21-09-21%20LC01.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -163,7 +163,7 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20LC01.html">
-   Introduction to Verilog programming on a FPGA device. Counters and frequency dividers.
+   Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -330,6 +330,11 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#types-of-circuits">
+   Types of Circuits:
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#d-type-flip-flops">
    D Type Flip Flops
   </a>
@@ -361,7 +366,7 @@
 <ul>
 <li><p>combinatorial and sequential circuits;</p></li>
 <li><p>synchronous and asynchronous circuits;</p></li>
-<li><p>example: asynchronous counter and synchronous version by means of a finite-state machine.</p></li>
+<li><p>example: asynchronous counter and synchronous version using a finite-state machine.</p></li>
 </ul>
 </li>
 <li><p>Basic hardware circuits:</p>
@@ -389,21 +394,30 @@
 <h2>Problems:<a class="headerlink" href="#problems" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>development of a stopwatch from 0 to 99.99 s (1/100 s resolution), with 2–digits BCD coding and a 2 x 4–LED array display;</p></li>
-<li><p>development of a syncronous counter based on a “master clock”.</p></li>
+<li><p>development of a synchronous counter based on a “master clock”.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
+<div class="section" id="types-of-circuits">
+<h2>Types of Circuits:<a class="headerlink" href="#types-of-circuits" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Combinatorial circuits: just a bunch of logic gates put in cascade. There is no way to control the flow of information but, at the same time, you are using all the speed available.</p></li>
+<li><p>Sequential circuits: circuits where <em>a</em> memory element is present. Usually, it is some kind of flip flop and, therefore, a clock is needed.</p></li>
+<li><p>Asynchronous circuits: circuits where all the parts are clocked by a single master clock. It assures that all the submodules are synchronized and avoids race condition problems.</p></li>
+<li><p>Synchronous circuits: different parts of the circuit are clocked with different clocks. Easier to implement and allows for part of the circuit to work at a higher speed. Mitigation for race condition is a handshake protocol where each module has to signal the end of its computation.</p></li>
+</ul>
+</div>
 <div class="section" id="d-type-flip-flops">
 <h2>D Type Flip Flops<a class="headerlink" href="#d-type-flip-flops" title="Permalink to this headline">¶</a></h2>
-<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flipflopd.png" />
-It is the simplest type of flip flop. At each clock cycle it can be set to store a <span class="math notranslate nohighlight">\(1\)</span> or a <span class="math notranslate nohighlight">\(0\)</span> and it will hold it up to a change. It is the basic component of memories.</p>
+<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/c/c4/Flipflopd.png" /></p>
+<p>It is the simplest type of flip flop. At each clock cycle, it can be set to store a <span class="math notranslate nohighlight">\(1\)</span> or a <span class="math notranslate nohighlight">\(0\)</span> and it will hold it up to a change. It is the basic component of memories.</p>
 </div>
 <div class="section" id="multiplexers">
 <h2>Multiplexers<a class="headerlink" href="#multiplexers" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>(De)Multiplexers are combinatorial circuits, that is they do not require a clock to work.</p></li>
-<li><p>Allow to transfer data from <span class="math notranslate nohighlight">\(n\)</span> lines with a single data line and <span class="math notranslate nohighlight">\(ceil\left(log_2(n)\right)\)</span> selector lines. Only one line can be active at a given time.</p></li>
+<li><p>(De)Multiplexers are asynchronous combinatorial circuits that allow transmitting data from <span class="math notranslate nohighlight">\(n\)</span> different lines with a single data cable and <span class="math notranslate nohighlight">\(ceil\left(log_2(n)\right)\)</span> selector lines. Only one line can be active at a given time.</p></li>
 </ul>
+<p><img alt="Abstract example of multiplexer from wikipedia" src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Telephony_multiplexer_system.gif" /></p>
 </div>
 </div>
 
@@ -436,7 +450,7 @@ It is the simplest type of flip flop. At each clock cycle it can be set to store
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Introduction to Verilog programming on a FPGA device. Counters and frequency dividers.</p>
+            <p class="prev-next-title">Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-09-23%20LC03.html" title="next page">
