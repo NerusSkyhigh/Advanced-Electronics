@@ -319,12 +319,12 @@
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#definitions">
-     definitions:
+     Definitions:
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#assumptions">
-     assumptions
+     Assumptions
     </a>
    </li>
   </ul>
@@ -379,7 +379,7 @@ A first way to do that is to linearly interpolate between points:</p>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ya</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;analog signal&quot;</span><span class="p">)</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;sampling&quot;</span><span class="p">)</span>
 
-<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;reconstruction&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">,</span> <span class="n">mfc</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">mec</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Linear reconstruction&quot;</span><span class="p">)</span>
 
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
 <span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">);</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">2500</span><span class="p">,</span> <span class="mi">2500</span><span class="p">);</span>
@@ -397,9 +397,9 @@ A first way to do that is to linearly interpolate between points:</p>
 <img alt="_images/21-09-27 L05_1_1.png" src="_images/21-09-27 L05_1_1.png" />
 </div>
 </div>
-<p>but the results are not great. There exists a better (actual, an optimal) way to reconstruct a function from the sampling but it requires to define some quantities and make some rather general assumptions:</p>
+<p>but the results are not great. There exists a better (actual, an optimal) way to reconstruct a function from the sampling but it requires defining some quantities and making some rather general assumptions:</p>
 <div class="section" id="definitions">
-<h3>definitions:<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h3>
+<h3>Definitions:<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><em>Sampling period/time</em>: <span class="math notranslate nohighlight">\(T\)</span></p></li>
 <li><p><em>Sampling rate/frequency</em>: <span class="math notranslate nohighlight">\(f_s=T^{-1}\)</span></p></li>
@@ -408,10 +408,10 @@ A first way to do that is to linearly interpolate between points:</p>
 </ul>
 </div>
 <div class="section" id="assumptions">
-<h3>assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h3>
+<h3>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h3>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(x_A(t)\)</span> is <span class="math notranslate nohighlight">\(\mathcal{L}^2\)</span>, that is, it has a Fourier Transform</p></li>
-<li><p><span class="math notranslate nohighlight">\(x[n]=x_{A}(nT)\)</span> is <em>BIBO STABLE</em> <span class="math notranslate nohighlight">\(\iff \Gamma_1 \in \text{ROC}\left\{ x(z) \right\}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(x[n]=x_{A}(nT)\)</span> is <em>BIBO STABLE</em> <span class="math notranslate nohighlight">\(\implies \Gamma_1 \in \text{ROC}\left\{ x(z) \right\}\)</span></p></li>
 </ol>
 <p>Let’s start by writing the sampled signal in terms of the Fourier transform of the analog signal:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -424,7 +424,7 @@ x_{s}[n] = x_A(nT)
 &amp;= \frac{1}{2\pi} \int_{-\frac{\pi}{T}}^{\frac{\pi}{T}} \sum_{k=-\infty}^{+\infty} \tilde{x}_A\left(\omega'+\frac{2\pi}{T}k\right)e^{-i\omega' Tn} d\omega'
 \end{align*}\]</div>
 <p>At the same time, the sequence <span class="math notranslate nohighlight">\(x_s[n]\)</span> can be expressed via the inverse z-transform around <span class="math notranslate nohighlight">\(\Gamma_1\)</span> clockwise:</p>
-<p><img alt="Circonference Gamma 1 travelled clockwise" src="_images/21-09-27_Gamma1_clockwise.jpeg" /></p>
+<p><img alt="Circonference Gamma 1 travelled clockwise" src="_images/21-09-27_Gamma1_clockwise.jpg" /></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 x_{s}[n] &amp;= \frac{1}{2\pi i} \oint_{\Gamma \in ROC} x_s(z) z^{n-1} \qquad z=e^{-i\omega t} \qquad dz=(-iT)e^{-i\omega T}\\
@@ -436,7 +436,7 @@ x_{s}[n] &amp;= \frac{1}{2\pi i} \oint_{\Gamma \in ROC} x_s(z) z^{n-1} \qquad z=
 <p class="admonition-title">Nyquist-Shannon precursor theorem</p>
 <p><span class="math notranslate nohighlight">\(T x_s\left(z=e^{-i\omega T}\right) = \sum_{k} \tilde{x}_A\left( \omega+\frac{2\pi}{T}k\right)\)</span> with <span class="math notranslate nohighlight">\(\omega\in \left] -\frac{\pi}{T}; \frac{\pi}{T}\right[\)</span></p>
 </div>
-<p><strong>NOTE:</strong> it is possible to notice that both the funtion on the left and the one on the right are periodic with period <span class="math notranslate nohighlight">\(\frac{2\pi}{T}\)</span>. This implies that it is possible to periodically extend the functions outside the Nyquist band and consider any <span class="math notranslate nohighlight">\(\omega\)</span>.</p>
+<!-- **NOTE:** it is possible to notice that both the function on the left and the one on the right are periodic with period $\frac{2\pi}{T}$. This implies that it is possible to periodically extend the functions outside the Nyquist band and consider any $\omega$. -->
 <p>It is now time to make our third assumption:</p>
 <ol class="simple">
 <li><p>Assume <span class="math notranslate nohighlight">\(x_A(t)\)</span> to be <em>band limited</em> on <span class="math notranslate nohighlight">\(\left] -\frac{\pi}{T}; \frac{\pi}{T}\right[\)</span>, that is <span class="math notranslate nohighlight">\(\tilde{x}_A(\omega)=0 \text{ if } \left| \omega\right| \geq \frac{\pi}{T}\)</span>.
@@ -444,15 +444,15 @@ This assumption allows us to unwrap the summation in the precursor theorem:</p><
 </ol>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-\require{cancel}
-T x_s\left(z=e^{-i\omega T}\right) =\tilde{x}_A\left( \omega\right) + \cancelto{0}{ \tilde{x}_A\left( \omega+\frac{2\pi}{T}\right) } +\ ...
+    \require{cancel}
+    T x_s\left(z=e^{-i\omega T}\right) =\tilde{x}_A\left( \omega\right) + \cancelto{0}{ \tilde{x}_A\left( \omega+\frac{2\pi}{T}\right) } +\ ...
 \end{align*}\]</div>
 <p>It is now time to go back to the time domain:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \require{color}
 x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{exploit hypothesis 3.}\\
-&amp;= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{use the previous relation}\\
+&amp;= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{use the precursor theorem}\\
 &amp;= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(e^{-i\omega T}) e^{-i\omega T} d\omega
 = \frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \sum_{n} x_s[n]e^{i\omega n T -i\omega t} d\omega \\
 &amp;= \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega n T -i\omega t} d\omega 
@@ -469,14 +469,14 @@ x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\om
 </div>
 <div class="section" id="aliasing">
 <h2>Aliasing<a class="headerlink" href="#aliasing" title="Permalink to this headline">¶</a></h2>
-<p>Let’s now analyze what happend in the case of <strong>undersampling</strong>, that is, if <span class="math notranslate nohighlight">\(f_S &lt; f_{NY}\)</span>.</p>
+<p>Let’s now analyze what happens in the case of <strong>undersampling</strong>, that is, if <span class="math notranslate nohighlight">\(f_S &lt; f_{NY}\)</span>.</p>
 <div class="section" id="id1">
 <h3>definitions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><em>Reconstructed Signal</em>: <span class="math notranslate nohighlight">\(x_R(t)=\sum_{n} x_s[n] sinc\left[ (nT-t)\frac{\pi}{T}\right]\)</span> with <span class="math notranslate nohighlight">\(x_s[n]=x_A(nT)\)</span></p></li>
 <li><p><em>Folding</em>: <span class="math notranslate nohighlight">\(x_F(\omega)=\sum_{n}\tilde{x}_A\left( \omega+\frac{2\pi}{T}k \right) \implies \tilde{x}_F(\omega)=T X_s(z=e^{-i\omega T})\)</span></p></li>
 <li><p><em>Window on Nyquist band</em>: <span class="math notranslate nohighlight">\(W(\omega)=\theta\left(\omega+\frac{\pi}{T}\right)-\theta\left(\omega-\frac{\pi}{T}\right)\)</span>
-<img alt="Window on Nyquist band " src="_images/21-09-27_window.jpeg" /></p></li>
+<img alt="Window on Nyquist band " src="_images/21-09-27_window.jpg" /></p></li>
 <li><p><em>Alias</em>: <span class="math notranslate nohighlight">\(\tilde{x}_{alias}(\omega)=W(\omega)\tilde{x}_F(\omega)\)</span>.</p></li>
 </ul>
 <p>Properties of the alias function:</p>
@@ -493,7 +493,7 @@ x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\om
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>DO NOT validate the goodness of a reconstruction on the sampled points as they are <em>always</em> reconstructed perfectly:
-$<span class="math notranslate nohighlight">\(\lim_{t\rightarrow nT}sinc\left[(t-nT)\frac{\pi}{T}\right]=1 \implies x_R(t=nT)=x[n]\ \forall n\)</span>$</p>
+<span class="math notranslate nohighlight">\(\lim_{t\rightarrow nT}sinc\left[(t-nT)\frac{\pi}{T}\right]=1 \implies x_R(t=nT)=x[n]\ \forall n\)</span></p>
 </div>
 </div>
 <div class="section" id="exercise">
