@@ -28,13 +28,13 @@
 #     \implies & \tilde{G}_{low pass}(\omega)=\frac{1}{1-i\omega \tau}=\frac{1}{1-i\tau \frac{1-z^2}{z}\frac{1}{2i}} = \frac{2Tz}{2Tz-\tau+\tau z^2} = \tilde{G}(z)=\tilde{V}(z)
 # \end{align*}
 # 
-# ### Case 2: Bilinear Transform $tg\left( \frac{\omega T}{2}\right)$
+# ### Case 2: Bilinear Transform $tan\left( \frac{\omega T}{2}\right)$
 # \begin{align*}
-#     tg\left( \frac{\omega T}{2}\right) &= \frac{e^{i\omega T/2}- e^{-i\omega T/2}}{i\left( e^{i\omega T/2} + e^{i\omega T/2}\right)} = \frac{1}{i} \frac{1-e^{-i\omega T}}{1+e^{i\omega T}} = \frac{1}{i} \frac{z-1}{z+1} = \frac{\omega T}{2}+\mathcal{o}\left( (\omega T)^3 \right) \\
+#     tan\left( \frac{\omega T}{2}\right) &= \frac{e^{i\omega T/2}- e^{-i\omega T/2}}{i\left( e^{i\omega T/2} + e^{i\omega T/2}\right)} = \frac{1}{i} \frac{1-e^{-i\omega T}}{1+e^{i\omega T}} = \frac{1}{i} \frac{z-1}{z+1} = \frac{\omega T}{2}+\mathcal{o}\left( (\omega T)^3 \right) \\
 #     &\implies \omega \simeq \frac{2i}{T}  \frac{z-1}{z+1} +\mathcal{o}\left( (\omega T)^3 \right)
 # \end{align*}
 # 
-# **Note:** any function can be choosen to obtain the approximation but $tg\left(\frac{\omega \pi}{2} \right)$ presents some nice features which will be discussed later.
+# **Note:** any function can be choosen to obtain the approximation but $tan\left(\frac{\omega \pi}{2} \right)$ presents some nice features which will be discussed later.
 # 
 # **Note 2:** $V(z)=\tilde{G}_{\mathcal{F}}\left(\omega=\frac{2i}{T}  \frac{z-1}{z+1}\right) = \tilde{G}_{\mathcal{L}}\left(s=\frac{2}{T}  \frac{z-1}{z+1}\right)$ is expected to be a good approximation of $\tilde{G}_{\mathcal{F}}(\omega)=\tilde{G}_{\mathcal{L}}(s)$ if $\omega T << 1$ i.e. if $T_{SAMP}<< \frac{1}{\text{frequencies of interest}}$.
 # 
@@ -52,7 +52,7 @@
 # As we know that _an analog system is real $\iff\ \tilde{G}^*(\omega)=\tilde{G}(-\omega)$_ we have proven the statement.
 # 
 # ### Causality
-# Causality can be proven but the proof is long nd tedious. Just assume causality a priori with the condition $0\not \in ROC; \infty \subset ROC$.
+# Causality can be proven but the proof is long and tedious. Just assume causality a priori with the condition $0\not \in ROC; \infty \subset ROC$.
 # 
 # ### Bibo Stability
 # **Reminder**: An analog system is bibo stable $\iff \mathcal{Re}\{poles\}<0$.  
@@ -69,8 +69,8 @@
 # &\implies \left| z_0 \right| = 1+\frac{4x_0}{(x_0-1)^2+y_0^2} = 1+\frac{2T\mathcal{Re}\left\{s_0\right\}}{\left(1-\frac{T}{2}\mathcal{Re}\left\{s_0\right\} \right)^2 + \left(\mathcal{Im}\left\{s_0\right\} \right)^2}
 # \end{align*}
 # by imposing $\mathcal{Re}\{poles\}<0$ one obtains $\left| z_0 \right|<0$, that is, all the poles $\subset \Gamma_1$.
-# As all the poles are strictly under $\Gamma_1$ it is possible to find a curve that includes all the polesm is contained in $\Gamma_1$ and encloses $+\infty$. This implies that the system is bibo stable.
-# An other reason for which bilinear is preferred is that it is well-behaved near the boundaries of the Nyquist band:
+# As all the poles are strictly under $\Gamma_1$ it is possible to find a curve that includes all the poles, is contained in $\Gamma_1$, and encloses $+\infty$. This implies that the system is Bibo stable.
+# Another reason for which bilinear is preferred is that it is well-behaved near the boundaries of the Nyquist band:
 # 
 # Assume $N>M$ (this can always be done by renaming eventual derivatives in the transfer function)
 # \begin{align*}

@@ -25,7 +25,7 @@ fig, ax = plt.subplots(1, 2, figsize=(15, 3))
 ax[0].plot(x, ya, label="analog signal")
 ax[0].plot(n, ys, lw=0, marker='.', color='r', label="sampling")
 
-ax[1].plot(n, ys, marker='.', linestyle="--", mfc='r', mec='r', label="reconstruction")
+ax[1].plot(n, ys, marker='.', linestyle="--", mfc='r', mec='r', label="Linear reconstruction")
 
 ax[0].set_xlim(0, 50); ax[1].set_xlim(0, 50);
 ax[0].set_ylim(-2500, 2500); ax[1].set_ylim(-2500, 2500);
@@ -36,17 +36,17 @@ from IPython.display import display, Math, Latex
 display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] \text{ with } T=1.7 \text{ (30 points)}'))
 
 
-# but the results are not great. There exists a better (actual, an optimal) way to reconstruct a function from the sampling but it requires to define some quantities and make some rather general assumptions:
+# but the results are not great. There exists a better (actual, an optimal) way to reconstruct a function from the sampling but it requires defining some quantities and making some rather general assumptions:
 # 
-# ### definitions:
+# ### Definitions:
 # - *Sampling period/time*: $T$
 # - *Sampling rate/frequency*: $f_s=T^{-1}$
 # - *Nyquist frequency*: $F_{NY}= \frac{f_s}{2} \quad \omega_{NY} = 2\pi f_{NY} = \pi f_s = \frac{\pi}{T}$
 # - *Nyquist band:* $]-f_{NY}; f_{NY}[ \quad \iff \quad ]-\frac{\pi}{T}; \frac{\pi}{T}[$
 # 
-# ### assumptions
+# ### Assumptions
 # 1. $x_A(t)$ is $\mathcal{L}^2$, that is, it has a Fourier Transform
-# 2. $x[n]=x_{A}(nT)$ is _BIBO STABLE_ $\iff \Gamma_1 \in \text{ROC}\left\{ x(z) \right\}$
+# 2. $x[n]=x_{A}(nT)$ is _BIBO STABLE_ $\implies \Gamma_1 \in \text{ROC}\left\{ x(z) \right\}$
 # 
 # Let's start by writing the sampled signal in terms of the Fourier transform of the analog signal:
 # 
@@ -61,7 +61,7 @@ display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] 
 # 
 # At the same time, the sequence $x_s[n]$ can be expressed via the inverse z-transform around $\Gamma_1$ clockwise:
 # 
-# ![Circonference Gamma 1 travelled clockwise](images/21-09-27_Gamma1_clockwise.jpeg)
+# ![Circonference Gamma 1 travelled clockwise](images/21-09-27_Gamma1_clockwise.jpg)
 # 
 # \begin{align*}
 # x_{s}[n] &= \frac{1}{2\pi i} \oint_{\Gamma \in ROC} x_s(z) z^{n-1} \qquad z=e^{-i\omega t} \qquad dz=(-iT)e^{-i\omega T}\\
@@ -74,23 +74,25 @@ display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] 
 # $T x_s\left(z=e^{-i\omega T}\right) = \sum_{k} \tilde{x}_A\left( \omega+\frac{2\pi}{T}k\right)$ with $\omega\in \left] -\frac{\pi}{T}; \frac{\pi}{T}\right[$
 # ```
 # 
-# **NOTE:** it is possible to notice that both the funtion on the left and the one on the right are periodic with period $\frac{2\pi}{T}$. This implies that it is possible to periodically extend the functions outside the Nyquist band and consider any $\omega$.
-#   
+# <!-- **NOTE:** it is possible to notice that both the function on the left and the one on the right are periodic with period $\frac{2\pi}{T}$. This implies that it is possible to periodically extend the functions outside the Nyquist band and consider any $\omega$. -->
+# 
 #   
 # It is now time to make our third assumption:
 # 
 # 3. Assume $x_A(t)$ to be _band limited_ on $\left] -\frac{\pi}{T}; \frac{\pi}{T}\right[$, that is $\tilde{x}_A(\omega)=0 \text{ if } \left| \omega\right| \geq \frac{\pi}{T}$.
 # This assumption allows us to unwrap the summation in the precursor theorem:
+# 
 # \begin{align*}
-# \require{cancel}
-# T x_s\left(z=e^{-i\omega T}\right) =\tilde{x}_A\left( \omega\right) + \cancelto{0}{ \tilde{x}_A\left( \omega+\frac{2\pi}{T}\right) } +\ ...
+#     \require{cancel}
+#     T x_s\left(z=e^{-i\omega T}\right) =\tilde{x}_A\left( \omega\right) + \cancelto{0}{ \tilde{x}_A\left( \omega+\frac{2\pi}{T}\right) } +\ ...
 # \end{align*}
+# 
 # 
 # It is now time to go back to the time domain:
 # \begin{align*}
 # \require{color}
 # x_A(t) &= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{exploit hypothesis 3.}\\
-# &= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{use the previous relation}\\
+# &= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{use the precursor theorem}\\
 # &= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(e^{-i\omega T}) e^{-i\omega T} d\omega
 # = \frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \sum_{n} x_s[n]e^{i\omega n T -i\omega t} d\omega \\
 # &= \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega n T -i\omega t} d\omega 
@@ -106,13 +108,13 @@ display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] 
 # The condition $\tilde{x}_A(\omega)=0$ if $\left|\omega\right|\geq \frac{\pi}{T}$ or $\left|f\right|\geq \frac{1}{2T}=f_{NY} \implies \max_f\left\{ \left|f\right|\right\}<\frac{1}{2T}=f_{NY}$.
 # 
 # ## Aliasing
-# Let's now analyze what happend in the case of **undersampling**, that is, if $f_S < f_{NY}$.
+# Let's now analyze what happens in the case of **undersampling**, that is, if $f_S < f_{NY}$.
 # 
 # ### definitions
 # - *Reconstructed Signal*: $x_R(t)=\sum_{n} x_s[n] sinc\left[ (nT-t)\frac{\pi}{T}\right]$ with $x_s[n]=x_A(nT)$
 # - *Folding*: $x_F(\omega)=\sum_{n}\tilde{x}_A\left( \omega+\frac{2\pi}{T}k \right) \implies \tilde{x}_F(\omega)=T X_s(z=e^{-i\omega T})$
 # - *Window on Nyquist band*: $W(\omega)=\theta\left(\omega+\frac{\pi}{T}\right)-\theta\left(\omega-\frac{\pi}{T}\right)$
-# ![Window on Nyquist band ](images/21-09-27_window.jpeg)
+# ![Window on Nyquist band ](images/21-09-27_window.jpg)
 # 
 # - *Alias*: $\tilde{x}_{alias}(\omega)=W(\omega)\tilde{x}_F(\omega)$.
 # 
@@ -129,7 +131,7 @@ display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] 
 # 
 # ```{warning}
 # DO NOT validate the goodness of a reconstruction on the sampled points as they are _always_ reconstructed perfectly:
-# $$\lim_{t\rightarrow nT}sinc\left[(t-nT)\frac{\pi}{T}\right]=1 \implies x_R(t=nT)=x[n]\ \forall n$$
+# $\lim_{t\rightarrow nT}sinc\left[(t-nT)\frac{\pi}{T}\right]=1 \implies x_R(t=nT)=x[n]\ \forall n$
 # ```
 
 # ### Exercise

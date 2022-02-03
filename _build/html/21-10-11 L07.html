@@ -326,10 +326,10 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#case-2-bilinear-transform-tg-left-frac-omega-t-2-right">
+    <a class="reference internal nav-link" href="#case-2-bilinear-transform-tan-left-frac-omega-t-2-right">
      Case 2: Bilinear Transform
      <span class="math notranslate nohighlight">
-      \(tg\left( \frac{\omega T}{2}\right)\)
+      \(tan\left( \frac{\omega T}{2}\right)\)
      </span>
     </a>
    </li>
@@ -399,14 +399,14 @@ sin(\omega t) = \omega t - \frac{(\omega T)^3}{6}+\mathcal{o}\left( (\omega T)^3
     \implies &amp; \tilde{G}_{low pass}(\omega)=\frac{1}{1-i\omega \tau}=\frac{1}{1-i\tau \frac{1-z^2}{z}\frac{1}{2i}} = \frac{2Tz}{2Tz-\tau+\tau z^2} = \tilde{G}(z)=\tilde{V}(z)
 \end{align*}\]</div>
 </div>
-<div class="section" id="case-2-bilinear-transform-tg-left-frac-omega-t-2-right">
-<h3>Case 2: Bilinear Transform <span class="math notranslate nohighlight">\(tg\left( \frac{\omega T}{2}\right)\)</span><a class="headerlink" href="#case-2-bilinear-transform-tg-left-frac-omega-t-2-right" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="case-2-bilinear-transform-tan-left-frac-omega-t-2-right">
+<h3>Case 2: Bilinear Transform <span class="math notranslate nohighlight">\(tan\left( \frac{\omega T}{2}\right)\)</span><a class="headerlink" href="#case-2-bilinear-transform-tan-left-frac-omega-t-2-right" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    tg\left( \frac{\omega T}{2}\right) &amp;= \frac{e^{i\omega T/2}- e^{-i\omega T/2}}{i\left( e^{i\omega T/2} + e^{i\omega T/2}\right)} = \frac{1}{i} \frac{1-e^{-i\omega T}}{1+e^{i\omega T}} = \frac{1}{i} \frac{z-1}{z+1} = \frac{\omega T}{2}+\mathcal{o}\left( (\omega T)^3 \right) \\
+    tan\left( \frac{\omega T}{2}\right) &amp;= \frac{e^{i\omega T/2}- e^{-i\omega T/2}}{i\left( e^{i\omega T/2} + e^{i\omega T/2}\right)} = \frac{1}{i} \frac{1-e^{-i\omega T}}{1+e^{i\omega T}} = \frac{1}{i} \frac{z-1}{z+1} = \frac{\omega T}{2}+\mathcal{o}\left( (\omega T)^3 \right) \\
     &amp;\implies \omega \simeq \frac{2i}{T}  \frac{z-1}{z+1} +\mathcal{o}\left( (\omega T)^3 \right)
 \end{align*}\]</div>
-<p><strong>Note:</strong> any function can be choosen to obtain the approximation but <span class="math notranslate nohighlight">\(tg\left(\frac{\omega \pi}{2} \right)\)</span> presents some nice features which will be discussed later.</p>
+<p><strong>Note:</strong> any function can be choosen to obtain the approximation but <span class="math notranslate nohighlight">\(tan\left(\frac{\omega \pi}{2} \right)\)</span> presents some nice features which will be discussed later.</p>
 <p><strong>Note 2:</strong> <span class="math notranslate nohighlight">\(V(z)=\tilde{G}_{\mathcal{F}}\left(\omega=\frac{2i}{T}  \frac{z-1}{z+1}\right) = \tilde{G}_{\mathcal{L}}\left(s=\frac{2}{T}  \frac{z-1}{z+1}\right)\)</span> is expected to be a good approximation of <span class="math notranslate nohighlight">\(\tilde{G}_{\mathcal{F}}(\omega)=\tilde{G}_{\mathcal{L}}(s)\)</span> if <span class="math notranslate nohighlight">\(\omega T &lt;&lt; 1\)</span> i.e. if <span class="math notranslate nohighlight">\(T_{SAMP}&lt;&lt; \frac{1}{\text{frequencies of interest}}\)</span>.</p>
 </div>
 </div>
@@ -428,7 +428,7 @@ V(z)= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k}{\sum
 </div>
 <div class="section" id="causality">
 <h3>Causality<a class="headerlink" href="#causality" title="Permalink to this headline">¶</a></h3>
-<p>Causality can be proven but the proof is long nd tedious. Just assume causality a priori with the condition <span class="math notranslate nohighlight">\(0\not \in ROC; \infty \subset ROC\)</span>.</p>
+<p>Causality can be proven but the proof is long and tedious. Just assume causality a priori with the condition <span class="math notranslate nohighlight">\(0\not \in ROC; \infty \subset ROC\)</span>.</p>
 </div>
 <div class="section" id="bibo-stability">
 <h3>Bibo Stability<a class="headerlink" href="#bibo-stability" title="Permalink to this headline">¶</a></h3>
@@ -448,8 +448,8 @@ s &amp;= \frac{2}{T} \frac{z-1}{z+1} \rightarrow z=\frac{1+sT/2}{1-sT/2} = \frac
 &amp;\implies \left| z_0 \right| = 1+\frac{4x_0}{(x_0-1)^2+y_0^2} = 1+\frac{2T\mathcal{Re}\left\{s_0\right\}}{\left(1-\frac{T}{2}\mathcal{Re}\left\{s_0\right\} \right)^2 + \left(\mathcal{Im}\left\{s_0\right\} \right)^2}
 \end{align*}\]</div>
 <p>by imposing <span class="math notranslate nohighlight">\(\mathcal{Re}\{poles\}&lt;0\)</span> one obtains <span class="math notranslate nohighlight">\(\left| z_0 \right|&lt;0\)</span>, that is, all the poles <span class="math notranslate nohighlight">\(\subset \Gamma_1\)</span>.
-As all the poles are strictly under <span class="math notranslate nohighlight">\(\Gamma_1\)</span> it is possible to find a curve that includes all the polesm is contained in <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and encloses <span class="math notranslate nohighlight">\(+\infty\)</span>. This implies that the system is bibo stable.
-An other reason for which bilinear is preferred is that it is well-behaved near the boundaries of the Nyquist band:</p>
+As all the poles are strictly under <span class="math notranslate nohighlight">\(\Gamma_1\)</span> it is possible to find a curve that includes all the poles, is contained in <span class="math notranslate nohighlight">\(\Gamma_1\)</span>, and encloses <span class="math notranslate nohighlight">\(+\infty\)</span>. This implies that the system is Bibo stable.
+Another reason for which bilinear is preferred is that it is well-behaved near the boundaries of the Nyquist band:</p>
 <p>Assume <span class="math notranslate nohighlight">\(N&gt;M\)</span> (this can always be done by renaming eventual derivatives in the transfer function)</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}

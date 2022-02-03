@@ -343,6 +343,13 @@
      </span>
      band limited
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#properties">
+       Properties:
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples">
@@ -362,8 +369,8 @@
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#backward-intepretation-of-the-simulation-theorem">
-     Backward intepretation of the simulation theorem
+    <a class="reference internal nav-link" href="#backward-interpretation-of-the-simulation-theorem">
+     Backward interpretation of the simulation theorem
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
@@ -390,8 +397,8 @@
 <h1>Lecture 06 - 04 October 2021<a class="headerlink" href="#lecture-06-04-october-2021" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="simulation-of-an-analog-system-by-means-of-a-digital-one">
 <h2>Simulation of an analog system by means of a digital one<a class="headerlink" href="#simulation-of-an-analog-system-by-means-of-a-digital-one" title="Permalink to this headline">¶</a></h2>
-<p>This lecture focuses on the topic of “Simulation of an analog system by means of a digital one”.</p>
-<p><img alt="Simulation of an analog system by means of a digital one" src="_images/21-10-04_simulation.jpeg" /></p>
+<p>An interesting question is whether an analog system can be simulated by a digital one. The question is not as trivial as it sounds because a digital system deals only with discrete samples. A first intuition is that “as Nyquist-Shannon allows to perfectly reconstruct a signal from its samples all the information about the system must be contained in the samples and performing operations on them should be sufficient”. More formally:</p>
+<p><img alt="Simulation of an analog system by means of a digital one" src="_images/21-10-04_simulation.png" /></p>
 <p>Does such <span class="math notranslate nohighlight">\(h[n] : y'[n]=\sum_{k}h[n-k]x_s[k]\)</span> exists? And, if so, how is it possible to find it? Let’s start with the function <span class="math notranslate nohighlight">\(y'[n]=\sum_{k}h[n-k]x_s[k]\)</span> and make some assumptions:</p>
 <div class="section" id="a-both-x-a-t-g-t-in-mathcal-l-2">
 <h3>1a) Both <span class="math notranslate nohighlight">\(x_A(t), G(t) \in \mathcal{L}^2\)</span>.<a class="headerlink" href="#a-both-x-a-t-g-t-in-mathcal-l-2" title="Permalink to this headline">¶</a></h3>
@@ -407,7 +414,7 @@ y'[n]=\sum_k h[n-k]x_A(kT)= \sum_k h[n-k] \frac{1}{2\pi}\int_{-\infty}^{+\infty}
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 y'[n] &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega) \sum_k h[n-k] e^{i\omega (n-k) T} e^{-i\omega n T} d\omega \qquad \text{define } z=e^{-i\omega T} \quad m=n-k\\
-&amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \sum_k h[n-k] z^{-m} e^{-i\omega n T} \tilde{x}_A(\omega) d\omega \\
+&amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \sum_m h[m] z^{-m} e^{-i\omega n T} \tilde{x}_A(\omega) d\omega \\
 &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} H\left( z=e^{-i\omega Tn}\right) \tilde{x}_A(\omega) d\omega 
 \end{align*}\]</div>
 <p>where the condition <span class="math notranslate nohighlight">\(z=e^{-i\omega T}\)</span> was introduced to obtain the z-transform in conjunction with the condition <span class="math notranslate nohighlight">\(z\in \Gamma_1 \subset ROC\)</span> and the BIBO stability of the system.</p>
@@ -435,12 +442,14 @@ h[n] &amp;=\frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} H(z)z^{n-1}dz \q
 &amp;= -\frac{1}{2\pi i} \int_{-\frac{\pi}{T}}^{\frac{\pi}{T}} H(z=e^{-i\omega T})\left(e^{-i\omega T}\right)^{n-1} e^{-i\omega T} (-iT)d\omega\\
 &amp;= \frac{T}{2\pi} \int_{-\frac{\pi}{T}}^{\frac{\pi}{T}} e^{-i\omega nT}\tilde{G}(\omega) d\omega
 \end{align*}\]</div>
-<p><strong>properties</strong></p>
+<div class="section" id="properties">
+<h4>Properties:<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h4>
 <ol class="simple">
 <li><p><span class="math notranslate nohighlight">\(G(t)\in\mathcal{R} \iff h[n]\in\mathcal{R}\)</span>, proof by substitution.</p></li>
-<li><p>BIBO STABILITY: must be checked on occurence but it’s generally true</p></li>
+<li><p>BIBO STABILITY: must be checked on occurrence but it’s generally true</p></li>
 <li><p>CAUSALITY IS NOT CONSERVED</p></li>
 </ol>
+</div>
 </div>
 <div class="section" id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
@@ -452,7 +461,7 @@ h[n] &amp;=\frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} H(z)z^{n-1}dz \q
 h[n]=\frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{\frac{\pi}{T}}e^{-i\omega nT}\frac{1}{1-i\omega \tau} d\omega \xrightarrow[\text{Perfect sampling}]{T\rightarrow 0} \frac{T}{2\pi}\int_{-\infty}^{\infty}\frac{e^{-i\omega nT}}{1-i\omega \tau} d\omega = \frac{\theta(t)}{\tau}e^{-t/\tau}
 \end{align*}\]</div>
 <p>but if <span class="math notranslate nohighlight">\(T\not \rightarrow 0\)</span> there is NO WAY to compute the integral.
-<img alt="Not standard integral" src="_images/21-10-04_not_standard_integral.jpeg" /></p>
+<img alt="Not standard integral" src="_images/21-10-04_not_standard_integral.png" /></p>
 </div>
 <div class="section" id="the-differentiator">
 <h4>The differentiator<a class="headerlink" href="#the-differentiator" title="Permalink to this headline">¶</a></h4>
@@ -468,22 +477,22 @@ h[n]&amp;=\frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{\frac{\pi}{T}}(-i\omega \tau)e^{-
 \end{align*}\]</div>
 </div>
 </div>
-<div class="section" id="backward-intepretation-of-the-simulation-theorem">
-<h3>Backward intepretation of the simulation theorem<a class="headerlink" href="#backward-intepretation-of-the-simulation-theorem" title="Permalink to this headline">¶</a></h3>
-<p>The one used above was the straightforward interpretation of the theorem. To overcome some of the problems it is possible to consider a <strong>backward intepretation of the simulation theorem</strong>, that is, the requirement are relaxed to <span class="math notranslate nohighlight">\(y'[n]\sime y[n]\)</span> so that <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=H(z=e^{-i\omega T}) + o(\omega^n)\)</span> in <span class="math notranslate nohighlight">\(\left[ -\frac{\pi}{T}; \frac{\pi}{T} \right]\)</span>.</p>
+<div class="section" id="backward-interpretation-of-the-simulation-theorem">
+<h3>Backward interpretation of the simulation theorem<a class="headerlink" href="#backward-interpretation-of-the-simulation-theorem" title="Permalink to this headline">¶</a></h3>
+<p>The one used above was the straightforward interpretation of the theorem. To overcome some of the problems it is possible to consider a <strong>backward intepretation of the simulation theorem</strong>, that is, the requirement are relaxed to <span class="math notranslate nohighlight">\(y'[n]\simeq y[n]\)</span> so that <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=H(z=e^{-i\omega T}) + o(\omega^n)\)</span> in <span class="math notranslate nohighlight">\(\left[ -\frac{\pi}{T}; \frac{\pi}{T} \right]\)</span>.</p>
 <div class="section" id="e-g-the-differentiator-again">
 <h4>e.g. The differentiator (again)<a class="headerlink" href="#e-g-the-differentiator-again" title="Permalink to this headline">¶</a></h4>
 <p>Let’s take the approximate transfer function (which is given/found by an intuition): <span class="math notranslate nohighlight">\(V[n]=\delta[n]-\delta[n-1]\)</span> with z-transform <span class="math notranslate nohighlight">\(V(z)=1 - \frac{1}{z}\)</span>. By taking the limit <span class="math notranslate nohighlight">\(\omega T &lt;&lt; 1\)</span>, it is possible to write:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \tilde{G}(\omega)=V(z=e^{-i\omega T})=1-e^{i\omega T} \xrightarrow[]{\omega T \rightarrow0}
- -i\omega T + \mathcal{o}\left( (\omega T)^2 \right)\end{align*}\]</div>
-<p>\end{align*}</p>
-<p>It is even possible to improve the accuracy by introduciong new terms:</p>
+ -i\omega T + \mathcal{o}\left( (\omega T)^2 \right)
+\end{align*}\]</div>
+<p>It is even possible to improve the accuracy by introducing new terms:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 V[n]&amp;= \alpha \delta[n]+\beta \delta[n-1]+\gamma\delta[n-2] \implies V(z)=\alpha+\frac{\beta}{z}+\frac{\gamma}{z^2}\\
-\tilde{V}(\omega)&amp;=V(z=e^{-i\omega T}) = \alpha + \beta e^{i\omega T} + \gamma e^{2i\omegaT} \\
+\tilde{V}(\omega)&amp;=V(z=e^{-i\omega T}) = \alpha + \beta e^{i\omega T} + \gamma e^{2i\omega T} \\
 &amp;=\alpha+\beta+\gamma + (\beta+2\gamma)i\omega T + (\beta+4\gamma)(i\omega T)^2 + \mathcal{o}\left( (\omega T)^3 \right)
 \end{align*}\]</div>
 <p>By comparing the approximated solution with the analitic one <span class="math notranslate nohighlight">\(-i\omega T\)</span> it is possible to write a system of equations and solve it:</p>
@@ -499,8 +508,7 @@ V[n]&amp;= \alpha \delta[n]+\beta \delta[n-1]+\gamma\delta[n-2] \implies V(z)=\a
         \gamma=\frac{1}{2}
     \end{cases}
 \end{align*}\]</div>
-<p><img alt="" src="_images/21-10-04_differentiator.jpeg" /></p>
-<p><img alt="" src="_images/21-10-04_differentiator_improved.jpeg" /></p>
+<p><img alt="" src="_images/21-10-04_differentiator.png" /></p>
 </div>
 </div>
 </div>
