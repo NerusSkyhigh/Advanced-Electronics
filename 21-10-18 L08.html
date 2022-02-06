@@ -178,12 +178,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-12%20LC04.html">
-   Implementation of a stopwatch with LCD display
+   Implementation of a stopwatch with LCD
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-14%20LC05.html">
-   Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
+   DAC and ADC
   </a>
  </li>
  <li class="toctree-l1">
@@ -321,16 +321,21 @@
     <a class="reference internal nav-link" href="#properties">
      Properties:
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i">
-       e.g. Filter at
-       <span class="math notranslate nohighlight">
-        \(f_0\frac{1}{4T}\rightarrow z_0 = \pm i\)
-       </span>
-      </a>
-     </li>
-    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hz-filter">
+   50 Hz filter
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i">
+     e.g. Filter at
+     <span class="math notranslate nohighlight">
+      \(f_0\frac{1}{4T}\rightarrow z_0 = \pm i\)
+     </span>
+    </a>
    </li>
   </ul>
  </li>
@@ -347,7 +352,7 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="lecture-08-18-october-2021">
 <h1>Lecture 08 - 18 October 2021<a class="headerlink" href="#lecture-08-18-october-2021" title="Permalink to this headline">¶</a></h1>
-<p>This lecture will be focusses on more examples and applications of the simulation theorem.</p>
+<p>This lecture will be focused on more examples and applications of the simulation theorem.</p>
 <div class="section" id="low-pass-filter-again">
 <h2>Low pass filter (again)<a class="headerlink" href="#low-pass-filter-again" title="Permalink to this headline">¶</a></h2>
 <div class="amsmath math notranslate nohighlight">
@@ -360,8 +365,10 @@
 <ol class="simple">
 <li><p><strong>Check reality</strong>: as easy as checking <span class="math notranslate nohighlight">\(V^*(z^*)=V(z)\)</span></p></li>
 <li><p><strong>Check causality</strong>: <span class="math notranslate nohighlight">\(\left( 0\not \in ROC; \infty\in ROC \right)\)</span><br />
-The pole is in <span class="math notranslate nohighlight">\(\tilde{z}=c=\frac{1-T/2\tau}{1+T/2\tau}\simeq1-\epsilon\)</span> which is inside <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and one can always find a path <span class="math notranslate nohighlight">\(\Gamma\)</span> such that <span class="math notranslate nohighlight">\(\tilde{z}\ um\ \Gamma \subset \Gamma_1\)</span>.
-<img alt="Poles inside Gamma 1" src="_images/21-10-18_ROC.jpeg" /></p></li>
+The pole is in <span class="math notranslate nohighlight">\(\tilde{z}=c=\frac{1-T/2\tau}{1+T/2\tau}\simeq1-\epsilon\)</span> which is inside <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and one can always find a path <span class="math notranslate nohighlight">\(\Gamma\)</span> such that <span class="math notranslate nohighlight">\(\tilde{z}\ um\ \Gamma \subset \Gamma_1\)</span>.</p></li>
+</ol>
+<p><img alt="Poles inside Gamma 1" src="_images/21-10-18_ROC.png" /></p>
+<ol class="simple">
 <li><p><strong>Bibo stability</strong>: checked in the same way as causality</p></li>
 <li><p>Behaviour at <span class="math notranslate nohighlight">\(\omega=\pm \frac{\pi}{T}\)</span>: fine due to backwrds interpretation of the simulation theorem.</p></li>
 </ol>
@@ -396,7 +403,11 @@ G_{3dB} &amp;= 20Log_{10}\left( \tilde{H}(\omega)\right)\\
 <div class="highlight-Verilog notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="n">k</span><span class="p">)</span><span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">+</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mh">1</span><span class="p">])</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mh">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Let’s suppose a <span class="math notranslate nohighlight">\(50 Hz\)</span> filter is needed. Instead of using the simulation theorem applied to a <em>notch filter</em> it is possible to obtainan an equivalent relation working by steps. First a zero at <span class="math notranslate nohighlight">\(50 Hz\)</span> is needed. But a single zero is not sufficient because reality requires <span class="math notranslate nohighlight">\(V^*(z^*)=V(z)\)</span>. Then at least two more poles are necessaries to assure convergence but a pole at precisely <span class="math notranslate nohighlight">\(50 Hz\)</span> violates causality as it lies on <span class="math notranslate nohighlight">\(\Gamma_1\)</span>. The solution to this problem is to consider an arbitrarly close point in the following way:</p>
+</div>
+</div>
+<div class="section" id="hz-filter">
+<h2>50 Hz filter<a class="headerlink" href="#hz-filter" title="Permalink to this headline">¶</a></h2>
+<p>Let’s suppose a <span class="math notranslate nohighlight">\(50 Hz\)</span> filter is needed. Instead of using the simulation theorem applied to a <em>notch filter</em> it is possible to obtain an equivalent relation working by steps. First a zero at <span class="math notranslate nohighlight">\(50 Hz\)</span> is needed. But a single zero is not sufficient because reality requires <span class="math notranslate nohighlight">\(V^*(z^*)=V(z)\)</span>. Then at least two more poles are necessaries to assure convergence but a pole at precisely <span class="math notranslate nohighlight">\(50 Hz\)</span> violates causality as it lies on <span class="math notranslate nohighlight">\(\Gamma_1\)</span>. The solution to this problem is to consider an arbitrarily close point in the following way:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \require{color}
@@ -410,7 +421,7 @@ V(z) = \frac{\textcolor[rgb]{1.00,0.00,0.00}{(z-z_0)} \textcolor[rgb]{0.00,0.00,
 </ul>
 <p>!()[images/21-10-18_Notch_Filter.jpeg]</p>
 <div class="section" id="e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i">
-<h4>e.g. Filter at <span class="math notranslate nohighlight">\(f_0\frac{1}{4T}\rightarrow z_0 = \pm i\)</span><a class="headerlink" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i" title="Permalink to this headline">¶</a></h4>
+<h3>e.g. Filter at <span class="math notranslate nohighlight">\(f_0\frac{1}{4T}\rightarrow z_0 = \pm i\)</span><a class="headerlink" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 V(z) &amp;=\frac{(z-i)(z+i)}{(z-ci)(z+ci)} = \frac{z^2+1}{z^2-c^2} = \frac{e^{-2i\omega T}+1}{e^{-2i\omega T}+c^2}\\
@@ -456,7 +467,6 @@ V(z) &amp;=\frac{(z-i)(z+i)}{(z-ci)(z+ci)} = \frac{z^2+1}{z^2-c^2} = \frac{e^{-2
 </div>
 <div class="cell_output docutils container">
 <img alt="_images/21-10-18 L08_1_0.png" src="_images/21-10-18 L08_1_0.png" />
-</div>
 </div>
 </div>
 </div>

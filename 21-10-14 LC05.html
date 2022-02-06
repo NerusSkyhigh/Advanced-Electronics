@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real. &#8212; Notes of Advanced Electronics</title>
+    <title>DAC and ADC &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Waveform generation" href="21-11-09%20LC06.html" />
-    <link rel="prev" title="Implementation of a stopwatch with LCD display" href="21-10-12%20LC04.html" />
+    <link rel="prev" title="Implementation of a stopwatch with LCD" href="21-10-12%20LC04.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -178,12 +178,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-12%20LC04.html">
-   Implementation of a stopwatch with LCD display
+   Implementation of a stopwatch with LCD
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
+   DAC and ADC
   </a>
  </li>
  <li class="toctree-l1">
@@ -313,8 +313,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#laboratory-class-05-14-october-2021">
-   Laboratory Class 05 - 14 October 2021
+  <a class="reference internal nav-link" href="#laboratory-class-05-14-october-2021-driving-the-dacs-and-the-adcs-hosted-on-the-development-board-nyquistshannon-sampling-theorem-made-real">
+   Laboratory Class 05 - 14 October 2021 - Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -355,10 +355,10 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="driving-the-dacs-and-the-adcs-hosted-on-the-development-board-nyquistshannon-sampling-theorem-made-real">
-<h1>Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.<a class="headerlink" href="#driving-the-dacs-and-the-adcs-hosted-on-the-development-board-nyquistshannon-sampling-theorem-made-real" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="laboratory-class-05-14-october-2021">
-<h2>Laboratory Class 05 - 14 October 2021<a class="headerlink" href="#laboratory-class-05-14-october-2021" title="Permalink to this headline">¶</a></h2>
+  <div class="tex2jax_ignore mathjax_ignore section" id="dac-and-adc">
+<h1>DAC and ADC<a class="headerlink" href="#dac-and-adc" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="laboratory-class-05-14-october-2021-driving-the-dacs-and-the-adcs-hosted-on-the-development-board-nyquistshannon-sampling-theorem-made-real">
+<h2>Laboratory Class 05 - 14 October 2021 - Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.<a class="headerlink" href="#laboratory-class-05-14-october-2021-driving-the-dacs-and-the-adcs-hosted-on-the-development-board-nyquistshannon-sampling-theorem-made-real" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="topics">
 <h3>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -395,11 +395,18 @@ Take time to read through top comments. There are some interesting advices!</p>
 </div>
 <div class="section" id="adc-and-dac">
 <h2>ADC and DAC<a class="headerlink" href="#adc-and-dac" title="Permalink to this headline">¶</a></h2>
-<p>They both work in a similar way: the first tries to approximate the analog signal with a counter. Usually it works in <em>bipolar</em> coordinates with <span class="math notranslate nohighlight">\(3.3V\)</span> standard and output a number according to the formula:
-$<span class="math notranslate nohighlight">\(V_{D} = \frac{V_{A}-1.65V}{3.3V}2^{n}\)</span><span class="math notranslate nohighlight">\(
-where \)</span>n<span class="math notranslate nohighlight">\( is the number of bits in the ADC.
-DAC will instead output a signal encoded as _unipolar_ coordinates where, assuming a \)</span>3.3V<span class="math notranslate nohighlight">\( standard, \)</span>1.65V<span class="math notranslate nohighlight">\( represent the zero and the output is given by:
-\)</span><span class="math notranslate nohighlight">\( V_{A}=\frac{\mathcal{bits}(V_{D})}{2^{n}}3.3V\)</span>$.</p>
+<p><img alt="" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Conversion_AD_DA.png" />
+They both work in a similar way: the first tries to approximate the analog signal with a counter. Usually it works in <em>bipolar</em> coordinates with <span class="math notranslate nohighlight">\(3.3V\)</span> standard and output a number according to the formula:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+V_{D} = \frac{V_{A}-1.65V}{3.3V}2^{n}
+\end{align*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the number of bits in the ADC.
+DAC will instead output a signal encoded as <em>unipolar</em> coordinates where, assuming a <span class="math notranslate nohighlight">\(3.3V\)</span> standard, <span class="math notranslate nohighlight">\(1.65V\)</span> represent the zero and the output is given by:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    V_{A}=\frac{\mathcal{bits}(V_{D})}{2^{n}} 3.3V
+\end{align*}\]</div>
 <p>It is possible to pass back and forth between <em>unipolar</em> and <em>bipolar</em> coordinates by negating the first bit.</p>
 </div>
 <div class="section" id="evaluation-of-the-nyquist-frequency">
@@ -437,7 +444,7 @@ DAC will instead output a signal encoded as _unipolar_ coordinates where, assumi
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Implementation of a stopwatch with LCD display</p>
+            <p class="prev-next-title">Implementation of a stopwatch with LCD</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-11-09%20LC06.html" title="next page">

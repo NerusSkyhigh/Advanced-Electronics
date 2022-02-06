@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Markdown Files" href="markdown.html" />
-    <link rel="prev" title="Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real." href="21-10-14%20LC05.html" />
+    <link rel="prev" title="DAC and ADC" href="21-10-14%20LC05.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -176,12 +176,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-12%20LC04.html">
-   Implementation of a stopwatch with LCD display
+   Implementation of a stopwatch with LCD
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-14%20LC05.html">
-   Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
+   DAC and ADC
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -360,8 +360,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#tringular-waveform">
-     Tringular Waveform
+    <a class="reference internal nav-link" href="#triangular-waveform">
+     Triangular Waveform
     </a>
    </li>
   </ul>
@@ -408,11 +408,21 @@
 <h2>Shift Registers<a class="headerlink" href="#shift-registers" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-from-wikipedia-https-en-wikipedia-org-wiki-shift-register admonition">
 <p class="admonition-title">from <a class="reference external" href="https://en.wikipedia.org/wiki/Shift_register">wikipedia</a></p>
-<p>A shift register is a type of digital circuit using a cascade of flip-flops where the output of one flip-flop is connected to the input of the next. They share a single clock signal, which causes the data stored in the system to shift from one location to the next. By connecting the last flip-flop back to the first, the data can cycle within the shifters for extended periods, and in this form they were used as a form of computer memory.</p>
+<p>A shift register is a type of digital circuit using a cascade of flip-flops where the output of one flip-flop is connected to the input of the next. They share a single clock signal, which causes the data stored in the system to shift from one location to the next. By connecting the last flip-flop back to the first, the data can cycle within the shifters for extended periods, and in this form, they were used as a form of computer memory.</p>
 </div>
 <div class="section" id="pseudorandom-noise-generator">
 <h3>Pseudorandom noise generator<a class="headerlink" href="#pseudorandom-noise-generator" title="Permalink to this headline">¶</a></h3>
-<p>An interesting application of shift register is pseudorandom noise generator. I’ll probably update this section later, but for now you can start from the <a class="reference external" href="https://en.wikipedia.org/wiki/Xorshift">xorshift</a> method.</p>
+<p>An interesting application of shift register is a pseudorandom noise generator. A 31–bit pseudorandom number generator can be generated in the following way:</p>
+<ul class="simple">
+<li><p>Implement a 31–bit shift register (SR),</p></li>
+<li><p>Feed–back the serial input (i.e. the 0th bit) with the XOR of the 30th and the 27th bit,</p></li>
+<li><p>Connecting eight randomly selected flip–flop outputs to the eight LEDs;</p></li>
+</ul>
+<p>The mathematics of this algorithm is beyond the scope of the course. As usual, <a class="reference external" href="https://en.wikipedia.org/wiki/Xorshift">wikipedia</a> is a good starting point if you want to dive into the topic. Two remarks are due:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">31'b0</span></code> is a trivial point that will generate only a static sequence of zeros</p></li>
+<li><p>The XOR algorithm is not cryptographically secure. DO NOT try to use it when security is a concern. There are faster and better algorithms in that case.</p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="waveforms">
@@ -430,9 +440,9 @@
 <h3>Sawtooth Waveform<a class="headerlink" href="#sawtooth-waveform" title="Permalink to this headline">¶</a></h3>
 <p>This is an easy one. It is just a matter of implementing a counter and passing the output of the counter to a DAC.</p>
 </div>
-<div class="section" id="tringular-waveform">
-<h3>Tringular Waveform<a class="headerlink" href="#tringular-waveform" title="Permalink to this headline">¶</a></h3>
-<p>A triangular waveform composed of two opposite sawtooth wf one near the other. The descending ramp can easily be implemnted by taking the negation of the counter’s output, in this way a single positive counter will handle all the counting.</p>
+<div class="section" id="triangular-waveform">
+<h3>Triangular Waveform<a class="headerlink" href="#triangular-waveform" title="Permalink to this headline">¶</a></h3>
+<p>A triangular waveform is composed of two opposite sawtooth waveforms one near the other. The descending ramp can easily be implemented by taking the negation of the counter’s output, in this way a single positive counter will handle all the counting.</p>
 </div>
 </div>
 </div>
@@ -466,7 +476,7 @@
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.</p>
+            <p class="prev-next-title">DAC and ADC</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="markdown.html" title="next page">

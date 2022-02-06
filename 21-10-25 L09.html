@@ -178,12 +178,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-12%20LC04.html">
-   Implementation of a stopwatch with LCD display
+   Implementation of a stopwatch with LCD
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-14%20LC05.html">
-   Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
+   DAC and ADC
   </a>
  </li>
  <li class="toctree-l1">
@@ -363,6 +363,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#example">
+   Example
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -391,7 +396,7 @@
     f(t)=\sum_{k} a_k e^{-i\omega_k t} \qquad \omega_k=\frac{2\pi}{T}k \qquad \text{Fourier Series}\\
     a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt \qquad \qquad \text{Fourier Coefficients}\\
 \end{align*}\]</div>
-<p>The fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and repeat them.</p>
+<p>The Fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and repeat them.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -442,7 +447,7 @@
 </div>
 <div class="section" id="discrete-fourier-transform">
 <h2>Discrete Fourier Transform<a class="headerlink" href="#discrete-fourier-transform" title="Permalink to this headline">¶</a></h2>
-<p>The <em>discrete Fourier Transform</em> (DFT) is the discrete version of the Fourier Transform that does <em>not</em> require the computation of integrals. The <em>fast Fourier Transform</em> (FFT) is a faster way (<span class="math notranslate nohighlight">\(\mathcal{O}(Nlog(N))\)</span> instead of <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>) to compute the DFT with some minor additional contraints. Let’s walk through the DFT:</p>
+<p>The <em>discrete Fourier Transform</em> (DFT) is the discrete version of the Fourier Transform that does <em>not</em> require the computation of integrals. The <em>fast Fourier Transform</em> (FFT) is a faster way (<span class="math notranslate nohighlight">\(\mathcal{O}(Nlog(N))\)</span> instead of <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>) to compute the DFT with some minor additional constraints. Let’s walk through the DFT:</p>
 <div class="admonition-assumption admonition">
 <p class="admonition-title">Assumption</p>
 <p>Assume a function <span class="math notranslate nohighlight">\(f\)</span> which is periodic (<span class="math notranslate nohighlight">\(f(t+T)=f(t)\)</span>) and has period equal to an <em>even</em> multiple of the sampling time T: <span class="math notranslate nohighlight">\(T_f=NT, N\in\matchcal{N}^{+}_{even}\)</span>.</p>
@@ -453,8 +458,46 @@
 f(t)&amp;= \sum_k a_k e^{- i\frac{2\pi k}{NT}t} \\
 a_k&amp;= \frac{1}{NT} \int_{-\frac{NT}{2}}^{\frac{NT}{2}} f(t)  e^{i\frac{2\pi}{NT}kt} dt = \int_{0}^{NT} f(t)  e^{i\frac{2\pi}{NT}kt} dt\qquad \omega_k = \frac{2\pi}{NT}k, \quad k\in \mathcal{Z}\\
 \end{align*}\]</div>
-<p><img alt="" src="_images/21-10-25_periodic_function.jpeg" /></p>
-<p>A minimal assumpion that is necessary to make is that</p>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">##############</span>
+<span class="c1"># PARAMETERS #</span>
+<span class="c1">##############</span>
+<span class="n">omega</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="c1">#########</span>
+<span class="c1"># PLOTS #</span>
+<span class="c1">#########</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">omega</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span> <span class="c1"># Closest value to 2*pi</span>
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[:</span><span class="n">idx</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">omega</span><span class="p">[:</span><span class="n">idx</span><span class="p">]),</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Considered interval&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">idx</span><span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">omega</span><span class="p">[</span><span class="n">idx</span><span class="p">:]),</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Repetition&quot;</span><span class="p">)</span>
+
+<span class="n">idx_s</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">omega</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span> <span class="c1"># Closest value to pi</span>
+<span class="n">idx_e</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">omega</span> <span class="o">-</span> <span class="mf">1.5</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span> <span class="c1"># Closest value to 3*pi</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[:</span><span class="n">idx_s</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">omega</span><span class="p">[:</span><span class="n">idx_s</span><span class="p">]),</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Repetition&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">idx_s</span><span class="p">:</span><span class="n">idx_e</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">omega</span><span class="p">[</span><span class="n">idx_s</span><span class="p">:</span><span class="n">idx_e</span><span class="p">]),</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Considered interval&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">omega</span><span class="p">[</span><span class="n">idx_e</span><span class="p">:],</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">omega</span><span class="p">[</span><span class="n">idx_e</span><span class="p">:]),</span> <span class="s2">&quot;k--&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">();</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-10-25 L09_3_0.png" src="_images/21-10-25 L09_3_0.png" />
+</div>
+</div>
+<p>A minimal assumption that is necessary to make is that</p>
 <div class="admonition-assumption admonition">
 <p class="admonition-title">Assumption</p>
 <p><span class="math notranslate nohighlight">\(f(t)\)</span> is <span class="math notranslate nohighlight">\(\frac{\pi}{T}\)</span> band limited.</p>
@@ -553,7 +596,7 @@ F_{k+N} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl}\cancelto{1}{e^{i\frac{2\pi}
 <h4>Perceval relation<a class="headerlink" href="#perceval-relation" title="Permalink to this headline">¶</a></h4>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>As the actual energy of a periodic signal is infinite. For that reason, when talking about energy for a periodic signal, only one period is taken in account.</p>
+<p>As the actual energy of a periodic signal is infinite. For that reason, when talking about energy for a periodic signal, only one period is taken into account.</p>
 </div>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -573,9 +616,75 @@ F_k &amp;= \sum_{n=0}^{N-1} f_n W_N^{nk}
 \end{array}
 \end{align*}\]</div>
 <p>These two are the conventional form of the DFT and its inverse.</p>
-<p><img alt="" src="_images/21-10-25_example_DFT.jpeg" /></p>
 </div>
 </div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Let’s now evaluate the Fourier transform of the cosine:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    N &amp;= 8 \\
+    f &amp;= \frac{1}{4T} \\
+    t &amp;= nT \\
+    f_n &amp;= cos\left( 2\pi f t\right) = cos\left( \frac{2\pi}{4T} nT \right) = cos\left( \frac{\pi}{2}n\right) 
+\end{align*}\]</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1">##############</span>
+<span class="c1"># PARAMETERS #</span>
+<span class="c1">##############</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">num</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1">#########</span>
+<span class="c1"># PLOTS #</span>
+<span class="c1">#########</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">),</span> <span class="s2">&quot;b&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$cos\left( \frac{\pi}</span><span class="si">{2}</span><span class="s2">n\right)$&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">),</span> <span class="s2">&quot;ko&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Samples&quot;</span><span class="p">)</span>
+
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/21-10-25 L09_5_0.png" src="_images/21-10-25 L09_5_0.png" />
+</div>
+</div>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    F_k &amp;= \sum_{n=0}^{7} e^{i \frac{2\pi}{8}nk}f_n \qquad m=\frac{n}{2}\\
+        &amp;= \sum_{n=0}^{3}e^{i\frac{\pi}{2}mk}f_{2m} \\
+        &amp;= \sum_{n=0}^{3}e^{i\frac{\pi}{2}mk} (-1)^m \\
+        &amp;= 1 - e^{i\frac{\pi}{2}k} + e^{i\pi k} - e^{i\frac{3}{2}\pi k} \\
+        &amp;= 1 + (-1)^k - e^{i\frac{\pi}{2}k}\left[ 1+(-1)^k \right] \\
+        &amp;= \left[ 1 + (-1)^k \right] \left[ 1-e^{i\frac{\pi}{2}k} \right] \\
+        &amp;= \begin{cases}
+                0 \qquad \text{if } k=0,4 \\
+                0 \qquad \text{if } k=1,5 \\
+                4 \qquad \text{if } k=2,6 \\
+                0 \qquad \text{if } k=3,7 \\
+            \end{cases}\\
+            \\
+        \implies a_{-4}&amp;=\frac{F_{-4+8}}{8}=\frac{F_4}{8}=0 \qquad a_0=0 \\
+                 a_{-3}&amp;=0 \qquad\qquad\qquad\qquad a_1=0\\
+                 a_{-2}&amp;=1/2 \qquad\qquad\qquad\quad\ a_2=1/2\\
+                 a_{-1}&amp;=0 \qquad\qquad\qquad\qquad a_3=0      \\
+         \implies cos(2\pi ft) = \frac{1}{2}e^{-i 2\pi ft}+\frac{1}{2}e^{i 2\pi ft}
+\end{align*}\]</div>
+<p>which is in accordance with the known</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    cos(2\pi ft) = \frac{e^{i 2\pi ft}+e^{-i 2\pi ft}}{2}
+\end{align*}\]</div>
 </div>
 </div>
 
