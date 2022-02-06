@@ -54,7 +54,7 @@
 # &= \cancelto{1}{e^{i\frac{2\pi (k-k \text{ mod }N) N}{N}}}  e^{2\pi i \frac{k \text{ mod }N}{N}} = W^{k \text{ mod }N}_N
 # \end{align*}
 # 
-# where the fact that $k-k \text{ mod }N$ is always an integer multiple of N (by definition).
+# where the fact that $k-k \text{ mod }N$ is always an integer multiple of N (by definition) is used.
 # 
 # ```{admonition} Assumption
 # Assume that $N$ is a power of two, that is $N=2^{\mu}$; $\mu = log_2(N)$

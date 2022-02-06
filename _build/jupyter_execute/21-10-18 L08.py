@@ -3,7 +3,7 @@
 
 # # Lecture 08 - 18 October 2021
 # 
-# This lecture will be focusses on more examples and applications of the simulation theorem.
+# This lecture will be focused on more examples and applications of the simulation theorem.
 # 
 # ## Low pass filter (again)
 # \begin{align*}
@@ -15,7 +15,9 @@
 # 1. **Check reality**: as easy as checking $V^*(z^*)=V(z)$
 # 2. **Check causality**: $\left( 0\not \in ROC; \infty\in ROC \right)$  
 #   The pole is in $\tilde{z}=c=\frac{1-T/2\tau}{1+T/2\tau}\simeq1-\epsilon$ which is inside $\Gamma_1$ and one can always find a path $\Gamma$ such that $\tilde{z}\ um\ \Gamma \subset \Gamma_1$.
-# ![Poles inside Gamma 1](images/21-10-18_ROC.jpeg)
+# 
+# ![Poles inside Gamma 1](images/21-10-18_ROC.png)
+# 
 # 3. **Bibo stability**: checked in the same way as causality
 # 4. Behaviour at $\omega=\pm \frac{\pi}{T}$: fine due to backwrds interpretation of the simulation theorem.
 # \begin{align*}
@@ -45,7 +47,8 @@
 # y[n]=y[n-1]-(y[n-1]>>k)+ (x[n]+x[n-1])>>(k+1)
 # ```
 # 
-# Let's suppose a $50 Hz$ filter is needed. Instead of using the simulation theorem applied to a _notch filter_ it is possible to obtainan an equivalent relation working by steps. First a zero at $50 Hz$ is needed. But a single zero is not sufficient because reality requires $V^*(z^*)=V(z)$. Then at least two more poles are necessaries to assure convergence but a pole at precisely $50 Hz$ violates causality as it lies on $\Gamma_1$. The solution to this problem is to consider an arbitrarly close point in the following way:
+# ## 50 Hz filter
+# Let's suppose a $50 Hz$ filter is needed. Instead of using the simulation theorem applied to a _notch filter_ it is possible to obtain an equivalent relation working by steps. First a zero at $50 Hz$ is needed. But a single zero is not sufficient because reality requires $V^*(z^*)=V(z)$. Then at least two more poles are necessaries to assure convergence but a pole at precisely $50 Hz$ violates causality as it lies on $\Gamma_1$. The solution to this problem is to consider an arbitrarily close point in the following way:
 # \begin{align*}
 # \require{color}
 # V(z) = \frac{\textcolor[rgb]{1.00,0.00,0.00}{(z-z_0)} \textcolor[rgb]{0.00,0.00,0.00}{(z-z_0^*)} }{\textcolor[rgb]{0.00,0.00,1.00}{(z-cz_0)(z-cz_0^*)}} \qquad c=1-\epsilon \simeq 1

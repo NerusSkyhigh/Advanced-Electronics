@@ -178,12 +178,12 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-12%20LC04.html">
-   Implementation of a stopwatch with LCD display
+   Implementation of a stopwatch with LCD
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-14%20LC05.html">
-   Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
+   DAC and ADC
   </a>
  </li>
  <li class="toctree-l1">
@@ -435,7 +435,7 @@ W_N&amp;=e^{i\frac{2\pi}{N}}\\
 W_N^k &amp;=e^{i\frac{2\pi}{N}} \qquad \text{write } k=k-k \text{ mod }N + k \text{ mod }N\\
 &amp;= \cancelto{1}{e^{i\frac{2\pi (k-k \text{ mod }N) N}{N}}}  e^{2\pi i \frac{k \text{ mod }N}{N}} = W^{k \text{ mod }N}_N
 \end{align*}\]</div>
-<p>where the fact that <span class="math notranslate nohighlight">\(k-k \text{ mod }N\)</span> is always an integer multiple of N (by definition).</p>
+<p>where the fact that <span class="math notranslate nohighlight">\(k-k \text{ mod }N\)</span> is always an integer multiple of N (by definition) is used.</p>
 <div class="admonition-assumption admonition">
 <p class="admonition-title">Assumption</p>
 <p>Assume that <span class="math notranslate nohighlight">\(N\)</span> is a power of two, that is <span class="math notranslate nohighlight">\(N=2^{\mu}\)</span>; <span class="math notranslate nohighlight">\(\mu = log_2(N)\)</span></p>

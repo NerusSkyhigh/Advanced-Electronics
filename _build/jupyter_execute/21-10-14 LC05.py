@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
+# # DAC and ADC
 # 
-# ## Laboratory Class 05 - 14 October 2021
+# ## Laboratory Class 05 - 14 October 2021 - Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
 # 
 # ### Topics
 # - Numerical representation of natural and integer numbers:
@@ -28,11 +28,19 @@
 # Take time to read through top comments. There are some interesting advices! 
 # 
 # ## ADC and DAC
+# ![](https://upload.wikimedia.org/wikipedia/commons/5/5a/Conversion_AD_DA.png)
 # They both work in a similar way: the first tries to approximate the analog signal with a counter. Usually it works in _bipolar_ coordinates with $3.3V$ standard and output a number according to the formula:
-# $$V_{D} = \frac{V_{A}-1.65V}{3.3V}2^{n}$$
+# 
+# \begin{align*}
+# V_{D} = \frac{V_{A}-1.65V}{3.3V}2^{n}
+# \end{align*}
+# 
 # where $n$ is the number of bits in the ADC.
 # DAC will instead output a signal encoded as _unipolar_ coordinates where, assuming a $3.3V$ standard, $1.65V$ represent the zero and the output is given by:
-# $$ V_{A}=\frac{\mathcal{bits}(V_{D})}{2^{n}}3.3V$$.
+# 
+# \begin{align*}
+#     V_{A}=\frac{\mathcal{bits}(V_{D})}{2^{n}} 3.3V
+# \end{align*}
 # 
 # It is possible to pass back and forth between _unipolar_ and _bipolar_ coordinates by negating the first bit.
 # 

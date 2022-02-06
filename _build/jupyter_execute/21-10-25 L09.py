@@ -18,7 +18,7 @@
 #     a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt \qquad \qquad \text{Fourier Coefficients}\\
 # \end{align*}
 # 
-# The fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and repeat them.
+# The Fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and repeat them.
 
 # In[1]:
 
@@ -65,7 +65,7 @@ plt.show()
 
 # ## Discrete Fourier Transform
 # 
-# The _discrete Fourier Transform_ (DFT) is the discrete version of the Fourier Transform that does _not_ require the computation of integrals. The _fast Fourier Transform_ (FFT) is a faster way ($\mathcal{O}(Nlog(N))$ instead of $\mathcal{O}(N^2)$) to compute the DFT with some minor additional contraints. Let's walk through the DFT:
+# The _discrete Fourier Transform_ (DFT) is the discrete version of the Fourier Transform that does _not_ require the computation of integrals. The _fast Fourier Transform_ (FFT) is a faster way ($\mathcal{O}(Nlog(N))$ instead of $\mathcal{O}(N^2)$) to compute the DFT with some minor additional constraints. Let's walk through the DFT:
 # 
 # ```{admonition} Assumption
 # Assume a function $f$ which is periodic ($f(t+T)=f(t)$) and has period equal to an _even_ multiple of the sampling time T: $T_f=NT, N\in\matchcal{N}^{+}_{even}$. 
@@ -76,11 +76,43 @@ plt.show()
 # f(t)&= \sum_k a_k e^{- i\frac{2\pi k}{NT}t} \\
 # a_k&= \frac{1}{NT} \int_{-\frac{NT}{2}}^{\frac{NT}{2}} f(t)  e^{i\frac{2\pi}{NT}kt} dt = \int_{0}^{NT} f(t)  e^{i\frac{2\pi}{NT}kt} dt\qquad \omega_k = \frac{2\pi}{NT}k, \quad k\in \mathcal{Z}\\
 # \end{align*}
-# 
-# ![](images/21-10-25_periodic_function.jpeg)
-# 
-# 
-# A minimal assumpion that is necessary to make is that
+
+# In[2]:
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+##############
+# PARAMETERS #
+##############
+omega = np.linspace(start=0, stop=2, num=100, endpoint=True)
+
+
+#########
+# PLOTS #
+#########
+fig, ax = plt.subplots(1, 2, figsize=(15, 3))
+
+idx = (np.abs(omega - 1)).argmin() # Closest value to 2*pi
+
+ax[0].plot(omega[:idx], np.cos(2*np.pi*omega[:idx]), "b", label="Considered interval")
+ax[0].plot(omega[idx:], np.cos(2*np.pi*omega[idx:]), "k--", label="Repetition")
+
+idx_s = (np.abs(omega - 0.5)).argmin() # Closest value to pi
+idx_e = (np.abs(omega - 1.5)).argmin() # Closest value to 3*pi
+ax[1].plot(omega[:idx_s], np.cos(2*np.pi*omega[:idx_s]), "k--", label="Repetition")
+ax[1].plot(omega[idx_s:idx_e], np.cos(2*np.pi*omega[idx_s:idx_e]), "b", label="Considered interval")
+ax[1].plot(omega[idx_e:], np.cos(2*np.pi*omega[idx_e:]), "k--", label="")
+
+
+ax[0].grid(); ax[1].grid()
+ax[0].legend(); ax[1].legend()
+fig.tight_layout()
+plt.show()
+
+
+# A minimal assumption that is necessary to make is that
 # ```{admonition} Assumption
 # $f(t)$ is $\frac{\pi}{T}$ band limited.
 # ```
@@ -170,7 +202,7 @@ plt.show()
 # 
 # #### Perceval relation
 # ```{warning}
-# As the actual energy of a periodic signal is infinite. For that reason, when talking about energy for a periodic signal, only one period is taken in account.
+# As the actual energy of a periodic signal is infinite. For that reason, when talking about energy for a periodic signal, only one period is taken into account.
 # ```
 # 
 # \begin{align*}
@@ -193,11 +225,62 @@ plt.show()
 # 
 # These two are the conventional form of the DFT and its inverse.
 #   
-#   
-# ![](images/21-10-25_example_DFT.jpeg)
+# ## Example
+# Let's now evaluate the Fourier transform of the cosine:
+# \begin{align*}
+#     N &= 8 \\
+#     f &= \frac{1}{4T} \\
+#     t &= nT \\
+#     f_n &= cos\left( 2\pi f t\right) = cos\left( \frac{2\pi}{4T} nT \right) = cos\left( \frac{\pi}{2}n\right) 
+# \end{align*}
 
-# In[ ]:
+# In[3]:
 
 
+import matplotlib.pyplot as plt
+import numpy as np
+
+##############
+# PARAMETERS #
+##############
+n = np.linspace(start=0, stop=8, num=8, endpoint=False)
+t = np.linspace(start=0, stop=7, num=100, endpoint=True)
+
+#########
+# PLOTS #
+#########
+fig, ax = plt.subplots(1, 1, figsize=(15, 3))
+
+ax.plot(t, np.cos(np.pi/2 * t), "b", label=r"$cos\left( \frac{\pi}{2}n\right)$")
+ax.plot(n, np.cos(np.pi/2 * n), "ko", label="Samples")
+
+ax.grid()
+ax.legend()
+fig.tight_layout()
+plt.show()
 
 
+# \begin{align*}
+#     F_k &= \sum_{n=0}^{7} e^{i \frac{2\pi}{8}nk}f_n \qquad m=\frac{n}{2}\\
+#         &= \sum_{n=0}^{3}e^{i\frac{\pi}{2}mk}f_{2m} \\
+#         &= \sum_{n=0}^{3}e^{i\frac{\pi}{2}mk} (-1)^m \\
+#         &= 1 - e^{i\frac{\pi}{2}k} + e^{i\pi k} - e^{i\frac{3}{2}\pi k} \\
+#         &= 1 + (-1)^k - e^{i\frac{\pi}{2}k}\left[ 1+(-1)^k \right] \\
+#         &= \left[ 1 + (-1)^k \right] \left[ 1-e^{i\frac{\pi}{2}k} \right] \\
+#         &= \begin{cases}
+#                 0 \qquad \text{if } k=0,4 \\
+#                 0 \qquad \text{if } k=1,5 \\
+#                 4 \qquad \text{if } k=2,6 \\
+#                 0 \qquad \text{if } k=3,7 \\
+#             \end{cases}\\
+#             \\
+#         \implies a_{-4}&=\frac{F_{-4+8}}{8}=\frac{F_4}{8}=0 \qquad a_0=0 \\
+#                  a_{-3}&=0 \qquad\qquad\qquad\qquad a_1=0\\
+#                  a_{-2}&=1/2 \qquad\qquad\qquad\quad\ a_2=1/2\\
+#                  a_{-1}&=0 \qquad\qquad\qquad\qquad a_3=0      \\
+#          \implies cos(2\pi ft) = \frac{1}{2}e^{-i 2\pi ft}+\frac{1}{2}e^{i 2\pi ft}
+# \end{align*}
+# which is in accordance with the known
+# \begin{align*}
+#     cos(2\pi ft) = \frac{e^{i 2\pi ft}+e^{-i 2\pi ft}}{2}
+# \end{align*}
