@@ -106,22 +106,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-13%20L01.html">
-   Lecture 01 - 13 September 2021
+   01 - Signals, Systems, and Sequences
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-14%20L02.html">
-   Lecture 02 - 14 September 2021
+   02 - Stability of Systems and Difference Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-20%20L03.html">
-   Lecture 03 - 20 September 2021
+   03 - The Z-Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20L04.html">
-   Lecture 04 - 21 September 2021
+   04 - Inversion of z-transform and the z-space
   </a>
  </li>
  <li class="toctree-l1">
@@ -397,9 +397,7 @@
 <p class="admonition-title">from <a class="reference external" href="https://en.wikipedia.org/wiki/Finite-state_machine">wikipedia</a></p>
 <p>A finite-state machine (FSM) or finite-state automaton (FSA, plural: automata), finite automaton, or simply a state machine, is a mathematical model of computation. It is an abstract machine that can be in exactly one of a finite number of states at any given time. The FSM can change from one state to another in response to some inputs; the change from one state to another is called a transition. An FSM is defined by a list of its states, its initial state, and the inputs that trigger each transition. Finite-state machines are of two types—deterministic finite-state machines and non-deterministic finite-state machines. A deterministic finite-state machine can be constructed equivalent to any non-deterministic one.</p>
 </div>
-<p>Despite the long mathematical definition state machines are simpler than expected. They just define how to switch from a state to an other depending on an event. Let’s make and example with a well know state machine, Pac Man’s ghosts:
-<img alt="" src="https://miro.medium.com/max/1400/0*rVk-GYIMZJMD8Lxd" /></p>
-<p>The image taken from <a class="reference external" href="https://mark-truluck.medium.com/the-machine-in-the-ghost-46f856f94ed2">a medium article</a> explains the behaviour of the ghosts with states and how they transition from one state to an other accordin to events.</p>
+<p>Despite the long mathematical definition state machines are simpler than expected. They just define how to switch from a state to an other depending on an event. Let’s make and example with a well know state machine: a push button: <a class="reference external" href="https://web.stanford.edu/class/archive/cs/cs103/cs103.1142/button-fsm/">buttons as finite state automata</a>.</p>
 <p>States machines can be easily implemented with <code class="docutils literal notranslate"><span class="pre">if-else</span></code>, <code class="docutils literal notranslate"><span class="pre">switch</span></code> construct and <code class="docutils literal notranslate"><span class="pre">enums</span></code>. Each case corresponds to a state and the condition to the event.</p>
 <div class="section" id="clocks">
 <h3>Clocks<a class="headerlink" href="#clocks" title="Permalink to this headline">¶</a></h3>

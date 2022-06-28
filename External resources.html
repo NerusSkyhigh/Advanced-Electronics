@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Synchronous counters. Toggle flip-flops. Monostable multivibrators. &#8212; Notes of Advanced Electronics</title>
+    <title>&lt;no title&gt; &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,8 +42,6 @@
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe"
@@ -53,8 +51,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Implementation of a stopwatch with LCD" href="21-10-12%20LC04.html" />
-    <link rel="prev" title="Multiplexers and demultiplexers" href="21-09-22%20LC02.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -160,7 +156,7 @@
   Laboratory
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20LC01.html">
    Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.
@@ -171,8 +167,8 @@
    Multiplexers and demultiplexers
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="21-09-23%20LC03.html">
    Synchronous counters. Toggle flip-flops. Monostable multivibrators.
   </a>
  </li>
@@ -249,7 +245,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/21-09-23 LC03.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/External resources.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -269,7 +265,7 @@
                 data-toggle="tooltip" data-placement="left" title="Source repository"><i
                     class="fab fa-github"></i>repository</button></a>
         <a class="issues-button"
-            href="https://github.com/NerusSkyhigh/Advanced-Electronics/issues/new?title=Issue%20on%20page%20%2F21-09-23 LC03.html&body=Your%20issue%20content%20here."><button
+            href="https://github.com/NerusSkyhigh/Advanced-Electronics/issues/new?title=Issue%20on%20page%20%2FExternal resources.html&body=Your%20issue%20content%20here."><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
@@ -290,7 +286,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/NerusSkyhigh/Advanced-Electronics/master?urlpath=tree/21-09-23 LC03.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/NerusSkyhigh/Advanced-Electronics/master?urlpath=tree/External resources.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -311,39 +307,7 @@
                 <i class="fas fa-list"></i> Contents
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#laboratory-class-03-23-september-2021">
-   Laboratory Class 03 - 23 September 2021
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#topics">
-     Topics
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#problems">
-   Problems:
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#risetime-issue-when-clocking-a-flip-flop">
-   Risetime issue when clocking a flip-flop
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#syncronous-toggle-flip-flop">
-   Syncronous Toggle Flip-Flop
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#synchronous-monostable-multivibrator">
-   Synchronous Monostable Multivibrator
-  </a>
- </li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
 
             </nav>
@@ -355,105 +319,9 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="synchronous-counters-toggle-flip-flops-monostable-multivibrators">
-<h1>Synchronous counters. Toggle flip-flops. Monostable multivibrators.<a class="headerlink" href="#synchronous-counters-toggle-flip-flops-monostable-multivibrators" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="laboratory-class-03-23-september-2021">
-<h2>Laboratory Class 03 - 23 September 2021<a class="headerlink" href="#laboratory-class-03-23-september-2021" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="topics">
-<h3>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Risetime issue when clocking a flip-flop.</p></li>
-<li><p>Verilog programming language:</p>
-<ul>
-<li><p>basic modules implementing basic hardware circuits:</p>
-<ul>
-<li><p>synchronous toggle flip-flop [*];</p></li>
-<li><p>synchronous monostable multivibrator [*].</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
-<div class="section" id="problems">
-<h2>Problems:<a class="headerlink" href="#problems" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>implementation of a synchronous module toggle flip-flop and, through this, of a toggle pushbutton to switch on/off an LED;</p></li>
-<li><p>implementation of a synchronous module monostable multivibrator and, through this, of an improved toggle pushbutton to switch on/off an LED; observation of the bouncing effect in a pushbutton;</p></li>
-<li><p>implementation, by means of a monostable multivibrator and an improved toggle pushbutton, of a timer to switch on an LED for a given time (programmable through the switches).</p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="risetime-issue-when-clocking-a-flip-flop">
-<h2>Risetime issue when clocking a flip-flop<a class="headerlink" href="#risetime-issue-when-clocking-a-flip-flop" title="Permalink to this headline">¶</a></h2>
-<p>Flip flops work due to internal delays that are essential to their implementation. A drawback of this is that, in rare circumstances, the clock may be too fast and have a period smaller than the internal delay giving rise to unreliable behaviors.</p>
-</div>
-<div class="section" id="syncronous-toggle-flip-flop">
-<h2>Syncronous Toggle Flip-Flop<a class="headerlink" href="#syncronous-toggle-flip-flop" title="Permalink to this headline">¶</a></h2>
-<p><img alt="T Type Flip-Flop. source: wikipedia" src="https://upload.wikimedia.org/wikipedia/commons/a/a9/T-Type_Flip-flop.svg" /></p>
-<div class="admonition-from-wikipedia-https-en-wikipedia-org-wiki-flip-flop-electronics-t-flip-flop admonition">
-<p class="admonition-title">from <a class="reference external" href="https://en.wikipedia.org/wiki/Flip-flop_(electronics)#T_flip-flop">wikipedia</a></p>
-<p>If the T input is high, the T flip-flop changes state (“toggles”) whenever the clock input is strobed. If the T input is low, the flip-flop holds the previous value. This behavior can be described in a truth table:</p>
-<table class="colwidths-auto table">
-<thead>
-<tr class="row-odd"><th class="text-align:center head"><p>Q</p></th>
-<th class="text-align:center head"><p>T</p></th>
-<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(Q_{\text{next}}\)</span></p></th>
-<th class="text-align:center head"><p><span class="math notranslate nohighlight">\(Q_{\text{next}}\)</span></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-align:center"><p>0</p></td>
-<td class="text-align:center"><p>0</p></td>
-<td class="text-align:center"><p>0</p></td>
-<td class="text-align:center"><p>Hold state (no clock)</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>0</p></td>
-<td class="text-align:center"><p>1</p></td>
-<td class="text-align:center"><p>0</p></td>
-<td class="text-align:center"><p>Hold state (no clock)</p></td>
-</tr>
-<tr class="row-even"><td class="text-align:center"><p>1</p></td>
-<td class="text-align:center"><p>0</p></td>
-<td class="text-align:center"><p>1</p></td>
-<td class="text-align:center"><p>Toggle</p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:center"><p>1</p></td>
-<td class="text-align:center"><p>1</p></td>
-<td class="text-align:center"><p>1</p></td>
-<td class="text-align:center"><p>Toggle</p></td>
-</tr>
-</tbody>
-</table>
-<p>When T is held high, the toggle flip-flop divides the clock frequency by two. This “divide by” feature has applications in various types of digital counters.</p>
-</div>
-<p>As Wikipedia already stated T flip flops are essential to produce frequency dividers, counters, and shift registers.</p>
-<p><strong>Note</strong>: when implementing a synchronous Flip Flop in Verilog remember to let the FF activate only on positive edges of the input. This can be done by defining two variables <code class="docutils literal notranslate"><span class="pre">ff_input</span></code> and <code class="docutils literal notranslate"><span class="pre">ff_previous_input</span></code> and checking for a positive edge with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if(!ff_previous_input &amp; ff_input) begin
-   //code on pose edge of ff_input 
-end
-ff_previous &lt;= ff_input;
-</pre></div>
-</div>
-</div>
-<div class="section" id="synchronous-monostable-multivibrator">
-<h2>Synchronous Monostable Multivibrator<a class="headerlink" href="#synchronous-monostable-multivibrator" title="Permalink to this headline">¶</a></h2>
-<div class="admonition-from-wikipedia-https-en-wikipedia-org-wiki-monostable-multivibrator admonition">
-<p class="admonition-title">from <a class="reference external" href="https://en.wikipedia.org/wiki/Monostable_multivibrator">wikipedia</a></p>
-<p>A monostable multivibrator, also called a one shot or a monoflop, is a sequential logic electronic circuit that generates an output pulse. When triggered, a pulse of pre-defined duration is produced. The circuit then returns to its stable state and produces no more output until triggered again.</p>
-</div>
-<p>A useful application of monostable multivibrators is <em>debouncing circuits</em><a class="footnote-reference brackets" href="#debouncing" id="id1">1</a>.</p>
-<p><img alt="Bouncing waveform when pressing or releasing a switch." src="https://hackaday.com/wp-content/uploads/2015/11/debounce_bouncing.png?resize=800,280" /></p>
-<p>As it is shown in the image taken from <a class="reference external" href="https://hackaday.com/2015/12/09/embed-with-elliot-debounce-your-noisy-buttons-part-i/">hackaday</a>, when a button is pressed or released the circuit will sense multiple inputs due to the mechanical nature of buttons. When a correct detection is essential, it is usually essential to introduce a monostable multivibrator as a debouncing circuit. After the first pulse, the monostable will ignore any input, like the infamous bounces, up until a predetermined time has elapsed. This will guarantee that only one input is detected in the time frame chosen. The only job left is to find the appropriate window where the bounces are ignored but multiple consecutive presses are detected. If the button is pressed by a human, usually a few milliseconds will do the job.</p>
-<hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="debouncing"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Check <a class="reference external" href="https://www.youtube.com/watch?v=Nj-Q8FQxHhU">this video</a> for a funny yet complete explanation.</p>
-</dd>
-</dl>
-</div>
-</div>
+  <p><a class="reference external" href="https://www.fpga4student.com/2017/08/what-is-fpga-programming.html">https://www.fpga4student.com/2017/08/what-is-fpga-programming.html</a>
+<a class="reference external" href="https://www.veripool.org/verilator/">https://www.veripool.org/verilator/</a>
+<a class="reference external" href="https://www.fpga4fun.com/HDMI.html">https://www.fpga4fun.com/HDMI.html</a></p>
 
     <script type="text/x-thebe-config">
     {
@@ -479,21 +347,7 @@ ff_previous &lt;= ff_input;
               
         
             <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="21-09-22%20LC02.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Multiplexers and demultiplexers</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="21-10-12%20LC04.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Implementation of a stopwatch with LCD</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
         
         </div>

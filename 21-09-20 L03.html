@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 03 - 20 September 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>03 - The Z-Transform &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 04 - 21 September 2021" href="21-09-21%20L04.html" />
-    <link rel="prev" title="Lecture 02 - 14 September 2021" href="21-09-14%20L02.html" />
+    <link rel="next" title="04 - Inversion of z-transform and the z-space" href="21-09-21%20L04.html" />
+    <link rel="prev" title="02 - Stability of Systems and Difference Equations" href="21-09-14%20L02.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,22 +106,22 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-13%20L01.html">
-   Lecture 01 - 13 September 2021
+   01 - Signals, Systems, and Sequences
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-14%20L02.html">
-   Lecture 02 - 14 September 2021
+   02 - Stability of Systems and Difference Equations
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lecture 03 - 20 September 2021
+   03 - The Z-Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20L04.html">
-   Lecture 04 - 21 September 2021
+   04 - Inversion of z-transform and the z-space
   </a>
  </li>
  <li class="toctree-l1">
@@ -313,24 +313,31 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-z-transform">
+  <a class="reference internal nav-link" href="#id1">
    The z-transform
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-delta">
-     The delta
+    <a class="reference internal nav-link" href="#examples">
+     Examples:
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-sequence">
-     Step sequence
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#step-sequence-second-case">
-     Step sequence (second case)
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#the-delta">
+       The delta
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-sequence">
+       Step sequence
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#step-sequence-second-case">
+       Step sequence (second case)
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -353,6 +360,18 @@
     <a class="reference internal nav-link" href="#convolution">
      Convolution
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standard-proof">
+       Standard proof
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#proof-via-linearity">
+       Proof via linearity
+      </a>
+     </li>
+    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cascade-of-two-systems">
@@ -376,12 +395,12 @@
      Residual theorem
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#inversion-of-the-z-transform">
-     Inversion of the z-transform
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#inversion-of-the-z-transform">
+   Inversion of the z-transform
+  </a>
  </li>
 </ul>
 
@@ -394,32 +413,35 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-03-20-september-2021">
-<h1>Lecture 03 - 20 September 2021<a class="headerlink" href="#lecture-03-20-september-2021" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-z-transform">
+<h1>03 - The Z-Transform<a class="headerlink" href="#the-z-transform" title="Permalink to this headline">¶</a></h1>
+<p>Lecture 03 - 20 September 2021</p>
 <p>Equipped with the definitions and lemmas found in the last lecture it is possible to start talking about the <strong>z-transform</strong>. But first, it is necessary to draw some parallelisms with the solutions of a differential equation:</p>
 <p><img alt="Solution of a differential equation with Fourier Transform / Laplace Transform" src="_images/21-09-20_diff_eq_sol.png" /></p>
 <p>For example, with a low pass filter, the procedure becomes:<br />
 <img alt="Solution of the low pass with Fourier Tranform" src="_images/21-09-20_diff_eq_example.png" /></p>
 <p>Similarly, a difference equation can be solved via an appropriate transform, the z-transform
 <img alt="Solution of a difference equation with z-transform" src="_images/21-09-20_z-transform_sol.png" /></p>
-<div class="section" id="the-z-transform">
-<h2>The z-transform<a class="headerlink" href="#the-z-transform" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>The z-transform<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Given a sequence <span class="math notranslate nohighlight">\(x[n]\)</span> we write the z-transform as</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     Z\left(x[n]\right) = X(z) = \sum_{\forall n} z^{-n} x[n] \qquad \text{ with } \qquad z \in \textbf{R.O.C} \subseteq \mathcal{C}.
 \end{align*}\]</div>
-<p>In the previous definition <strong>R.O.C</strong> stands for <em>Region Of Convergence</em>, the region of the complex plane where the series converges to a finite value.</p>
-<p>Some remarkable examples of z-tranforms are:</p>
+<p>In the previous definition, <strong>R.O.C</strong> stands for <em>Region Of Convergence</em>, the region of the complex plane where the series converges to a finite value.</p>
+<p>Some remarkable examples of z-transforms are:</p>
+<div class="section" id="examples">
+<h3>Examples:<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="the-delta">
-<h3>The delta<a class="headerlink" href="#the-delta" title="Permalink to this headline">¶</a></h3>
+<h4>The delta<a class="headerlink" href="#the-delta" title="Permalink to this headline">¶</a></h4>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     Z\left(\delta[n]\right) = \sum_{n=-\infty}^{+\infty} z^{-n} \delta[n] = 1 \qquad \textbf{R.O.C} = \mathcal{C}
 \end{align*}\]</div>
 </div>
 <div class="section" id="step-sequence">
-<h3>Step sequence<a class="headerlink" href="#step-sequence" title="Permalink to this headline">¶</a></h3>
+<h4>Step sequence<a class="headerlink" href="#step-sequence" title="Permalink to this headline">¶</a></h4>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
    Z\left(U[n]\right) &amp;= \sum_{n=-\infty}^{+\infty} z^{-n} U[n] = \sum_{n=0}^{+\infty} z^{-n} = \frac{1}{1-1/z} = \frac{z}{z-1}  \\
@@ -427,7 +449,7 @@
 \end{align*}\]</div>
 </div>
 <div class="section" id="step-sequence-second-case">
-<h3>Step sequence (second case)<a class="headerlink" href="#step-sequence-second-case" title="Permalink to this headline">¶</a></h3>
+<h4>Step sequence (second case)<a class="headerlink" href="#step-sequence-second-case" title="Permalink to this headline">¶</a></h4>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     Z\left(-U[-n-1]\right) &amp;= -\sum_{n=-\infty}^{+\infty} z^{-n} U[-n-1] = - \sum_{n=1}^{+\infty} z^{n} = 1- \frac{1}{1-z} = \frac{z}{z-1} \\
@@ -440,9 +462,10 @@
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="properties-of-the-z-transform">
 <h2>Properties of the z-transform<a class="headerlink" href="#properties-of-the-z-transform" title="Permalink to this headline">¶</a></h2>
-<p>Let <span class="math notranslate nohighlight">\(X[z] = Z(x[n])\)</span></p>
+<p>Let <span class="math notranslate nohighlight">\(X[z] = Z(x[n])\)</span>.</p>
 <div class="section" id="time-shift">
 <h3>Time shift<a class="headerlink" href="#time-shift" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
@@ -462,10 +485,29 @@
 <h3>Convolution<a class="headerlink" href="#convolution" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
+    Z\left(x[n]*y[n]\right) &amp;= X(z) Y(z) \\
+    \text{ROC} &amp;= \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
+\end{align*}\]</div>
+<p>There are two different proofs of this relation, one that exploits linearity and the time shift while the other is a more standard one that does not require any lemma. I’ll report both of them for completeness:</p>
+<div class="section" id="standard-proof">
+<h4>Standard proof<a class="headerlink" href="#standard-proof" title="Permalink to this headline">¶</a></h4>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    Z\left(x[n]*y[n]\right) &amp;= Z\left(\sum_k x[n-k]y[k] \right) = \sum_{n=-\infty}^{+\infty} \sum_{k=-\infty}^{+\infty} z^{-n} x[n-k] y[k]  \\
+    &amp;= \sum_{n=-\infty}^{+\infty} \sum_{k=-\infty}^{+\infty} z^{-(n-k)} z^{-k} x[n-k] y[k] = \sum_{k=-\infty}^{+\infty} \left( \sum_{n=-\infty}^{+\infty}  z^{-(n-k)} x[n-k] \right) z^{-k} y[k] \\
+    &amp;= \sum_{k=-\infty}^{+\infty} X(z) z^{-k} y[k] = X(z) Y(z) \\
+    \text{ROC} &amp;= \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
+\end{align*}\]</div>
+</div>
+<div class="section" id="proof-via-linearity">
+<h4>Proof via linearity<a class="headerlink" href="#proof-via-linearity" title="Permalink to this headline">¶</a></h4>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
     Z\left(x[n]*y[n]\right) &amp;= Z\left(\sum_k x[n-k]y[k] \right) = \sum_{k=-\infty}^{+\infty} Z(x[n-k])y[k] \\
     &amp;= \sum_{k=-\infty}^{+\infty} Z(x[n])z^{-k}y[k] = X(z) Y(z) \\
     \text{ROC} &amp;= \textbf{R.O.C}_x \cap \textbf{R.O.C}_y
 \end{align*}\]</div>
+</div>
 </div>
 <div class="section" id="cascade-of-two-systems">
 <h3>Cascade of two systems<a class="headerlink" href="#cascade-of-two-systems" title="Permalink to this headline">¶</a></h3>
@@ -492,12 +534,12 @@
 Take a circle of radius <span class="math notranslate nohighlight">\(r\)</span> around <span class="math notranslate nohighlight">\(z_0\)</span> such that <span class="math notranslate nohighlight">\(z=z_0+re^{i\phi}\)</span>. Then:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} r^n e^{i\phi n} r e^{i\phi} i d\phi = \frac{r^{n+1}}{2\pi}\int_{0}^{2\pi} e^{i\phi (n+1)} d\phi = \begin{cases}
+    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} r^n e^{i\phi n} r e^{i\phi} i\ d\phi = \frac{r^{n+1}}{2\pi}\int_{0}^{2\pi} e^{i\phi (n+1)} d\phi = \begin{cases}
   1 \qquad \text{if } n=-1\\
   0 \qquad \text{otherwise}
 \end{cases}
 \end{align*}\]</div>
-<p>I like to call this lemma the “hidden logarithm lemma” because it reminds me of the integral <span class="math notranslate nohighlight">\(\int x^n dx\)</span>. For every value of <span class="math notranslate nohighlight">\(n\)</span> the integral <span class="math notranslate nohighlight">\(\int x^n dx\)</span> remains a rational function, except when <span class="math notranslate nohighlight">\(n=-1\)</span> like in this case.</p>
+<p>I like to call this lemma the “hidden logarithm lemma” because it reminds me of the integral <span class="math notranslate nohighlight">\(\int x^n dx\)</span>. For every value of <span class="math notranslate nohighlight">\(n\)</span> the integral <span class="math notranslate nohighlight">\(\int x^n dx\)</span> remains a rational function, except when <span class="math notranslate nohighlight">\(n=-1\)</span>. Similarly, when <span class="math notranslate nohighlight">\(n\neq -1\)</span> the function is an analytic function, which implies zero circuitation, while for <span class="math notranslate nohighlight">\(n=-1\)</span> a first-order pole is introduced.</p>
 </div>
 <div class="section" id="residual-theorem">
 <h3>Residual theorem<a class="headerlink" href="#residual-theorem" title="Permalink to this headline">¶</a></h3>
@@ -519,18 +561,18 @@ H(z)&amp;=G(z)(z-z_0)^n = \sum_{k=0}^{+\infty} \frac{(z-z_0)^k}{k!} \left[ \frac
      &amp;= \frac{1}{(n-1)!}\left[ \frac{d^{n-1}}{dz^{n-1}} G(z)(z-z_0)^n \right]_{z=z_0}
 \end{align*}\]</div>
 </div>
+</div>
 <div class="section" id="inversion-of-the-z-transform">
-<h3>Inversion of the z-transform<a class="headerlink" href="#inversion-of-the-z-transform" title="Permalink to this headline">¶</a></h3>
+<h2>Inversion of the z-transform<a class="headerlink" href="#inversion-of-the-z-transform" title="Permalink to this headline">¶</a></h2>
 <p>If <span class="math notranslate nohighlight">\(X(z)=Z(x[n])\)</span> then <span class="math notranslate nohighlight">\(x[n]=\frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z) z^{n-1} dz\)</span></p>
 <p><strong>proof</strong></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} X(z)z^{n-1} dz &amp;= \frac{1}{2\pi i} \oint_{\Gamma\text{ um }z_0} \sum_{k}x[k]z^{-k}z^{n-1} dz \\
-    &amp;= \frac{1}{2\pi i} \sum_{k} x[k] \oint_{\Gamma\text{ um }z_0} z^{n-k-1} dz \\
+    \frac{1}{2\pi i} \oint_{\Gamma\text{ um } 0} X(z)z^{n-1} dz &amp;= \frac{1}{2\pi i} \oint_{\Gamma\text{ um }0} \sum_{k}x[k]z^{-k}z^{n-1} dz \\
+    &amp;= \frac{1}{2\pi i} \sum_{k} x[k] \oint_{\Gamma\text{ um } 0} z^{n-k-1} dz \\
     &amp;= \sum_{k}x[k] \delta_{n-k-1, -1} = x[n]
 \end{align*}\]</div>
-<p>where the second equality assumes the R.O.C. to be such that the inversion of the summation and the integral is possible.</p>
-</div>
+<p>where the second equality assumes the R.O.C. allows swapping the summation and the integral.</p>
 </div>
 </div>
 
@@ -563,13 +605,13 @@ H(z)&amp;=G(z)(z-z_0)^n = \sum_{k=0}^{+\infty} \frac{(z-z_0)^k}{k!} \left[ \frac
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture 02 - 14 September 2021</p>
+            <p class="prev-next-title">02 - Stability of Systems and Difference Equations</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-09-21%20L04.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 04 - 21 September 2021</p>
+        <p class="prev-next-title">04 - Inversion of z-transform and the z-space</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

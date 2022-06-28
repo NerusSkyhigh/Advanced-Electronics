@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 02 - 14 September 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>02 - Stability of Systems and Difference Equations &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 03 - 20 September 2021" href="21-09-20%20L03.html" />
-    <link rel="prev" title="Lecture 01 - 13 September 2021" href="21-09-13%20L01.html" />
+    <link rel="next" title="03 - The Z-Transform" href="21-09-20%20L03.html" />
+    <link rel="prev" title="01 - Signals, Systems, and Sequences" href="21-09-13%20L01.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,22 +106,22 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-13%20L01.html">
-   Lecture 01 - 13 September 2021
+   01 - Signals, Systems, and Sequences
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lecture 02 - 14 September 2021
+   02 - Stability of Systems and Difference Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-20%20L03.html">
-   Lecture 03 - 20 September 2021
+   03 - The Z-Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20L04.html">
-   Lecture 04 - 21 September 2021
+   04 - Inversion of z-transform and the z-space
   </a>
  </li>
  <li class="toctree-l1">
@@ -336,13 +336,6 @@
     <a class="reference internal nav-link" href="#bibo-stability">
      BIBO Stability
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#e-g-bibo-stable-system">
-       e.g. BIBO Stable system
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#th-bibo-stability">
@@ -388,11 +381,12 @@
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#exercise">
-     exercise
+     Exercise
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#h-n-is-causal">
+      <a class="reference internal nav-link" href="#case-1-h-n-is-causal">
+       Case 1:
        <span class="math notranslate nohighlight">
         \(h[n]\)
        </span>
@@ -400,11 +394,17 @@
       </a>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#h-n-is-non-causal">
+      <a class="reference internal nav-link" href="#case-2-h-n-is-non-causal">
+       Case 2:
        <span class="math notranslate nohighlight">
         \(h[n]\)
        </span>
        is Non Causal
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#summing-up">
+       Summing up
       </a>
      </li>
     </ul>
@@ -422,8 +422,9 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-02-14-september-2021">
-<h1>Lecture 02 - 14 September 2021<a class="headerlink" href="#lecture-02-14-september-2021" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="stability-of-systems-and-difference-equations">
+<h1>02 - Stability of Systems and Difference Equations<a class="headerlink" href="#stability-of-systems-and-difference-equations" title="Permalink to this headline">¶</a></h1>
+<p>Lecture 02 - 14 September 2021</p>
 <p>In the previous lecture, we gave some basic definitions and showed that an LTI system is fully characterized by its <strong>impulse response</strong>.</p>
 <p>An interesting property of LTI systems is that it is possible to imagine the impulse response and the input sequence as the two inputs of a convolution. This means that it is possible to freely swap the input sequence and the impulse response.</p>
 <div class="amsmath math notranslate nohighlight">
@@ -431,6 +432,7 @@
     x[n] \rightarrow [SYSTEM] \rightarrow y[n] &amp;\implies (x[n], h[n]) \rightarrow [CONVOLUTION] \rightarrow y[n] \\
     &amp;\implies (h[n], x[n]) \rightarrow [CONVOLUTION] \rightarrow y[n]
 \end{align*}\]</div>
+<p><img alt="" src="_images/21-09-14_symmetry_convolution.jpeg" /></p>
 <p>Matematically:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -452,6 +454,17 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 <p class="admonition-title">Note</p>
 <p>A system can be BOTH causal and NON CAUSAL. A class of systems that satisfy this properties are amplifiers <span class="math notranslate nohighlight">\(h[n]= \alpha\ \delta[n]\)</span>. These kind of systems respect both conditions as they have <span class="math notranslate nohighlight">\(h[n]=0\)</span> for both <span class="math notranslate nohighlight">\(t&lt;0\)</span> and <span class="math notranslate nohighlight">\(t&gt;0\)</span>.</p>
 </div>
+<p>An intuitive way to remember causality is the following: consider a causal linear system defined as:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    y[n] = \sum_{k=-\infty}^{+\infty} x[k] h[n-k]
+\end{equation*}\]</div>
+<p>and label the current time step as zero <span class="math notranslate nohighlight">\(n=0\)</span>:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{equation*}
+    y[0] = \sum_{k=-\infty}^{+\infty} x[k] h[-k]
+\end{equation*}\]</div>
+<p>The usual definition of cauality implies that the system can not depend on future inputs because we don’t know those inputs yet. Future inputs are labelled with positive indices, e.g. <span class="math notranslate nohighlight">\(x[1], x[2], etc\)</span>. For those values of <span class="math notranslate nohighlight">\(k\)</span> we have <span class="math notranslate nohighlight">\(h[-1], h[-2], etc\)</span>. So, the only way for the system to remove the dependence on future inputs is to have <span class="math notranslate nohighlight">\(h[l] = 0 \iff l&lt;0\)</span>.</p>
 </div>
 <div class="section" id="marginal-stability">
 <h3>Marginal Stability<a class="headerlink" href="#marginal-stability" title="Permalink to this headline">¶</a></h3>
@@ -459,7 +472,7 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 <p>An example of marginal stable system is one with <span class="math notranslate nohighlight">\(h[n]=U[n]= 1\)</span> (<em>the integrator</em>):</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
-    y[n] = \sum_{k=-\infty}^{+\infty} x[k] U[n-k] = \sum_{k=-\infty}^{n} x[k]
+    y[n] = \sum_{k=-\infty}^{+\infty} x[k]\ U[n-k] = \sum_{k=-\infty}^{n} x[k]
 \end{equation*}\]</div>
 </div>
 <div class="section" id="bibo-stability">
@@ -469,15 +482,12 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 \[\begin{equation*}
     \forall\ x[n]\ :\ |x[n]|&lt;+\infty \implies \exists L&lt;\infty\ :\ |y[n]|&lt;L\quad \forall n
 \end{equation*}\]</div>
-<div class="section" id="e-g-bibo-stable-system">
-<h4>e.g. BIBO Stable system<a class="headerlink" href="#e-g-bibo-stable-system" title="Permalink to this headline">¶</a></h4>
-<p>An amplifiers is a BIBO stable system (trivial if we take<span class="math notranslate nohighlight">\(L=\max_{n}\{x[n]\}\times\alpha\)</span>) but an integrator is not. If we choose <span class="math notranslate nohighlight">\(x[n]=U[n]\)</span> we have:</p>
+<p>An amplifiers is a BIBO stable system (trivial if we take <span class="math notranslate nohighlight">\(L=\max_{n}\{x[n]\}\times\alpha\)</span>) but an integrator is not. If we choose <span class="math notranslate nohighlight">\(x[n]=U[n]\)</span> we have:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
     y[n] = \sum_{k=-\infty}^{n} U[k] = \sum_{k=0}^{n} 1 = n+1
 \end{equation*}\]</div>
 <p>so I can just choose <span class="math notranslate nohighlight">\(n=L\)</span> to “surpass” every <span class="math notranslate nohighlight">\(L\)</span> I’ve chosen.</p>
-</div>
 </div>
 <div class="section" id="th-bibo-stability">
 <h3>Th: BIBO Stability<a class="headerlink" href="#th-bibo-stability" title="Permalink to this headline">¶</a></h3>
@@ -491,12 +501,19 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     |y[n]| &amp;= |\sum_{k} h[k] x[n-k]| \leq \sum_{k} |h[k]|\ |x[n-k]| \\
-            &amp;\leq \max_{k}\{h[k]\} \sum_{k} |h[n-k]| \leq \max_{k}\{h[k]\} L &lt; +\infty
+            &amp;\leq \max_{k}\{h[k]\} \sum_{k} |h[n-k]| \leq \max_{k}\{h[k]\}\ L &lt; +\infty
 \end{align*}\]</div>
 </div>
 <div class="section" id="proof-of-necessity-implies">
 <h4>Proof of necessity (<span class="math notranslate nohighlight">\(\implies\)</span>)<a class="headerlink" href="#proof-of-necessity-implies" title="Permalink to this headline">¶</a></h4>
-<p>The proof of necessity is a bit trickier. Instead of the direct why we will work “ad absurdum” by proving that <em>if <span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent then the system is NOT BIBO stable</em>. This proof works because the other cases were already taken care of <a class="footnote-reference brackets" href="#cases" id="id1">1</a>.</p>
+<p>The proof of necessity is a bit trickier. Instead of the direct way, we will work “ad absurdum” by proving that if the system is <em>NOT BIBO stable</em> then <span class="math notranslate nohighlight">\(h[k]\)</span> is <em>NOT absolutely convergent</em>. In other words, if to some limited output it correspond an unbounded output, then the impulse response can not be absolutely convergent.</p>
+ <!-- This proof works because the other cases were already taken care of [^cases].
+
+[^cases]: Let's list the cases for clarity's sake:
+    - $h[k]$ is NOT absolutely convergent $\implies$ S is NOT BIBO stable: it's the proof
+    - $h[k]$ is absolutely convergent $\implies$ S is NOT BIBO stable: impossible for the "Proof of sufficiency"
+    - $h[k]$ is NOT absolutely convergent $\implies$ S is BIBO stable: it's in the proof
+    - $h[k]$ is absolutely convergent $\implies$ S is BIBO stable: that's what we are aiming for -->
 <p>Let’s consider a sequence defined as:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -505,12 +522,12 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
         0  \quad \textit{if} \quad |h[-n]| = 0\
         \end{array}\right.
 \end{align*}\]</div>
-<p>Now we evaluate the output of said system in n=0 and use the fact that <span class="math notranslate nohighlight">\(h[n]\)</span> is NOT absolutely convergent:</p>
+<p>Now we evaluate the output of said system in n=0 and use the fact that we want the system <strong>NOT</strong> BIBO stable:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     y[n] = \sum_{k} h[k] \frac{h^*[k-n]}{|h[k-n]|} \rightarrow y[0] = \sum_{k} h[k] \frac{h^*[k]}{|h[k]|} = \sum_k |h[k]| = +\infty
 \end{align*}\]</div>
-<p>With this, we proved that if <span class="math notranslate nohighlight">\(h[k]\)</span> is not absolutely convergent then the system can not be BIBO stable.</p>
+<p>With this, we proved that if the system if not BIBO stable then <span class="math notranslate nohighlight">\(h[k]\)</span> is not absolutely convergent.</p>
 </div>
 </div>
 <div class="section" id="stability-of-a-sequence">
@@ -520,11 +537,12 @@ A system is said to be causal (or nonanticipative) iff <span class="math notrans
 </div>
 <div class="section" id="difference-equations">
 <h2>Difference equations<a class="headerlink" href="#difference-equations" title="Permalink to this headline">¶</a></h2>
-<p>A discrete way to characterize LTI systems other than differential equation and their solution are difference equations. The most generic form of difference equation is</p>
+<p>A discrete way to characterize LTI systems other than differential equation and their solution are difference equations. The most generic form of a second order difference equation is</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
     y[n] = y[n-1] + y[n-2] + x[n]
 \end{equation*}\]</div>
+<p>where <span class="math notranslate nohighlight">\(x[n]\)</span> is called “initial conditions”.</p>
 <div class="section" id="e-g-fibonacci-sequence">
 <h3>e.g. Fibonacci sequence<a class="headerlink" href="#e-g-fibonacci-sequence" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
@@ -538,52 +556,43 @@ f[n] = \left\{\begin{array}{lr}
 <p>Where the first two conditions are the input / initial conditions.</p>
 </div>
 <div class="section" id="exercise">
-<h3>exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
+<h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
 <p>Let’s consider <span class="math notranslate nohighlight">\(y[n]=ay[n-1] + x[0]\delta[n]\)</span>. How can we find <span class="math notranslate nohighlight">\(h[n]\)</span>?</p>
 <p>To do that, let’s divide both sides by the input <span class="math notranslate nohighlight">\(x[n]\)</span> so that we obtain the <span class="math notranslate nohighlight">\(h[n]=a h[n-1]+\delta[n]\)</span> and distinguish the two cases where <span class="math notranslate nohighlight">\(h[n]\)</span> is causal or non causal:</p>
-<div class="section" id="h-n-is-causal">
-<h4><span class="math notranslate nohighlight">\(h[n]\)</span> is Causal<a class="headerlink" href="#h-n-is-causal" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="case-1-h-n-is-causal">
+<h4>Case 1: <span class="math notranslate nohighlight">\(h[n]\)</span> is Causal<a class="headerlink" href="#case-1-h-n-is-causal" title="Permalink to this headline">¶</a></h4>
 <p>If <span class="math notranslate nohighlight">\(h[n]\)</span> is causal it has to satisfy the condition <span class="math notranslate nohighlight">\(h[n]=0\)</span> if <span class="math notranslate nohighlight">\(n&lt;0\)</span>. It is then possible to write:</p>
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(h[0] = a h[0-1] + \delta[0] = a\cdot0 + 1=1\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(h[1] = a h[1-1] + \delta[1] = a\cdot 1 + 0=a\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(h[0] = a h[2-1] + \delta[2] = a\cdot a + 0=a^2\)</span></p></li>
 <li><p>…</p></li>
-<li><p><span class="math notranslate nohighlight">\(\implies h[n]=a^n\)</span>.</p></li>
 </ul>
+<p><span class="math notranslate nohighlight">\(\implies h[n]=a^n U[n]\)</span>.</p>
 </div>
-<div class="section" id="h-n-is-non-causal">
-<h4><span class="math notranslate nohighlight">\(h[n]\)</span> is Non Causal<a class="headerlink" href="#h-n-is-non-causal" title="Permalink to this headline">¶</a></h4>
-<p>If <span class="math notranslate nohighlight">\(h[n]\)</span> is non causal it has to satisfy the condition <span class="math notranslate nohighlight">\(h[n]=0\)</span> if <span class="math notranslate nohighlight">\(n&gt;0\)</span>. By inverting the difference equation it is possible to write:</p>
+<div class="section" id="case-2-h-n-is-non-causal">
+<h4>Case 2: <span class="math notranslate nohighlight">\(h[n]\)</span> is Non Causal<a class="headerlink" href="#case-2-h-n-is-non-causal" title="Permalink to this headline">¶</a></h4>
+<p>If <span class="math notranslate nohighlight">\(h[n]\)</span> is non causal it has to satisfy the condition <span class="math notranslate nohighlight">\(h[n]=0\)</span> if <span class="math notranslate nohighlight">\(n&gt;0\)</span>. By inverting the difference equation it is possible to write: <span class="math notranslate nohighlight">\(h[n-1] = (h[n]-\delta[n])/a\)</span>. Now we work step by step like in the previous case:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(h[n-1] = (h[n]-\delta[n])/a\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(h[0] = (h[1]-\delta[1])/a = (0-0)/a = 0\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(h[-1] = (h[0]-\delta[0])/a = (0-1)/a = -1/a\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(h[-2] = (h[-1]-\delta[-1])/a = (-1/a-0)/a = -1/a^2\)</span></p></li>
 <li><p><span class="math notranslate nohighlight">\(h[-3] = (h[-2]-\delta[-2])/a = (-1/a^2-0)/a = -1/a^3\)</span></p></li>
 <li><p>…</p></li>
-<li><p><span class="math notranslate nohighlight">\(\implies h[n]=-1 \cdot U[-n-1] \cdot a^{n}\)</span></p></li>
 </ul>
-<p>So by considering both cases it is possible to find the value of <span class="math notranslate nohighlight">\(h[n]\)</span>:</p>
+<p><span class="math notranslate nohighlight">\(\implies h[n]=-1 \cdot U[n] \cdot a^{n}\)</span></p>
+<p>It is possible to rewrite this expression so that we consider only positive n: <span class="math notranslate nohighlight">\(h[n]=-1 \cdot U[-(n+1)] \cdot a^{-n}\)</span></p>
+</div>
+<div class="section" id="summing-up">
+<h4>Summing up<a class="headerlink" href="#summing-up" title="Permalink to this headline">¶</a></h4>
+<p>By considering both cases one at a time, it is possible to find the value of <span class="math notranslate nohighlight">\(h[n]\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{equation*}
 h[n] = \left\{\begin{array}{lr}
         h[n]=a^n  \quad \textit{if CAUSAL}\\
-        h[n]=-U[-n-1] a^{n}  \quad \textit{if NON CAUSAL}
+        h[n]=-U[-n-1] a^{-n}  \quad \textit{if NON CAUSAL}
         \end{array}\right.
 \end{equation*}\]</div>
-<hr class="footnotes docutils" />
-<dl class="footnote brackets">
-<dt class="label" id="cases"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>Let’s list the cases for clarity’s sake:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent <span class="math notranslate nohighlight">\(\implies\)</span> S is NOT BIBO stable: it’s the proof</p></li>
-<li><p><span class="math notranslate nohighlight">\(h[k]\)</span> is absolutely convergent <span class="math notranslate nohighlight">\(\implies\)</span> S is NOT BIBO stable: impossible for the “Proof of sufficiency”</p></li>
-<li><p><span class="math notranslate nohighlight">\(h[k]\)</span> is NOT absolutely convergent <span class="math notranslate nohighlight">\(\implies\)</span> S is BIBO stable: it’s in the proof</p></li>
-<li><p><span class="math notranslate nohighlight">\(h[k]\)</span> is absolutely convergent <span class="math notranslate nohighlight">\(\implies\)</span> S is BIBO stable: that’s what we are aiming for</p></li>
-</ul>
-</dd>
-</dl>
 </div>
 </div>
 </div>
@@ -618,13 +627,13 @@ h[n] = \left\{\begin{array}{lr}
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture 01 - 13 September 2021</p>
+            <p class="prev-next-title">01 - Signals, Systems, and Sequences</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-09-20%20L03.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 03 - 20 September 2021</p>
+        <p class="prev-next-title">03 - The Z-Transform</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

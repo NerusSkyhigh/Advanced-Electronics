@@ -104,22 +104,22 @@
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-13%20L01.html">
-   Lecture 01 - 13 September 2021
+   01 - Signals, Systems, and Sequences
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-14%20L02.html">
-   Lecture 02 - 14 September 2021
+   02 - Stability of Systems and Difference Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-20%20L03.html">
-   Lecture 03 - 20 September 2021
+   03 - The Z-Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20L04.html">
-   Lecture 04 - 21 September 2021
+   04 - Inversion of z-transform and the z-space
   </a>
  </li>
  <li class="toctree-l1">
@@ -311,8 +311,8 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#laboratory-class-05-14-october-2021">
-   Laboratory Class 05 - 14 October 2021
+  <a class="reference internal nav-link" href="#laboratory-class-07-14-october-2021">
+   Laboratory Class 07 - 14 October 2021
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -342,6 +342,21 @@
      Bilinear transform
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#boundary-conditions">
+     Boundary conditions
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#characterization-of-the-oscillator">
+     Characterization of the oscillator
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cosine">
+     Cosine
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -357,8 +372,8 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="implementation-of-a-harmonic-oscillator">
 <h1>Implementation of a harmonic oscillator<a class="headerlink" href="#implementation-of-a-harmonic-oscillator" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="laboratory-class-05-14-october-2021">
-<h2>Laboratory Class 05 - 14 October 2021<a class="headerlink" href="#laboratory-class-05-14-october-2021" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="laboratory-class-07-14-october-2021">
+<h2>Laboratory Class 07 - 14 October 2021<a class="headerlink" href="#laboratory-class-07-14-october-2021" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="topics">
 <h3>Topics<a class="headerlink" href="#topics" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -413,6 +428,36 @@
 \[\begin{align*}
     y[n]-2cy[n-1]+y[n-2]=\text{boundary conditions}[n]
 \end{align*}\]</div>
+<p>As an fpga works best with powers of two, <span class="math notranslate nohighlight">\(c = 1-2^{k+1}\)</span> is assumed.</p>
+</div>
+<div class="section" id="boundary-conditions">
+<h3>Boundary conditions<a class="headerlink" href="#boundary-conditions" title="Permalink to this headline">¶</a></h3>
+<p>Instead of actually computing the boundary condition, the fact that <span class="math notranslate nohighlight">\(sin(x)\)</span> is symmetric with respect to its maximum is used:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    y[-1] &amp;= y[1] \\
+    y[1] &amp;= (1-2^{-k+1}) y[0] = y[-1]\\
+    y[0] &amp;= \text{boundary conditions}[n]= 0
+\end{align*}\]</div>
+<p>The value of <span class="math notranslate nohighlight">\(y[1]\)</span> was computed by setting <span class="math notranslate nohighlight">\(\text{boundary conditions}[n]= 0\)</span> and assuming an infinite wave.</p>
+</div>
+<div class="section" id="characterization-of-the-oscillator">
+<h3>Characterization of the oscillator<a class="headerlink" href="#characterization-of-the-oscillator" title="Permalink to this headline">¶</a></h3>
+<p>By inverting the relation</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    c&amp;=(1-\frac{\omega_0^2 T^2}{4})/(1+\frac{\omega_0^2 T^2}{4}) \\
+    \implies&amp; \omega_0 = \frac{2}{T}\sqrt{\frac{1-c}{1+c}}
+\end{align*}\]</div>
+<p>In terms of the k parameter:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+    \omega_0 = \frac{2}{T}\sqrt{\frac{2^{-(k+1)}}{2+2^{-(k+1)}}} = \frac{2}{T}\sqrt{ \frac{1}{1+2^{k+2}} }
+\end{align*}\]</div>
+</div>
+<div class="section" id="cosine">
+<h3>Cosine<a class="headerlink" href="#cosine" title="Permalink to this headline">¶</a></h3>
+<p>The quadrature (cosine) WF can be obtained by making a second sinusoid starting when the other wf crosses zero.</p>
 </div>
 </div>
 </div>
