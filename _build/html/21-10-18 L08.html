@@ -106,22 +106,22 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-13%20L01.html">
-   Lecture 01 - 13 September 2021
+   01 - Signals, Systems, and Sequences
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-14%20L02.html">
-   Lecture 02 - 14 September 2021
+   02 - Stability of Systems and Difference Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-20%20L03.html">
-   Lecture 03 - 20 September 2021
+   03 - The Z-Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-21%20L04.html">
-   Lecture 04 - 21 September 2021
+   04 - Inversion of z-transform and the z-space
   </a>
  </li>
  <li class="toctree-l1">
@@ -333,7 +333,7 @@
     <a class="reference internal nav-link" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i">
      e.g. Filter at
      <span class="math notranslate nohighlight">
-      \(f_0\frac{1}{4T}\rightarrow z_0 = \pm i\)
+      \(f_0 =\frac{1}{4T}\rightarrow z_0 = \pm i\)
      </span>
     </a>
    </li>
@@ -417,11 +417,11 @@ V(z) = \frac{\textcolor[rgb]{1.00,0.00,0.00}{(z-z_0)} \textcolor[rgb]{0.00,0.00,
 <ul class="simple">
 <li><p><span class="math notranslate nohighlight">\(\textcolor[rgb]{1.00,0.00,0.00}{(z-z_0)}\)</span> suppress the unwanted frequency</p></li>
 <li><p><span class="math notranslate nohighlight">\(\textcolor[rgb]{0.00,0.00,0.00}{(z-z_0)^*}\)</span> forces reality <span class="math notranslate nohighlight">\(V^*(z^*)=V(z)\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\textcolor[rgb]{0.00,0.00,1.00}{(z-cz_0)(z-cz_0^*)}\)</span> imposes causality <span class="math notranslate nohighlight">\(40\not \in ROC; \infty\subset ROC\)</span>. <span class="math notranslate nohighlight">\(c\)</span> makes the width of the filter as small as possible. <span class="math notranslate nohighlight">\(ROC: \left\{z: \left|z\right|&gt;c \right\}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\textcolor[rgb]{0.00,0.00,1.00}{(z-cz_0)(z-cz_0^*)}\)</span> imposes causality <span class="math notranslate nohighlight">\(0\not \in ROC; \infty\subset ROC\)</span>. <span class="math notranslate nohighlight">\(c\)</span> makes the width of the filter as small as possible. <span class="math notranslate nohighlight">\(ROC: \left\{z: \left|z\right|&gt;c \right\}\)</span>.</p></li>
 </ul>
-<p>!()[images/21-10-18_Notch_Filter.jpeg]</p>
+<p><img alt="" src="_images/21-10-18_Notch_Filter.jpeg" /></p>
 <div class="section" id="e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i">
-<h3>e.g. Filter at <span class="math notranslate nohighlight">\(f_0\frac{1}{4T}\rightarrow z_0 = \pm i\)</span><a class="headerlink" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i" title="Permalink to this headline">¶</a></h3>
+<h3>e.g. Filter at <span class="math notranslate nohighlight">\(f_0 =\frac{1}{4T}\rightarrow z_0 = \pm i\)</span><a class="headerlink" href="#e-g-filter-at-f-0-frac-1-4t-rightarrow-z-0-pm-i" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 V(z) &amp;=\frac{(z-i)(z+i)}{(z-ci)(z+ci)} = \frac{z^2+1}{z^2-c^2} = \frac{e^{-2i\omega T}+1}{e^{-2i\omega T}+c^2}\\

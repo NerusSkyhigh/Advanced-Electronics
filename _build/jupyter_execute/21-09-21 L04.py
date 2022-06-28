@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Lecture 04 - 21 September 2021
+# # 04 - Inversion of z-transform and the z-space
+# Lecture 04 - 21 September 2021
 # 
 # As a starting point, this lecture will provide some examples regarding the inversion of the z-transform:
 # 
@@ -26,7 +27,7 @@
 # 2. If $n<0$: there is a pole of order $|n|$ in the origin. By using the lemma proved in the previous lecture and choosing $m=-n$ we have:  
 # \begin{align*}
 #         x[n]&=\frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{z^{-m}}{z-a}z^{m} \right]_{z=0} = \frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{1}{z-a} \right]_{z=0} \\
-#         &= \frac{1}{(m-1)!}\left[ (m-1)! (-1)^{m-1} (z-a)^{-m} \right]_{z=0} = -a^{-m} = a^{-n} \text{ with } n<0
+#         &= \frac{1}{(m-1)!}\left[ (m-1)! (-1)^{m-1} (z-a)^{-m} \right]_{z=0} = (-1)^{m-1} (-a)^{-m} = - a^{-m} = -a^{n} \text{ with } n<0
 # \end{align*}
 # 
 # So that the final result is, by combining the two cases, $x[n]=-U[-n-1]a^n$.
@@ -64,7 +65,7 @@
 #     \frac{P(n, t+dt) - P(n, t)}{dt} = \Gamma \left[ P(n-1, t) - p(n, t) \right] \implies \frac{dP(n, t)}{dt} = \Gamma \left[ P(n-1, t) - P(n, t) \right]
 # \end{align*}
 # 
-# By applying the z-transform $\left( \Pi(z,t)=Z\left\{ P(n, t) \right\} \right)$:
+# By applying the z-transform $\left( \Pi(z,t)=Z\left\{ P(n, t) \right\} \right)$ and solving the differential equation in the $z-space$:
 # 
 # \begin{align*}
 #     \Pi(z,t) &= \sum_{n} z^{-n} P(n,t) \implies \frac{d\Pi(z,t)}{dt} = \Gamma \left[ \frac{\Pi(z,t)}{z}-\Pi(z,t) \right] = \Gamma\Pi(z,t) \left( \frac{1}{z}-1\right)\\
@@ -73,35 +74,37 @@
 # 
 # where $\Pi(z,0)$ is given by the condition that no event occurs in the point $t=0$: $\Pi(z,0)=Z(\delta[n])=1$ (initial condition in space).
 # 
-# It is now necessary to go back to the $n-space$ from the $z-space$. This can be done by Taylor-expanding the exponential:
+# It is now necessary to go back to the $n-space$ from the $z-space$. This can be done by Taylor-expanding the exponential depending on $z$:
 # 
 # \begin{align*}
-#     \Pi(z,t) &= \Pi(z,0)e^{\Gamma(\frac{1}{z}-1)t} \\
-#              &= \sum_{k=0}^{+\infty} \frac{1}{k!}\left(\frac{\Gamma t}{\frac{1}{z}-1}\right)^k
-#              &= e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{(\Gamma t)^k}{k!}\left(\frac{-z}{z-1}\right)^k
+#     \Pi(z,t) &= e^{\Gamma(\frac{1}{z}-1)t} = e^{-\Gamma t}e^{\frac{\Gamma t}{z}} = e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{1}{k!} \left(\frac{\Gamma t}{z}\right)^k \\
 # \end{align*}
 # 
+# and compute the inverse z-transform:
 # 
 # \begin{align*}
-#     P(n,t) &= \frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!}\left(\frac{z}{z-1}\right)^k z^{n-1} dz \\
-#     &= \frac{1}{2\pi i} \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} \oint_{\Gamma um 0\\ \Gamma\in ROC} \left(\frac{z}{z-1}\right)^k z^{n-1}dz \\
-#     &= \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} \frac{1}{(k-1)!} \left[ \frac{d^{k-1}}{dz^{k-1}} \frac{z^{n+k-1}}{(z-1)^k} (z-1)^{k} \right]_{z=1} \\
-#     &= \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} = e^{-\Gamma t}
+#     P(n,t) &= \frac{e^{-\Gamma t}}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} \sum_{k=0}^{+\infty} \frac{1}{k!} \left(\frac{\Gamma t}{z}\right)^k z^{n-1} dz \\
+#     &= \frac{e^{-\Gamma t}}{2\pi i} \sum_{k=0}^{+\infty} \frac{1}{k!} \oint_{\Gamma um 0\\ \Gamma\in ROC} \left(\frac{\Gamma t}{z}\right)^k z^{n-1} dz \\
+#     &= \frac{e^{-\Gamma t}}{2\pi i} \sum_{k=0}^{+\infty} \frac{1}{k!} \oint_{\Gamma um 0\\ \Gamma\in ROC} \left(\Gamma t\right)^k z^{n-1-k} dz \\
+#     &= e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{\left(\Gamma t\right)^k}{k!} \frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC}  z^{n-1-k} dz \\
+#     &= e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{1}{k!} \left(\Gamma t\right)^k \delta_{n-1-k, -1} = \frac{\left(\Gamma t\right)^n}{n!} e^{-\Gamma t} \\
 # \end{align*}
+# Which is the probability mass function of the [Poisson distribution](https://en.wikipedia.org/wiki/Poisson_distribution). The $ROC$ was used when we swapped the integral and the summation.
 # 
 # ### Fibonacci sequence
 # The Fibonacci frequence is obtained via the following procedure:
 # \begin{align*}
-#     y[n] &= y[n-1] + y[n-1] + x[n] \\
+#     y[n] &= y[n-1] + y[n-2] + x[n] \\
 #     x[n] &= \delta[n]
 # \end{align*}
-# An analytical form can be obatined via the z-transform:
+# 
+# An analytical form can be obtained via the z-transform:
 # \begin{align*}
-#     h[n] &= h[n-1] + h[n-1] + \delta[n] \\
-#     \implies h(z) &= h(z)\left( \frac{1}{z} + \frac{1}{z^2} +1 \right) \implies h(z) \\
+#     h[n] &= h[n-1] + h[n-2] + \delta[n] \\
+#     \implies h(z) &= h(z)\left( \frac{1}{z} + \frac{1}{z^2} +1 \right) \\
 #         &= \frac{z^2}{z^2-z-1} \\
-#         &= \frac{1}{\sqrt{5}}\left[ \beta \frac{z}{z-\beta} - \alpha \frac{z}{z-\alpha}\right] \\
-#         \text{ with } \alpha=\frac{1+\sqrt{5}}{2} \quad \beta=\frac{1-\sqrt{5}}{2} \quad \text{ROC:} |z|>\beta \\
+#         &= \frac{1}{\sqrt{5}} \left[ \beta \frac{z}{z-\beta} - \alpha \frac{z}{z-\alpha}\right] \\
+#         &\text{ with } \alpha =\frac{1+\sqrt{5}}{2} \text{ and } \beta=\frac{1-\sqrt{5}}{2} \quad \text{ROC:} |z|>\beta 
 # \end{align*}
 # 
 # By inverting the z-transform:
@@ -197,8 +200,8 @@ print("\nValues obtained from scratch with the iterative procedure:\n", yi)
 # ### c) Causality (with $x[n]\neq \alpha \delta[n]$)
 # A system is _CAUSAL_ if and only if $0 \not \in $ ROC while $\infty \subset $ ROC.  
 # **proof**  
-# $\implies$ as $x(z)=\sum_{n=0}^{\infty} x[n]z^{-n}$ the condition $0\not \in \text{ROC;}$ is necessary to avoid the pole $\left. z^{-n}\right|_{z=0}$. $\infty$ can be seen to be in the ROC by taking the limit.  
-# $\impliedby$ it is possible to Laurent expand the transform
+# - $\implies$ as $x(z)=\sum_{n=0}^{\infty} x[n]z^{-n}$ the condition $0\not \in \text{ROC}$ is necessary to avoid the pole $\left. z^{-n}\right|_{z=0}$. $\infty$ can be seen to be in the ROC by taking the limit.  
+# - $\impliedby$ it is possible to Laurent expand the transform
 # \begin{align*}
 #     x(z)=\sum_{k=-\infty}^{0}\frac{a_k}{k!}z^k = \sum_{n=\infty}^{0}\frac{a_{-n}}{(-n)!}z^{-n}=\sum_{n=0}^{\infty}\frac{a_{-n}}{(-n)!}z^{-n}
 # \end{align*}
@@ -214,8 +217,7 @@ print("\nValues obtained from scratch with the iterative procedure:\n", yi)
 # ### e) Both causality and non causality (with $x[n]=\alpha \delta[n]$)
 # A system is _both_ causal and not causal if and only if $0\in$ROC and $\infty\subset$ROC.
 
-# In[ ]:
-
-
-
-
+# In chronological order, the next lectures are Laboratory Classes 1-3, namely:
+# - Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.
+# - Multiplexers and demultiplexers
+# - Synchronous counters. Toggle flip-flops. Monostable multivibrators.

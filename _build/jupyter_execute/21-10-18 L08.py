@@ -56,11 +56,11 @@
 # where:
 # - $\textcolor[rgb]{1.00,0.00,0.00}{(z-z_0)}$ suppress the unwanted frequency
 # - $\textcolor[rgb]{0.00,0.00,0.00}{(z-z_0)^*}$ forces reality $V^*(z^*)=V(z)$
-# - $\textcolor[rgb]{0.00,0.00,1.00}{(z-cz_0)(z-cz_0^*)}$ imposes causality $40\not \in ROC; \infty\subset ROC$. $c$ makes the width of the filter as small as possible. $ROC: \left\{z: \left|z\right|>c \right\}$.
+# - $\textcolor[rgb]{0.00,0.00,1.00}{(z-cz_0)(z-cz_0^*)}$ imposes causality $0\not \in ROC; \infty\subset ROC$. $c$ makes the width of the filter as small as possible. $ROC: \left\{z: \left|z\right|>c \right\}$.
 # 
-# !()[images/21-10-18_Notch_Filter.jpeg]
+# ![](images/21-10-18_Notch_Filter.jpeg)
 # 
-# #### e.g. Filter at $f_0\frac{1}{4T}\rightarrow z_0 = \pm i$
+# #### e.g. Filter at $f_0 =\frac{1}{4T}\rightarrow z_0 = \pm i$
 # \begin{align*}
 # V(z) &=\frac{(z-i)(z+i)}{(z-ci)(z+ci)} = \frac{z^2+1}{z^2-c^2} = \frac{e^{-2i\omega T}+1}{e^{-2i\omega T}+c^2}\\
 # &=\sqrt{ \frac{2[1+\cos(2\omega T)]}{1+c^2+2c^2 \cos(2\omega T)}} = \frac{\left|\cos(\omega T)\right|}{\sqrt{1-\left[ \frac{2c}{1+c^2}\sin(\omega T)\right]}}\frac{2}{1+c^2}

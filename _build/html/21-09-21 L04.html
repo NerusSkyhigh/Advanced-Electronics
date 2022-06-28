@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 04 - 21 September 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>04 - Inversion of z-transform and the z-space &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -54,7 +54,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lecture 05 - 27 September 2021" href="21-09-27%20L05.html" />
-    <link rel="prev" title="Lecture 03 - 20 September 2021" href="21-09-20%20L03.html" />
+    <link rel="prev" title="03 - The Z-Transform" href="21-09-20%20L03.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -106,22 +106,22 @@
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-13%20L01.html">
-   Lecture 01 - 13 September 2021
+   01 - Signals, Systems, and Sequences
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-14%20L02.html">
-   Lecture 02 - 14 September 2021
+   02 - Stability of Systems and Difference Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-20%20L03.html">
-   Lecture 03 - 20 September 2021
+   03 - The Z-Transform
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lecture 04 - 21 September 2021
+   04 - Inversion of z-transform and the z-space
   </a>
  </li>
  <li class="toctree-l1">
@@ -399,8 +399,9 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-04-21-september-2021">
-<h1>Lecture 04 - 21 September 2021<a class="headerlink" href="#lecture-04-21-september-2021" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="inversion-of-z-transform-and-the-z-space">
+<h1>04 - Inversion of z-transform and the z-space<a class="headerlink" href="#inversion-of-z-transform-and-the-z-space" title="Permalink to this headline">¶</a></h1>
+<p>Lecture 04 - 21 September 2021</p>
 <p>As a starting point, this lecture will provide some examples regarding the inversion of the z-transform:</p>
 <div class="section" id="examples-of-z-transform-inversion">
 <h2>Examples of z-transform inversion<a class="headerlink" href="#examples-of-z-transform-inversion" title="Permalink to this headline">¶</a></h2>
@@ -429,7 +430,7 @@
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
         x[n]&amp;=\frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{z^{-m}}{z-a}z^{m} \right]_{z=0} = \frac{1}{(m-1)!}\left[ \frac{d^{m-1}}{dz^{m-1}} \frac{1}{z-a} \right]_{z=0} \\
-        &amp;= \frac{1}{(m-1)!}\left[ (m-1)! (-1)^{m-1} (z-a)^{-m} \right]_{z=0} = -a^{-m} = a^{-n} \text{ with } n&lt;0
+        &amp;= \frac{1}{(m-1)!}\left[ (m-1)! (-1)^{m-1} (z-a)^{-m} \right]_{z=0} = (-1)^{m-1} (-a)^{-m} = - a^{-m} = -a^{n} \text{ with } n&lt;0
 \end{align*}\]</div>
 <p>So that the final result is, by combining the two cases, <span class="math notranslate nohighlight">\(x[n]=-U[-n-1]a^n\)</span>.</p>
 </div>
@@ -462,44 +463,45 @@ Let’s write the probability as a difference equation and consider the limit <s
 \[\begin{align*}
     \frac{P(n, t+dt) - P(n, t)}{dt} = \Gamma \left[ P(n-1, t) - p(n, t) \right] \implies \frac{dP(n, t)}{dt} = \Gamma \left[ P(n-1, t) - P(n, t) \right]
 \end{align*}\]</div>
-<p>By applying the z-transform <span class="math notranslate nohighlight">\(\left( \Pi(z,t)=Z\left\{ P(n, t) \right\} \right)\)</span>:</p>
+<p>By applying the z-transform <span class="math notranslate nohighlight">\(\left( \Pi(z,t)=Z\left\{ P(n, t) \right\} \right)\)</span> and solving the differential equation in the <span class="math notranslate nohighlight">\(z-space\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \Pi(z,t) &amp;= \sum_{n} z^{-n} P(n,t) \implies \frac{d\Pi(z,t)}{dt} = \Gamma \left[ \frac{\Pi(z,t)}{z}-\Pi(z,t) \right] = \Gamma\Pi(z,t) \left( \frac{1}{z}-1\right)\\
     &amp;\implies \Pi(z,t) = \Pi(z,0)e^{\Gamma(\frac{1}{z}-1)t}
 \end{align*}\]</div>
 <p>where <span class="math notranslate nohighlight">\(\Pi(z,0)\)</span> is given by the condition that no event occurs in the point <span class="math notranslate nohighlight">\(t=0\)</span>: <span class="math notranslate nohighlight">\(\Pi(z,0)=Z(\delta[n])=1\)</span> (initial condition in space).</p>
-<p>It is now necessary to go back to the <span class="math notranslate nohighlight">\(n-space\)</span> from the <span class="math notranslate nohighlight">\(z-space\)</span>. This can be done by Taylor-expanding the exponential:</p>
+<p>It is now necessary to go back to the <span class="math notranslate nohighlight">\(n-space\)</span> from the <span class="math notranslate nohighlight">\(z-space\)</span>. This can be done by Taylor-expanding the exponential depending on <span class="math notranslate nohighlight">\(z\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    \Pi(z,t) &amp;= \Pi(z,0)e^{\Gamma(\frac{1}{z}-1)t} \\
-             &amp;= \sum_{k=0}^{+\infty} \frac{1}{k!}\left(\frac{\Gamma t}{\frac{1}{z}-1}\right)^k
-             &amp;= e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{(\Gamma t)^k}{k!}\left(\frac{-z}{z-1}\right)^k
+    \Pi(z,t) &amp;= e^{\Gamma(\frac{1}{z}-1)t} = e^{-\Gamma t}e^{\frac{\Gamma t}{z}} = e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{1}{k!} \left(\frac{\Gamma t}{z}\right)^k \\
 \end{align*}\]</div>
+<p>and compute the inverse z-transform:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    P(n,t) &amp;= \frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!}\left(\frac{z}{z-1}\right)^k z^{n-1} dz \\
-    &amp;= \frac{1}{2\pi i} \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} \oint_{\Gamma um 0\\ \Gamma\in ROC} \left(\frac{z}{z-1}\right)^k z^{n-1}dz \\
-    &amp;= \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} \frac{1}{(k-1)!} \left[ \frac{d^{k-1}}{dz^{k-1}} \frac{z^{n+k-1}}{(z-1)^k} (z-1)^{k} \right]_{z=1} \\
-    &amp;= \sum_{k=0}^{+\infty} \frac{(-\Gamma t)^k}{k!} = e^{-\Gamma t}
+    P(n,t) &amp;= \frac{e^{-\Gamma t}}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} \sum_{k=0}^{+\infty} \frac{1}{k!} \left(\frac{\Gamma t}{z}\right)^k z^{n-1} dz \\
+    &amp;= \frac{e^{-\Gamma t}}{2\pi i} \sum_{k=0}^{+\infty} \frac{1}{k!} \oint_{\Gamma um 0\\ \Gamma\in ROC} \left(\frac{\Gamma t}{z}\right)^k z^{n-1} dz \\
+    &amp;= \frac{e^{-\Gamma t}}{2\pi i} \sum_{k=0}^{+\infty} \frac{1}{k!} \oint_{\Gamma um 0\\ \Gamma\in ROC} \left(\Gamma t\right)^k z^{n-1-k} dz \\
+    &amp;= e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{\left(\Gamma t\right)^k}{k!} \frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC}  z^{n-1-k} dz \\
+    &amp;= e^{-\Gamma t} \sum_{k=0}^{+\infty} \frac{1}{k!} \left(\Gamma t\right)^k \delta_{n-1-k, -1} = \frac{\left(\Gamma t\right)^n}{n!} e^{-\Gamma t} \\
 \end{align*}\]</div>
+<p>Which is the probability mass function of the <a class="reference external" href="https://en.wikipedia.org/wiki/Poisson_distribution">Poisson distribution</a>. The <span class="math notranslate nohighlight">\(ROC\)</span> was used when we swapped the integral and the summation.</p>
 </div>
 <div class="section" id="fibonacci-sequence">
 <h3>Fibonacci sequence<a class="headerlink" href="#fibonacci-sequence" title="Permalink to this headline">¶</a></h3>
 <p>The Fibonacci frequence is obtained via the following procedure:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    y[n] &amp;= y[n-1] + y[n-1] + x[n] \\
+    y[n] &amp;= y[n-1] + y[n-2] + x[n] \\
     x[n] &amp;= \delta[n]
 \end{align*}\]</div>
-<p>An analytical form can be obatined via the z-transform:</p>
+<p>An analytical form can be obtained via the z-transform:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-    h[n] &amp;= h[n-1] + h[n-1] + \delta[n] \\
-    \implies h(z) &amp;= h(z)\left( \frac{1}{z} + \frac{1}{z^2} +1 \right) \implies h(z) \\
+    h[n] &amp;= h[n-1] + h[n-2] + \delta[n] \\
+    \implies h(z) &amp;= h(z)\left( \frac{1}{z} + \frac{1}{z^2} +1 \right) \\
         &amp;= \frac{z^2}{z^2-z-1} \\
-        &amp;= \frac{1}{\sqrt{5}}\left[ \beta \frac{z}{z-\beta} - \alpha \frac{z}{z-\alpha}\right] \\
-        \text{ with } \alpha=\frac{1+\sqrt{5}}{2} \quad \beta=\frac{1-\sqrt{5}}{2} \quad \text{ROC:} |z|&gt;\beta \\
+        &amp;= \frac{1}{\sqrt{5}} \left[ \beta \frac{z}{z-\beta} - \alpha \frac{z}{z-\alpha}\right] \\
+        &amp;\text{ with } \alpha =\frac{1+\sqrt{5}}{2} \text{ and } \beta=\frac{1-\sqrt{5}}{2} \quad \text{ROC:} |z|&gt;\beta 
 \end{align*}\]</div>
 <p>By inverting the z-transform:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -608,9 +610,11 @@ On the other hand, if the z transform exits it is possible to freely insert <spa
 <div class="section" id="c-causality-with-x-n-neq-alpha-delta-n">
 <h3>c) Causality (with <span class="math notranslate nohighlight">\(x[n]\neq \alpha \delta[n]\)</span>)<a class="headerlink" href="#c-causality-with-x-n-neq-alpha-delta-n" title="Permalink to this headline">¶</a></h3>
 <p>A system is <em>CAUSAL</em> if and only if <span class="math notranslate nohighlight">\(0 \not \in \)</span> ROC while <span class="math notranslate nohighlight">\(\infty \subset \)</span> ROC.<br />
-<strong>proof</strong><br />
-<span class="math notranslate nohighlight">\(\implies\)</span> as <span class="math notranslate nohighlight">\(x(z)=\sum_{n=0}^{\infty} x[n]z^{-n}\)</span> the condition <span class="math notranslate nohighlight">\(0\not \in \text{ROC;}\)</span> is necessary to avoid the pole <span class="math notranslate nohighlight">\(\left. z^{-n}\right|_{z=0}\)</span>. <span class="math notranslate nohighlight">\(\infty\)</span> can be seen to be in the ROC by taking the limit.<br />
-<span class="math notranslate nohighlight">\(\impliedby\)</span> it is possible to Laurent expand the transform</p>
+<strong>proof</strong></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\implies\)</span> as <span class="math notranslate nohighlight">\(x(z)=\sum_{n=0}^{\infty} x[n]z^{-n}\)</span> the condition <span class="math notranslate nohighlight">\(0\not \in \text{ROC}\)</span> is necessary to avoid the pole <span class="math notranslate nohighlight">\(\left. z^{-n}\right|_{z=0}\)</span>. <span class="math notranslate nohighlight">\(\infty\)</span> can be seen to be in the ROC by taking the limit.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\impliedby\)</span> it is possible to Laurent expand the transform</p></li>
+</ul>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     x(z)=\sum_{k=-\infty}^{0}\frac{a_k}{k!}z^k = \sum_{n=\infty}^{0}\frac{a_{-n}}{(-n)!}z^{-n}=\sum_{n=0}^{\infty}\frac{a_{-n}}{(-n)!}z^{-n}
@@ -627,6 +631,12 @@ On the other hand, if the z transform exits it is possible to freely insert <spa
 <div class="section" id="e-both-causality-and-non-causality-with-x-n-alpha-delta-n">
 <h3>e) Both causality and non causality (with <span class="math notranslate nohighlight">\(x[n]=\alpha \delta[n]\)</span>)<a class="headerlink" href="#e-both-causality-and-non-causality-with-x-n-alpha-delta-n" title="Permalink to this headline">¶</a></h3>
 <p>A system is <em>both</em> causal and not causal if and only if <span class="math notranslate nohighlight">\(0\in\)</span>ROC and <span class="math notranslate nohighlight">\(\infty\subset\)</span>ROC.</p>
+<p>In chronological order, the next lectures are Laboratory Classes 1-3, namely:</p>
+<ul class="simple">
+<li><p>Introduction to Verilog programming on an FPGA device. Counters and frequency dividers.</p></li>
+<li><p>Multiplexers and demultiplexers</p></li>
+<li><p>Synchronous counters. Toggle flip-flops. Monostable multivibrators.</p></li>
+</ul>
 </div>
 </div>
 </div>
@@ -660,7 +670,7 @@ On the other hand, if the z transform exits it is possible to freely insert <spa
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture 03 - 20 September 2021</p>
+            <p class="prev-next-title">03 - The Z-Transform</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-09-27%20L05.html" title="next page">

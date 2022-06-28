@@ -3,7 +3,7 @@
 
 # # Implementation of a harmonic oscillator
 # 
-# ## Laboratory Class 05 - 14 October 2021
+# ## Laboratory Class 07 - 14 October 2021
 # 
 # ### Topics
 # - Theoretical and experimental aspects linked to the development of a harmonic oscillator:
@@ -51,12 +51,45 @@
 #     y[n]-2cy[n-1]+y[n-2]=\text{boundary conditions}[n]
 # \end{align*}
 # 
+# As an fpga works best with powers of two, $c = 1-2^{k+1}$ is assumed.
+# 
+# ### Boundary conditions
+# Instead of actually computing the boundary condition, the fact that $sin(x)$ is symmetric with respect to its maximum is used:
+# 
+# \begin{align*}
+#     y[-1] &= y[1] \\
+#     y[1] &= (1-2^{-k+1}) y[0] = y[-1]\\
+#     y[0] &= \text{boundary conditions}[n]= 0
+# \end{align*}
+# 
+# The value of $y[1]$ was computed by setting $\text{boundary conditions}[n]= 0$ and assuming an infinite wave.
+# 
+# ### Characterization of the oscillator
+# By inverting the relation
+# 
+# \begin{align*}
+#     c&=(1-\frac{\omega_0^2 T^2}{4})/(1+\frac{\omega_0^2 T^2}{4}) \\
+#     \implies& \omega_0 = \frac{2}{T}\sqrt{\frac{1-c}{1+c}}
+# \end{align*}
+# 
+# In terms of the k parameter:
+# \begin{align*}
+#     \omega_0 = \frac{2}{T}\sqrt{\frac{2^{-(k+1)}}{2+2^{-(k+1)}}} = \frac{2}{T}\sqrt{ \frac{1}{1+2^{k+2}} }
+# \end{align*}
+# 
+# 
+# 
+# ### Cosine
+# The quadrature (cosine) WF can be obtained by making a second sinusoid starting when the other wf crosses zero.
 # 
 # 
 # 
 # 
 # 
 # 
-# 
-# 
-# 
+
+# In[ ]:
+
+
+
+
