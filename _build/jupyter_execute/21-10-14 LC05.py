@@ -2,8 +2,9 @@
 # coding: utf-8
 
 # # DAC and ADC
+# Laboratory Class 05 - 14 October 2021
 # 
-# ## Laboratory Class 05 - 14 October 2021 - Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
+# ## Driving the DACs and the ADCs hosted on the development board. Nyquist–Shannon sampling theorem made real.
 # 
 # ### Topics
 # - Numerical representation of natural and integer numbers:

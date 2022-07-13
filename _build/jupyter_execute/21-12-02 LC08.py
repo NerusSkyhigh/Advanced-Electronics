@@ -2,8 +2,7 @@
 # coding: utf-8
 
 # # Digital Filters
-# 
-# ## Laboratory Class 08 - 14 October 2021
+# Laboratory Class 08 - 14 October 2021
 # 
 # ---
 # 
@@ -11,7 +10,7 @@
 # 
 # 
 # 
-# ### Topics
+# ## Topics
 # - Design of a first-order low-pass filter via bilinear transform:
 #      - from the Fourier transform of the real system’s response function to the z–transform of the simulator’s response function V (z);
 #     - difference equation and block diagram of the simulator;

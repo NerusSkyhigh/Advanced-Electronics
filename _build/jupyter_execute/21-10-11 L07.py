@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Lecture 07 - 11 October 2021
+# # 07 - Bilinear Transform
+# Lecture 07 - 11 October 2021
 # 
 # ## Approximations for the simulation theorem
 # 
-# In the previous lecture a way to approximate a system $\tilde{G}(s)$ or $\tilde{G}(\omega)$ with a discrete transfer function was seen. The result obtained is that $V(z)$ is a perfect simulator for $\tilde{G}(\omega)$ if and only if $\tilde{G}(\omega)=V(z=e^{-i\omega T})$.
-# It's now time to searcb for a general way to obtain the discrete $\tilde{V}(z)$ starting from the transfer function $\tilde{G}(\omega)$. A first way would be to invert $z=e^{-i\omega T}\rightarrow \omega=\frac{i}{T}ln(Z)$ but that would introduce a [branch cut](https://en.wikipedia.org/wiki/Branch_point#Branch_cuts) on $\mathcal{R}_{0}^{-}$. A possibility is to abandon the search for an _exact inversion_ anduse a _sufficiently close approximation_ $\tilde{V} = \tilde{G}(\omega=f(z)) + \mathcal{o}\left( w^n\right)$.
+# In the previous lecture, a way to approximate a system $\tilde{G}(s)$ or $\tilde{G}(\omega)$ with a discrete transfer function was seen. The result obtained is that $V(z)$ is a perfect simulator for $\tilde{G}(\omega)$ if and only if $\tilde{G}(\omega)=V(z=e^{-i\omega T})$.
+# It's now time to search for a general way to obtain the discrete $\tilde{V}(z)$ starting from the transfer function $\tilde{G}(\omega)$. A first way would be to invert $z=e^{-i\omega T}\rightarrow \omega=\frac{i}{T}ln(Z)$ but that would introduce a [branch cut](https://en.wikipedia.org/wiki/Branch_point#Branch_cuts) on $\mathcal{R}_{0}^{-}$. A possibility is to abandon the search for an _exact inversion_ and use a _sufficiently close approximation_ $\tilde{V} = \tilde{G}(\omega=f(z)) + \mathcal{o}\left( w^n\right)$.
 # 
 # 
 # ### Case 1: $sin(\omega t)$
@@ -52,7 +53,7 @@
 # As we know that _an analog system is real $\iff\ \tilde{G}^*(\omega)=\tilde{G}(-\omega)$_ we have proven the statement.
 # 
 # ### Causality
-# Causality can be proven but the proof is long and tedious. Just assume causality a priori with the condition $0\not \in ROC; \infty \subset ROC$.
+# Causality can be proven but the proof is long and tedious. Just assume causality a priori or check the conditions $0\not \in ROC; \infty \subset ROC$.
 # 
 # ### Bibo Stability
 # **Reminder**: An analog system is bibo stable $\iff \mathcal{Re}\{poles\}<0$.  
@@ -63,12 +64,14 @@
 # \end{align*}
 # and the poles stays of the same order after a bilinear transformation.
 # It's now possible to prove the preservation of bibo stability:
+# 
 # \begin{align*}
 # s &= \frac{2}{T} \frac{z-1}{z+1} \rightarrow z=\frac{1+sT/2}{1-sT/2} = \frac{1+x+iy}{1-x-iy}\\
 # &\text{with }\frac{T}{2}s=x+iy,\quad x,y\in\mathcal{R}\\
-# &\implies \left| z_0 \right| = 1+\frac{4x_0}{(x_0-1)^2+y_0^2} = 1+\frac{2T\mathcal{Re}\left\{s_0\right\}}{\left(1-\frac{T}{2}\mathcal{Re}\left\{s_0\right\} \right)^2 + \left(\mathcal{Im}\left\{s_0\right\} \right)^2}
+# &\implies \left| z_0 \right|^2 = 1+\frac{4x_0}{(x_0-1)^2+y_0^2} = 1+\frac{2T\mathcal{Re}\left\{s_0\right\}}{\left(1-\frac{T}{2}\mathcal{Re}\left\{s_0\right\} \right)^2 + \left(\mathcal{Im}\left\{s_0\right\} \right)^2}
 # \end{align*}
-# by imposing $\mathcal{Re}\{poles\}<0$ one obtains $\left| z_0 \right|<0$, that is, all the poles $\subset \Gamma_1$.
+# 
+# by imposing $\mathcal{Re}\{poles\}<0$ one obtains $\left| z_0 \right|<1$, that is, all the poles $\subset \Gamma_1$.
 # As all the poles are strictly under $\Gamma_1$ it is possible to find a curve that includes all the poles, is contained in $\Gamma_1$, and encloses $+\infty$. This implies that the system is Bibo stable.
 # Another reason for which bilinear is preferred is that it is well-behaved near the boundaries of the Nyquist band:
 # 
@@ -76,12 +79,13 @@
 # \begin{align*}
 # \tilde{G}(\omega)&= \frac{N(\omega)}{D(\omega)} = \frac{\sum_{k=0}^Ma_k \omega^k}{\sum_{n=0}^N b_n \omega^n}\\ \implies \tilde{V}(z) &= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k (z+1)^M}{\sum_{n=0}^N b_n \left[\frac{2i}{T}  \frac{z-1}{z+1} \right]^n (z+1)^N} \frac{(z+1)^N}{(z+1)^M} = \frac{N'(z)}{D'(z)}(z+1)^{N-M}
 # \end{align*}
+# 
 # The term $(z+1)^{N-M}$ is a leading term. Now let's replace the simulation theorem:
 # \begin{align*}
 #     \tilde{G}(\omega)=V\left(z=e^{-i\omega T}\right) = \left. \frac{N'\left( z=e^{-i\omega T}\right)}{D'\left(z=e^{-i\omega T}\right)} \left( e^{-i\omega T}+1\right)^{N-M} \right|_{\omega = \pm \frac{\pi}{T} }=0
 # \end{align*}
 # 
-# That is the tails of $\tilde{x}(\omega)$ are smoothed out near the boundaries of the Nyquist band and ensure a nice transition to the cut region.
+# That is, the tails of $\tilde{x}(\omega)$ are smoothed out near the boundaries of the Nyquist band and ensure a nice transition to the cut region.
 # 
 # ### e.g. LOW PASS (actual implementation)
 # \begin{align*}
@@ -92,7 +96,7 @@
 #     &\implies y[n]c-y[n-1]=\frac{1-c}{2}(x[n]+x[n-1]) \quad \text{Time domain}
 # \end{align*}
 # 
-# Let's now plot the Bode diagram for a low pass an for its bilinear transform. The two equation of interests are:
+# Let's now plot the Bode diagram for a low pass an for its bilinear transform. The two equations of interest are:
 # \begin{align*}
 # \text{Ideal low pass} &\quad \tilde{G}(\omega)=\frac{1}{1-i\omega \tau}\\
 # \text{Discrete low pass} &\quad V\left(\omega\right)=\frac{1-c}{2}\frac{e^{-i\omega T}+1}{e^{-i\omega T}-c}\\

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 05 - 27 September 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>05 - Nyquist-Shannon Theorem &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,7 +53,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 06 - 04 October 2021" href="21-10-04%20L06.html" />
+    <link rel="next" title="06 - Simulation Theorem" href="21-10-04%20L06.html" />
     <link rel="prev" title="04 - Inversion of z-transform and the z-space" href="21-09-21%20L04.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -126,32 +126,32 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lecture 05 - 27 September 2021
+   05 - Nyquist-Shannon Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-04%20L06.html">
-   Lecture 06 - 04 October 2021
+   06 - Simulation Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-11%20L07.html">
-   Lecture 07 - 11 October 2021
+   07 - Bilinear Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-18%20L08.html">
-   Lecture 08 - 18 October 2021
+   08 - Applications of the Bilinear Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-25%20L09.html">
-   Lecture 09 - 25 October 2021
+   09 - DFT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-11-08%20L10.html">
-   Lecture 10 - 08 November 2021
+   10 - FFT
   </a>
  </li>
 </ul>
@@ -191,21 +191,19 @@
    Waveform generation
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  IDK
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
+  <a class="reference internal" href="21-11-11%20LC07.html">
+   Implementation of a harmonic oscillator
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooks
+  <a class="reference internal" href="21-12-02%20LC08.html">
+   Digital Filters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="External%20resources.html">
+   External resource
   </a>
  </li>
 </ul>
@@ -357,11 +355,12 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-05-27-september-2021">
-<h1>Lecture 05 - 27 September 2021<a class="headerlink" href="#lecture-05-27-september-2021" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="nyquist-shannon-theorem">
+<h1>05 - Nyquist-Shannon Theorem<a class="headerlink" href="#nyquist-shannon-theorem" title="Permalink to this headline">¶</a></h1>
+<p>Lecture 05 - 27 September 2021</p>
 <div class="section" id="sampling">
 <h2>Sampling<a class="headerlink" href="#sampling" title="Permalink to this headline">¶</a></h2>
-<p>Given a continuous function <span class="math notranslate nohighlight">\(x_A(t)\)</span> it is always possible to generate a discrete sequence by taking <span class="math notranslate nohighlight">\(x[n]=x_A(nT)\)</span> where <span class="math notranslate nohighlight">\(T\)</span> is the sampling time. A direct question arises: how good is it possible to reconstruct a signal <span class="math notranslate nohighlight">\(x_{A}(t)\)</span> from its sampled sequence?
+<p>Given a continuous function <span class="math notranslate nohighlight">\(x_A(t)\)</span>, it is always possible to generate a discrete sequence by taking <span class="math notranslate nohighlight">\(x[n]=x_A(nT)\)</span>, where <span class="math notranslate nohighlight">\(T\)</span> is the sampling time. A question should naturally arise: how good is it possible to reconstruct a signal <span class="math notranslate nohighlight">\(x_{A}(t)\)</span> from its sampled sequence?
 A first way to do that is to linearly interpolate between points:</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -371,7 +370,7 @@ A first way to do that is to linearly interpolate between points:</p>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
 <span class="n">ya</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
 
-<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span> <span class="c1"># Change here the number of points</span>
 <span class="n">ys</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">n</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="mf">0.1</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span>
 
 
@@ -397,14 +396,14 @@ A first way to do that is to linearly interpolate between points:</p>
 <img alt="_images/21-09-27 L05_1_1.png" src="_images/21-09-27 L05_1_1.png" />
 </div>
 </div>
-<p>but the results are not great. There exists a better (actual, an optimal) way to reconstruct a function from the sampling but it requires defining some quantities and making some rather general assumptions:</p>
+<p>but the results are not great. There exists an optimal way to reconstruct a function from the sampling, but it requires defining some quantities and making some rather general assumptions:</p>
 <div class="section" id="definitions">
 <h3>Definitions:<a class="headerlink" href="#definitions" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><em>Sampling period/time</em>: <span class="math notranslate nohighlight">\(T\)</span></p></li>
 <li><p><em>Sampling rate/frequency</em>: <span class="math notranslate nohighlight">\(f_s=T^{-1}\)</span></p></li>
 <li><p><em>Nyquist frequency</em>: <span class="math notranslate nohighlight">\(F_{NY}= \frac{f_s}{2} \quad \omega_{NY} = 2\pi f_{NY} = \pi f_s = \frac{\pi}{T}\)</span></p></li>
-<li><p><em>Nyquist band:</em> <span class="math notranslate nohighlight">\(]-f_{NY}; f_{NY}[ \quad \iff \quad ]-\frac{\pi}{T}; \frac{\pi}{T}[\)</span></p></li>
+<li><p><em>Nyquist band:</em> <span class="math notranslate nohighlight">\(f \in ]-f_{NY}; f_{NY}[ \quad \iff \quad f \in ]-\frac{\pi}{T}; \frac{\pi}{T}[\)</span></p></li>
 </ul>
 </div>
 <div class="section" id="assumptions">
@@ -428,20 +427,19 @@ x_{s}[n] = x_A(nT)
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 x_{s}[n] &amp;= \frac{1}{2\pi i} \oint_{\Gamma \in ROC} x_s(z) z^{n-1} \qquad z=e^{-i\omega t} \qquad dz=(-iT)e^{-i\omega T}\\
-&amp;= - \frac{1}{2\pi i} \oint_{-\frac{pi}{T}}^{\frac{\pi}{T}} x_s(e^{-i\omega t}) e^{-i\omega T (n-1)} (-iT) e^{-i\omega t} d\omega \\
-&amp;= \frac{T}{2\pi} \oint_{-\frac{pi}{T}}^{\frac{\pi}{T}} x_s(e^{-i\omega t}) e^{-i\omega n T} d\omega\\
+&amp;= - \frac{1}{2\pi i} \oint_{-\frac{\pi}{T}}^{\frac{\pi}{T}} x_s(e^{-i\omega t}) e^{-i\omega T (n-1)} (-iT) e^{-i\omega t} d\omega \\
+&amp;= \frac{T}{2\pi} \oint_{-\frac{\pi}{T}}^{\frac{\pi}{T}} x_s(e^{-i\omega t}) e^{-i\omega n T} d\omega\\
 \end{align*}\]</div>
 <p>By composing this expression with the one obtained above it is possible to obtain:</p>
 <div class="admonition-nyquist-shannon-precursor-theorem admonition">
 <p class="admonition-title">Nyquist-Shannon precursor theorem</p>
 <p><span class="math notranslate nohighlight">\(T x_s\left(z=e^{-i\omega T}\right) = \sum_{k} \tilde{x}_A\left( \omega+\frac{2\pi}{T}k\right)\)</span> with <span class="math notranslate nohighlight">\(\omega\in \left] -\frac{\pi}{T}; \frac{\pi}{T}\right[\)</span></p>
 </div>
-<!-- **NOTE:** it is possible to notice that both the function on the left and the one on the right are periodic with period $\frac{2\pi}{T}$. This implies that it is possible to periodically extend the functions outside the Nyquist band and consider any $\omega$. -->
-<p>It is now time to make our third assumption:</p>
+<p><strong>WARNING:</strong> The function on the right must be periodic with period <span class="math notranslate nohighlight">\(\frac{2\pi}{T}\)</span> due to the nature of the complex exponential. In contrast, the function on the left wasn’t assumed to be periodic so the expression can’t be true in general. To circumvent this issue, we make a third assumption:</p>
 <ol class="simple">
-<li><p>Assume <span class="math notranslate nohighlight">\(x_A(t)\)</span> to be <em>band limited</em> on <span class="math notranslate nohighlight">\(\left] -\frac{\pi}{T}; \frac{\pi}{T}\right[\)</span>, that is <span class="math notranslate nohighlight">\(\tilde{x}_A(\omega)=0 \text{ if } \left| \omega\right| \geq \frac{\pi}{T}\)</span>.
-This assumption allows us to unwrap the summation in the precursor theorem:</p></li>
+<li><p>Assume <span class="math notranslate nohighlight">\(x_A(t)\)</span> to be <em>band limited</em> on <span class="math notranslate nohighlight">\(\left] -\frac{\pi}{T}; \frac{\pi}{T}\right[\)</span>, that is <span class="math notranslate nohighlight">\(\tilde{x}_A(\omega)=0 \text{ if } \left| \omega\right| \geq \frac{\pi}{T}\)</span>.</p></li>
 </ol>
+<p>This assumption allows us to unwrap the summation and force the equality in the precursor theorem:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     \require{cancel}
@@ -453,10 +451,10 @@ This assumption allows us to unwrap the summation in the precursor theorem:</p><
 \require{color}
 x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{exploit hypothesis 3.}\\
 &amp;= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{use the precursor theorem}\\
-&amp;= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(e^{-i\omega T}) e^{-i\omega T} d\omega
+&amp;= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} T x_s(z=e^{-i\omega T}) e^{-i\omega T} d\omega
 = \frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \sum_{n} x_s[n]e^{i\omega n T -i\omega t} d\omega \\
 &amp;= \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega n T -i\omega t} d\omega 
-= \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega n T -i\omega t} d\omega \\
+= \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega (n T-t)} d\omega \\
 &amp;= \frac{T}{2\pi}\sum_{n} x_s[n] \left[ \frac{e^{i\omega(nT-t)}}{i(nT-t)} \right]^{\frac{\pi}{T}}_{-\frac{\pi}{T}} = \cancel{\frac{T}{2\pi}} \sum_{n} x_s[n] \frac{e^{i(nT-t)\frac{\pi}{T}}+e^{-i(nT-t)\frac{\pi}{T}}}{i(nT-t) \textcolor[rgb]{0.75,0.75,0.75}{\frac{2\pi}{T}} } \\
 &amp;= \sum_{n} x_s[n] sinc\left[ (nT-t)\frac{\pi}{T}\right]\\
 \end{align*}\]</div>
@@ -498,17 +496,7 @@ x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\om
 </div>
 <div class="section" id="exercise">
 <h3>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h3>
-<p>Take <span class="math notranslate nohighlight">\(e^{i\omega_0 t}\)</span> with <span class="math notranslate nohighlight">\(\omega_0=2\pi f_0\)</span> and sample it first with <span class="math notranslate nohighlight">\(T&lt;\frac{1}{2f_0}\)</span> and then with <span class="math notranslate nohighlight">\(T&gt;\frac{1}{2f_0}\)</span>. Reconstruct the two signals and check the differences.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">analog_f</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">omega0</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="n">j</span><span class="o">*</span><span class="n">omega0</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
+<p>Take <span class="math notranslate nohighlight">\(\mathcal{Re}\left\{e^{i\omega_0 t}\right\} = cos(\omega_0 t)\)</span> with <span class="math notranslate nohighlight">\(\omega_0=2\pi f_0\)</span> and sample it first with <span class="math notranslate nohighlight">\(T&lt;\frac{1}{2f_0}\)</span> and then with <span class="math notranslate nohighlight">\(T&gt;\frac{1}{2f_0}\)</span>. Reconstruct the two signals and check the differences.</p>
 </div>
 </div>
 </div>
@@ -548,7 +536,7 @@ x_A(t) &amp;= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\om
     <a class='right-next' id="next-link" href="21-10-04%20L06.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 06 - 04 October 2021</p>
+        <p class="prev-next-title">06 - Simulation Theorem</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

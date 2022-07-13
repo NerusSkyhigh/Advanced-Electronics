@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Lecture 05 - 27 September 2021
+# # 05 - Nyquist-Shannon Theorem
+# Lecture 05 - 27 September 2021
 # 
 # ## Sampling
-# 
-# Given a continuous function $x_A(t)$ it is always possible to generate a discrete sequence by taking $x[n]=x_A(nT)$ where $T$ is the sampling time. A direct question arises: how good is it possible to reconstruct a signal $x_{A}(t)$ from its sampled sequence?
+# Given a continuous function $x_A(t)$, it is always possible to generate a discrete sequence by taking $x[n]=x_A(nT)$, where $T$ is the sampling time. A question should naturally arise: how good is it possible to reconstruct a signal $x_{A}(t)$ from its sampled sequence?
 # A first way to do that is to linearly interpolate between points:
 
 # In[1]:
@@ -17,7 +17,7 @@ import numpy as np
 x = np.linspace(0, 51, 10000)
 ya= np.sin(x)*x**2 - np.cos(x)*np.log(x+0.1) + 3
 
-n = np.linspace(0, 51, 30)
+n = np.linspace(0, 51, 30) # Change here the number of points
 ys= np.sin(n)*n**2 - np.cos(n)*np.log(n+0.1) + 3
 
 
@@ -36,13 +36,13 @@ from IPython.display import display, Math, Latex
 display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] \text{ with } T=1.7 \text{ (30 points)}'))
 
 
-# but the results are not great. There exists a better (actual, an optimal) way to reconstruct a function from the sampling but it requires defining some quantities and making some rather general assumptions:
+# but the results are not great. There exists an optimal way to reconstruct a function from the sampling, but it requires defining some quantities and making some rather general assumptions:
 # 
 # ### Definitions:
 # - *Sampling period/time*: $T$
 # - *Sampling rate/frequency*: $f_s=T^{-1}$
 # - *Nyquist frequency*: $F_{NY}= \frac{f_s}{2} \quad \omega_{NY} = 2\pi f_{NY} = \pi f_s = \frac{\pi}{T}$
-# - *Nyquist band:* $]-f_{NY}; f_{NY}[ \quad \iff \quad ]-\frac{\pi}{T}; \frac{\pi}{T}[$
+# - *Nyquist band:* $f \in ]-f_{NY}; f_{NY}[ \quad \iff \quad f \in ]-\frac{\pi}{T}; \frac{\pi}{T}[$
 # 
 # ### Assumptions
 # 1. $x_A(t)$ is $\mathcal{L}^2$, that is, it has a Fourier Transform
@@ -65,8 +65,8 @@ display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] 
 # 
 # \begin{align*}
 # x_{s}[n] &= \frac{1}{2\pi i} \oint_{\Gamma \in ROC} x_s(z) z^{n-1} \qquad z=e^{-i\omega t} \qquad dz=(-iT)e^{-i\omega T}\\
-# &= - \frac{1}{2\pi i} \oint_{-\frac{pi}{T}}^{\frac{\pi}{T}} x_s(e^{-i\omega t}) e^{-i\omega T (n-1)} (-iT) e^{-i\omega t} d\omega \\
-# &= \frac{T}{2\pi} \oint_{-\frac{pi}{T}}^{\frac{\pi}{T}} x_s(e^{-i\omega t}) e^{-i\omega n T} d\omega\\
+# &= - \frac{1}{2\pi i} \oint_{-\frac{\pi}{T}}^{\frac{\pi}{T}} x_s(e^{-i\omega t}) e^{-i\omega T (n-1)} (-iT) e^{-i\omega t} d\omega \\
+# &= \frac{T}{2\pi} \oint_{-\frac{\pi}{T}}^{\frac{\pi}{T}} x_s(e^{-i\omega t}) e^{-i\omega n T} d\omega\\
 # \end{align*}
 # 
 # By composing this expression with the one obtained above it is possible to obtain:
@@ -74,13 +74,12 @@ display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] 
 # $T x_s\left(z=e^{-i\omega T}\right) = \sum_{k} \tilde{x}_A\left( \omega+\frac{2\pi}{T}k\right)$ with $\omega\in \left] -\frac{\pi}{T}; \frac{\pi}{T}\right[$
 # ```
 # 
-# <!-- **NOTE:** it is possible to notice that both the function on the left and the one on the right are periodic with period $\frac{2\pi}{T}$. This implies that it is possible to periodically extend the functions outside the Nyquist band and consider any $\omega$. -->
+# **WARNING:** The function on the right must be periodic with period $\frac{2\pi}{T}$ due to the nature of the complex exponential. In contrast, the function on the left wasn't assumed to be periodic so the expression can't be true in general. To circumvent this issue, we make a third assumption: 
 # 
-#   
-# It is now time to make our third assumption:
 # 
 # 3. Assume $x_A(t)$ to be _band limited_ on $\left] -\frac{\pi}{T}; \frac{\pi}{T}\right[$, that is $\tilde{x}_A(\omega)=0 \text{ if } \left| \omega\right| \geq \frac{\pi}{T}$.
-# This assumption allows us to unwrap the summation in the precursor theorem:
+# 
+# This assumption allows us to unwrap the summation and force the equality in the precursor theorem:
 # 
 # \begin{align*}
 #     \require{cancel}
@@ -93,10 +92,10 @@ display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] 
 # \require{color}
 # x_A(t) &= \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{exploit hypothesis 3.}\\
 # &= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(\omega)e^{-i\omega T} d\omega \qquad \text{use the precursor theorem}\\
-# &= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \tilde{x}_A(e^{-i\omega T}) e^{-i\omega T} d\omega
+# &= \frac{1}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} T x_s(z=e^{-i\omega T}) e^{-i\omega T} d\omega
 # = \frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} \sum_{n} x_s[n]e^{i\omega n T -i\omega t} d\omega \\
 # &= \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega n T -i\omega t} d\omega 
-# = \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega n T -i\omega t} d\omega \\
+# = \frac{T}{2\pi}\sum_{n} x_s[n] \int_{-\frac{\pi}{T}}^{+\frac{\pi}{T}} e^{i\omega (n T-t)} d\omega \\
 # &= \frac{T}{2\pi}\sum_{n} x_s[n] \left[ \frac{e^{i\omega(nT-t)}}{i(nT-t)} \right]^{\frac{\pi}{T}}_{-\frac{\pi}{T}} = \cancel{\frac{T}{2\pi}} \sum_{n} x_s[n] \frac{e^{i(nT-t)\frac{\pi}{T}}+e^{-i(nT-t)\frac{\pi}{T}}}{i(nT-t) \textcolor[rgb]{0.75,0.75,0.75}{\frac{2\pi}{T}} } \\
 # &= \sum_{n} x_s[n] sinc\left[ (nT-t)\frac{\pi}{T}\right]\\
 # \end{align*}
@@ -135,13 +134,4 @@ display(Math(r'f(x) = sin(x)x^2 - cos(x) log(x+0.1) + 3 \qquad \text{in }[0,51] 
 # ```
 
 # ### Exercise
-# Take $e^{i\omega_0 t}$ with $\omega_0=2\pi f_0$ and sample it first with $T<\frac{1}{2f_0}$ and then with $T>\frac{1}{2f_0}$. Reconstruct the two signals and check the differences.
-
-# In[2]:
-
-
-import numpy as np
-
-def analog_f(t, omega0):
-    return np.exp(1j*omega0*t)
-
+# Take $\mathcal{Re}\left\{e^{i\omega_0 t}\right\} = cos(\omega_0 t)$ with $\omega_0=2\pi f_0$ and sample it first with $T<\frac{1}{2f_0}$ and then with $T>\frac{1}{2f_0}$. Reconstruct the two signals and check the differences.

@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 06 - 04 October 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>06 - Simulation Theorem &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 07 - 11 October 2021" href="21-10-11%20L07.html" />
-    <link rel="prev" title="Lecture 05 - 27 September 2021" href="21-09-27%20L05.html" />
+    <link rel="next" title="07 - Bilinear Transform" href="21-10-11%20L07.html" />
+    <link rel="prev" title="05 - Nyquist-Shannon Theorem" href="21-09-27%20L05.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -126,32 +126,32 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-27%20L05.html">
-   Lecture 05 - 27 September 2021
+   05 - Nyquist-Shannon Theorem
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lecture 06 - 04 October 2021
+   06 - Simulation Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-11%20L07.html">
-   Lecture 07 - 11 October 2021
+   07 - Bilinear Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-18%20L08.html">
-   Lecture 08 - 18 October 2021
+   08 - Applications of the Bilinear Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-25%20L09.html">
-   Lecture 09 - 25 October 2021
+   09 - DFT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-11-08%20L10.html">
-   Lecture 10 - 08 November 2021
+   10 - FFT
   </a>
  </li>
 </ul>
@@ -191,21 +191,19 @@
    Waveform generation
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  IDK
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
+  <a class="reference internal" href="21-11-11%20LC07.html">
+   Implementation of a harmonic oscillator
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooks
+  <a class="reference internal" href="21-12-02%20LC08.html">
+   Digital Filters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="External%20resources.html">
+   External resource
   </a>
  </li>
 </ul>
@@ -336,8 +334,12 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#assumption-2-the-input-signal-is-frac-2-pi-t-band-limited">
-     Assumption 2: The input signal is
+    <a class="reference internal nav-link" href="#assumption-2-the-input-signal-tilde-x-omega-is-frac-2-pi-t-band-limited">
+     Assumption 2: The input signal
+     <span class="math notranslate nohighlight">
+      \(\tilde{x}(\omega)\)
+     </span>
+     is
      <span class="math notranslate nohighlight">
       \(\frac{2\pi}{T}\)
      </span>
@@ -351,34 +353,34 @@
      </li>
     </ul>
    </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+  <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#examples">
-     Examples
+    <a class="reference internal nav-link" href="#first-order-low-pass-filter">
+     First order low pass filter
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#first-order-low-pass-filter">
-       First order low pass filter
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#the-differentiator">
-       The differentiator
-      </a>
-     </li>
-    </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#backward-interpretation-of-the-simulation-theorem">
-     Backward interpretation of the simulation theorem
+    <a class="reference internal nav-link" href="#the-differentiator">
+     The differentiator
     </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#e-g-the-differentiator-again">
-       e.g. The differentiator (again)
-      </a>
-     </li>
-    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#backward-interpretation-of-the-simulation-theorem">
+   Backward interpretation of the simulation theorem
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#e-g-the-differentiator-again">
+     e.g. The differentiator (again)
+    </a>
    </li>
   </ul>
  </li>
@@ -393,16 +395,17 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-06-04-october-2021">
-<h1>Lecture 06 - 04 October 2021<a class="headerlink" href="#lecture-06-04-october-2021" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="simulation-theorem">
+<h1>06 - Simulation Theorem<a class="headerlink" href="#simulation-theorem" title="Permalink to this headline">¶</a></h1>
+<p>Lecture 06 - 04 October 2021</p>
 <div class="section" id="simulation-of-an-analog-system-by-means-of-a-digital-one">
 <h2>Simulation of an analog system by means of a digital one<a class="headerlink" href="#simulation-of-an-analog-system-by-means-of-a-digital-one" title="Permalink to this headline">¶</a></h2>
-<p>An interesting question is whether an analog system can be simulated by a digital one. The question is not as trivial as it sounds because a digital system deals only with discrete samples. A first intuition is that “as Nyquist-Shannon allows to perfectly reconstruct a signal from its samples all the information about the system must be contained in the samples and performing operations on them should be sufficient”. More formally:</p>
+<p>An interesting question is whether an analog system can be simulated by a digital one. The question is not as trivial as it sounds because a digital system deals only with discrete samples while an analog one has a continuou dynamic. A first intuition may be: “as Nyquist-Shannon allows to perfectly reconstruct a signal from its samples, all the information about the system must be contained in the samples and performing operations on them should be sufficient”. Formally. Given two system as shown in the following image:</p>
 <p><img alt="Simulation of an analog system by means of a digital one" src="_images/21-10-04_simulation.png" /></p>
-<p>Does such <span class="math notranslate nohighlight">\(h[n] : y'[n]=\sum_{k}h[n-k]x_s[k]\)</span> exists? And, if so, how is it possible to find it? Let’s start with the function <span class="math notranslate nohighlight">\(y'[n]=\sum_{k}h[n-k]x_s[k]\)</span> and make some assumptions:</p>
+<p>does such <span class="math notranslate nohighlight">\(h[n] : y'[n]=\sum_{k}h[n-k]x_s[k]\)</span> exists? And, if so, how is it possible to find it? To answer this question let’s start with a function <span class="math notranslate nohighlight">\(y'[n]=\sum_{k}h[n-k]x_s[k]\)</span> and make some assumptions:</p>
 <div class="section" id="a-both-x-a-t-g-t-in-mathcal-l-2">
 <h3>1a) Both <span class="math notranslate nohighlight">\(x_A(t), G(t) \in \mathcal{L}^2\)</span>.<a class="headerlink" href="#a-both-x-a-t-g-t-in-mathcal-l-2" title="Permalink to this headline">¶</a></h3>
-<p>If this is true it is possible to express the sampled output signal via its inverse Fuorier transform:</p>
+<p>If this is true, it is possible to express the sampled output signal via its inverse Fuorier transform:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 y'[n]=\sum_k h[n-k]x_A(kT)= \sum_k h[n-k] \frac{1}{2\pi}\int_{-\infty}^{+\infty} \tilde{x}_A(\omega)e^{-i\omega k T} d\omega
@@ -432,10 +435,10 @@ y'[n]-y_A[n]=0 \iff \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{-inT\omega} \tilde
 <p>The easiest solution to that equation is <span class="math notranslate nohighlight">\(H\left( z=e^{-i\omega Tn}\right)=\tilde{G}(\omega)\)</span> but it presents many problems, the most important of which is that <em>it requires <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> to be periodic with period T</em> as <span class="math notranslate nohighlight">\(H\left( z=e^{-i\omega Tn}\right)\)</span> satisfies that property by default.
 A workaround is to force the whole integral to be zero with an assumption:</p>
 </div>
-<div class="section" id="assumption-2-the-input-signal-is-frac-2-pi-t-band-limited">
-<h3>Assumption 2: The input signal is <span class="math notranslate nohighlight">\(\frac{2\pi}{T}\)</span> band limited<a class="headerlink" href="#assumption-2-the-input-signal-is-frac-2-pi-t-band-limited" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="assumption-2-the-input-signal-tilde-x-omega-is-frac-2-pi-t-band-limited">
+<h3>Assumption 2: The input signal <span class="math notranslate nohighlight">\(\tilde{x}(\omega)\)</span> is <span class="math notranslate nohighlight">\(\frac{2\pi}{T}\)</span> band limited<a class="headerlink" href="#assumption-2-the-input-signal-tilde-x-omega-is-frac-2-pi-t-band-limited" title="Permalink to this headline">¶</a></h3>
 <p>this forces the equality <span class="math notranslate nohighlight">\(H\left( z=e^{-i\omega Tn}\right)=\tilde{G}(\omega)\)</span> only on <span class="math notranslate nohighlight">\(\left[-\frac{\pi}{T};\frac{\pi}{T} \right]\)</span>.</p>
-<p>The discrete transfer function can be found via:</p>
+<p>The discrete transfer function can be found by inverting the z-transform:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 h[n] &amp;=\frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} H(z)z^{n-1}dz \qquad z=e^{-i\omega T} \iff \Gamma=\Gamma_1\\
@@ -451,10 +454,11 @@ h[n] &amp;=\frac{1}{2\pi i} \oint_{\Gamma um 0\\ \Gamma\in ROC} H(z)z^{n-1}dz \q
 </ol>
 </div>
 </div>
+</div>
 <div class="section" id="examples">
-<h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="first-order-low-pass-filter">
-<h4>First order low pass filter<a class="headerlink" href="#first-order-low-pass-filter" title="Permalink to this headline">¶</a></h4>
+<h3>First order low pass filter<a class="headerlink" href="#first-order-low-pass-filter" title="Permalink to this headline">¶</a></h3>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \require{mathtools}
@@ -464,7 +468,7 @@ h[n]=\frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{\frac{\pi}{T}}e^{-i\omega nT}\frac{1}{
 <img alt="Not standard integral" src="_images/21-10-04_not_standard_integral.png" /></p>
 </div>
 <div class="section" id="the-differentiator">
-<h4>The differentiator<a class="headerlink" href="#the-differentiator" title="Permalink to this headline">¶</a></h4>
+<h3>The differentiator<a class="headerlink" href="#the-differentiator" title="Permalink to this headline">¶</a></h3>
 <p>The differentiator’s equation is <span class="math notranslate nohighlight">\(\tau \frac{d}{dt}\rightarrow -i\omega\tau=\tilde{G}(\omega)\)</span></p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -478,10 +482,10 @@ h[n]&amp;=\frac{T}{2\pi}\int_{-\frac{\pi}{T}}^{\frac{\pi}{T}}(-i\omega \tau)e^{-
 </div>
 </div>
 <div class="section" id="backward-interpretation-of-the-simulation-theorem">
-<h3>Backward interpretation of the simulation theorem<a class="headerlink" href="#backward-interpretation-of-the-simulation-theorem" title="Permalink to this headline">¶</a></h3>
+<h2>Backward interpretation of the simulation theorem<a class="headerlink" href="#backward-interpretation-of-the-simulation-theorem" title="Permalink to this headline">¶</a></h2>
 <p>The one used above was the straightforward interpretation of the theorem. To overcome some of the problems it is possible to consider a <strong>backward intepretation of the simulation theorem</strong>, that is, the requirement are relaxed to <span class="math notranslate nohighlight">\(y'[n]\simeq y[n]\)</span> so that <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=H(z=e^{-i\omega T}) + o(\omega^n)\)</span> in <span class="math notranslate nohighlight">\(\left[ -\frac{\pi}{T}; \frac{\pi}{T} \right]\)</span>.</p>
 <div class="section" id="e-g-the-differentiator-again">
-<h4>e.g. The differentiator (again)<a class="headerlink" href="#e-g-the-differentiator-again" title="Permalink to this headline">¶</a></h4>
+<h3>e.g. The differentiator (again)<a class="headerlink" href="#e-g-the-differentiator-again" title="Permalink to this headline">¶</a></h3>
 <p>Let’s take the approximate transfer function (which is given/found by an intuition): <span class="math notranslate nohighlight">\(V[n]=\delta[n]-\delta[n-1]\)</span> with z-transform <span class="math notranslate nohighlight">\(V(z)=1 - \frac{1}{z}\)</span>. By taking the limit <span class="math notranslate nohighlight">\(\omega T &lt;&lt; 1\)</span>, it is possible to write:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
@@ -509,7 +513,6 @@ V[n]&amp;= \alpha \delta[n]+\beta \delta[n-1]+\gamma\delta[n-2] \implies V(z)=\a
     \end{cases}
 \end{align*}\]</div>
 <p><img alt="" src="_images/21-10-04_differentiator.png" /></p>
-</div>
 </div>
 </div>
 </div>
@@ -543,13 +546,13 @@ V[n]&amp;= \alpha \delta[n]+\beta \delta[n-1]+\gamma\delta[n-2] \implies V(z)=\a
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture 05 - 27 September 2021</p>
+            <p class="prev-next-title">05 - Nyquist-Shannon Theorem</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-10-11%20L07.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 07 - 11 October 2021</p>
+        <p class="prev-next-title">07 - Bilinear Transform</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

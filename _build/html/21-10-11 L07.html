@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 07 - 11 October 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>07 - Bilinear Transform &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 08 - 18 October 2021" href="21-10-18%20L08.html" />
-    <link rel="prev" title="Lecture 06 - 04 October 2021" href="21-10-04%20L06.html" />
+    <link rel="next" title="08 - Applications of the Bilinear Transform" href="21-10-18%20L08.html" />
+    <link rel="prev" title="06 - Simulation Theorem" href="21-10-04%20L06.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -126,32 +126,32 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-27%20L05.html">
-   Lecture 05 - 27 September 2021
+   05 - Nyquist-Shannon Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-04%20L06.html">
-   Lecture 06 - 04 October 2021
+   06 - Simulation Theorem
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lecture 07 - 11 October 2021
+   07 - Bilinear Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-18%20L08.html">
-   Lecture 08 - 18 October 2021
+   08 - Applications of the Bilinear Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-25%20L09.html">
-   Lecture 09 - 25 October 2021
+   09 - DFT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-11-08%20L10.html">
-   Lecture 10 - 08 November 2021
+   10 - FFT
   </a>
  </li>
 </ul>
@@ -191,21 +191,19 @@
    Waveform generation
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  IDK
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
+  <a class="reference internal" href="21-11-11%20LC07.html">
+   Implementation of a harmonic oscillator
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooks
+  <a class="reference internal" href="21-12-02%20LC08.html">
+   Digital Filters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="External%20resources.html">
+   External resource
   </a>
  </li>
 </ul>
@@ -373,12 +371,13 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-07-11-october-2021">
-<h1>Lecture 07 - 11 October 2021<a class="headerlink" href="#lecture-07-11-october-2021" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="bilinear-transform">
+<h1>07 - Bilinear Transform<a class="headerlink" href="#bilinear-transform" title="Permalink to this headline">¶</a></h1>
+<p>Lecture 07 - 11 October 2021</p>
 <div class="section" id="approximations-for-the-simulation-theorem">
 <h2>Approximations for the simulation theorem<a class="headerlink" href="#approximations-for-the-simulation-theorem" title="Permalink to this headline">¶</a></h2>
-<p>In the previous lecture a way to approximate a system <span class="math notranslate nohighlight">\(\tilde{G}(s)\)</span> or <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> with a discrete transfer function was seen. The result obtained is that <span class="math notranslate nohighlight">\(V(z)\)</span> is a perfect simulator for <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> if and only if <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=V(z=e^{-i\omega T})\)</span>.
-It’s now time to searcb for a general way to obtain the discrete <span class="math notranslate nohighlight">\(\tilde{V}(z)\)</span> starting from the transfer function <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span>. A first way would be to invert <span class="math notranslate nohighlight">\(z=e^{-i\omega T}\rightarrow \omega=\frac{i}{T}ln(Z)\)</span> but that would introduce a <a class="reference external" href="https://en.wikipedia.org/wiki/Branch_point#Branch_cuts">branch cut</a> on <span class="math notranslate nohighlight">\(\mathcal{R}_{0}^{-}\)</span>. A possibility is to abandon the search for an <em>exact inversion</em> anduse a <em>sufficiently close approximation</em> <span class="math notranslate nohighlight">\(\tilde{V} = \tilde{G}(\omega=f(z)) + \mathcal{o}\left( w^n\right)\)</span>.</p>
+<p>In the previous lecture, a way to approximate a system <span class="math notranslate nohighlight">\(\tilde{G}(s)\)</span> or <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> with a discrete transfer function was seen. The result obtained is that <span class="math notranslate nohighlight">\(V(z)\)</span> is a perfect simulator for <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span> if and only if <span class="math notranslate nohighlight">\(\tilde{G}(\omega)=V(z=e^{-i\omega T})\)</span>.
+It’s now time to search for a general way to obtain the discrete <span class="math notranslate nohighlight">\(\tilde{V}(z)\)</span> starting from the transfer function <span class="math notranslate nohighlight">\(\tilde{G}(\omega)\)</span>. A first way would be to invert <span class="math notranslate nohighlight">\(z=e^{-i\omega T}\rightarrow \omega=\frac{i}{T}ln(Z)\)</span> but that would introduce a <a class="reference external" href="https://en.wikipedia.org/wiki/Branch_point#Branch_cuts">branch cut</a> on <span class="math notranslate nohighlight">\(\mathcal{R}_{0}^{-}\)</span>. A possibility is to abandon the search for an <em>exact inversion</em> and use a <em>sufficiently close approximation</em> <span class="math notranslate nohighlight">\(\tilde{V} = \tilde{G}(\omega=f(z)) + \mathcal{o}\left( w^n\right)\)</span>.</p>
 <div class="section" id="case-1-sin-omega-t">
 <h3>Case 1: <span class="math notranslate nohighlight">\(sin(\omega t)\)</span><a class="headerlink" href="#case-1-sin-omega-t" title="Permalink to this headline">¶</a></h3>
 <p>Let’s start by writing <span class="math notranslate nohighlight">\(sin(\omega t)\)</span> as an exponential:</p>
@@ -428,7 +427,7 @@ V(z)= \frac{\sum_{k=0}^Ma_k \left[ \frac{2i}{T}  \frac{z-1}{z+1} \right]^k}{\sum
 </div>
 <div class="section" id="causality">
 <h3>Causality<a class="headerlink" href="#causality" title="Permalink to this headline">¶</a></h3>
-<p>Causality can be proven but the proof is long and tedious. Just assume causality a priori with the condition <span class="math notranslate nohighlight">\(0\not \in ROC; \infty \subset ROC\)</span>.</p>
+<p>Causality can be proven but the proof is long and tedious. Just assume causality a priori or check the conditions <span class="math notranslate nohighlight">\(0\not \in ROC; \infty \subset ROC\)</span>.</p>
 </div>
 <div class="section" id="bibo-stability">
 <h3>Bibo Stability<a class="headerlink" href="#bibo-stability" title="Permalink to this headline">¶</a></h3>
@@ -445,9 +444,9 @@ It’s now possible to prove the preservation of bibo stability:</p>
 \[\begin{align*}
 s &amp;= \frac{2}{T} \frac{z-1}{z+1} \rightarrow z=\frac{1+sT/2}{1-sT/2} = \frac{1+x+iy}{1-x-iy}\\
 &amp;\text{with }\frac{T}{2}s=x+iy,\quad x,y\in\mathcal{R}\\
-&amp;\implies \left| z_0 \right| = 1+\frac{4x_0}{(x_0-1)^2+y_0^2} = 1+\frac{2T\mathcal{Re}\left\{s_0\right\}}{\left(1-\frac{T}{2}\mathcal{Re}\left\{s_0\right\} \right)^2 + \left(\mathcal{Im}\left\{s_0\right\} \right)^2}
+&amp;\implies \left| z_0 \right|^2 = 1+\frac{4x_0}{(x_0-1)^2+y_0^2} = 1+\frac{2T\mathcal{Re}\left\{s_0\right\}}{\left(1-\frac{T}{2}\mathcal{Re}\left\{s_0\right\} \right)^2 + \left(\mathcal{Im}\left\{s_0\right\} \right)^2}
 \end{align*}\]</div>
-<p>by imposing <span class="math notranslate nohighlight">\(\mathcal{Re}\{poles\}&lt;0\)</span> one obtains <span class="math notranslate nohighlight">\(\left| z_0 \right|&lt;0\)</span>, that is, all the poles <span class="math notranslate nohighlight">\(\subset \Gamma_1\)</span>.
+<p>by imposing <span class="math notranslate nohighlight">\(\mathcal{Re}\{poles\}&lt;0\)</span> one obtains <span class="math notranslate nohighlight">\(\left| z_0 \right|&lt;1\)</span>, that is, all the poles <span class="math notranslate nohighlight">\(\subset \Gamma_1\)</span>.
 As all the poles are strictly under <span class="math notranslate nohighlight">\(\Gamma_1\)</span> it is possible to find a curve that includes all the poles, is contained in <span class="math notranslate nohighlight">\(\Gamma_1\)</span>, and encloses <span class="math notranslate nohighlight">\(+\infty\)</span>. This implies that the system is Bibo stable.
 Another reason for which bilinear is preferred is that it is well-behaved near the boundaries of the Nyquist band:</p>
 <p>Assume <span class="math notranslate nohighlight">\(N&gt;M\)</span> (this can always be done by renaming eventual derivatives in the transfer function)</p>
@@ -460,7 +459,7 @@ Another reason for which bilinear is preferred is that it is well-behaved near t
 \[\begin{align*}
     \tilde{G}(\omega)=V\left(z=e^{-i\omega T}\right) = \left. \frac{N'\left( z=e^{-i\omega T}\right)}{D'\left(z=e^{-i\omega T}\right)} \left( e^{-i\omega T}+1\right)^{N-M} \right|_{\omega = \pm \frac{\pi}{T} }=0
 \end{align*}\]</div>
-<p>That is the tails of <span class="math notranslate nohighlight">\(\tilde{x}(\omega)\)</span> are smoothed out near the boundaries of the Nyquist band and ensure a nice transition to the cut region.</p>
+<p>That is, the tails of <span class="math notranslate nohighlight">\(\tilde{x}(\omega)\)</span> are smoothed out near the boundaries of the Nyquist band and ensure a nice transition to the cut region.</p>
 </div>
 <div class="section" id="e-g-low-pass-actual-implementation">
 <h3>e.g. LOW PASS (actual implementation)<a class="headerlink" href="#e-g-low-pass-actual-implementation" title="Permalink to this headline">¶</a></h3>
@@ -472,7 +471,7 @@ Another reason for which bilinear is preferred is that it is well-behaved near t
     V(z)&amp;=\frac{Y(z)}{X(z)}= \frac{1-c}{2}\frac{z+1}{z-c} \implies y(z)\left( 1-\frac{c}{z}\right)=\frac{1-c}{2}\left( 1+\frac{1}{z}\right) x(z)\\
     &amp;\implies y[n]c-y[n-1]=\frac{1-c}{2}(x[n]+x[n-1]) \quad \text{Time domain}
 \end{align*}\]</div>
-<p>Let’s now plot the Bode diagram for a low pass an for its bilinear transform. The two equation of interests are:</p>
+<p>Let’s now plot the Bode diagram for a low pass an for its bilinear transform. The two equations of interest are:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \text{Ideal low pass} &amp;\quad \tilde{G}(\omega)=\frac{1}{1-i\omega \tau}\\
@@ -574,13 +573,13 @@ f_{3dB}&amp;=10 \text{ Hz} \quad T = 2^{-10} \simeq 10^{-3}
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture 06 - 04 October 2021</p>
+            <p class="prev-next-title">06 - Simulation Theorem</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-10-18%20L08.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 08 - 18 October 2021</p>
+        <p class="prev-next-title">08 - Applications of the Bilinear Transform</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

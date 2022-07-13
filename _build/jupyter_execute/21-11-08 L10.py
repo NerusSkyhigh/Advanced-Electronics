@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Lecture 10 - 08 November 2021
+# # 10 - FFT
+# Lecture 10 - 08 November 2021
 # 
 # ## Brief Recap of last lecture
 # ```{admonition} Assumption
@@ -98,4 +99,4 @@
 # 
 # ![Example: Fast Fourier Transform of a cosine](images/21-11-08_example_FFT.jpeg)
 # 
-# As a final remark, if the number of point N is _not_ a power of two the simplest way to perform the FFT is to pad he sequqnce with zeros  or use [windowing](https://en.wikipedia.org/wiki/Window_function).
+# As a final remark, if the number of point N is _not_ a power of two the simplest way to perform the FFT is to pad the sequence with zeros  or use [windowing](https://en.wikipedia.org/wiki/Window_function).

@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Lecture 08 - 18 October 2021
+# # 08 - Applications of the Bilinear Transform
+# Lecture 08 - 18 October 2021
 # 
 # This lecture will be focused on more examples and applications of the simulation theorem.
 # 
@@ -60,7 +61,7 @@
 # 
 # ![](images/21-10-18_Notch_Filter.jpeg)
 # 
-# #### e.g. Filter at $f_0 =\frac{1}{4T}\rightarrow z_0 = \pm i$
+# ### e.g. Filter at $f_0 =\frac{1}{4T}\rightarrow z_0 = \pm i$
 # \begin{align*}
 # V(z) &=\frac{(z-i)(z+i)}{(z-ci)(z+ci)} = \frac{z^2+1}{z^2-c^2} = \frac{e^{-2i\omega T}+1}{e^{-2i\omega T}+c^2}\\
 # &=\sqrt{ \frac{2[1+\cos(2\omega T)]}{1+c^2+2c^2 \cos(2\omega T)}} = \frac{\left|\cos(\omega T)\right|}{\sqrt{1-\left[ \frac{2c}{1+c^2}\sin(\omega T)\right]}}\frac{2}{1+c^2}

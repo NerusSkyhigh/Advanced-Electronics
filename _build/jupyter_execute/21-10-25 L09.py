@@ -1,24 +1,28 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Lecture 09 - 25 October 2021
+# # 09 - DFT
+# Lecture 09 - 25 October 2021
 # 
 # ## Fourier Transforms
 # Up to now the focus was on two main kind of Fourier Transforms:
 # 
 # **Fourier Integral** ($\mathcal{L}^2$ functions, based on Fourier theorem)
+# 
 # \begin{align*}
 #     f(t)&=\frac{1}{2\pi}\int_{-\infty}^{+\infty}\tilde{F}(\omega)e^{-i\omega t} d\omega \qquad \text{Inverse Fourier Transform} \\
 #     \tilde{F}(\omega)&=\int_{-\infty}^{+\infty}f(t)e^{i\omega t} dt \qquad \text{Fourier Transform}
 # \end{align*}
-# 
+#   
+#   
 # **Fourier Series** (for periodic functions)
+# 
 # \begin{align*}
 #     f(t)=\sum_{k} a_k e^{-i\omega_k t} \qquad \omega_k=\frac{2\pi}{T}k \qquad \text{Fourier Series}\\
 #     a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt \qquad \qquad \text{Fourier Coefficients}\\
 # \end{align*}
 # 
-# The Fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and repeat them.
+# The Fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and periodically repeat them.
 
 # In[1]:
 
@@ -65,10 +69,10 @@ plt.show()
 
 # ## Discrete Fourier Transform
 # 
-# The _discrete Fourier Transform_ (DFT) is the discrete version of the Fourier Transform that does _not_ require the computation of integrals. The _fast Fourier Transform_ (FFT) is a faster way ($\mathcal{O}(Nlog(N))$ instead of $\mathcal{O}(N^2)$) to compute the DFT with some minor additional constraints. Let's walk through the DFT:
+# The _discrete Fourier Transform_ (DFT) is the discrete version of the Fourier Transform that does _not_ require the computation of integrals. The _Fast Fourier Transform_ (FFT) is a faster way ($\mathcal{O}(Nlog(N))$ instead of $\mathcal{O}(N^2)$) to compute the DFT with some minor additional constraints. Let's walk through the DFT:
 # 
 # ```{admonition} Assumption
-# Assume a function $f$ which is periodic ($f(t+T)=f(t)$) and has period equal to an _even_ multiple of the sampling time T: $T_f=NT, N\in\matchcal{N}^{+}_{even}$. 
+# Assume a function $f$ which is periodic ($f(t+T)=f(t)$) and has period equal to an _even_ multiple of the sampling time T: $T_f=NT, N\in\mathcal{N}^{+}_{even}$. 
 # ```
 # 
 # The Fourier series of such a function is:
@@ -112,7 +116,7 @@ fig.tight_layout()
 plt.show()
 
 
-# A minimal assumption that is necessary to make is that
+# A minimal assumption that is essential to make is that
 # ```{admonition} Assumption
 # $f(t)$ is $\frac{\pi}{T}$ band limited.
 # ```
@@ -120,8 +124,9 @@ plt.show()
 # \begin{align*}
 # -\frac{\pi}{T}\leq \omega_k \leq \frac{\pi}{T} \rightarrow -\frac{N}{2}\leq k < \frac{N}{2}
 # \end{align*}
-# and that explains why N was choosen even too.  
-# The series can then be written as:
+# 
+# That explains why N was choosen even too. The series can then be split into two terms depending on the value of $k$:
+# 
 # \begin{align*}
 # f(t)&= \sum_{k=-\frac{N}{2}}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} = \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} + \sum_{k=-\frac{N}{2}}^{-1} a_k e^{-i\frac{2\pi}{NT}kt}
 # \end{align*}
@@ -142,7 +147,8 @@ plt.show()
 # 
 # As it was stated before, a physical signal is usually band limited and sampled with sampling time T:
 # \begin{align*}
-# f[n]=f(nT)&= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}} + \sum_{k=\frac{N}{2}}^{N-1} a_{k-N} e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}}\cancelto{1}{e^{i\frac{2\pi}{T}nT}}
+# f[n]=f(nT)&= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}} + \sum_{k=\frac{N}{2}}^{N-1} a_{k-N} e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}}\cancelto{1}{e^{i\frac{2\pi}{T}nT}} \\
+# &= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{N}kn} + \sum_{k=\frac{N}{2}}^{N-1} a_{k-N} e^{-i\frac{2\pi}{N}kn}
 # \end{align*}
 # 
 # this leads to a new series defined as:
@@ -163,7 +169,7 @@ plt.show()
 # &= \frac{1}{N}\sum_{k=0}^{N-1} F_ke^{-i\frac{2\pi}{N}kn} \quad \text{Inverse DFT}
 # \end{align*}
 # 
-# As it is clear from the previous formula, the Inverse DFT allows us to compute the integral $a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt$ withot needing to perform any kind of integration. Furthermore:
+# As it is clear from the previous formula, the Inverse DFT allows us to compute the integral $a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt$ without needing to perform any kind of integration. Furthermore:
 # 
 # \begin{align*}
 # \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl} &= \sum_{n=0} e^{i\frac{2\pi}{N}nl} \left(\frac{1}{N}\sum_{k=0}^{N-1}F_k e^{-i\frac{2\pi}{N}nk} \right)\\
@@ -192,12 +198,12 @@ plt.show()
 # ### Periodicity
 # #### In time  
 # \begin{align*}
-# f[n+T]=\sum_{n=0}^{N-1}\cancelto{1}{e^{-i\frac{2\pi}{N}kN}}=f[n]
+# f[n+T]=\sum_{k=0}^{N-1}F_k e^{-i\frac{2\pi}{T}(n+T)k}=\sum_{k=0}^{N-1}F_k e^{-i\frac{2\pi}{T}nk} = f[n]
 # \end{align*}
 # 
 # #### In Frequency
 # \begin{align*}
-# F_{k+N} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl}\cancelto{1}{e^{i\frac{2\pi}{N}nN}} = F_k
+# F_{k+N} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}n(k+N)} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nk} = F_k
 # \end{align*}
 # 
 # #### Perceval relation
@@ -211,7 +217,7 @@ plt.show()
 # \implies & \sum_{n=0}^{N-1} \left| f[n]\right|^2 = \frac{1}{N^2}\sum_{n=0}^{N-1} \left| F_k\right|^2
 # \end{align*}
 # 
-# Finally, before moving to a small exercise let's introduce a new notation:
+# Finally, before moving to a small exercise, let's introduce a new notation:
 # 
 # \begin{align*}
 # \begin{array}{l}
@@ -226,7 +232,7 @@ plt.show()
 # These two are the conventional form of the DFT and its inverse.
 #   
 # ## Example
-# Let's now evaluate the Fourier transform of the cosine:
+# Let's now evaluate the Fourier transform of the cosine with the following parameters:
 # \begin{align*}
 #     N &= 8 \\
 #     f &= \frac{1}{4T} \\
@@ -272,15 +278,21 @@ plt.show()
 #                 0 \qquad \text{if } k=1,5 \\
 #                 4 \qquad \text{if } k=2,6 \\
 #                 0 \qquad \text{if } k=3,7 \\
-#             \end{cases}\\
-#             \\
-#         \implies a_{-4}&=\frac{F_{-4+8}}{8}=\frac{F_4}{8}=0 \qquad a_0=0 \\
+#             \end{cases}
+# \end{align*}
+# 
+# Or, in an other way:
+# \begin{align*}
+#         a_{-4}&=\frac{F_{-4+8}}{8}=\frac{F_4}{8}=0 \qquad a_0=0 \\
 #                  a_{-3}&=0 \qquad\qquad\qquad\qquad a_1=0\\
 #                  a_{-2}&=1/2 \qquad\qquad\qquad\quad\ a_2=1/2\\
 #                  a_{-1}&=0 \qquad\qquad\qquad\qquad a_3=0      \\
-#          \implies cos(2\pi ft) = \frac{1}{2}e^{-i 2\pi ft}+\frac{1}{2}e^{i 2\pi ft}
+#                  \\
+#          \implies& cos(2\pi ft) = \frac{1}{2}e^{-i 2\pi ft}+\frac{1}{2}e^{i 2\pi ft}
 # \end{align*}
+# 
 # which is in accordance with the known
+# 
 # \begin{align*}
 #     cos(2\pi ft) = \frac{e^{i 2\pi ft}+e^{-i 2\pi ft}}{2}
 # \end{align*}
