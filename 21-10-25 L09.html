@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lecture 09 - 25 October 2021 &#8212; Notes of Advanced Electronics</title>
+    <title>09 - DFT &#8212; Notes of Advanced Electronics</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,8 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Lecture 10 - 08 November 2021" href="21-11-08%20L10.html" />
-    <link rel="prev" title="Lecture 08 - 18 October 2021" href="21-10-18%20L08.html" />
+    <link rel="next" title="10 - FFT" href="21-11-08%20L10.html" />
+    <link rel="prev" title="08 - Applications of the Bilinear Transform" href="21-10-18%20L08.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -126,32 +126,32 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-09-27%20L05.html">
-   Lecture 05 - 27 September 2021
+   05 - Nyquist-Shannon Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-04%20L06.html">
-   Lecture 06 - 04 October 2021
+   06 - Simulation Theorem
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-11%20L07.html">
-   Lecture 07 - 11 October 2021
+   07 - Bilinear Transform
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-10-18%20L08.html">
-   Lecture 08 - 18 October 2021
+   08 - Applications of the Bilinear Transform
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Lecture 09 - 25 October 2021
+   09 - DFT
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="21-11-08%20L10.html">
-   Lecture 10 - 08 November 2021
+   10 - FFT
   </a>
  </li>
 </ul>
@@ -191,21 +191,19 @@
    Waveform generation
   </a>
  </li>
-</ul>
-<p class="caption">
- <span class="caption-text">
-  IDK
- </span>
-</p>
-<ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="markdown.html">
-   Markdown Files
+  <a class="reference internal" href="21-11-11%20LC07.html">
+   Implementation of a harmonic oscillator
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="notebooks.html">
-   Content with notebooks
+  <a class="reference internal" href="21-12-02%20LC08.html">
+   Digital Filters
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="External%20resources.html">
+   External resource
   </a>
  </li>
 </ul>
@@ -379,8 +377,9 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="lecture-09-25-october-2021">
-<h1>Lecture 09 - 25 October 2021<a class="headerlink" href="#lecture-09-25-october-2021" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="dft">
+<h1>09 - DFT<a class="headerlink" href="#dft" title="Permalink to this headline">¶</a></h1>
+<p>Lecture 09 - 25 October 2021</p>
 <div class="section" id="fourier-transforms">
 <h2>Fourier Transforms<a class="headerlink" href="#fourier-transforms" title="Permalink to this headline">¶</a></h2>
 <p>Up to now the focus was on two main kind of Fourier Transforms:</p>
@@ -396,7 +395,7 @@
     f(t)=\sum_{k} a_k e^{-i\omega_k t} \qquad \omega_k=\frac{2\pi}{T}k \qquad \text{Fourier Series}\\
     a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt \qquad \qquad \text{Fourier Coefficients}\\
 \end{align*}\]</div>
-<p>The Fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and repeat them.</p>
+<p>The Fourier series needs the functions considered to be periodic. A quick fix for that is to truncate the function when they are sufficiently close to zero and periodically repeat them.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -447,10 +446,10 @@
 </div>
 <div class="section" id="discrete-fourier-transform">
 <h2>Discrete Fourier Transform<a class="headerlink" href="#discrete-fourier-transform" title="Permalink to this headline">¶</a></h2>
-<p>The <em>discrete Fourier Transform</em> (DFT) is the discrete version of the Fourier Transform that does <em>not</em> require the computation of integrals. The <em>fast Fourier Transform</em> (FFT) is a faster way (<span class="math notranslate nohighlight">\(\mathcal{O}(Nlog(N))\)</span> instead of <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>) to compute the DFT with some minor additional constraints. Let’s walk through the DFT:</p>
+<p>The <em>discrete Fourier Transform</em> (DFT) is the discrete version of the Fourier Transform that does <em>not</em> require the computation of integrals. The <em>Fast Fourier Transform</em> (FFT) is a faster way (<span class="math notranslate nohighlight">\(\mathcal{O}(Nlog(N))\)</span> instead of <span class="math notranslate nohighlight">\(\mathcal{O}(N^2)\)</span>) to compute the DFT with some minor additional constraints. Let’s walk through the DFT:</p>
 <div class="admonition-assumption admonition">
 <p class="admonition-title">Assumption</p>
-<p>Assume a function <span class="math notranslate nohighlight">\(f\)</span> which is periodic (<span class="math notranslate nohighlight">\(f(t+T)=f(t)\)</span>) and has period equal to an <em>even</em> multiple of the sampling time T: <span class="math notranslate nohighlight">\(T_f=NT, N\in\matchcal{N}^{+}_{even}\)</span>.</p>
+<p>Assume a function <span class="math notranslate nohighlight">\(f\)</span> which is periodic (<span class="math notranslate nohighlight">\(f(t+T)=f(t)\)</span>) and has period equal to an <em>even</em> multiple of the sampling time T: <span class="math notranslate nohighlight">\(T_f=NT, N\in\mathcal{N}^{+}_{even}\)</span>.</p>
 </div>
 <p>The Fourier series of such a function is:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -497,7 +496,7 @@ a_k&amp;= \frac{1}{NT} \int_{-\frac{NT}{2}}^{\frac{NT}{2}} f(t)  e^{i\frac{2\pi}
 <img alt="_images/21-10-25 L09_3_0.png" src="_images/21-10-25 L09_3_0.png" />
 </div>
 </div>
-<p>A minimal assumption that is necessary to make is that</p>
+<p>A minimal assumption that is essential to make is that</p>
 <div class="admonition-assumption admonition">
 <p class="admonition-title">Assumption</p>
 <p><span class="math notranslate nohighlight">\(f(t)\)</span> is <span class="math notranslate nohighlight">\(\frac{\pi}{T}\)</span> band limited.</p>
@@ -507,8 +506,7 @@ a_k&amp;= \frac{1}{NT} \int_{-\frac{NT}{2}}^{\frac{NT}{2}} f(t)  e^{i\frac{2\pi}
 \[\begin{align*}
 -\frac{\pi}{T}\leq \omega_k \leq \frac{\pi}{T} \rightarrow -\frac{N}{2}\leq k &lt; \frac{N}{2}
 \end{align*}\]</div>
-<p>and that explains why N was choosen even too.<br />
-The series can then be written as:</p>
+<p>That explains why N was choosen even too. The series can then be split into two terms depending on the value of <span class="math notranslate nohighlight">\(k\)</span>:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 f(t)&amp;= \sum_{k=-\frac{N}{2}}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} = \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} + \sum_{k=-\frac{N}{2}}^{-1} a_k e^{-i\frac{2\pi}{NT}kt}
@@ -529,7 +527,8 @@ f(t)&amp;= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{NT}kt} + \sum_{k=-\fr
 <p>As it was stated before, a physical signal is usually band limited and sampled with sampling time T:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-f[n]=f(nT)&amp;= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}} + \sum_{k=\frac{N}{2}}^{N-1} a_{k-N} e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}}\cancelto{1}{e^{i\frac{2\pi}{T}nT}}
+f[n]=f(nT)&amp;= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}} + \sum_{k=\frac{N}{2}}^{N-1} a_{k-N} e^{-i\frac{2\pi}{N\cancel{T}}kn\cancel{T}}\cancelto{1}{e^{i\frac{2\pi}{T}nT}} \\
+&amp;= \sum_{k=0}^{\frac{N}{2}-1} a_k e^{-i\frac{2\pi}{N}kn} + \sum_{k=\frac{N}{2}}^{N-1} a_{k-N} e^{-i\frac{2\pi}{N}kn}
 \end{align*}\]</div>
 <p>this leads to a new series defined as:</p>
 <div class="amsmath math notranslate nohighlight">
@@ -548,7 +547,7 @@ a_{k-N}N \quad &amp;\text{if } \frac{N}{2}\leq k&lt;N \\
 f[n] &amp;= \sum_{k=0}^{\frac{N}{2}-1} \frac{F_k}{N} e^{-i\frac{2\pi}{N}kn} + \sum_{k=\frac{N}{2}}^{N-1} \frac{F_k}{N}e^{-i\frac{2\pi}{N}kn} \\
 &amp;= \frac{1}{N}\sum_{k=0}^{N-1} F_ke^{-i\frac{2\pi}{N}kn} \quad \text{Inverse DFT}
 \end{align*}\]</div>
-<p>As it is clear from the previous formula, the Inverse DFT allows us to compute the integral <span class="math notranslate nohighlight">\(a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt\)</span> withot needing to perform any kind of integration. Furthermore:</p>
+<p>As it is clear from the previous formula, the Inverse DFT allows us to compute the integral <span class="math notranslate nohighlight">\(a_k=\frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}} f(t) e^{i\omega_k t}dt\)</span> without needing to perform any kind of integration. Furthermore:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl} &amp;= \sum_{n=0} e^{i\frac{2\pi}{N}nl} \left(\frac{1}{N}\sum_{k=0}^{N-1}F_k e^{-i\frac{2\pi}{N}nk} \right)\\
@@ -582,14 +581,14 @@ f[n]=\frac{1}{N}\sum_{k=0}^{N-1} F_ke^{-i\frac{2\pi}{N}kn}
 <h4>In time<a class="headerlink" href="#in-time" title="Permalink to this headline">¶</a></h4>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-f[n+T]=\sum_{n=0}^{N-1}\cancelto{1}{e^{-i\frac{2\pi}{N}kN}}=f[n]
+f[n+T]=\sum_{k=0}^{N-1}F_k e^{-i\frac{2\pi}{T}(n+T)k}=\sum_{k=0}^{N-1}F_k e^{-i\frac{2\pi}{T}nk} = f[n]
 \end{align*}\]</div>
 </div>
 <div class="section" id="in-frequency">
 <h4>In Frequency<a class="headerlink" href="#in-frequency" title="Permalink to this headline">¶</a></h4>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
-F_{k+N} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl}\cancelto{1}{e^{i\frac{2\pi}{N}nN}} = F_k
+F_{k+N} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}n(k+N)} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nk} = F_k
 \end{align*}\]</div>
 </div>
 <div class="section" id="perceval-relation">
@@ -604,7 +603,7 @@ F_{k+N} = \sum_{n=0}^{N-1}f[n]e^{i \frac{2\pi}{N}nl}\cancelto{1}{e^{i\frac{2\pi}
 &amp;= \frac{1}{N^2} \sum_{k=0}^{N-1} \sum_{l=0}^{N-1} F_k F_l^* \cancelto{\delta_{l,k}}{\sum_{n=0}^{N-1}e^{i\frac{2\pi}{N}n(l+k)}} \\
 \implies &amp; \sum_{n=0}^{N-1} \left| f[n]\right|^2 = \frac{1}{N^2}\sum_{n=0}^{N-1} \left| F_k\right|^2
 \end{align*}\]</div>
-<p>Finally, before moving to a small exercise let’s introduce a new notation:</p>
+<p>Finally, before moving to a small exercise, let’s introduce a new notation:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
 \begin{array}{l}
@@ -621,7 +620,7 @@ F_k &amp;= \sum_{n=0}^{N-1} f_n W_N^{nk}
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
-<p>Let’s now evaluate the Fourier transform of the cosine:</p>
+<p>Let’s now evaluate the Fourier transform of the cosine with the following parameters:</p>
 <div class="amsmath math notranslate nohighlight">
 \[\begin{align*}
     N &amp;= 8 \\
@@ -672,13 +671,17 @@ F_k &amp;= \sum_{n=0}^{N-1} f_n W_N^{nk}
                 0 \qquad \text{if } k=1,5 \\
                 4 \qquad \text{if } k=2,6 \\
                 0 \qquad \text{if } k=3,7 \\
-            \end{cases}\\
-            \\
-        \implies a_{-4}&amp;=\frac{F_{-4+8}}{8}=\frac{F_4}{8}=0 \qquad a_0=0 \\
+            \end{cases}
+\end{align*}\]</div>
+<p>Or, in an other way:</p>
+<div class="amsmath math notranslate nohighlight">
+\[\begin{align*}
+        a_{-4}&amp;=\frac{F_{-4+8}}{8}=\frac{F_4}{8}=0 \qquad a_0=0 \\
                  a_{-3}&amp;=0 \qquad\qquad\qquad\qquad a_1=0\\
                  a_{-2}&amp;=1/2 \qquad\qquad\qquad\quad\ a_2=1/2\\
                  a_{-1}&amp;=0 \qquad\qquad\qquad\qquad a_3=0      \\
-         \implies cos(2\pi ft) = \frac{1}{2}e^{-i 2\pi ft}+\frac{1}{2}e^{i 2\pi ft}
+                 \\
+         \implies&amp; cos(2\pi ft) = \frac{1}{2}e^{-i 2\pi ft}+\frac{1}{2}e^{i 2\pi ft}
 \end{align*}\]</div>
 <p>which is in accordance with the known</p>
 <div class="amsmath math notranslate nohighlight">
@@ -717,13 +720,13 @@ F_k &amp;= \sum_{n=0}^{N-1} f_n W_N^{nk}
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Lecture 08 - 18 October 2021</p>
+            <p class="prev-next-title">08 - Applications of the Bilinear Transform</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="21-11-08%20L10.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Lecture 10 - 08 November 2021</p>
+        <p class="prev-next-title">10 - FFT</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
